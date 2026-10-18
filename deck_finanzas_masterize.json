@@ -1,0 +1,154 @@
+{
+  "title": "MASTERIZE · ARTEPISA — División Financiera & Calculadora",
+  "theme": "dark",
+  "slides": [
+    {
+      "layout": "title",
+      "tag": "PASO 01 // EL CONTRATO",
+      "title": "$150,000 MXN en 3 Bolsas.",
+      "subtitle": "70% Pool Equipo ($105,000) · 20% Caja MASTERIZE ($30,000) · 10% Closer ($15,000)",
+      "author": "Finance Team · MASTERIZE",
+      "date": "Octubre 2026",
+      "notes": "De cada peso que entra sin IVA, 70 centavos van a los 4 socios, 20 centavos a Caja MASTERIZE y 10 centavos a comisión comercial."
+    },
+    {
+      "layout": "metric_impact",
+      "section": "PASO 02 // 3 HITOS DE COBRO",
+      "title": "Flujo por Hitos: 40% · 30% · 30%",
+      "metrics": [
+        {
+          "value": "$60,000",
+          "label": "Hito 1 (40%)",
+          "context": "Pool $34k · Caja $20k · Closer $6k"
+        },
+        {
+          "value": "$45,000",
+          "label": "Hito 2 (30%)",
+          "context": "Pool $35.5k · Caja $5k · Closer $4.5k"
+        },
+        {
+          "value": "$45,000",
+          "label": "Hito 3 (30%)",
+          "context": "Pool $35.5k · Caja $5k · Closer $4.5k"
+        }
+      ],
+      "notes": "Caja retiene $20,000 en el Hito 1 para pagar de contado los $16,000 de reembolsos, monitores y viáticos desde el Día 1."
+    },
+    {
+      "layout": "metric_impact",
+      "section": "PASO 03 // REPARTO POR SOCIO",
+      "title": "Pool Neto ($105,000) + Bonos",
+      "metrics": [
+        {
+          "value": "$52,500",
+          "label": "Daniel · 50% Pool",
+          "context": "+ $4,172.50 en 2 Monitores ($56,672.50)"
+        },
+        {
+          "value": "$41,250",
+          "label": "Omar · 25% + 10% Closer",
+          "context": "+ $10,660 Reembolso ($51,910 Cash)"
+        },
+        {
+          "value": "$15,750",
+          "label": "Pedro · 15% Pool",
+          "context": "+ $1,167.50 Viáticos ($16,917.50 Cash)"
+        },
+        {
+          "value": "$10,500",
+          "label": "Octavio · 10% Pool",
+          "context": "7.0% del Contrato Bruto"
+        }
+      ],
+      "notes": "Cada socio conoce con exactitud su pago neto en efectivo y sus reembolsos o herramientas de trabajo."
+    },
+    {
+      "layout": "asymmetric_split",
+      "section": "PASO 04 // CAJA MASTERIZE (20%)",
+      "title": "Caja $30,000 → $14,000 Libres",
+      "primary": {
+        "title": "3 Deducciones Únicas ($16,000.00)",
+        "description": "Pagadas al 100% en el Hito 1.",
+        "points": [
+          "Reembolso Omar: $10,660.00 ($10,000 IA 3m + $660 Plan)",
+          "2 Monitores ML Daniel: $4,172.50 ($3,199 30\" + $973.50 15.6\")",
+          "Viáticos Pedro (Planta): $1,167.50"
+        ]
+      },
+      "secondary": {
+        "title": "BALANCE CAJA",
+        "items": [
+          { "key": "Bolsa Caja (20%)", "value": "$30,000.00" },
+          { "key": "Gastos Hito 1", "value": "-$16,000.00" },
+          { "key": "Utilidad Libre", "value": "$14,000.00" },
+          { "key": "Margen Libre", "value": "46.7%" }
+        ]
+      },
+      "notes": "Después de cubrir todos los gastos iniciales, quedan $14,000.00 MXN libres en la tesorería de MASTERIZE."
+    },
+    {
+      "layout": "asymmetric_split",
+      "section": "PASO 05 // IGUALA MENSUAL MRR",
+      "title": "Iguala $10,000/mes → $4,000 Libres",
+      "primary": {
+        "title": "Stack IA & Cloud ($6,000/mes)",
+        "description": "Inicia al entregar el Hito 3.",
+        "points": [
+          "Azure Cloud & Base de Datos: $2,000/mes",
+          "Claude Team + Claude Code: $2,000/mes",
+          "Plan Google AI Ultra: $2,000/mes"
+        ]
+      },
+      "secondary": {
+        "title": "TESORERÍA AÑO 1",
+        "items": [
+          { "key": "MRR Libre / Mes", "value": "$4,000.00" },
+          { "key": "Iguala Libre Anual", "value": "$48,000.00" },
+          { "key": "Caja H1–H3 Libre", "value": "$14,000.00" },
+          { "key": "Total Libre Año 1", "value": "$62,000.00" }
+        ]
+      },
+      "notes": "La iguala mantiene un margen libre del 40% mensual ($48,000 al año), sumando $62,000 libres el primer año."
+    },
+    {
+      "layout": "specs_table",
+      "section": "PASO 06 // DISPERSIÓN BANCARIA SPEI",
+      "title": "Matriz SPEI por Hito",
+      "headers": ["Receptor", "Split", "Hito 1 (40%)", "Hito 2 (30%)", "Hito 3 (30%)", "Total"],
+      "rows": [
+        ["Caja MASTERIZE", "20% Bruto", "$20,000.00", "$5,000.00", "$5,000.00", "$30,000.00"],
+        ["Omar · Closer", "10% Bruto", "$6,000.00", "$4,500.00", "$4,500.00", "$15,000.00"],
+        ["Daniel · 50% Pool", "35% Bruto", "$17,000.00", "$17,750.00", "$17,750.00", "$52,500.00"],
+        ["Omar · 25% Pool", "17.5% Bruto", "$8,500.00", "$8,875.00", "$8,875.00", "$26,250.00"],
+        ["Pedro · 15% Pool", "10.5% Bruto", "$5,100.00", "$5,325.00", "$5,325.00", "$15,750.00"],
+        ["Octavio · 10% Pool", "7.0% Bruto", "$3,400.00", "$3,550.00", "$3,550.00", "$10,500.00"],
+        ["TOTAL CONTRATO", "100.0%", "$60,000.00", "$45,000.00", "$45,000.00", "$150,000.00"]
+      ],
+      "notes": "Tabla exacta lista para ejecutar las dispersiones SPEI en cuanto caiga cada pago de ARTEPISA."
+    },
+    {
+      "layout": "bullets",
+      "section": "PASO 07 // PRÓXIMOS PASOS",
+      "title": "Ruta de Ejecución Inmediata",
+      "items": [
+        {
+          "title": "Cobro Hito 1 ($60,000 + IVA)",
+          "description": "Retener $20,000 en Caja MASTERIZE y dispersar $6,000 Closer + $34,000 Pool."
+        },
+        {
+          "title": "Liquidación Día 1 ($16,000)",
+          "description": "Transferir $10,660 a Omar, comprar 2 monitores ML ($4,172.50) y pagar viáticos a Pedro ($1,167.50)."
+        },
+        {
+          "title": "Liquidación Hitos 2 y 3 ($45,000 c/u)",
+          "description": "En cada hito: $5,000 a Caja, $4,500 a Closer y $35,500 al Pool de socios."
+        },
+        {
+          "title": "Activación Póliza MRR ($10,000/mes)",
+          "description": "Tras Hito 3, cubrir $6,000/mes de Stack IA y acumular $4,000/mes libres en Caja."
+        }
+      ],
+      "notes": "Con estos 4 pasos queda cerrada la gobernanza financiera del proyecto ARTEPISA."
+    }
+  ]
+}

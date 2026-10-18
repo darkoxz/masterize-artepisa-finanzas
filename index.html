@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MASTERIZE · ARTEPISA — Agentic OS V4.7 Financial Deck &amp; Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- JACK ROBERTS AGENTIC OS V4.7 — PRIME-CYCLE CHROMATIC DRIFT LOBES (17s/19s/23s/29s/31s + 9s Breathe) -->
+  <div class="design-render-field" aria-hidden="true">
+    <div class="design-lobe lobe-a"></div>
+    <div class="design-lobe lobe-b"></div>
+    <div class="design-lobe lobe-c"></div>
+    <div class="design-lobe lobe-d"></div>
+    <div class="design-lobe lobe-e"></div>
+  </div>
+
+  <div class="deck-shell" id="deckShell">
+    <!-- TOP PRESENTATION BAR (Agentic OS V4.7 Operator Header) -->
+    <header class="deck-topbar op-header">
+      <div class="deck-brand">
+        <div class="op-logo">
+          <span>M</span>
+          <div class="design-render-rim" aria-hidden="true"></div>
+        </div>
+        <div class="deck-brand-text">
+          <span class="op-brand-name">MASTERIZE <span class="op-os-tag">AGENTIC OS V4.7</span></span>
+          <span class="op-brand-sub">ARTEPISA · INSTRUMENTO FINANCIERO</span>
+        </div>
+        <span class="ws-anywhere-pill mint" id="statusBadge">100% CUADRADO</span>
+      </div>
+
+      <!-- 7-Slide Stepper Navigation -->
+      <nav class="deck-steps" aria-label="Diapositivas">
+        <button type="button" class="deck-step-btn is-active" data-slide-to="0">
+          <span class="step-num">01</span><span class="step-label">Contrato</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="1">
+          <span class="step-num">02</span><span class="step-label">3 Hitos</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="2">
+          <span class="step-num">03</span><span class="step-label">Socios</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="3">
+          <span class="step-num">04</span><span class="step-label">Caja 20%</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="4">
+          <span class="step-num">05</span><span class="step-label">Iguala</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="5">
+          <span class="step-num">06</span><span class="step-label">SPEI</span>
+        </button>
+        <button type="button" class="deck-step-btn" data-slide-to="6">
+          <span class="step-num">07</span><span class="step-label">Pasos</span>
+        </button>
+      </nav>
+
+      <!-- Utility Controls -->
+      <div class="deck-actions">
+        <div class="au-switch" role="group" aria-label="Unidades">
+          <button type="button" class="au-switch-btn is-active" data-unit="mxn">$ MXN</button>
+          <button type="button" class="au-switch-btn" data-unit="pct">%</button>
+        </div>
+        <button type="button" id="overviewToggleBtn" class="op-button" title="Vista cuadrícula (ESC)">⊞ Grid</button>
+        <button type="button" id="notesToggleBtn" class="op-button" title="Notas de finanzas (S)">Notas</button>
+        <button type="button" id="fullscreenBtn" class="op-button" title="Pantalla completa (F)">⛶</button>
+        <button type="button" id="themeToggleBtn" class="op-button theme-btn" title="Cambiar tema" aria-label="Cambiar tema">◐</button>
+      </div>
+    </header>
+
+    <!-- WORKSPACE: 7-SLIDE PRESENTATION STAGE + AGENTIC OS LIVE COMPANION RAIL -->
+    <div class="deck-workspace">
+      <!-- PRESENTATION STAGE (7 SLIDES) -->
+      <main class="deck-stage op-main" id="deckStage">
+
+        <!-- ==================================================================
+             SLIDE 01: EL CONTRATO ($150,000 MXN -> 3 BOLSAS MAESTRAS)
+             ================================================================== -->
+        <section class="deck-slide is-active" data-slide="0" data-section="hero">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 01 / 07 · EL CONTRATO</span>
+              <span class="ws-anywhere-pill on" id="ivaBadge">+ IVA = $174,000</span>
+            </div>
+
+            <h1 class="slide-title">¿Cómo se divide el contrato<span class="op-dot">?</span></h1>
+
+            <!-- Editable Gross Contract Input -->
+            <div class="hero-contract-bar ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <div class="hero-input-row">
+                <div class="hero-input-label">
+                  <strong>Contrato Bruto (Sin IVA)</strong>
+                  <span>Editable en vivo · Telemetría Agentic OS</span>
+                </div>
+                <div class="biz-bank-InputWrap">
+                  <span class="biz-currency-prefix">$</span>
+                  <input
+                    id="contractGrossInput"
+                    class="biz-gross-input"
+                    type="number"
+                    min="0"
+                    step="1000"
+                    value="150000"
+                    aria-label="Contrato bruto MXN"
+                  />
+                </div>
+              </div>
+
+              <!-- Proportional Split Bar (70 / 20 / 10) -->
+              <div class="split-master-bar" aria-label="Proporción 70/20/10">
+                <div class="split-seg seg-pool" id="segPoolBar" style="width:70%"><span id="segPoolLabel">70%</span></div>
+                <div class="split-seg seg-caja" id="segCajaBar" style="width:20%"><span id="segCajaLabel">20%</span></div>
+                <div class="split-seg seg-closer" id="segCloserBar" style="width:10%"><span id="segCloserLabel">10%</span></div>
+              </div>
+
+              <!-- 3 Master Buckets -->
+              <dl class="ws-anywhere-counts hero-three-buckets">
+                <div class="bucket-card is-pool">
+                  <div class="design-render-rim" aria-hidden="true"></div>
+                  <dt><span>70% · POOL EQUIPO</span><span class="dot-pool">●</span></dt>
+                  <dd id="wellPoolTotal">$105,000</dd>
+                  <small id="wellPoolSub">4 Socios</small>
+                </div>
+                <div class="bucket-card is-caja">
+                  <div class="design-render-rim" aria-hidden="true"></div>
+                  <dt><span>20% · CAJA MASTERIZE</span><span class="dot-caja">●</span></dt>
+                  <dd id="wellCajaTotal">$30,000</dd>
+                  <small id="wellCajaSub">Gastos ($16k) + Libre ($14k)</small>
+                </div>
+                <div class="bucket-card is-closer">
+                  <div class="design-render-rim" aria-hidden="true"></div>
+                  <dt><span>10% · CLOSER OMAR</span><span class="dot-closer">●</span></dt>
+                  <dd id="wellCloserTotal">$15,000</dd>
+                  <small id="wellCloserSub">Comisión venta</small>
+                </div>
+              </dl>
+
+              <!-- Visible SVG Sparkline Curve (.biz-bank-art) -->
+              <div class="biz-bank-art" id="bankSparkArt" aria-label="Curva acumulada de cobro y tesorería"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 02: FLUJO POR HITOS (40% · 30% · 30%)
+             ================================================================== -->
+        <section class="deck-slide" data-slide="1" data-section="hitos">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 02 / 07 · CRONOGRAMA DE COBRO</span>
+              <span class="ws-anywhere-pill on" id="hitoChartTitle">H1 $60,000 · H2 $45,000 · H3 $45,000</span>
+            </div>
+
+            <h2 class="slide-title">3 Cobros: 40% · 30% · 30%<span class="op-dot">.</span></h2>
+            <p class="slide-sub">Caja retiene <code id="slide2CajaH1">$20,000</code> en Hito 1 para liquidar <code id="slide2ExpensesH1">$16,000</code> de gastos en Día 1.</p>
+
+            <article class="ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <header>
+                <div class="biz-rev-legend">
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#c8afe9"></span>Pool 70%</span>
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Caja (<span id="slide2CajaSplitLegend">$20k / $5k / $5k</span>)</span>
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#f5a524"></span>Closer 10%</span>
+                </div>
+                <div class="au-switch" role="group" aria-label="Filtro de Hito">
+                  <button type="button" class="au-switch-btn is-active" data-hito="total" id="hitoTotalBtn">Total $150k</button>
+                  <button type="button" class="au-switch-btn" data-hito="h1">H1 · 40%</button>
+                  <button type="button" class="au-switch-btn" data-hito="h2">H2 · 30%</button>
+                  <button type="button" class="au-switch-btn" data-hito="h3">H3 · 30%</button>
+                </div>
+              </header>
+
+              <div class="biz-revenue-chart" id="milestoneBarChart">
+                <!-- Populated by app.js -->
+              </div>
+
+              <div class="hito-cards-grid" id="hitoSummaryCards">
+                <!-- Populated by app.js -->
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 03: REPARTO POR SOCIO (POOL 70% + CLOSER + BONOS)
+             ================================================================== -->
+        <section class="deck-slide" data-slide="2" data-section="orbs">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 03 / 07 · PARTICIPACIÓN (LIQUID SURGE 60FPS)</span>
+              <div class="au-controls">
+                <div class="au-switch" role="group" aria-label="Filtro de Hito Socios">
+                  <button type="button" class="au-switch-btn is-active" data-hito="total">Total</button>
+                  <button type="button" class="au-switch-btn" data-hito="h1">H1</button>
+                  <button type="button" class="au-switch-btn" data-hito="h2">H2</button>
+                  <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
+                </div>
+                <div class="au-switch" role="group" aria-label="Grupo">
+                  <button type="button" class="au-switch-btn is-active" data-orb-group="partners">4 Socios + Caja</button>
+                  <button type="button" class="au-switch-btn" data-orb-group="buckets">3 Bolsas</button>
+                </div>
+                <div class="au-switch" role="group" aria-label="Modo Visual">
+                  <button type="button" class="au-switch-btn is-active" data-render-mode="orb">● Esfera</button>
+                  <button type="button" class="au-switch-btn" data-render-mode="bar">▮ Barra</button>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="slide-title" id="orbStageHeadline">¿Cuánto recibe cada socio<span class="op-dot">?</span></h2>
+            <p class="slide-sub">Pool <code id="slide3PoolCode">$105,000</code> · Closer <code id="slide3CloserCode">$15,000</code> · Gastos Caja <code id="slide3ExpCode">$16,000</code>.</p>
+
+            <div class="au-grid" id="orbGrid">
+              <!-- Populated by app.js with 60fps Liquid Surge Orbs + .design-render-rim -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 04: CAJA MASTERIZE ($30,000 -> $14,000 LIBRES)
+             ================================================================== -->
+        <section class="deck-slide" data-slide="3" data-section="dials">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 04 / 07 · CAJA MASTERIZE (20%)</span>
+              <span class="ws-anywhere-pill on" id="cajaGrossPill">Bolsa: $30,000.00</span>
+            </div>
+
+            <h2 class="slide-title">Caja: <span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span> Libres<span class="op-dot">.</span></h2>
+            <p class="slide-sub">Deducciones Hito 1: <code id="slide4ExpensesCode">$16,000</code>.</p>
+
+            <article class="ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <div class="inst-body">
+                <div class="dial-wrap">
+                  <svg id="cajaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
+                  <div class="dial-center">
+                    <div class="dial-val" id="cajaDialVal">$14,000</div>
+                    <div class="dial-caption">LIBRE EN CAJA</div>
+                    <div class="dial-pct-badge" id="cajaDialPct">46.7% LIBRE</div>
+                  </div>
+                </div>
+
+                <div class="ctrl-list">
+                  <!-- Reembolso Omar $10,660 -->
+                  <div class="ctrl-row">
+                    <div class="ctrl-left">
+                      <input type="checkbox" id="chkOmarReimb" class="ctrl-check" checked />
+                      <div class="ctrl-label-group">
+                        <label for="chkOmarReimb" class="ctrl-name">Reembolso Omar</label>
+                        <span class="ctrl-meta">3m IA ($10,000) + Plan ($660)</span>
+                      </div>
+                    </div>
+                    <input type="number" id="inpOmarReimb" class="ctrl-input" value="10660" min="0" step="100" />
+                  </div>
+
+                  <!-- Monitor 1: 30" Curvo 200Hz -->
+                  <div class="ctrl-row">
+                    <div class="ctrl-left">
+                      <input type="checkbox" id="chkMon30" class="ctrl-check" checked />
+                      <div class="ctrl-label-group">
+                        <label for="chkMon30" class="ctrl-name">
+                          Monitor 30" Curvo 200Hz
+                          <a href="https://www.mercadolibre.com.mx/monitor-gamer-curvo-fyhxele-30-pulgadas-2k-wfhd-200hz-1ms/p/MLM52822704" target="_blank" rel="noopener noreferrer" class="ml-chip">MLM52822704 ↗</a>
+                        </label>
+                        <span class="ctrl-meta">Herramienta Daniel</span>
+                      </div>
+                    </div>
+                    <input type="number" id="inpMon30" class="ctrl-input" value="3199" min="0" step="50" />
+                  </div>
+
+                  <!-- Monitor 2: 15.6" Portátil FHD -->
+                  <div class="ctrl-row">
+                    <div class="ctrl-left">
+                      <input type="checkbox" id="chkMon15" class="ctrl-check" checked />
+                      <div class="ctrl-label-group">
+                        <label for="chkMon15" class="ctrl-name">
+                          Monitor 15.6" Portátil
+                          <a href="https://articulo.mercadolibre.com.mx/MLM-2215895794-monitor-portatil-156-fhd-1080p-ips-hdr-usb-c-hdmi-con-funda-_JM" target="_blank" rel="noopener noreferrer" class="ml-chip">MLM-2215895794 ↗</a>
+                        </label>
+                        <span class="ctrl-meta">2 Monitores: <strong id="monTotalInline">$4,172.50</strong></span>
+                      </div>
+                    </div>
+                    <input type="number" id="inpMon15" class="ctrl-input" value="973.50" min="0" step="25" />
+                  </div>
+
+                  <!-- Viáticos Pedro -->
+                  <div class="ctrl-slider-row">
+                    <div class="ctrl-slider-top">
+                      <div class="ctrl-left">
+                        <input type="checkbox" id="chkViaticos" class="ctrl-check" checked />
+                        <div class="ctrl-label-group">
+                          <label for="chkViaticos" class="ctrl-name">Viáticos Pedro (Planta)</label>
+                        </div>
+                      </div>
+                      <input type="number" id="inpViaticos" class="ctrl-input" value="1167.50" min="0" step="50" />
+                    </div>
+                    <input type="range" id="rngViaticos" class="ctrl-range" min="0" max="6000" step="25" value="1167.50" />
+                    <div class="preset-pills">
+                      <button type="button" class="preset-pill" data-viaticos="0">$0</button>
+                      <button type="button" class="preset-pill is-active" data-viaticos="1167.5">Meta $14k ($1,167.50)</button>
+                      <button type="button" class="preset-pill" data-viaticos="1500">$1,500</button>
+                      <button type="button" class="preset-pill" data-viaticos="2500">$2,500</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 05: IGUALA MENSUAL ($10,000/MES -> $4,000 LIBRES)
+             ================================================================== -->
+        <section class="deck-slide" data-slide="4" data-section="iguala">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 05 / 07 · PÓLIZA MENSUAL (POST-HITO 3)</span>
+              <span class="ws-anywhere-pill on" id="igualaAnnualPill">Anual: $48,000 Libres</span>
+            </div>
+
+            <h2 class="slide-title">Iguala: <span id="slide5GrossHeadline">$10,000</span>/mes → <span id="slide5FreeHeadline">$4,000</span> Libres<span class="op-dot">.</span></h2>
+            <p class="slide-sub">Stack IA <code id="slide5StackCode">$6,000/mes</code> · Acumula <code id="slide5AnnualCode">$48,000/año</code> en Caja.</p>
+
+            <article class="ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <div class="inst-body">
+                <div class="dial-wrap">
+                  <svg id="igualaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
+                  <div class="dial-center">
+                    <div class="dial-val" id="igualaDialVal">$4,000</div>
+                    <div class="dial-caption">MRR LIBRE / MES</div>
+                    <div class="dial-pct-badge" id="igualaDialPct">40.0% MARGEN</div>
+                  </div>
+                </div>
+
+                <div class="ctrl-list">
+                  <div class="ctrl-row">
+                    <div class="ctrl-label-group">
+                      <label for="inpIgualaGross" class="ctrl-name">Iguala Mensual ARTEPISA</label>
+                      <span class="ctrl-meta">Inicia tras Hito 3</span>
+                    </div>
+                    <input type="number" id="inpIgualaGross" class="ctrl-input" value="10000" min="0" step="500" />
+                  </div>
+
+                  <div class="ctrl-row">
+                    <div class="ctrl-label-group">
+                      <label for="inpAzure" class="ctrl-name">Azure Cloud &amp; DB</label>
+                      <span class="ctrl-meta">Tope mensual infraestructura</span>
+                    </div>
+                    <input type="number" id="inpAzure" class="ctrl-input" value="2000" min="0" step="100" />
+                  </div>
+
+                  <div class="ctrl-row">
+                    <div class="ctrl-label-group">
+                      <label for="inpClaude" class="ctrl-name">Claude Team + Claude Code</label>
+                      <span class="ctrl-meta">Todo el equipo en proyecto</span>
+                    </div>
+                    <input type="number" id="inpClaude" class="ctrl-input" value="2000" min="0" step="100" />
+                  </div>
+
+                  <div class="ctrl-row">
+                    <div class="ctrl-label-group">
+                      <label for="inpGoogleAi" class="ctrl-name">Google AI Ultra</label>
+                      <span class="ctrl-meta">Gemini Ultra &amp; API</span>
+                    </div>
+                    <input type="number" id="inpGoogleAi" class="ctrl-input" value="2000" min="0" step="100" />
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 06: MATRIZ DE DISPERSIÓN SPEI POR HITO
+             ================================================================== -->
+        <section class="deck-slide" data-slide="5" data-section="spei">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 06 / 07 · DISPERSIÓN BANCARIA</span>
+              <div class="au-controls">
+                <span class="ws-anywhere-pill on" id="speiCheckLabel">Suma H1 + H2 + H3 = $150,000.00 MXN</span>
+                <button id="resetBtn" type="button" class="op-button">↺ Reset</button>
+                <button id="exportCsvBtn" type="button" class="ws-primary">↓ CSV SPEI</button>
+              </div>
+            </div>
+
+            <h2 class="slide-title">Matriz SPEI por Hito<span class="op-dot">.</span></h2>
+
+            <article class="ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <div class="spei-table-wrap">
+                <table class="spei-table">
+                  <thead>
+                    <tr>
+                      <th>Receptor</th>
+                      <th>Split</th>
+                      <th>Hito 1 (40%)</th>
+                      <th>Hito 2 (30%)</th>
+                      <th>Hito 3 (30%)</th>
+                      <th>Total Contrato</th>
+                    </tr>
+                  </thead>
+                  <tbody id="speiTableBody">
+                    <!-- Populated by app.js -->
+                  </tbody>
+                  <tfoot id="speiTableFoot">
+                    <!-- Populated by app.js -->
+                  </tfoot>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SLIDE 07: DICTAMEN FINANCIERO & PRÓXIMOS PASOS
+             ================================================================== -->
+        <section class="deck-slide" data-slide="6" data-section="steps">
+          <div class="slide-inner">
+            <div class="slide-head">
+              <span class="ws-eyebrow">PASO 07 / 07 · DICTAMEN FINANCE TEAM</span>
+              <span class="ws-anywhere-pill mint">TESORERÍA AÑO 1: <strong id="slide7TreasuryVal">$62,000</strong></span>
+            </div>
+
+            <h2 class="slide-title">Próximos Pasos<span class="op-dot">.</span></h2>
+
+            <div class="steps-grid" id="nextStepsGrid">
+              <article class="step-card ws-anywhere-card">
+                <div class="design-render-rim" aria-hidden="true"></div>
+                <div class="step-badge">01 · COBRO HITO 1 (40%)</div>
+                <strong class="step-card-title" id="step1Title">Facturar $60,000 + IVA ($69,600)</strong>
+                <p class="step-card-desc">Caja <code id="step1Caja">$20,000</code> · Closer <code id="step1Closer">$6,000</code> · Pool <code id="step1Pool">$34,000</code>.</p>
+              </article>
+
+              <article class="step-card ws-anywhere-card">
+                <div class="design-render-rim" aria-hidden="true"></div>
+                <div class="step-badge">02 · PAGOS DÍA 1 DESDE CAJA</div>
+                <strong class="step-card-title" id="step2Title">Liquidar $16,000 de Gastos Iniciales</strong>
+                <p class="step-card-desc">Omar <code id="step2Omar">$10,660</code> · Monitores <code id="step2Mon">$4,172.50</code> · Viáticos <code id="step2Viat">$1,167.50</code>.</p>
+              </article>
+
+              <article class="step-card ws-anywhere-card">
+                <div class="design-render-rim" aria-hidden="true"></div>
+                <div class="step-badge">03 · COBRO HITOS 2 Y 3 (30% C/U)</div>
+                <strong class="step-card-title" id="step3Title">Dispersar $45,000 en H2 y $45,000 en H3</strong>
+                <p class="step-card-desc">Por hito: Caja <code id="step3Caja">$5,000</code> · Closer <code id="step3Closer">$4,500</code> · Pool <code id="step3Pool">$35,500</code>.</p>
+              </article>
+
+              <article class="step-card ws-anywhere-card">
+                <div class="design-render-rim" aria-hidden="true"></div>
+                <div class="step-badge">04 · ACTIVAR PÓLIZA MRR POST-H3</div>
+                <strong class="step-card-title" id="step4Title">Cobrar $10,000/mes de Iguala</strong>
+                <p class="step-card-desc">Stack IA <code id="step4Stack">$6,000/mes</code> · Libre <code id="step4Free">$4,000/mes</code> (<code id="step4Annual">$48,000/año</code>).</p>
+              </article>
+            </div>
+
+            <!-- Executive KPI Strip -->
+            <div class="exec-kpi-strip ws-anywhere-card">
+              <div class="design-render-rim" aria-hidden="true"></div>
+              <div class="exec-kpi-item">
+                <span class="op-mini-label">Caja Libre H1–H3</span>
+                <span class="op-mini-val" id="sideCajaFree">$14,000.00</span>
+              </div>
+              <div class="exec-kpi-item">
+                <span class="op-mini-label">Iguala Libre / Mes</span>
+                <span class="op-mini-val" id="sideIgualaFree">$4,000.00</span>
+              </div>
+              <div class="exec-kpi-item">
+                <span class="op-mini-label">Omar Cash Total</span>
+                <span class="op-mini-val" id="sideOmarCash">$51,910.00</span>
+              </div>
+              <div class="exec-kpi-item">
+                <span class="op-mini-label">Daniel + Monitores</span>
+                <span class="op-mini-val" id="sideDanielTotal">$56,672.50</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ====================================================================
+           AGENTIC OS V4.7 LIVE COMPANION RAIL (VoiceOrbCanvas + ProviderOrbit)
+           ==================================================================== -->
+      <aside class="op-companion-rail" aria-label="Agentic OS V4.7 Live Telemetry">
+        <!-- 1. WebGL 3D VoiceOrbCanvas + Nebula Backdrop Dock -->
+        <article class="ws-anywhere-card vd-card">
+          <div class="design-render-rim" aria-hidden="true"></div>
+          <div class="vd-head">
+            <span class="vd-status">
+              <span class="vd-mood-dot" id="vdMoodDot"></span>
+              <span id="vdModeLabel">TESORERÍA AÑO 1</span>
+            </span>
+            <button type="button" class="vd-mood-btn" id="vdMoodCycleBtn" title="Cambiar estado cognitivo del Orbe">IDLE</button>
+          </div>
+
+          <div class="vd-stage" id="voiceDockStage">
+            <canvas id="nebulaCanvas" width="216" height="158"></canvas>
+            <canvas id="voiceOrbCanvas" width="224" height="224"></canvas>
+          </div>
+
+          <div class="vd-foot">
+            <div class="vd-treasury-row">
+              <span class="vd-treasury-label">LIBRE AÑO 1</span>
+              <strong class="vd-treasury-val" id="vdTreasuryVal">$62,000</strong>
+            </div>
+            <div class="vd-mood-strip" role="group" aria-label="Estados del Orbe">
+              <button type="button" class="vd-pill is-active" data-orb-mood="idle">Idle</button>
+              <button type="button" class="vd-pill" data-orb-mood="listening">Listen</button>
+              <button type="button" class="vd-pill" data-orb-mood="thinking">Think</button>
+              <button type="button" class="vd-pill" data-orb-mood="working">Work</button>
+              <button type="button" class="vd-pill" data-orb-mood="speaking">Speak</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. ProviderOrbit (AI Stack Rotating Ring + Quick Nav) -->
+        <article class="ws-anywhere-card orbit-card" id="providerOrbitCard">
+          <div class="design-render-rim" aria-hidden="true"></div>
+          <div class="vd-head">
+            <span class="ws-eyebrow">PROVIDER ORBIT</span>
+            <span class="ws-anywhere-pill mint" id="orbitStackMeta">Stack IA: $6,000/mes</span>
+          </div>
+
+          <div class="provider-orbit-wrap" id="providerOrbit">
+            <div class="provider-orbit-ring">
+              <div class="orbit-node node-claude" data-orbit-provider="claude" title="Claude Team + Code ($2,000/mes)">
+                <span class="orbit-pulse"></span>
+                <span class="orbit-label">Claude</span>
+              </div>
+              <div class="orbit-node node-gemini" data-orbit-provider="gemini" title="Google AI Ultra ($2,000/mes)">
+                <span class="orbit-pulse"></span>
+                <span class="orbit-label">Gemini</span>
+              </div>
+              <div class="orbit-node node-azure" data-orbit-provider="azure" title="Azure Cloud & DB ($2,000/mes)">
+                <span class="orbit-pulse"></span>
+                <span class="orbit-label">Azure</span>
+              </div>
+              <div class="orbit-node node-jev" data-orbit-provider="jev" title="Jev Cognitive Router">
+                <span class="orbit-pulse"></span>
+                <span class="orbit-label">Jev OS</span>
+              </div>
+            </div>
+            <div class="provider-orbit-core">
+              <span class="orbit-core-title">V4.7</span>
+              <span class="orbit-core-sub">ONLINE</span>
+            </div>
+          </div>
+
+          <div class="orbit-quick-nav" role="group" aria-label="Atajos de Vista">
+            <button type="button" class="orbit-nav-btn is-active" data-view="all">
+              <span>Contrato</span>
+              <strong id="navPillAll">$150k</strong>
+            </button>
+            <button type="button" class="orbit-nav-btn" data-view="orbs">
+              <span>Socios</span>
+              <strong>70%</strong>
+            </button>
+            <button type="button" class="orbit-nav-btn" data-view="dials">
+              <span>Caja</span>
+              <strong id="navPillCaja">$14k + $4k</strong>
+            </button>
+            <button type="button" class="orbit-nav-btn" data-view="spei">
+              <span>SPEI</span>
+              <strong>CSV</strong>
+            </button>
+          </div>
+        </article>
+      </aside>
+    </div>
+
+    <!-- SPEAKER NOTES CONSOLE (Toggled with [S] or Notas button) -->
+    <aside class="speaker-notes-bar" id="speakerNotesBar" hidden>
+      <div class="speaker-notes-inner">
+        <div class="speaker-notes-meta">
+          <span class="ws-eyebrow">CONSOLA ORADOR · FINANCE TEAM × AGENTIC OS</span>
+          <span class="ws-anywhere-pill" id="speakerTimer">00:00</span>
+          <span class="ws-anywhere-pill on" id="speakerNextSlide">Siguiente: 3 Hitos de Cobro</span>
+        </div>
+        <p id="speakerNoteText">De cada peso sin IVA: 70% va al Pool de socios ($105,000), 20% a Caja MASTERIZE ($30,000) y 10% a comisión Closer ($15,000).</p>
+      </div>
+    </aside>
+
+    <!-- BLACKOUT / PAUSE OVERLAY ([B] or [.]) -->
+    <div class="deck-blackout" id="deckBlackout" hidden aria-hidden="true">
+      <div class="deck-blackout-hint">Pausa de Orador · Presiona <code>B</code>, <code>.</code> o <code>ESC</code> para reanudar</div>
+    </div>
+
+    <!-- BOTTOM PRESENTATION FOOTER -->
+    <footer class="deck-footer">
+      <div class="deck-footer-controls">
+        <button type="button" id="prevSlideBtn" class="op-button">← Anterior</button>
+        <div class="deck-counter">
+          <span id="slideCounterText">01 / 07</span>
+          <span class="deck-counter-sep">·</span>
+          <span id="slideNameText">El Contrato</span>
+        </div>
+        <button type="button" id="nextSlideBtn" class="ws-primary">Siguiente →</button>
+      </div>
+      <div class="deck-progress-track">
+        <div class="deck-progress-bar" id="deckProgressBar" style="width: 14.28%"></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
