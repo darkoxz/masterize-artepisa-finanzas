@@ -300,7 +300,7 @@ function emphasise(text) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   return safe.replace(
-    /(-?\$[\d,]+(?:\.\d+)?(?:k|m|\/mes|\/año)?|\b\d+(?:\.\d+)?%|\b(?:MASTERIZE|ARTEPISA|Azure|Claude|Google AI|Gemini|SPEI|Pool|Caja|Closer)\b)/g,
+    /(-?\$[\d,]+(?:\.\d+)?(?:k|m|\/mes|\/año)?|\b\d+(?:\.\d+)?%|\b(?:MASTERIZE|ARTEPISA|Azure|Claude|Google AI|Gemini|SPEI|Pool|Caja|Closer|Daniel|Omar|Pedro|Octavio|H1|H2|H3|Iguala|Libre)\b)/g,
     '<b>$1</b>'
   );
 }
@@ -1111,7 +1111,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
     return Math.min(0.92, Math.max(0.08, Math.pow(Math.min(1, share), 0.72)));
   };
 
-  const cajaSplitTag = `${fmtCompactMXN(calc.hitos.h1.caja)} / ${fmtCompactMXN(calc.hitos.h2.caja)} / ${fmtCompactMXN(calc.hitos.h3.caja)}`;
+  const cajaSplitTag = `${fmtShortK(calc.hitos.h1.caja)}/${fmtShortK(calc.hitos.h2.caja)}/${fmtShortK(calc.hitos.h3.caja)}`;
 
   if (state.orbGroup === 'buckets') {
     const cajaVal = calc.hitos[hKey].caja;
@@ -1138,7 +1138,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
         amount: cajaVal,
         pct: hasContract ? (cajaVal / hGross) * 100 : 0,
         ratio: ratioFromShare(cajaVal / hGross),
-        sub: isTotal ? `Libre ${fmtCompactMXN(calc.caja.free)}` : cajaSplitTag,
+        sub: isTotal ? fmtCompactMXN(calc.caja.free) : cajaSplitTag,
         color: '#408374',
         light: '#a2d1bf',
         glow: 'rgba(162, 209, 191, 0.12)',
@@ -1176,11 +1176,11 @@ function buildOrbItems(calc, state = DEFAULTS) {
     {
       id: 'daniel',
       name: 'DANIEL',
-      tag: '50% Pool',
+      tag: '50%',
       amount: danielVal,
       pct: danielPctGross,
       ratio: ratioFromShare(danielVal / hGross),
-      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.monitorsTotal)}` : `${danielPctGross.toFixed(1)}%`,
+      sub: isTotal ? `+${fmtCompactMXN(calc.caja.monitorsTotal)}` : `${danielPctGross.toFixed(1)}%`,
       color: '#9b78cf',
       light: '#c8afe9',
       glow: 'rgba(200, 175, 233, 0.12)',
@@ -1188,7 +1188,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
     {
       id: 'omar',
       name: 'OMAR',
-      tag: '25% + 10%',
+      tag: '25%+10%',
       amount: omarTotalHito,
       pct: omarPctGross,
       ratio: ratioFromShare(omarTotalHito / hGross),
@@ -1202,11 +1202,11 @@ function buildOrbItems(calc, state = DEFAULTS) {
     {
       id: 'pedro',
       name: 'PEDRO',
-      tag: '15% Pool',
+      tag: '15%',
       amount: pedroVal,
       pct: pedroPctGross,
       ratio: ratioFromShare(pedroVal / hGross),
-      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.viaticos)}` : `${pedroPctGross.toFixed(1)}%`,
+      sub: isTotal ? `+${fmtCompactMXN(calc.caja.viaticos)}` : `${pedroPctGross.toFixed(1)}%`,
       color: '#3b9b88',
       light: '#a2d1bf',
       glow: 'rgba(162, 209, 191, 0.12)',
@@ -1214,7 +1214,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
     {
       id: 'octavio',
       name: 'OCTAVIO',
-      tag: '10% Pool',
+      tag: '10%',
       amount: octavioVal,
       pct: octavioPctGross,
       ratio: ratioFromShare(octavioVal / hGross),
@@ -1230,7 +1230,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
       amount: cajaFreeVal,
       pct: cajaPctGross,
       ratio: ratioFromShare(Math.max(0, cajaFreeVal) / hGross),
-      sub: isTotal ? `De ${fmtCompactMXN(calc.caja.gross)}` : '20%',
+      sub: isTotal ? fmtCompactMXN(calc.caja.gross) : '20%',
       color: calc.caja.free < 0 && isTotal ? '#cd6e7c' : '#408374',
       light: calc.caja.free < 0 && isTotal ? '#efb4bd' : '#a2d1bf',
       glow: 'rgba(162, 209, 191, 0.12)',
@@ -1248,26 +1248,26 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
       {
         substepLabel: '1/4 · CONTRATO',
         selector: '.deck-slide[data-slide="0"], .deck-slide[data-slide="1"]',
-        narrative: `Contrato ${fmtCompactMXN(calc.gross)} · 40% / 30% / 30%`,
+        narrative: `${fmtCompactMXN(calc.gross)} · 40% · 30% · 30%`,
         delayMs: 40,
       },
       {
         substepLabel: '2/4 · SOCIOS',
         selector: '.deck-slide[data-slide="2"], .deck-slide[data-slide="3"]',
-        narrative: `Pool ${fmtCompactMXN(calc.hitos.total.pool)} · Caja libre ${fmtCompactMXN(calc.caja.free)}`,
+        narrative: `Pool ${fmtCompactMXN(calc.hitos.total.pool)} · Caja ${fmtCompactMXN(calc.caja.free)}`,
         orbIndex: 0,
         delayMs: 1350,
       },
       {
         substepLabel: '3/4 · IGUALA',
         selector: '.deck-slide[data-slide="4"], .deck-slide[data-slide="5"]',
-        narrative: `Iguala libre ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · SPEI 100%`,
+        narrative: `Iguala ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · SPEI 100%`,
         delayMs: 2700,
       },
       {
         substepLabel: '4/4 · AÑO 1',
         selector: '.deck-slide[data-slide="6"], .vd-card, .orbit-card',
-        narrative: `Año 1 Libre: ${fmtCompactMXN(calc.year1FreeTreasury)}`,
+        narrative: `Libre ${fmtCompactMXN(calc.year1FreeTreasury)}`,
         delayMs: 4050,
       },
     ];
@@ -1279,19 +1279,19 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '1/3 · POOL 70%',
           selector: '.bucket-card.is-pool, #segPoolBar',
-          narrative: `Pool 70%: ${fmtCompactMXN(calc.hitos.total.pool)}`,
+          narrative: `Pool 70% · ${fmtCompactMXN(calc.hitos.total.pool)}`,
           delayMs: 40,
         },
         {
           substepLabel: '2/3 · CAJA 20%',
           selector: '.bucket-card.is-caja, #segCajaBar',
-          narrative: `Caja 20%: ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libre`,
+          narrative: `Caja 20% · ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)}`,
           delayMs: 1350,
         },
         {
           substepLabel: '3/3 · CLOSER 10%',
           selector: '.bucket-card.is-closer, #segCloserBar, #bankSparkArt',
-          narrative: `Closer 10%: ${fmtCompactMXN(calc.hitos.total.closer)} · Total ${fmtCompactMXN(calc.gross)}`,
+          narrative: `Closer 10% · ${fmtCompactMXN(calc.hitos.total.closer)}`,
           delayMs: 2700,
         },
       ];
@@ -1300,19 +1300,19 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '1/3 · H1 (40%)',
           selector: '[data-bar-hito="h1"], [data-card-hito="h1"]',
-          narrative: `H1 40%: ${fmtCompactMXN(calc.hitos.h1.gross)} · Caja ${fmtCompactMXN(calc.hitos.h1.caja)}`,
+          narrative: `H1 40% · ${fmtCompactMXN(calc.hitos.h1.gross)} · Caja ${fmtCompactMXN(calc.hitos.h1.caja)}`,
           delayMs: 40,
         },
         {
           substepLabel: '2/3 · H2 (30%)',
           selector: '[data-bar-hito="h2"], [data-card-hito="h2"]',
-          narrative: `H2 30%: ${fmtCompactMXN(calc.hitos.h2.gross)} · Pool ${fmtCompactMXN(calc.hitos.h2.pool)}`,
+          narrative: `H2 30% · ${fmtCompactMXN(calc.hitos.h2.gross)} · Pool ${fmtCompactMXN(calc.hitos.h2.pool)}`,
           delayMs: 1350,
         },
         {
           substepLabel: '3/3 · H3 (30%)',
           selector: '[data-bar-hito="h3"], [data-card-hito="h3"], [data-bar-hito="total"]',
-          narrative: `H3 30%: ${fmtCompactMXN(calc.hitos.h3.gross)} · Total ${fmtCompactMXN(calc.gross)}`,
+          narrative: `H3 30% · ${fmtCompactMXN(calc.hitos.h3.gross)} · Total ${fmtCompactMXN(calc.gross)}`,
           delayMs: 2700,
         },
       ];
@@ -1322,21 +1322,21 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
           {
             substepLabel: '1/3 · POOL 70%',
             selector: '#orbGrid .au-cell:nth-child(1)',
-            narrative: `Pool 70%: ${fmtCompactMXN(calc.hitos.total.pool)}`,
+            narrative: `Pool 70% · ${fmtCompactMXN(calc.hitos.total.pool)}`,
             orbIndex: 0,
             delayMs: 40,
           },
           {
             substepLabel: '2/3 · CAJA 20%',
             selector: '#orbGrid .au-cell:nth-child(2)',
-            narrative: `Caja 20%: ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libre`,
+            narrative: `Caja 20% · ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)}`,
             orbIndex: 1,
             delayMs: 1350,
           },
           {
             substepLabel: '3/3 · CLOSER 10%',
             selector: '#orbGrid .au-cell:nth-child(3)',
-            narrative: `Closer 10%: ${fmtCompactMXN(calc.hitos.total.closer)}`,
+            narrative: `Closer 10% · ${fmtCompactMXN(calc.hitos.total.closer)}`,
             orbIndex: 2,
             delayMs: 2700,
           },
@@ -1346,28 +1346,28 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '1/4 · DANIEL 50%',
           selector: '#orbGrid .au-cell:nth-child(1)',
-          narrative: `Daniel 50%: ${fmtCompactMXN(calc.partners.daniel.total)} + ${fmtCompactMXN(calc.caja.monitorsTotal)} = ${fmtCompactMXN(calc.consolidated.danielTotalBenefit)}`,
+          narrative: `Daniel 50% · ${fmtCompactMXN(calc.partners.daniel.total)} + ${fmtCompactMXN(calc.caja.monitorsTotal)} = ${fmtCompactMXN(calc.consolidated.danielTotalBenefit)}`,
           orbIndex: 0,
           delayMs: 40,
         },
         {
           substepLabel: '2/4 · OMAR 25%+10%',
           selector: '#orbGrid .au-cell:nth-child(2)',
-          narrative: `Omar: ${fmtCompactMXN(calc.consolidated.omarNetProfit)} + ${fmtCompactMXN(calc.caja.omarReimb)} = ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
+          narrative: `Omar · ${fmtCompactMXN(calc.consolidated.omarNetProfit)} + ${fmtCompactMXN(calc.caja.omarReimb)} = ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
           orbIndex: 1,
           delayMs: 1150,
         },
         {
           substepLabel: '3/4 · PEDRO 15%',
           selector: '#orbGrid .au-cell:nth-child(3)',
-          narrative: `Pedro 15%: ${fmtCompactMXN(calc.partners.pedro.total)} + ${fmtCompactMXN(calc.caja.viaticos)} = ${fmtCompactMXN(calc.consolidated.pedroTotalCash)}`,
+          narrative: `Pedro 15% · ${fmtCompactMXN(calc.partners.pedro.total)} + ${fmtCompactMXN(calc.caja.viaticos)} = ${fmtCompactMXN(calc.consolidated.pedroTotalCash)}`,
           orbIndex: 2,
           delayMs: 2250,
         },
         {
           substepLabel: '4/4 · OCTAVIO 10%',
           selector: '#orbGrid .au-cell:nth-child(4), #orbGrid .au-cell:nth-child(5)',
-          narrative: `Octavio 10%: ${fmtCompactMXN(calc.partners.octavio.total)} · Caja libre ${fmtCompactMXN(calc.caja.free)}`,
+          narrative: `Octavio 10% · ${fmtCompactMXN(calc.partners.octavio.total)} · Caja ${fmtCompactMXN(calc.caja.free)}`,
           orbIndex: 3,
           delayMs: 3350,
         },
@@ -1377,19 +1377,19 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '1/3 · OMAR',
           selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(1)',
-          narrative: `Reembolso Omar: -${fmtCompactMXN(calc.caja.omarReimb)}`,
+          narrative: `Omar · -${fmtCompactMXN(calc.caja.omarReimb)}`,
           delayMs: 40,
         },
         {
           substepLabel: '2/3 · MONITORES',
           selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(2), .deck-slide[data-slide="3"] .ctrl-row:nth-child(3)',
-          narrative: `Monitores Daniel: -${fmtCompactMXN(calc.caja.monitorsTotal)}`,
+          narrative: `Daniel · -${fmtCompactMXN(calc.caja.monitorsTotal)}`,
           delayMs: 1350,
         },
         {
           substepLabel: '3/3 · LIBRE',
           selector: '.deck-slide[data-slide="3"] .ctrl-slider-row, .deck-slide[data-slide="3"] .dial-wrap',
-          narrative: `Viáticos -${fmtCompactMXN(calc.caja.viaticos)} → Libre ${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)`,
+          narrative: `Pedro -${fmtCompactMXN(calc.caja.viaticos)} → Libre ${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)`,
           delayMs: 2700,
         },
       ];
@@ -1398,19 +1398,19 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '1/3 · IGUALA',
           selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(1)',
-          narrative: `Iguala: ${fmtCompactMXN(calc.iguala.gross)}/mes`,
+          narrative: `Iguala · ${fmtCompactMXN(calc.iguala.gross)}/mes`,
           delayMs: 40,
         },
         {
           substepLabel: '2/3 · STACK IA',
           selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(2), .deck-slide[data-slide="4"] .ctrl-row:nth-child(3), .deck-slide[data-slide="4"] .ctrl-row:nth-child(4)',
-          narrative: `Stack IA: -${fmtCompactMXN(calc.iguala.costTotal)}/mes`,
+          narrative: `Claude + Gemini + Azure · -${fmtCompactMXN(calc.iguala.costTotal)}/mes`,
           delayMs: 1350,
         },
         {
           substepLabel: '3/3 · LIBRE',
           selector: '.deck-slide[data-slide="4"] .dial-wrap, #igualaAnnualPill',
-          narrative: `Libre: ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · ${fmtCompactMXN(calc.iguala.freeAnnual)}/año`,
+          narrative: `Libre ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · ${fmtCompactMXN(calc.iguala.freeAnnual)}/año`,
           delayMs: 2700,
         },
       ];
@@ -1439,13 +1439,13 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
     default:
       return [
         {
-          substepLabel: '1/3 · H1 & DÍA 1',
+          substepLabel: '1/3 · H1 & GASTOS',
           selector: '#nextStepsGrid .step-card:nth-child(1), #nextStepsGrid .step-card:nth-child(2)',
-          narrative: `H1 ${fmtCompactMXN(calc.hitos.h1.gross)} · Gastos -${fmtCompactMXN(calc.caja.expenses)}`,
+          narrative: `H1 ${fmtCompactMXN(calc.hitos.h1.gross)} · -${fmtCompactMXN(calc.caja.expenses)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2/3 · H2–H3 & MRR',
+          substepLabel: '2/3 · H2–H3 & IGUALA',
           selector: '#nextStepsGrid .step-card:nth-child(3), #nextStepsGrid .step-card:nth-child(4)',
           narrative: `H2 ${fmtCompactMXN(calc.hitos.h2.gross)} · H3 ${fmtCompactMXN(calc.hitos.h3.gross)} · Iguala ${fmtCompactMXN(calc.iguala.gross)}/mes`,
           delayMs: 1350,
@@ -1453,7 +1453,7 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
         {
           substepLabel: '3/3 · AÑO 1',
           selector: '.exec-kpi-strip',
-          narrative: `Año 1 Libre: ${fmtCompactMXN(calc.caja.free)} + ${fmtCompactMXN(calc.iguala.freeAnnual)} = ${fmtCompactMXN(calc.year1FreeTreasury)}`,
+          narrative: `Libre ${fmtCompactMXN(calc.caja.free)} + ${fmtCompactMXN(calc.iguala.freeAnnual)} = ${fmtCompactMXN(calc.year1FreeTreasury)}`,
           delayMs: 2700,
         },
       ];
@@ -1727,9 +1727,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const cardsEl = document.getElementById('hitoSummaryCards');
     if (cardsEl) {
       const hitosList = [
-        { key: 'h1', title: 'H1 · 40%', pctHead: hasContract ? '40.0%' : '0.0%', d: calc.hitos.h1 },
-        { key: 'h2', title: 'H2 · 30%', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h2 },
-        { key: 'h3', title: 'H3 · 30%', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h3 },
+        { key: 'h1', title: 'H1', pctHead: hasContract ? '40.0%' : '0.0%', d: calc.hitos.h1 },
+        { key: 'h2', title: 'H2', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h2 },
+        { key: 'h3', title: 'H3', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h3 },
       ];
       cardsEl.innerHTML = hitosList
         .map((h) => {
@@ -1783,7 +1783,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const rows = [
       {
         name: 'Caja',
-        tag: `Libre ${fmtCompactMXN(calc.caja.free)}`,
+        tag: fmtShortK(calc.caja.free),
         color: '#a2d1bf',
         split: '20%',
         h1: calc.hitos.h1.caja,
@@ -1807,7 +1807,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         name: 'Daniel',
         tag: `+${fmtCompactMXN(calc.caja.monitorsTotal)}`,
         color: '#c8afe9',
-        split: '50% Pool',
+        split: '50%',
         h1: calc.partners.daniel.h1,
         h2: calc.partners.daniel.h2,
         h3: calc.partners.daniel.h3,
@@ -1816,9 +1816,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       },
       {
         name: 'Omar · Pool',
-        tag: `Total ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
+        tag: fmtShortK(calc.consolidated.omarTotalCash),
         color: '#d2b5ef',
-        split: '25% Pool',
+        split: '25%',
         h1: calc.partners.omarPool.h1,
         h2: calc.partners.omarPool.h2,
         h3: calc.partners.omarPool.h3,
@@ -1829,7 +1829,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         name: 'Pedro',
         tag: `+${fmtCompactMXN(calc.caja.viaticos)}`,
         color: '#2ee6c8',
-        split: '15% Pool',
+        split: '15%',
         h1: calc.partners.pedro.h1,
         h2: calc.partners.pedro.h2,
         h3: calc.partners.pedro.h3,
@@ -1840,7 +1840,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         name: 'Octavio',
         tag: '',
         color: '#8f7cff',
-        split: '10% Pool',
+        split: '10%',
         h1: calc.partners.octavio.h1,
         h2: calc.partners.octavio.h2,
         h3: calc.partners.octavio.h3,
@@ -1911,6 +1911,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const autoBtn = document.getElementById('autoPlayBtn');
     if (autoBtn) {
       autoBtn.classList.toggle('is-active', isPlaying);
+      autoBtn.classList.toggle('is-playing', isPlaying);
       autoBtn.textContent = isPlaying ? '⏸ Auto' : '▶ Auto';
     }
     const bannerBtn = document.getElementById('autoPlayBannerBtn');
@@ -2119,6 +2120,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const overviewBtn = document.getElementById('overviewToggleBtn');
     if (overviewBtn) {
       overviewBtn.classList.toggle('is-active', Boolean(appState.isOverview));
+    }
+    const notesBtn = document.getElementById('notesToggleBtn');
+    if (notesBtn) {
+      notesBtn.classList.toggle('is-active', Boolean(appState.showNotes));
     }
 
     // Center active step pill in horizontal mobile stepper without vertical jump
@@ -2375,6 +2380,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // KPI & Companion Rail Values
     setText('vdTreasuryVal', fmtCompactMXN(c.year1FreeTreasury));
     setText('slide7TreasuryVal', fmtCompactMXN(c.year1FreeTreasury));
+    setText('slide7Headline', fmtCompactMXN(c.year1FreeTreasury));
     setText('navPillAll', fmtShortK(c.gross));
     setText('navPillCaja', `${fmtShortK(c.caja.free)} + ${fmtShortK(c.iguala.freeMonthly)}`);
     setText('orbitStackMeta', `${fmtCompactMXN(c.iguala.costTotal)}/mes`);
@@ -2395,19 +2401,19 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     const sideCajaEl = document.getElementById('sideCajaFree');
     if (sideCajaEl) {
-      sideCajaEl.textContent = fmtMXN(c.caja.free);
+      sideCajaEl.textContent = fmtCompactMXN(c.caja.free);
       sideCajaEl.classList.toggle('is-negative', isCajaDeficit);
     }
     const sideIgualaEl = document.getElementById('sideIgualaFree');
     if (sideIgualaEl) {
-      sideIgualaEl.textContent = fmtMXN(c.iguala.freeMonthly);
+      sideIgualaEl.textContent = `${fmtCompactMXN(c.iguala.freeMonthly)}/mes`;
       sideIgualaEl.classList.toggle('is-negative', isIgualaDeficit);
     }
-    setText('sideOmarCash', fmtMXN(c.consolidated.omarTotalCash));
-    setText('sideDanielTotal', fmtMXN(c.consolidated.danielTotalBenefit));
+    setText('sideOmarCash', fmtCompactMXN(c.consolidated.omarTotalCash));
+    setText('sideDanielTotal', fmtCompactMXN(c.consolidated.danielTotalBenefit));
 
     // Slide 01: Hero Contract
-    setText('ivaBadge', `+ IVA = ${fmtCompactMXN(c.totalWithIva)}`);
+    setText('ivaBadge', `+IVA ${fmtCompactMXN(c.totalWithIva)}`);
     setText('segPoolLabel', hasContract ? '70%' : '0%');
     setText('segCajaLabel', hasContract ? '20%' : '0%');
     setText('segCloserLabel', hasContract ? '10%' : '0%');
@@ -2422,13 +2428,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // Slide 02: Milestones
     setText(
       'hitoChartTitle',
-      `H1 ${fmtCompactMXN(c.hitos.h1.gross)} · H2 ${fmtCompactMXN(c.hitos.h2.gross)} · H3 ${fmtCompactMXN(c.hitos.h3.gross)}`
+      `${fmtShortK(c.hitos.h1.gross)} · ${fmtShortK(c.hitos.h2.gross)} · ${fmtShortK(c.hitos.h3.gross)}`
     );
-    setText(
-      'slide2CajaSplitLegend',
-      `${fmtCompactMXN(c.hitos.h1.caja)} / ${fmtCompactMXN(c.hitos.h2.caja)} / ${fmtCompactMXN(c.hitos.h3.caja)}`
-    );
-    setText('hitoTotalBtn', `Total ${fmtCompactMXN(c.gross)}`);
+    setText('slide2CajaSplitLegend', hasContract ? '20%' : '0%');
+    setText('hitoTotalBtn', fmtShortK(c.gross));
 
     renderBankSparkline(
       document.getElementById('bankSparkArt'),
@@ -2446,8 +2449,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     if (orbHeadline) {
       orbHeadline.innerHTML =
         appState.orbGroup === 'buckets'
-          ? 'Bolsas<span class="op-dot">.</span>'
-          : 'Socios<span class="op-dot">.</span>';
+          ? '70% · 20% · 10%<span class="op-dot">.</span>'
+          : '50% · 25% · 15% · 10%<span class="op-dot">.</span>';
     }
     const orbItems = buildOrbItems(c, appState);
     syncOrbGridDOM(orbItems, forceReset);
@@ -2455,7 +2458,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // Slide 04: Caja MASTERIZE
     setText('slide4GrossHeadline', fmtCompactMXN(c.caja.gross));
     setText('slide4FreeHeadline', fmtCompactMXN(c.caja.free));
-    setText('cajaGrossPill', `Gastos: -${fmtCompactMXN(c.caja.expenses)}`);
+    setText('cajaGrossPill', `-${fmtCompactMXN(c.caja.expenses)}`);
     setText('cajaDialVal', isPct ? `${c.caja.marginPct.toFixed(1)}%` : fmtCompactMXN(c.caja.free));
     const cajaPctEl = document.getElementById('cajaDialPct');
     if (cajaPctEl) {
@@ -2491,15 +2494,19 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     // Slide 06: SPEI Table
     setText('speiCheckLabel', fmtMXN(c.gross));
+    setText(
+      'slide6Headline',
+      `${fmtShortK(c.hitos.h1.gross)} · ${fmtShortK(c.hitos.h2.gross)} · ${fmtShortK(c.hitos.h3.gross)}`
+    );
     renderSpeiTable(c);
 
     // Slide 07: Dynamic Next Steps
-    setText('step1Title', `${fmtCompactMXN(c.hitos.h1.gross)} (+IVA ${fmtCompactMXN(c.hitos.h1.gross * 1.16)})`);
+    setText('step1Title', fmtCompactMXN(c.hitos.h1.gross));
     setText('step1Caja', fmtCompactMXN(c.hitos.h1.caja));
     setText('step1Closer', fmtCompactMXN(c.hitos.h1.closer));
     setText('step1Pool', fmtCompactMXN(c.hitos.h1.pool));
 
-    setText('step2Title', `-${fmtCompactMXN(c.caja.expenses)} Gastos`);
+    setText('step2Title', `-${fmtCompactMXN(c.caja.expenses)}`);
     setText('step2Omar', fmtCompactMXN(c.caja.omarReimb));
     setText('step2Mon', fmtCompactMXN(c.caja.monitorsTotal));
     setText('step2Viat', fmtCompactMXN(c.caja.viaticos));
@@ -2510,8 +2517,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('step3Pool', fmtCompactMXN(c.hitos.h2.pool));
 
     setText('step4Title', `${fmtCompactMXN(c.iguala.gross)}/mes`);
-    setText('step4Stack', `-${fmtCompactMXN(c.iguala.costTotal)}/mes`);
-    setText('step4Free', `${fmtCompactMXN(c.iguala.freeMonthly)}/mes`);
+    setText('step4Stack', `-${fmtCompactMXN(c.iguala.costTotal)}`);
+    setText('step4Free', fmtCompactMXN(c.iguala.freeMonthly));
     setText('step4Annual', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
 
     // Refresh Guided Banner text & active spotlight for the current substep (preserving substep state)
@@ -2875,15 +2882,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         activateSubstep(rIdx === 0 ? 0 : 1, { scrollIntoView: false });
       });
     });
-
-    const bankSparkCard = document.querySelector('[data-slide="4"] .bank-spark-card');
-    if (bankSparkCard) {
-      bankSparkCard.addEventListener('click', () => {
-        if (appState.isOverview || appState.currentSlide !== 4) return;
-        clearChoreographyTimers();
-        activateSubstep(2, { scrollIntoView: false });
-      });
-    }
 
     // Speaker Notes ([S] or Notas button)
     const notesBtn = document.getElementById('notesToggleBtn');

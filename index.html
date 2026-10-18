@@ -65,7 +65,7 @@
       <!-- Utility Controls -->
       <div class="deck-actions">
         <div class="au-switch" role="group" aria-label="Unidades">
-          <button type="button" class="au-switch-btn is-active" data-unit="mxn">$ MXN</button>
+          <button type="button" class="au-switch-btn is-active" data-unit="mxn">$</button>
           <button type="button" class="au-switch-btn" data-unit="pct">%</button>
         </div>
         <button type="button" id="overviewToggleBtn" class="op-button" title="Grid (ESC)">⊞ Grid</button>
@@ -102,7 +102,7 @@
             </div>
           </div>
           <p class="guided-narrative" id="guidedNarrativeText">
-            Pool <b>70%</b>: <b>$105,000</b> · Caja <b>20%</b>: <b>$30,000</b> · Closer <b>10%</b>: <b>$15,000</b>
+            <b>Pool</b> <b>70%</b> · <b>$105,000</b>
           </p>
           <div class="guided-progress-track" aria-hidden="true">
             <div class="guided-progress-fill" id="guidedProgressFill" style="width: 33%"></div>
@@ -116,7 +116,7 @@
           <div class="slide-inner">
             <div class="slide-head">
               <span class="ws-eyebrow">01 · CONTRATO</span>
-              <span class="ws-anywhere-pill on" id="ivaBadge">+ IVA = $174,000</span>
+              <span class="ws-anywhere-pill on" id="ivaBadge">+IVA $174,000</span>
             </div>
 
             <h1 class="slide-title">70% · 20% · 10%<span class="op-dot">.</span></h1>
@@ -126,7 +126,7 @@
               <div class="design-render-rim" aria-hidden="true"></div>
               <div class="hero-input-row">
                 <div class="hero-input-label">
-                  <strong>Contrato (Sin IVA)</strong>
+                  <strong>Sin IVA</strong>
                 </div>
                 <div class="biz-bank-InputWrap">
                   <span class="biz-currency-prefix">$</span>
@@ -184,7 +184,7 @@
           <div class="slide-inner">
             <div class="slide-head">
               <span class="ws-eyebrow">02 · HITOS</span>
-              <span class="ws-anywhere-pill on" id="hitoChartTitle">H1 $60,000 · H2 $45,000 · H3 $45,000</span>
+              <span class="ws-anywhere-pill on" id="hitoChartTitle">$60k · $45k · $45k</span>
             </div>
 
             <h2 class="slide-title">40% · 30% · 30%<span class="op-dot">.</span></h2>
@@ -194,14 +194,14 @@
               <header>
                 <div class="biz-rev-legend">
                   <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#c8afe9"></span>Pool 70%</span>
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Caja (<span id="slide2CajaSplitLegend">$20k / $5k / $5k</span>)</span>
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Caja <span id="slide2CajaSplitLegend">20%</span></span>
                   <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#f5a524"></span>Closer 10%</span>
                 </div>
                 <div class="au-switch" role="group" aria-label="Hito">
-                  <button type="button" class="au-switch-btn is-active" data-hito="total" id="hitoTotalBtn">Total $150k</button>
-                  <button type="button" class="au-switch-btn" data-hito="h1">H1 40%</button>
-                  <button type="button" class="au-switch-btn" data-hito="h2">H2 30%</button>
-                  <button type="button" class="au-switch-btn" data-hito="h3">H3 30%</button>
+                  <button type="button" class="au-switch-btn is-active" data-hito="total" id="hitoTotalBtn">$150k</button>
+                  <button type="button" class="au-switch-btn" data-hito="h1">H1</button>
+                  <button type="button" class="au-switch-btn" data-hito="h2">H2</button>
+                  <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
                 </div>
               </header>
 
@@ -241,7 +241,7 @@
               </div>
             </div>
 
-            <h2 class="slide-title" id="orbStageHeadline">Socios<span class="op-dot">.</span></h2>
+            <h2 class="slide-title" id="orbStageHeadline">50% · 25% · 15% · 10%<span class="op-dot">.</span></h2>
 
             <div class="au-grid" id="orbGrid">
               <!-- Populated by app.js with 60fps Liquid Surge Orbs + .design-render-rim -->
@@ -256,10 +256,10 @@
           <div class="slide-inner">
             <div class="slide-head">
               <span class="ws-eyebrow">04 · CAJA 20%</span>
-              <span class="ws-anywhere-pill on" id="cajaGrossPill">Gastos: -$16,000</span>
+              <span class="ws-anywhere-pill on" id="cajaGrossPill">-$16,000</span>
             </div>
 
-            <h2 class="slide-title"><span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span> Libre<span class="op-dot">.</span></h2>
+            <h2 class="slide-title"><span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span><span class="op-dot">.</span></h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
@@ -274,18 +274,18 @@
                 </div>
 
                 <div class="ctrl-list">
-                  <!-- Reembolso Omar $10,660 -->
+                  <!-- Omar $10,660 -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkOmarReimb" class="ctrl-check" checked />
                       <div class="ctrl-label-group">
-                        <label for="chkOmarReimb" class="ctrl-name">Reembolso Omar</label>
+                        <label for="chkOmarReimb" class="ctrl-name">Omar</label>
                       </div>
                     </div>
                     <input type="number" id="inpOmarReimb" class="ctrl-input" value="10660" min="0" step="100" />
                   </div>
 
-                  <!-- Monitor 1: 30" Curvo 200Hz -->
+                  <!-- Monitor 1: 30" -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkMon30" class="ctrl-check" checked />
@@ -299,7 +299,7 @@
                     <input type="number" id="inpMon30" class="ctrl-input" value="3199" min="0" step="50" />
                   </div>
 
-                  <!-- Monitor 2: 15.6" Portátil FHD -->
+                  <!-- Monitor 2: 15.6" -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkMon15" class="ctrl-check" checked />
@@ -314,13 +314,13 @@
                     <input type="number" id="inpMon15" class="ctrl-input" value="973.50" min="0" step="25" />
                   </div>
 
-                  <!-- Viáticos Pedro -->
+                  <!-- Pedro -->
                   <div class="ctrl-slider-row">
                     <div class="ctrl-slider-top">
                       <div class="ctrl-left">
                         <input type="checkbox" id="chkViaticos" class="ctrl-check" checked />
                         <div class="ctrl-label-group">
-                          <label for="chkViaticos" class="ctrl-name">Viáticos Pedro</label>
+                          <label for="chkViaticos" class="ctrl-name">Pedro</label>
                         </div>
                       </div>
                       <input type="number" id="inpViaticos" class="ctrl-input" value="1167.50" min="0" step="50" />
@@ -349,7 +349,7 @@
               <span class="ws-anywhere-pill on" id="igualaAnnualPill">$48,000/año</span>
             </div>
 
-            <h2 class="slide-title"><span id="slide5GrossHeadline">$10,000</span>/mes → <span id="slide5FreeHeadline">$4,000</span> Libre<span class="op-dot">.</span></h2>
+            <h2 class="slide-title"><span id="slide5GrossHeadline">$10,000</span> → <span id="slide5FreeHeadline">$4,000</span>/mes<span class="op-dot">.</span></h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
@@ -366,28 +366,28 @@
                 <div class="ctrl-list">
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpIgualaGross" class="ctrl-name">Iguala Mensual</label>
+                      <label for="inpIgualaGross" class="ctrl-name">Iguala</label>
                     </div>
                     <input type="number" id="inpIgualaGross" class="ctrl-input" value="10000" min="0" step="500" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpAzure" class="ctrl-name">Azure Cloud</label>
+                      <label for="inpAzure" class="ctrl-name">Azure</label>
                     </div>
                     <input type="number" id="inpAzure" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpClaude" class="ctrl-name">Claude Team</label>
+                      <label for="inpClaude" class="ctrl-name">Claude</label>
                     </div>
                     <input type="number" id="inpClaude" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpGoogleAi" class="ctrl-name">Google AI Ultra</label>
+                      <label for="inpGoogleAi" class="ctrl-name">Gemini</label>
                     </div>
                     <input type="number" id="inpGoogleAi" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
@@ -411,7 +411,7 @@
               </div>
             </div>
 
-            <h2 class="slide-title">SPEI<span class="op-dot">.</span></h2>
+            <h2 class="slide-title"><span id="slide6Headline">$60k · $45k · $45k</span><span class="op-dot">.</span></h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
@@ -419,11 +419,11 @@
                 <table class="spei-table">
                   <thead>
                     <tr>
-                      <th>Receptor</th>
+                      <th>Socio</th>
                       <th>%</th>
-                      <th>H1 (40%)</th>
-                      <th>H2 (30%)</th>
-                      <th>H3 (30%)</th>
+                      <th>H1</th>
+                      <th>H2</th>
+                      <th>H3</th>
                       <th>Total</th>
                     </tr>
                   </thead>
@@ -446,38 +446,38 @@
           <div class="slide-inner">
             <div class="slide-head">
               <span class="ws-eyebrow">07 · PASOS</span>
-              <span class="ws-anywhere-pill mint">AÑO 1: <strong id="slide7TreasuryVal">$62,000</strong></span>
+              <span class="ws-anywhere-pill mint"><strong id="slide7TreasuryVal">$62,000</strong></span>
             </div>
 
-            <h2 class="slide-title">Pasos<span class="op-dot">.</span></h2>
+            <h2 class="slide-title"><span id="slide7Headline">$62,000</span> Año 1<span class="op-dot">.</span></h2>
 
             <div class="steps-grid" id="nextStepsGrid">
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">01 · H1 (40%)</div>
-                <strong class="step-card-title" id="step1Title">$60,000 (+IVA $69,600)</strong>
-                <p class="step-card-desc">Caja <code id="step1Caja">$20,000</code> · Closer <code id="step1Closer">$6,000</code> · Pool <code id="step1Pool">$34,000</code></p>
+                <div class="step-badge">01 · H1 40%</div>
+                <strong class="step-card-title" id="step1Title">$60,000</strong>
+                <p class="step-card-desc">Pool <code id="step1Pool">$34,000</code> · Caja <code id="step1Caja">$20,000</code> · Closer <code id="step1Closer">$6,000</code></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">02 · DÍA 1</div>
-                <strong class="step-card-title" id="step2Title">-$16,000 Gastos</strong>
-                <p class="step-card-desc">Omar <code id="step2Omar">$10,660</code> · Mon <code id="step2Mon">$4,172.50</code> · Viát <code id="step2Viat">$1,167.50</code></p>
+                <div class="step-badge">02 · GASTOS</div>
+                <strong class="step-card-title" id="step2Title">-$16,000</strong>
+                <p class="step-card-desc">Omar <code id="step2Omar">$10,660</code> · Mon <code id="step2Mon">$4,172.50</code> · Pedro <code id="step2Viat">$1,167.50</code></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">03 · H2 Y H3 (30%)</div>
+                <div class="step-badge">03 · H2 + H3</div>
                 <strong class="step-card-title" id="step3Title">$45,000 + $45,000</strong>
-                <p class="step-card-desc">Caja <code id="step3Caja">$5,000</code> · Closer <code id="step3Closer">$4,500</code> · Pool <code id="step3Pool">$35,500</code></p>
+                <p class="step-card-desc">Pool <code id="step3Pool">$35,500</code> · Caja <code id="step3Caja">$5,000</code> · Closer <code id="step3Closer">$4,500</code></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">04 · IGUALA MRR</div>
+                <div class="step-badge">04 · IGUALA</div>
                 <strong class="step-card-title" id="step4Title">$10,000/mes</strong>
-                <p class="step-card-desc">IA <code id="step4Stack">-$6,000/mes</code> · Libre <code id="step4Free">$4,000/mes</code> (<code id="step4Annual">$48,000/año</code>)</p>
+                <p class="step-card-desc">IA <code id="step4Stack">-$6,000</code> · Libre <code id="step4Free">$4,000</code> · <code id="step4Annual">$48,000/año</code></p>
               </article>
             </div>
 
@@ -485,19 +485,19 @@
             <div class="exec-kpi-strip ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Caja Libre</span>
-                <span class="op-mini-val" id="sideCajaFree">$14,000.00</span>
+                <span class="op-mini-label">Caja</span>
+                <span class="op-mini-val" id="sideCajaFree">$14,000</span>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Iguala / Mes</span>
-                <span class="op-mini-val" id="sideIgualaFree">$4,000.00</span>
+                <span class="op-mini-label">Iguala</span>
+                <span class="op-mini-val" id="sideIgualaFree">$4,000/mes</span>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Omar Total</span>
-                <span class="op-mini-val" id="sideOmarCash">$51,910.00</span>
+                <span class="op-mini-label">Omar</span>
+                <span class="op-mini-val" id="sideOmarCash">$51,910</span>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Daniel Total</span>
+                <span class="op-mini-label">Daniel</span>
                 <span class="op-mini-val" id="sideDanielTotal">$56,672.50</span>
               </div>
             </div>

@@ -439,6 +439,12 @@ code {
   border-color: var(--op-card-border);
 }
 
+.op-button.is-active {
+  background: var(--op-pill-active-bg);
+  border-color: var(--op-pill-active-border);
+  color: var(--op-pill-active-ink);
+}
+
 .theme-btn {
   width: 28px;
   height: 28px;
@@ -2552,11 +2558,12 @@ code {
   .spei-table td {
     padding: 7px 6px;
     font-size: 11px;
+    white-space: nowrap;
   }
 
   .spei-tag {
-    display: block;
-    margin-left: 14px;
+    display: inline;
+    margin-left: 4px;
     font-size: 9px;
   }
 
