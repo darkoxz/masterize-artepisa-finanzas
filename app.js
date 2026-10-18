@@ -75,45 +75,45 @@ const BUBBLE_SEEDS = Array.from({ length: 22 }, (_, i) => {
 const SLIDES_META = [
   {
     index: 0,
-    name: 'El Contrato',
+    name: 'Contrato',
     getNote: (c) =>
-      `Dictamen /finance-team: El contrato bruto de ${fmtMXN(c.gross)} se divide en 70% Pool Equipo (${fmtMXN(c.hitos.total.pool)}), 20% Caja MASTERIZE (${fmtMXN(c.caja.gross)}) y 10% Closer (${fmtMXN(c.hitos.total.closer)}).`,
+      `${fmtMXN(c.gross)}: 70% Pool (${fmtMXN(c.hitos.total.pool)}) · 20% Caja (${fmtMXN(c.caja.gross)}) · 10% Closer (${fmtMXN(c.hitos.total.closer)}).`,
   },
   {
     index: 1,
-    name: '3 Hitos de Cobro',
+    name: 'Hitos',
     getNote: (c) =>
-      `Capital de Trabajo: Caja retiene ${fmtMXN(c.hitos.h1.caja)} en el Hito 1 (2/3 de su bolsa) para cubrir de contado los ${fmtMXN(c.caja.expenses)} de gastos iniciales sin descapitalizar al equipo.`,
+      `H1 Caja ${fmtMXN(c.hitos.h1.caja)} cubre ${fmtMXN(c.caja.expenses)} de gastos en Día 1.`,
   },
   {
     index: 2,
-    name: 'Reparto por Socio',
+    name: 'Socios',
     getNote: (c) =>
-      `Pool Neto (${fmtMXN(c.hitos.total.pool)}): Daniel 50% (${fmtMXN(c.partners.daniel.total)} + ${fmtMXN(c.caja.monitorsTotal)} monitores), Omar 25% Pool + 10% Closer (${fmtMXN(c.consolidated.omarNetProfit)} utilidad + ${fmtMXN(c.caja.omarReimb)} reembolso = ${fmtMXN(c.consolidated.omarTotalCash)}), Pedro 15% (${fmtMXN(c.partners.pedro.total)} + ${fmtMXN(c.caja.viaticos)} viáticos), Octavio 10% (${fmtMXN(c.partners.octavio.total)}).`,
+      `Daniel ${fmtMXN(c.consolidated.danielTotalBenefit)} · Omar ${fmtMXN(c.consolidated.omarTotalCash)} · Pedro ${fmtMXN(c.consolidated.pedroTotalCash)} · Octavio ${fmtMXN(c.partners.octavio.total)}.`,
   },
   {
     index: 3,
-    name: 'Caja MASTERIZE (20%)',
+    name: 'Caja',
     getNote: (c) =>
-      `De ${fmtMXN(c.caja.gross)} en Caja se descuentan ${fmtMXN(c.caja.expenses)} (Reembolso Omar ${fmtMXN(c.caja.omarReimb)} + Monitores ${fmtMXN(c.caja.monitorsTotal)} + Viáticos ${fmtMXN(c.caja.viaticos)}), dejando ${fmtMXN(c.caja.free)} libres (${c.caja.marginPct.toFixed(1)}%).`,
+      `Caja ${fmtMXN(c.caja.gross)} - ${fmtMXN(c.caja.expenses)} = ${fmtMXN(c.caja.free)} libre (${c.caja.marginPct.toFixed(1)}%).`,
   },
   {
     index: 4,
-    name: 'Iguala Mensual MRR',
+    name: 'Iguala',
     getNote: (c) =>
-      `Tras entregar el Hito 3 inicia la iguala de ${fmtMXN(c.iguala.gross)}/mes: ${fmtMXN(c.iguala.costTotal)}/mes cubren Azure, Claude Team y Google AI Ultra, dejando ${fmtMXN(c.iguala.freeMonthly)}/mes libres (${fmtMXN(c.iguala.freeAnnual)}/año).`,
+      `Iguala ${fmtMXN(c.iguala.gross)}/mes - ${fmtMXN(c.iguala.costTotal)}/mes = ${fmtMXN(c.iguala.freeMonthly)}/mes (${fmtMXN(c.iguala.freeAnnual)}/año).`,
   },
   {
     index: 5,
-    name: 'Matriz SPEI',
+    name: 'SPEI',
     getNote: (c) =>
-      `Conciliación General Ledger: Hito 1 (${fmtMXN(c.hitos.h1.gross)}) + Hito 2 (${fmtMXN(c.hitos.h2.gross)}) + Hito 3 (${fmtMXN(c.hitos.h3.gross)}) = ${fmtMXN(c.gross)} con $0.00 de diferencia.`,
+      `H1 ${fmtMXN(c.hitos.h1.gross)} + H2 ${fmtMXN(c.hitos.h2.gross)} + H3 ${fmtMXN(c.hitos.h3.gross)} = ${fmtMXN(c.gross)}.`,
   },
   {
     index: 6,
-    name: 'Próximos Pasos',
+    name: 'Pasos',
     getNote: (c) =>
-      `Tesorería Libre Año 1: ${fmtMXN(c.caja.free)} (Contrato H1-H3) + ${fmtMXN(c.iguala.freeAnnual)} (12 meses de iguala) = ${fmtMXN(c.year1FreeTreasury)} libres para MASTERIZE.`,
+      `Año 1 Libre: ${fmtMXN(c.caja.free)} + ${fmtMXN(c.iguala.freeAnnual)} = ${fmtMXN(c.year1FreeTreasury)}.`,
   },
 ];
 
@@ -1121,7 +1121,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
     return [
       {
         id: 'pool',
-        name: 'POOL EQUIPO',
+        name: 'POOL',
         tag: hasContract ? `${((poolVal / hGross) * 100).toFixed(1)}%` : '0.0%',
         amount: poolVal,
         pct: hasContract ? (poolVal / hGross) * 100 : 0,
@@ -1133,24 +1133,24 @@ function buildOrbItems(calc, state = DEFAULTS) {
       },
       {
         id: 'caja',
-        name: 'CAJA MASTERIZE',
+        name: 'CAJA',
         tag: hasContract ? `${((cajaVal / hGross) * 100).toFixed(1)}%` : '0.0%',
         amount: cajaVal,
         pct: hasContract ? (cajaVal / hGross) * 100 : 0,
         ratio: ratioFromShare(cajaVal / hGross),
-        sub: isTotal ? `Libre: ${fmtCompactMXN(calc.caja.free)}` : cajaSplitTag,
+        sub: isTotal ? `Libre ${fmtCompactMXN(calc.caja.free)}` : cajaSplitTag,
         color: '#408374',
         light: '#a2d1bf',
         glow: 'rgba(162, 209, 191, 0.12)',
       },
       {
         id: 'closer',
-        name: 'CLOSER OMAR',
+        name: 'CLOSER',
         tag: hasContract ? `${((closerVal / hGross) * 100).toFixed(1)}%` : '0.0%',
         amount: closerVal,
         pct: hasContract ? (closerVal / hGross) * 100 : 0,
         ratio: ratioFromShare(closerVal / hGross),
-        sub: '10% Venta',
+        sub: 'Omar',
         color: '#d9822b',
         light: '#f5a524',
         glow: 'rgba(245, 165, 36, 0.12)',
@@ -1175,62 +1175,62 @@ function buildOrbItems(calc, state = DEFAULTS) {
   return [
     {
       id: 'daniel',
-      name: 'DANIEL · 50%',
-      tag: `${danielPctGross.toFixed(1)}% Bruto`,
+      name: 'DANIEL',
+      tag: '50% Pool',
       amount: danielVal,
       pct: danielPctGross,
       ratio: ratioFromShare(danielVal / hGross),
-      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.monitorsTotal)} Monitores` : '50% del Pool',
+      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.monitorsTotal)}` : `${danielPctGross.toFixed(1)}%`,
       color: '#9b78cf',
       light: '#c8afe9',
       glow: 'rgba(200, 175, 233, 0.12)',
     },
     {
       id: 'omar',
-      name: 'OMAR · 25%+10%',
-      tag: isTotal ? 'Cash Total' : `${omarPctGross.toFixed(1)}% Bruto`,
+      name: 'OMAR',
+      tag: '25% + 10%',
       amount: omarTotalHito,
       pct: omarPctGross,
       ratio: ratioFromShare(omarTotalHito / hGross),
       sub: isTotal
-        ? `Neto ${fmtCompactMXN(calc.consolidated.omarNetProfit)} + Reemb`
-        : `Pool + Closer`,
+        ? `${fmtCompactMXN(calc.consolidated.omarNetProfit)} + ${fmtCompactMXN(calc.caja.omarReimb)}`
+        : `${omarPctGross.toFixed(1)}%`,
       color: '#b07ce8',
       light: '#d2b5ef',
       glow: 'rgba(210, 181, 239, 0.12)',
     },
     {
       id: 'pedro',
-      name: 'PEDRO · 15%',
-      tag: `${pedroPctGross.toFixed(1)}% Bruto`,
+      name: 'PEDRO',
+      tag: '15% Pool',
       amount: pedroVal,
       pct: pedroPctGross,
       ratio: ratioFromShare(pedroVal / hGross),
-      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.viaticos)} Viáticos` : '15% del Pool',
+      sub: isTotal ? `+ ${fmtCompactMXN(calc.caja.viaticos)}` : `${pedroPctGross.toFixed(1)}%`,
       color: '#3b9b88',
       light: '#a2d1bf',
       glow: 'rgba(162, 209, 191, 0.12)',
     },
     {
       id: 'octavio',
-      name: 'OCTAVIO · 10%',
-      tag: `${octavioPctGross.toFixed(1)}% Bruto`,
+      name: 'OCTAVIO',
+      tag: '10% Pool',
       amount: octavioVal,
       pct: octavioPctGross,
       ratio: ratioFromShare(octavioVal / hGross),
-      sub: '10% del Pool',
+      sub: `${octavioPctGross.toFixed(1)}%`,
       color: '#6b63d6',
       light: '#8f7cff',
       glow: 'rgba(143, 124, 255, 0.12)',
     },
     {
       id: 'cajalibre',
-      name: isTotal ? 'CAJA LIBRE' : 'CAJA HITO',
-      tag: isTotal ? `${calc.caja.marginPct.toFixed(1)}% de Caja` : `${cajaPctGross.toFixed(1)}% Hito`,
+      name: 'CAJA',
+      tag: isTotal ? `${calc.caja.marginPct.toFixed(1)}%` : `${cajaPctGross.toFixed(1)}%`,
       amount: cajaFreeVal,
       pct: cajaPctGross,
       ratio: ratioFromShare(Math.max(0, cajaFreeVal) / hGross),
-      sub: isTotal ? `De ${fmtCompactMXN(calc.caja.gross)} (20%)` : 'Reserva Empresa',
+      sub: isTotal ? `De ${fmtCompactMXN(calc.caja.gross)}` : '20%',
       color: calc.caja.free < 0 && isTotal ? '#cd6e7c' : '#408374',
       light: calc.caja.free < 0 && isTotal ? '#efb4bd' : '#a2d1bf',
       glow: 'rgba(162, 209, 191, 0.12)',
@@ -1246,28 +1246,28 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
   if (isOverview) {
     return [
       {
-        substepLabel: '1 / 4 · GRID CONTRATO & HITOS',
+        substepLabel: '1/4 · CONTRATO',
         selector: '.deck-slide[data-slide="0"], .deck-slide[data-slide="1"]',
-        narrative: `Vista Grid Completa: Contrato de ${fmtCompactMXN(calc.gross)} dividido en 3 hitos (40% · 30% · 30%) y 3 bolsas (70% / 20% / 10%).`,
+        narrative: `Contrato ${fmtCompactMXN(calc.gross)} · 40% / 30% / 30%`,
         delayMs: 40,
       },
       {
-        substepLabel: '2 / 4 · GRID SOCIOS & CAJA',
+        substepLabel: '2/4 · SOCIOS',
         selector: '.deck-slide[data-slide="2"], .deck-slide[data-slide="3"]',
-        narrative: `Pool Equipo (${fmtCompactMXN(calc.hitos.total.pool)}) y Caja MASTERIZE (${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libres tras gastos).`,
+        narrative: `Pool ${fmtCompactMXN(calc.hitos.total.pool)} · Caja libre ${fmtCompactMXN(calc.caja.free)}`,
         orbIndex: 0,
         delayMs: 1350,
       },
       {
-        substepLabel: '3 / 4 · GRID IGUALA & SPEI',
+        substepLabel: '3/4 · IGUALA',
         selector: '.deck-slide[data-slide="4"], .deck-slide[data-slide="5"]',
-        narrative: `Iguala MRR (${fmtCompactMXN(calc.iguala.gross)}/mes → ${fmtCompactMXN(calc.iguala.freeMonthly)} libres) y Matriz SPEI 100% cuadrada.`,
+        narrative: `Iguala libre ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · SPEI 100%`,
         delayMs: 2700,
       },
       {
-        substepLabel: '4 / 4 · GRID TESORERÍA AÑO 1',
+        substepLabel: '4/4 · AÑO 1',
         selector: '.deck-slide[data-slide="6"], .vd-card, .orbit-card',
-        narrative: `Dictamen Final en Grid: Tesorería Libre Año 1 de ${fmtCompactMXN(calc.year1FreeTreasury)} para MASTERIZE. Toca cualquier tarjeta para abrirla.`,
+        narrative: `Año 1 Libre: ${fmtCompactMXN(calc.year1FreeTreasury)}`,
         delayMs: 4050,
       },
     ];
@@ -1277,42 +1277,42 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
     case 0:
       return [
         {
-          substepLabel: '1 / 3 · POOL EQUIPO 70%',
+          substepLabel: '1/3 · POOL 70%',
           selector: '.bucket-card.is-pool, #segPoolBar',
-          narrative: `1/3 · Pool Equipo retiene el 70% (${fmtCompactMXN(calc.hitos.total.pool)}) directo para los 4 socios operativos.`,
+          narrative: `Pool 70%: ${fmtCompactMXN(calc.hitos.total.pool)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · CAJA MASTERIZE 20%',
+          substepLabel: '2/3 · CAJA 20%',
           selector: '.bucket-card.is-caja, #segCajaBar',
-          narrative: `2/3 · Caja MASTERIZE recibe el 20% (${fmtCompactMXN(calc.caja.gross)}): liquida ${fmtCompactMXN(calc.caja.expenses)} de gastos y deja ${fmtCompactMXN(calc.caja.free)} libres.`,
+          narrative: `Caja 20%: ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libre`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · CLOSER 10% + CURVA',
+          substepLabel: '3/3 · CLOSER 10%',
           selector: '.bucket-card.is-closer, #segCloserBar, #bankSparkArt',
-          narrative: `3/3 · Comisión Closer del 10% (${fmtCompactMXN(calc.hitos.total.closer)}) para Omar Moranza. Total: ${fmtCompactMXN(calc.gross)} (+ IVA = ${fmtCompactMXN(calc.totalWithIva)}).`,
+          narrative: `Closer 10%: ${fmtCompactMXN(calc.hitos.total.closer)} · Total ${fmtCompactMXN(calc.gross)}`,
           delayMs: 2700,
         },
       ];
     case 1:
       return [
         {
-          substepLabel: '1 / 3 · HITO 1 (40%)',
+          substepLabel: '1/3 · H1 (40%)',
           selector: '[data-bar-hito="h1"], [data-card-hito="h1"]',
-          narrative: `Hito 1 (40% = ${fmtCompactMXN(calc.hitos.h1.gross)}): Caja retiene ${fmtCompactMXN(calc.hitos.h1.caja)} en Día 1 para pagar de contado ${fmtCompactMXN(calc.caja.expenses)} de gastos.`,
+          narrative: `H1 40%: ${fmtCompactMXN(calc.hitos.h1.gross)} · Caja ${fmtCompactMXN(calc.hitos.h1.caja)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · HITO 2 (30%)',
+          substepLabel: '2/3 · H2 (30%)',
           selector: '[data-bar-hito="h2"], [data-card-hito="h2"]',
-          narrative: `Hito 2 (30% = ${fmtCompactMXN(calc.hitos.h2.gross)}): Pool Socios recibe ${fmtCompactMXN(calc.hitos.h2.pool)}, Caja ${fmtCompactMXN(calc.hitos.h2.caja)} y Closer ${fmtCompactMXN(calc.hitos.h2.closer)}.`,
+          narrative: `H2 30%: ${fmtCompactMXN(calc.hitos.h2.gross)} · Pool ${fmtCompactMXN(calc.hitos.h2.pool)}`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · HITO 3 (30%) & TOTAL',
+          substepLabel: '3/3 · H3 (30%)',
           selector: '[data-bar-hito="h3"], [data-card-hito="h3"], [data-bar-hito="total"]',
-          narrative: `Hito 3 (30% = ${fmtCompactMXN(calc.hitos.h3.gross)}): Completa el 100% del contrato (${fmtCompactMXN(calc.gross)}) sin descapitalizar al equipo.`,
+          narrative: `H3 30%: ${fmtCompactMXN(calc.hitos.h3.gross)} · Total ${fmtCompactMXN(calc.gross)}`,
           delayMs: 2700,
         },
       ];
@@ -1320,23 +1320,23 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
       if (state && state.orbGroup === 'buckets') {
         return [
           {
-            substepLabel: '1 / 3 · ORBE POOL EQUIPO (70%)',
+            substepLabel: '1/3 · POOL 70%',
             selector: '#orbGrid .au-cell:nth-child(1)',
-            narrative: `Bolsa 1 · Pool Equipo (70%): ${fmtCompactMXN(calc.hitos.total.pool)} distribuidos entre Daniel (50%), Omar (25%), Pedro (15%) y Octavio (10%).`,
+            narrative: `Pool 70%: ${fmtCompactMXN(calc.hitos.total.pool)}`,
             orbIndex: 0,
             delayMs: 40,
           },
           {
-            substepLabel: '2 / 3 · ORBE CAJA MASTERIZE (20%)',
+            substepLabel: '2/3 · CAJA 20%',
             selector: '#orbGrid .au-cell:nth-child(2)',
-            narrative: `Bolsa 2 · Caja MASTERIZE (20%): ${fmtCompactMXN(calc.caja.gross)} brutos → cubre ${fmtCompactMXN(calc.caja.expenses)} de gastos y retiene ${fmtCompactMXN(calc.caja.free)} libres.`,
+            narrative: `Caja 20%: ${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libre`,
             orbIndex: 1,
             delayMs: 1350,
           },
           {
-            substepLabel: '3 / 3 · ORBE CLOSER OMAR (10%)',
+            substepLabel: '3/3 · CLOSER 10%',
             selector: '#orbGrid .au-cell:nth-child(3)',
-            narrative: `Bolsa 3 · Closer Omar (10%): ${fmtCompactMXN(calc.hitos.total.closer)} de comisión comercial liquidada proporcionalmente en H1, H2 y H3.`,
+            narrative: `Closer 10%: ${fmtCompactMXN(calc.hitos.total.closer)}`,
             orbIndex: 2,
             delayMs: 2700,
           },
@@ -1344,30 +1344,30 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
       }
       return [
         {
-          substepLabel: '1 / 4 · DANIEL (50% POOL)',
+          substepLabel: '1/4 · DANIEL 50%',
           selector: '#orbGrid .au-cell:nth-child(1)',
-          narrative: `Daniel (50% Pool): recibe ${fmtCompactMXN(calc.partners.daniel.total)} en efectivo + ${fmtCompactMXN(calc.caja.monitorsTotal)} en 2 monitores (${fmtCompactMXN(calc.consolidated.danielTotalBenefit)} total).`,
+          narrative: `Daniel 50%: ${fmtCompactMXN(calc.partners.daniel.total)} + ${fmtCompactMXN(calc.caja.monitorsTotal)} = ${fmtCompactMXN(calc.consolidated.danielTotalBenefit)}`,
           orbIndex: 0,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 4 · OMAR (25% + 10% CLOSER)',
+          substepLabel: '2/4 · OMAR 25%+10%',
           selector: '#orbGrid .au-cell:nth-child(2)',
-          narrative: `Omar (25% Pool + 10% Closer): ${fmtCompactMXN(calc.consolidated.omarNetProfit)} utilidad + ${fmtCompactMXN(calc.caja.omarReimb)} reembolso IA = ${fmtCompactMXN(calc.consolidated.omarTotalCash)} Cash Total.`,
+          narrative: `Omar: ${fmtCompactMXN(calc.consolidated.omarNetProfit)} + ${fmtCompactMXN(calc.caja.omarReimb)} = ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
           orbIndex: 1,
           delayMs: 1150,
         },
         {
-          substepLabel: '3 / 4 · PEDRO (15% POOL)',
+          substepLabel: '3/4 · PEDRO 15%',
           selector: '#orbGrid .au-cell:nth-child(3)',
-          narrative: `Pedro (15% Pool): recibe ${fmtCompactMXN(calc.partners.pedro.total)} neto + ${fmtCompactMXN(calc.caja.viaticos)} de viáticos en planta (${fmtCompactMXN(calc.consolidated.pedroTotalCash)} total).`,
+          narrative: `Pedro 15%: ${fmtCompactMXN(calc.partners.pedro.total)} + ${fmtCompactMXN(calc.caja.viaticos)} = ${fmtCompactMXN(calc.consolidated.pedroTotalCash)}`,
           orbIndex: 2,
           delayMs: 2250,
         },
         {
-          substepLabel: '4 / 4 · OCTAVIO (10%) & CAJA',
+          substepLabel: '4/4 · OCTAVIO 10%',
           selector: '#orbGrid .au-cell:nth-child(4), #orbGrid .au-cell:nth-child(5)',
-          narrative: `Octavio (10% Pool = ${fmtCompactMXN(calc.partners.octavio.total)}) y Caja MASTERIZE conserva ${fmtCompactMXN(calc.caja.free)} libres (${calc.caja.marginPct.toFixed(1)}%).`,
+          narrative: `Octavio 10%: ${fmtCompactMXN(calc.partners.octavio.total)} · Caja libre ${fmtCompactMXN(calc.caja.free)}`,
           orbIndex: 3,
           delayMs: 3350,
         },
@@ -1375,63 +1375,63 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
     case 3:
       return [
         {
-          substepLabel: '1 / 3 · REEMBOLSO OMAR',
+          substepLabel: '1/3 · OMAR',
           selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(1)',
-          narrative: `Deducción 1 de Caja (${fmtCompactMXN(calc.caja.gross)}): Reembolso a Omar por ${fmtCompactMXN(calc.caja.omarReimb)} (3m IA + Plan).`,
+          narrative: `Reembolso Omar: -${fmtCompactMXN(calc.caja.omarReimb)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · 2 MONITORES DANIEL',
+          substepLabel: '2/3 · MONITORES',
           selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(2), .deck-slide[data-slide="3"] .ctrl-row:nth-child(3)',
-          narrative: `Deducción 2 · Equipamiento Daniel: 2 monitores Mercado Libre por ${fmtCompactMXN(calc.caja.monitorsTotal)}.`,
+          narrative: `Monitores Daniel: -${fmtCompactMXN(calc.caja.monitorsTotal)}`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · VIÁTICOS & UTILIDAD LIBRE',
+          substepLabel: '3/3 · LIBRE',
           selector: '.deck-slide[data-slide="3"] .ctrl-slider-row, .deck-slide[data-slide="3"] .dial-wrap',
-          narrative: `Deducción 3 · Viáticos Pedro (${fmtCompactMXN(calc.caja.viaticos)}), dejando ${fmtCompactMXN(calc.caja.free)} libres (${calc.caja.marginPct.toFixed(1)}% margen) en Caja.`,
+          narrative: `Viáticos -${fmtCompactMXN(calc.caja.viaticos)} → Libre ${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)`,
           delayMs: 2700,
         },
       ];
     case 4:
       return [
         {
-          substepLabel: '1 / 3 · PÓLIZA MENSUAL',
+          substepLabel: '1/3 · IGUALA',
           selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(1)',
-          narrative: `Inicia tras Hito 3: Iguala mensual de ${fmtCompactMXN(calc.iguala.gross)}/mes para operación continua de ARTEPISA.`,
+          narrative: `Iguala: ${fmtCompactMXN(calc.iguala.gross)}/mes`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · STACK IA & CLOUD',
+          substepLabel: '2/3 · STACK IA',
           selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(2), .deck-slide[data-slide="4"] .ctrl-row:nth-child(3), .deck-slide[data-slide="4"] .ctrl-row:nth-child(4)',
-          narrative: `Stack IA cubierto (${fmtCompactMXN(calc.iguala.costTotal)}/mes): Azure ${fmtCompactMXN(calc.iguala.azure)} + Claude ${fmtCompactMXN(calc.iguala.claude)} + Google AI ${fmtCompactMXN(calc.iguala.googleAi)}.`,
+          narrative: `Stack IA: -${fmtCompactMXN(calc.iguala.costTotal)}/mes`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · MRR LIBRE ANUAL',
+          substepLabel: '3/3 · LIBRE',
           selector: '.deck-slide[data-slide="4"] .dial-wrap, #igualaAnnualPill',
-          narrative: `Quedan ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes libres (${calc.iguala.marginPct.toFixed(1)}% margen), acumulando ${fmtCompactMXN(calc.iguala.freeAnnual)}/año en Caja.`,
+          narrative: `Libre: ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes · ${fmtCompactMXN(calc.iguala.freeAnnual)}/año`,
           delayMs: 2700,
         },
       ];
     case 5:
       return [
         {
-          substepLabel: '1 / 3 · CAJA & CLOSER SPEI',
+          substepLabel: '1/3 · CAJA & CLOSER',
           selector: '#speiTableBody tr:nth-child(1), #speiTableBody tr:nth-child(2)',
-          narrative: `SPEI Empresas/Comisión: Caja (${fmtCompactMXN(calc.hitos.h1.caja)} / ${fmtCompactMXN(calc.hitos.h2.caja)} / ${fmtCompactMXN(calc.hitos.h3.caja)}) y Closer (${fmtCompactMXN(calc.hitos.total.closer)}).`,
+          narrative: `Caja ${fmtCompactMXN(calc.caja.gross)} · Closer ${fmtCompactMXN(calc.hitos.total.closer)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · 4 SOCIOS POOL SPEI',
+          substepLabel: '2/3 · SOCIOS',
           selector: '#speiTableBody tr:nth-child(3), #speiTableBody tr:nth-child(4), #speiTableBody tr:nth-child(5), #speiTableBody tr:nth-child(6)',
-          narrative: `SPEI Socios: Daniel ${fmtCompactMXN(calc.partners.daniel.total)} · Omar ${fmtCompactMXN(calc.partners.omarPool.total)} · Pedro ${fmtCompactMXN(calc.partners.pedro.total)} · Octavio ${fmtCompactMXN(calc.partners.octavio.total)}.`,
+          narrative: `Daniel ${fmtCompactMXN(calc.partners.daniel.total)} · Omar ${fmtCompactMXN(calc.partners.omarPool.total)} · Pedro ${fmtCompactMXN(calc.partners.pedro.total)} · Octavio ${fmtCompactMXN(calc.partners.octavio.total)}`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · CONCILIACIÓN 100%',
+          substepLabel: '3/3 · TOTAL',
           selector: '#speiTableFoot tr',
-          narrative: `General Ledger 100% cuadrado: H1 (${fmtCompactMXN(calc.hitos.h1.gross)}) + H2 (${fmtCompactMXN(calc.hitos.h2.gross)}) + H3 (${fmtCompactMXN(calc.hitos.h3.gross)}) = ${fmtCompactMXN(calc.gross)}.`,
+          narrative: `H1 ${fmtCompactMXN(calc.hitos.h1.gross)} + H2 ${fmtCompactMXN(calc.hitos.h2.gross)} + H3 ${fmtCompactMXN(calc.hitos.h3.gross)} = ${fmtCompactMXN(calc.gross)}`,
           delayMs: 2700,
         },
       ];
@@ -1439,21 +1439,21 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFA
     default:
       return [
         {
-          substepLabel: '1 / 3 · COBRO H1 & GASTOS DÍA 1',
+          substepLabel: '1/3 · H1 & DÍA 1',
           selector: '#nextStepsGrid .step-card:nth-child(1), #nextStepsGrid .step-card:nth-child(2)',
-          narrative: `Paso 01 y 02: Facturar Hito 1 (${fmtCompactMXN(calc.hitos.h1.gross)} + IVA) y liquidar ${fmtCompactMXN(calc.caja.expenses)} de gastos en Día 1.`,
+          narrative: `H1 ${fmtCompactMXN(calc.hitos.h1.gross)} · Gastos -${fmtCompactMXN(calc.caja.expenses)}`,
           delayMs: 40,
         },
         {
-          substepLabel: '2 / 3 · HITOS 2–3 & PÓLIZA MRR',
+          substepLabel: '2/3 · H2–H3 & MRR',
           selector: '#nextStepsGrid .step-card:nth-child(3), #nextStepsGrid .step-card:nth-child(4)',
-          narrative: `Paso 03 y 04: Dispersar Hitos 2 y 3 (${fmtCompactMXN(calc.hitos.h2.gross)} c/u) y activar iguala de ${fmtCompactMXN(calc.iguala.gross)}/mes.`,
+          narrative: `H2 ${fmtCompactMXN(calc.hitos.h2.gross)} · H3 ${fmtCompactMXN(calc.hitos.h3.gross)} · Iguala ${fmtCompactMXN(calc.iguala.gross)}/mes`,
           delayMs: 1350,
         },
         {
-          substepLabel: '3 / 3 · TESORERÍA AÑO 1',
+          substepLabel: '3/3 · AÑO 1',
           selector: '.exec-kpi-strip',
-          narrative: `Tesorería Libre Año 1: ${fmtCompactMXN(calc.caja.free)} (Contrato) + ${fmtCompactMXN(calc.iguala.freeAnnual)} (Iguala 12m) = ${fmtCompactMXN(calc.year1FreeTreasury)} libres.`,
+          narrative: `Año 1 Libre: ${fmtCompactMXN(calc.caja.free)} + ${fmtCompactMXN(calc.iguala.freeAnnual)} = ${fmtCompactMXN(calc.year1FreeTreasury)}`,
           delayMs: 2700,
         },
       ];
@@ -1684,10 +1684,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const isPct = appState.unitMode === 'pct';
     const hasContract = calc.gross > 0;
     const cols = [
-      { key: 'h1', label: 'Hito 1 · 40%', pctLabel: hasContract ? '40.0%' : '0.0%', data: calc.hitos.h1 },
-      { key: 'h2', label: 'Hito 2 · 30%', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h2 },
-      { key: 'h3', label: 'Hito 3 · 30%', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h3 },
-      { key: 'total', label: 'Total 100%', pctLabel: hasContract ? '100.0%' : '0.0%', data: calc.hitos.total },
+      { key: 'h1', label: 'H1 · 40%', pctLabel: hasContract ? '40.0%' : '0.0%', data: calc.hitos.h1 },
+      { key: 'h2', label: 'H2 · 30%', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h2 },
+      { key: 'h3', label: 'H3 · 30%', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h3 },
+      { key: 'total', label: '100%', pctLabel: hasContract ? '100.0%' : '0.0%', data: calc.hitos.total },
     ];
     const maxGross = Math.max(1, calc.gross);
     const maxBarPx = 84;
@@ -1727,9 +1727,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const cardsEl = document.getElementById('hitoSummaryCards');
     if (cardsEl) {
       const hitosList = [
-        { key: 'h1', title: 'HITO 1 (40%)', pctHead: hasContract ? '40.0%' : '0.0%', d: calc.hitos.h1 },
-        { key: 'h2', title: 'HITO 2 (30%)', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h2 },
-        { key: 'h3', title: 'HITO 3 (30%)', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h3 },
+        { key: 'h1', title: 'H1 · 40%', pctHead: hasContract ? '40.0%' : '0.0%', d: calc.hitos.h1 },
+        { key: 'h2', title: 'H2 · 30%', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h2 },
+        { key: 'h3', title: 'H3 · 30%', pctHead: hasContract ? '30.0%' : '0.0%', d: calc.hitos.h3 },
       ];
       cardsEl.innerHTML = hitosList
         .map((h) => {
@@ -1775,7 +1775,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     if (!tbody || !tfoot) return;
 
     const isPct = appState.unitMode === 'pct';
-    const cajaSplitTag = `${fmtCompactMXN(calc.hitos.h1.caja)} / ${fmtCompactMXN(calc.hitos.h2.caja)} / ${fmtCompactMXN(calc.hitos.h3.caja)}`;
     const fmtCell = (val, colGross) => {
       if (!isPct) return fmtMXN(val);
       return colGross > 0 ? `${((val / colGross) * 100).toFixed(1)}%` : '0.0%';
@@ -1783,10 +1782,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     const rows = [
       {
-        name: 'Caja MASTERIZE',
-        tag: cajaSplitTag,
+        name: 'Caja',
+        tag: `Libre ${fmtCompactMXN(calc.caja.free)}`,
         color: '#a2d1bf',
-        split: '20.0% Bruto',
+        split: '20%',
         h1: calc.hitos.h1.caja,
         h2: calc.hitos.h2.caja,
         h3: calc.hitos.h3.caja,
@@ -1794,10 +1793,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         highlight: true,
       },
       {
-        name: 'Omar Moranza · Closer',
-        tag: 'Comisión Venta',
+        name: 'Omar · Closer',
+        tag: '',
         color: '#f5a524',
-        split: '10.0% Bruto',
+        split: '10%',
         h1: calc.hitos.h1.closer,
         h2: calc.hitos.h2.closer,
         h3: calc.hitos.h3.closer,
@@ -1805,10 +1804,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         highlight: false,
       },
       {
-        name: 'Daniel · Líder Técnico',
-        tag: `+ ${fmtCompactMXN(calc.caja.monitorsTotal)} Monitores`,
+        name: 'Daniel',
+        tag: `+${fmtCompactMXN(calc.caja.monitorsTotal)}`,
         color: '#c8afe9',
-        split: '50% Pool (35% Bruto)',
+        split: '50% Pool',
         h1: calc.partners.daniel.h1,
         h2: calc.partners.daniel.h2,
         h3: calc.partners.daniel.h3,
@@ -1816,10 +1815,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         highlight: true,
       },
       {
-        name: 'Omar Moranza · Socio Pool',
-        tag: `Cash Total: ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
+        name: 'Omar · Pool',
+        tag: `Total ${fmtCompactMXN(calc.consolidated.omarTotalCash)}`,
         color: '#d2b5ef',
-        split: '25% Pool (17.5% Bruto)',
+        split: '25% Pool',
         h1: calc.partners.omarPool.h1,
         h2: calc.partners.omarPool.h2,
         h3: calc.partners.omarPool.h3,
@@ -1827,10 +1826,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         highlight: false,
       },
       {
-        name: 'Pedro · Legal & Planta',
-        tag: `+ ${fmtCompactMXN(calc.caja.viaticos)} Viáticos`,
+        name: 'Pedro',
+        tag: `+${fmtCompactMXN(calc.caja.viaticos)}`,
         color: '#2ee6c8',
-        split: '15% Pool (10.5% Bruto)',
+        split: '15% Pool',
         h1: calc.partners.pedro.h1,
         h2: calc.partners.pedro.h2,
         h3: calc.partners.pedro.h3,
@@ -1838,10 +1837,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         highlight: false,
       },
       {
-        name: 'Octavio · Implementación',
-        tag: 'Socio Operativo',
+        name: 'Octavio',
+        tag: '',
         color: '#8f7cff',
-        split: '10% Pool (7.0% Bruto)',
+        split: '10% Pool',
         h1: calc.partners.octavio.h1,
         h2: calc.partners.octavio.h2,
         h3: calc.partners.octavio.h3,
@@ -1857,7 +1856,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         <td>
           <span class="role-dot" style="background:${r.color}"></span>
           ${r.name}
-          <span class="spei-tag">${r.tag}</span>
+          ${r.tag ? `<span class="spei-tag">${r.tag}</span>` : ''}
         </td>
         <td>${r.split}</td>
         <td>${fmtCell(r.h1, calc.hitos.h1.gross)}</td>
@@ -1871,8 +1870,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     tfoot.innerHTML = `
       <tr>
-        <td>TOTAL DISPERSADO (100% CUADRADO)</td>
-        <td>100.0%</td>
+        <td>TOTAL</td>
+        <td>100%</td>
         <td>${fmtCell(calc.hitos.h1.gross, calc.hitos.h1.gross)}</td>
         <td>${fmtCell(calc.hitos.h2.gross, calc.hitos.h2.gross)}</td>
         <td>${fmtCell(calc.hitos.h3.gross, calc.hitos.h3.gross)}</td>
@@ -1908,13 +1907,27 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   }
 
   function syncAutoPlayUI() {
+    const isPlaying = Boolean(appState.isAutoPlaying);
     const autoBtn = document.getElementById('autoPlayBtn');
-    const autoLabel = document.getElementById('autoPlayLabel');
     if (autoBtn) {
-      autoBtn.classList.toggle('is-active', Boolean(appState.isAutoPlaying));
+      autoBtn.classList.toggle('is-active', isPlaying);
+      autoBtn.textContent = isPlaying ? '⏸ Auto' : '▶ Auto';
     }
-    if (autoLabel) {
-      autoLabel.textContent = appState.isAutoPlaying ? '⏸ Auto' : '▶ Auto';
+    const bannerBtn = document.getElementById('autoPlayBannerBtn');
+    if (bannerBtn) {
+      bannerBtn.classList.toggle('is-playing', isPlaying);
+    }
+    const bannerIcon = document.getElementById('autoPlayBannerIcon');
+    if (bannerIcon) {
+      bannerIcon.textContent = isPlaying ? '⏸' : '▶';
+    }
+    const bannerLabel = document.getElementById('autoPlayBannerLabel');
+    if (bannerLabel) {
+      bannerLabel.textContent = 'Auto';
+    }
+    const pulseDot = document.getElementById('guidedPulseDot');
+    if (pulseDot) {
+      pulseDot.classList.toggle('is-playing', isPlaying);
     }
   }
 
@@ -2039,8 +2052,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText(
       'guidedStepBadge',
       appState.isOverview
-        ? 'VISTA GRID · 7 DIAPOSITIVAS EN VIVO'
-        : `PASO 0${idx + 1} / 0${totalSlides} · PRESENTACIÓN GUIADA`
+        ? 'GRID 7/7'
+        : `0${idx + 1} / 0${totalSlides}`
     );
 
     const narrEl = document.getElementById('guidedNarrativeText');
@@ -2121,17 +2134,17 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
 
     const meta = SLIDES_META[idx] || SLIDES_META[0];
-    setText('slideCounterText', appState.isOverview ? 'GRID 7/7' : `0${idx + 1} / 0${totalSlides}`);
-    setText('slideNameText', appState.isOverview ? 'Vista Grid Completa' : meta.name);
+    setText('slideCounterText', appState.isOverview ? 'GRID' : `0${idx + 1} / 0${totalSlides}`);
+    setText('slideNameText', appState.isOverview ? '7/7' : meta.name);
 
     const nextMeta = idx + 1 < totalSlides ? SLIDES_META[idx + 1] : null;
     setText(
       'speakerNextSlide',
       appState.isOverview
-        ? 'Fin de presentación (↺ Inicio)'
+        ? '↺ 01'
         : nextMeta
-          ? `Siguiente: 0${idx + 2} · ${nextMeta.name}`
-          : 'Siguiente: ⊞ Vista Grid Completa'
+          ? `0${idx + 2} · ${nextMeta.name}`
+          : '⊞ Grid'
     );
 
     const progressBar = document.getElementById('deckProgressBar');
@@ -2146,17 +2159,17 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     if (prevBtn) prevBtn.disabled = idx === 0 && !appState.isOverview;
 
     const nextLabelText = appState.isOverview
-      ? '↺ Inicio · Paso 01'
+      ? '↺ 01 · Contrato'
       : nextMeta
-        ? `Siguiente: 0${idx + 2} · ${nextMeta.name} →`
-        : 'Siguiente: ⊞ Ver Grid Completo →';
+        ? `0${idx + 2} · ${nextMeta.name} →`
+        : '⊞ Grid →';
 
     if (nextBtn) {
       nextBtn.textContent = nextLabelText;
     }
     setText(
       'bannerNextStepLabel',
-      appState.isOverview ? '↺ Inicio' : nextMeta ? 'Siguiente →' : '⊞ Ver Grid →'
+      appState.isOverview ? '↺ 01' : nextMeta ? 'Siguiente →' : '⊞ Grid →'
     );
 
     const notesBar = document.getElementById('speakerNotesBar');
@@ -2345,11 +2358,11 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const statusBadge = document.getElementById('statusBadge');
     if (statusBadge) {
       if (isCajaDeficit) {
-        statusBadge.textContent = `DÉFICIT CAJA ${fmtCompactMXN(c.caja.free)}`;
+        statusBadge.textContent = `DÉFICIT ${fmtCompactMXN(c.caja.free)}`;
       } else if (isIgualaDeficit) {
-        statusBadge.textContent = `DÉFICIT MRR ${fmtCompactMXN(c.iguala.freeMonthly)}`;
+        statusBadge.textContent = `DÉFICIT ${fmtCompactMXN(c.iguala.freeMonthly)}`;
       } else {
-        statusBadge.textContent = '100% CUADRADO';
+        statusBadge.textContent = '100% OK';
       }
       statusBadge.classList.toggle('mint', !hasDeficit);
       statusBadge.classList.toggle('ws-error', hasDeficit);
@@ -2357,21 +2370,21 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     const vdMoodDot = document.getElementById('vdMoodDot');
     if (vdMoodDot) vdMoodDot.classList.toggle('is-error', hasDeficit);
-    setText('vdModeLabel', hasDeficit ? 'ALERTA TESORERÍA' : 'TESORERÍA AÑO 1');
+    setText('vdModeLabel', hasDeficit ? 'ALERTA' : 'AÑO 1');
 
     // KPI & Companion Rail Values
     setText('vdTreasuryVal', fmtCompactMXN(c.year1FreeTreasury));
     setText('slide7TreasuryVal', fmtCompactMXN(c.year1FreeTreasury));
     setText('navPillAll', fmtShortK(c.gross));
     setText('navPillCaja', `${fmtShortK(c.caja.free)} + ${fmtShortK(c.iguala.freeMonthly)}`);
-    setText('orbitStackMeta', `Stack IA: ${fmtCompactMXN(c.iguala.costTotal)}/mes`);
+    setText('orbitStackMeta', `${fmtCompactMXN(c.iguala.costTotal)}/mes`);
 
     // Update ProviderOrbit node tooltips dynamically
     const orbitTooltips = {
-      claude: `Claude Team + Code (${fmtCompactMXN(c.iguala.claude)}/mes)`,
-      gemini: `Google AI Ultra (${fmtCompactMXN(c.iguala.googleAi)}/mes)`,
-      azure: `Azure Cloud & DB (${fmtCompactMXN(c.iguala.azure)}/mes)`,
-      jev: `Jev Cognitive Router · Iguala ${fmtCompactMXN(c.iguala.gross)}/mes`,
+      claude: `Claude (${fmtCompactMXN(c.iguala.claude)}/mes)`,
+      gemini: `Gemini (${fmtCompactMXN(c.iguala.googleAi)}/mes)`,
+      azure: `Azure (${fmtCompactMXN(c.iguala.azure)}/mes)`,
+      jev: `Iguala ${fmtCompactMXN(c.iguala.gross)}/mes`,
     };
     document.querySelectorAll('[data-orbit-provider]').forEach((nodeEl) => {
       const pKey = nodeEl.getAttribute('data-orbit-provider');
@@ -2402,20 +2415,15 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('wellCajaTotal', isPct ? (hasContract ? '20.0%' : '0.0%') : fmtCompactMXN(c.caja.gross));
     setText('wellCloserTotal', isPct ? (hasContract ? '10.0%' : '0.0%') : fmtCompactMXN(c.hitos.total.closer));
 
-    setText('wellPoolSub', isPct ? `${fmtCompactMXN(c.hitos.total.pool)} · 4 Socios` : '4 Socios');
-    setText(
-      'wellCajaSub',
-      `Gastos (${fmtCompactMXN(c.caja.expenses)}) + Libre (${fmtCompactMXN(c.caja.free)})`
-    );
-    setText('wellCloserSub', isPct ? `${fmtCompactMXN(c.hitos.total.closer)} · Comisión Omar` : 'Comisión venta');
+    setText('wellPoolSub', isPct ? fmtCompactMXN(c.hitos.total.pool) : '4 Socios');
+    setText('wellCajaSub', `${fmtCompactMXN(c.caja.free)} Libre`);
+    setText('wellCloserSub', isPct ? fmtCompactMXN(c.hitos.total.closer) : 'Omar');
 
     // Slide 02: Milestones
     setText(
       'hitoChartTitle',
       `H1 ${fmtCompactMXN(c.hitos.h1.gross)} · H2 ${fmtCompactMXN(c.hitos.h2.gross)} · H3 ${fmtCompactMXN(c.hitos.h3.gross)}`
     );
-    setText('slide2CajaH1', fmtCompactMXN(c.hitos.h1.caja));
-    setText('slide2ExpensesH1', fmtCompactMXN(c.caja.expenses));
     setText(
       'slide2CajaSplitLegend',
       `${fmtCompactMXN(c.hitos.h1.caja)} / ${fmtCompactMXN(c.hitos.h2.caja)} / ${fmtCompactMXN(c.hitos.h3.caja)}`
@@ -2434,23 +2442,26 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     renderMilestoneBars(c);
 
     // Slide 03: Partners & Buckets (60fps Liquid Surge Orbs)
-    setText('slide3PoolCode', fmtCompactMXN(c.hitos.total.pool));
-    setText('slide3CloserCode', fmtCompactMXN(c.hitos.total.closer));
-    setText('slide3ExpCode', fmtCompactMXN(c.caja.expenses));
+    const orbHeadline = document.getElementById('orbStageHeadline');
+    if (orbHeadline) {
+      orbHeadline.innerHTML =
+        appState.orbGroup === 'buckets'
+          ? 'Bolsas<span class="op-dot">.</span>'
+          : 'Socios<span class="op-dot">.</span>';
+    }
     const orbItems = buildOrbItems(c, appState);
     syncOrbGridDOM(orbItems, forceReset);
 
     // Slide 04: Caja MASTERIZE
     setText('slide4GrossHeadline', fmtCompactMXN(c.caja.gross));
     setText('slide4FreeHeadline', fmtCompactMXN(c.caja.free));
-    setText('slide4ExpensesCode', fmtCompactMXN(c.caja.expenses));
-    setText('cajaGrossPill', `Bolsa: ${fmtMXN(c.caja.gross)}`);
+    setText('cajaGrossPill', `Gastos: -${fmtCompactMXN(c.caja.expenses)}`);
     setText('cajaDialVal', isPct ? `${c.caja.marginPct.toFixed(1)}%` : fmtCompactMXN(c.caja.free));
     const cajaPctEl = document.getElementById('cajaDialPct');
     if (cajaPctEl) {
       cajaPctEl.textContent = isPct
-        ? `${fmtCompactMXN(c.caja.free)} LIBRE`
-        : `${c.caja.marginPct.toFixed(1)}% LIBRE`;
+        ? fmtCompactMXN(c.caja.free)
+        : `${c.caja.marginPct.toFixed(1)}%`;
       cajaPctEl.classList.toggle('is-negative', isCajaDeficit);
     }
     setText('monTotalInline', fmtMXN(c.caja.monitorsTotal));
@@ -2463,15 +2474,13 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // Slide 05: Iguala MRR
     setText('slide5GrossHeadline', fmtCompactMXN(c.iguala.gross));
     setText('slide5FreeHeadline', fmtCompactMXN(c.iguala.freeMonthly));
-    setText('slide5StackCode', `${fmtCompactMXN(c.iguala.costTotal)}/mes`);
-    setText('slide5AnnualCode', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
-    setText('igualaAnnualPill', `Anual: ${fmtCompactMXN(c.iguala.freeAnnual)} Libres`);
+    setText('igualaAnnualPill', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
     setText('igualaDialVal', isPct ? `${c.iguala.marginPct.toFixed(1)}%` : fmtCompactMXN(c.iguala.freeMonthly));
     const igPctEl = document.getElementById('igualaDialPct');
     if (igPctEl) {
       igPctEl.textContent = isPct
-        ? `${fmtCompactMXN(c.iguala.freeMonthly)} LIBRE`
-        : `${c.iguala.marginPct.toFixed(1)}% MARGEN`;
+        ? fmtCompactMXN(c.iguala.freeMonthly)
+        : `${c.iguala.marginPct.toFixed(1)}%`;
       igPctEl.classList.toggle('is-negative', isIgualaDeficit);
     }
     renderInstrumentDial(
@@ -2481,27 +2490,27 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     );
 
     // Slide 06: SPEI Table
-    setText('speiCheckLabel', `Suma H1 + H2 + H3 = ${fmtMXN(c.gross)} MXN`);
+    setText('speiCheckLabel', fmtMXN(c.gross));
     renderSpeiTable(c);
 
     // Slide 07: Dynamic Next Steps
-    setText('step1Title', `Facturar ${fmtCompactMXN(c.hitos.h1.gross)} + IVA (${fmtCompactMXN(c.hitos.h1.gross * 1.16)})`);
+    setText('step1Title', `${fmtCompactMXN(c.hitos.h1.gross)} (+IVA ${fmtCompactMXN(c.hitos.h1.gross * 1.16)})`);
     setText('step1Caja', fmtCompactMXN(c.hitos.h1.caja));
     setText('step1Closer', fmtCompactMXN(c.hitos.h1.closer));
     setText('step1Pool', fmtCompactMXN(c.hitos.h1.pool));
 
-    setText('step2Title', `Liquidar ${fmtCompactMXN(c.caja.expenses)} de Gastos Iniciales`);
+    setText('step2Title', `-${fmtCompactMXN(c.caja.expenses)} Gastos`);
     setText('step2Omar', fmtCompactMXN(c.caja.omarReimb));
     setText('step2Mon', fmtCompactMXN(c.caja.monitorsTotal));
     setText('step2Viat', fmtCompactMXN(c.caja.viaticos));
 
-    setText('step3Title', `Dispersar ${fmtCompactMXN(c.hitos.h2.gross)} en H2 y ${fmtCompactMXN(c.hitos.h3.gross)} en H3`);
+    setText('step3Title', `${fmtCompactMXN(c.hitos.h2.gross)} + ${fmtCompactMXN(c.hitos.h3.gross)}`);
     setText('step3Caja', fmtCompactMXN(c.hitos.h2.caja));
     setText('step3Closer', fmtCompactMXN(c.hitos.h2.closer));
     setText('step3Pool', fmtCompactMXN(c.hitos.h2.pool));
 
-    setText('step4Title', `Cobrar ${fmtCompactMXN(c.iguala.gross)}/mes de Iguala`);
-    setText('step4Stack', `${fmtCompactMXN(c.iguala.costTotal)}/mes`);
+    setText('step4Title', `${fmtCompactMXN(c.iguala.gross)}/mes`);
+    setText('step4Stack', `-${fmtCompactMXN(c.iguala.costTotal)}/mes`);
     setText('step4Free', `${fmtCompactMXN(c.iguala.freeMonthly)}/mes`);
     setText('step4Annual', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
 
