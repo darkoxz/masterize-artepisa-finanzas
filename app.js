@@ -31,6 +31,7 @@ const DEFAULTS = {
   isOverview: false,
   showNotes: false,
   isBlackout: false,
+  isAutoPlaying: false,
 };
 
 const ORB_PALETTES = {
@@ -286,6 +287,21 @@ const fmtShortK = (val) => {
   }
   return fmtMXN(num, num % 1 === 0 ? 0 : 2);
 };
+
+/**
+ * Jack Roberts Agentic OS V4.7 Law 2 — Auto-Bold Scanning (emphasise(text)):
+ * Wraps dollar amounts, percentages, and key entities in <b> tags for 0.5s glanceability.
+ */
+function emphasise(text) {
+  const safe = String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  return safe.replace(
+    /(-?\$[\d,]+(?:\.\d+)?(?:k|m|\/mes|\/año)?|\b\d+(?:\.\d+)?%|\b(?:MASTERIZE|ARTEPISA|Azure|Claude|Google AI|Gemini|SPEI|Pool|Caja|Closer)\b)/g,
+    '<b>$1</b>'
+  );
+}
 
 function isDarkMode() {
   if (typeof document !== 'undefined' && document.documentElement && document.documentElement.classList) {
@@ -1024,7 +1040,7 @@ function renderInstrumentDial(svgEl, ratio, activeColor) {
     const isLit = i <= activeTicks && clamped > 0;
     const stroke = isLit ? activeColor : unlitTickColor;
     const width = isMajor ? 2.4 : 1.6;
-    ticksHtml += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" />`;
+    ticksHtml += `<line class="dial-tick ${isLit ? 'is-lit' : ''}" style="--tick-idx:${i}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" />`;
   }
 
   svgEl.innerHTML = `
@@ -1066,12 +1082,12 @@ function renderBankSparkline(container, h1, h2, h3, total, year1Treasury = 0) {
           <stop offset="100%" stop-color="#d2b5ef" />
         </linearGradient>
       </defs>
-      <path d="${areaPath}" fill="url(#bankAreaGrad)" />
-      <path d="${dPath}" fill="none" stroke="url(#bankStrokeGrad)" stroke-width="2.2" stroke-linecap="round" />
-      <circle cx="${pts[1].x}" cy="${pts[1].y}" r="3.5" fill="#a2d1bf" />
-      <circle cx="${pts[2].x}" cy="${pts[2].y}" r="3.5" fill="#c8afe9" />
-      <circle cx="${pts[3].x}" cy="${pts[3].y}" r="3.5" fill="#d2b5ef" />
-      <circle cx="${pts[4].x - 4}" cy="${pts[4].y}" r="3" fill="#a2d1bf" />
+      <path class="spark-area-path" d="${areaPath}" fill="url(#bankAreaGrad)" />
+      <path class="spark-line-path" d="${dPath}" fill="none" stroke="url(#bankStrokeGrad)" stroke-width="2.2" stroke-linecap="round" />
+      <circle class="spark-dot" style="--dot-idx:1" cx="${pts[1].x}" cy="${pts[1].y}" r="3.5" fill="#a2d1bf" />
+      <circle class="spark-dot" style="--dot-idx:2" cx="${pts[2].x}" cy="${pts[2].y}" r="3.5" fill="#c8afe9" />
+      <circle class="spark-dot" style="--dot-idx:3" cx="${pts[3].x}" cy="${pts[3].y}" r="3.5" fill="#d2b5ef" />
+      <circle class="spark-dot" style="--dot-idx:4" cx="${pts[4].x - 4}" cy="${pts[4].y}" r="3" fill="#a2d1bf" />
     </svg>
   `;
 }
@@ -1220,6 +1236,203 @@ function buildOrbItems(calc, state = DEFAULTS) {
   ];
 }
 
+/**
+ * Pure choreography builder for the One-Button Guided Presentation & Grid flow.
+ * Returns the animated spotlight sequence and narratives for each slide (0..6) and Grid Overview.
+ */
+function buildSlideChoreography(slideIdx, calc, isOverview = false) {
+  if (isOverview) {
+    return [
+      {
+        substepLabel: '1 / 4 · GRID CONTRATO & HITOS',
+        selector: '.deck-slide[data-slide="0"], .deck-slide[data-slide="1"]',
+        narrative: `Vista Grid Completa: Contrato de ${fmtCompactMXN(calc.gross)} dividido en 3 hitos (40% · 30% · 30%) y 3 bolsas (70% / 20% / 10%).`,
+        delayMs: 40,
+      },
+      {
+        substepLabel: '2 / 4 · GRID SOCIOS & CAJA',
+        selector: '.deck-slide[data-slide="2"], .deck-slide[data-slide="3"]',
+        narrative: `Pool Equipo (${fmtCompactMXN(calc.hitos.total.pool)}) y Caja MASTERIZE (${fmtCompactMXN(calc.caja.gross)} → ${fmtCompactMXN(calc.caja.free)} libres tras gastos).`,
+        orbIndex: 0,
+        delayMs: 1350,
+      },
+      {
+        substepLabel: '3 / 4 · GRID IGUALA & SPEI',
+        selector: '.deck-slide[data-slide="4"], .deck-slide[data-slide="5"]',
+        narrative: `Iguala MRR (${fmtCompactMXN(calc.iguala.gross)}/mes → ${fmtCompactMXN(calc.iguala.freeMonthly)} libres) y Matriz SPEI 100% cuadrada.`,
+        delayMs: 2700,
+      },
+      {
+        substepLabel: '4 / 4 · GRID TESORERÍA AÑO 1',
+        selector: '.deck-slide[data-slide="6"], .vd-card, .orbit-card',
+        narrative: `Dictamen Final en Grid: Tesorería Libre Año 1 de ${fmtCompactMXN(calc.year1FreeTreasury)} para MASTERIZE. Toca cualquier tarjeta para abrirla.`,
+        delayMs: 4050,
+      },
+    ];
+  }
+
+  switch (slideIdx) {
+    case 0:
+      return [
+        {
+          substepLabel: '1 / 3 · POOL EQUIPO 70%',
+          selector: '.bucket-card.is-pool, #segPoolBar',
+          narrative: `1/3 · Pool Equipo retiene el 70% (${fmtCompactMXN(calc.hitos.total.pool)}) directo para los 4 socios operativos.`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · CAJA MASTERIZE 20%',
+          selector: '.bucket-card.is-caja, #segCajaBar',
+          narrative: `2/3 · Caja MASTERIZE recibe el 20% (${fmtCompactMXN(calc.caja.gross)}): liquida ${fmtCompactMXN(calc.caja.expenses)} de gastos y deja ${fmtCompactMXN(calc.caja.free)} libres.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · CLOSER 10% + CURVA',
+          selector: '.bucket-card.is-closer, #segCloserBar, #bankSparkArt',
+          narrative: `3/3 · Comisión Closer del 10% (${fmtCompactMXN(calc.hitos.total.closer)}) para Omar Moranza. Total: ${fmtCompactMXN(calc.gross)} (+ IVA = ${fmtCompactMXN(calc.totalWithIva)}).`,
+          delayMs: 2700,
+        },
+      ];
+    case 1:
+      return [
+        {
+          substepLabel: '1 / 3 · HITO 1 (40%)',
+          selector: '[data-bar-hito="h1"], [data-card-hito="h1"]',
+          narrative: `Hito 1 (40% = ${fmtCompactMXN(calc.hitos.h1.gross)}): Caja retiene ${fmtCompactMXN(calc.hitos.h1.caja)} en Día 1 para pagar de contado ${fmtCompactMXN(calc.caja.expenses)} de gastos.`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · HITO 2 (30%)',
+          selector: '[data-bar-hito="h2"], [data-card-hito="h2"]',
+          narrative: `Hito 2 (30% = ${fmtCompactMXN(calc.hitos.h2.gross)}): Pool Socios recibe ${fmtCompactMXN(calc.hitos.h2.pool)}, Caja ${fmtCompactMXN(calc.hitos.h2.caja)} y Closer ${fmtCompactMXN(calc.hitos.h2.closer)}.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · HITO 3 (30%) & TOTAL',
+          selector: '[data-bar-hito="h3"], [data-card-hito="h3"], [data-bar-hito="total"]',
+          narrative: `Hito 3 (30% = ${fmtCompactMXN(calc.hitos.h3.gross)}): Completa el 100% del contrato (${fmtCompactMXN(calc.gross)}) sin descapitalizar al equipo.`,
+          delayMs: 2700,
+        },
+      ];
+    case 2:
+      return [
+        {
+          substepLabel: '1 / 4 · DANIEL (50% POOL)',
+          selector: '#orbGrid .au-cell:nth-child(1)',
+          narrative: `Daniel (50% Pool): recibe ${fmtCompactMXN(calc.partners.daniel.total)} en efectivo + ${fmtCompactMXN(calc.caja.monitorsTotal)} en 2 monitores (${fmtCompactMXN(calc.consolidated.danielTotalBenefit)} total).`,
+          orbIndex: 0,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 4 · OMAR (25% + 10% CLOSER)',
+          selector: '#orbGrid .au-cell:nth-child(2)',
+          narrative: `Omar (25% Pool + 10% Closer): ${fmtCompactMXN(calc.consolidated.omarNetProfit)} utilidad + ${fmtCompactMXN(calc.caja.omarReimb)} reembolso IA = ${fmtCompactMXN(calc.consolidated.omarTotalCash)} Cash Total.`,
+          orbIndex: 1,
+          delayMs: 1150,
+        },
+        {
+          substepLabel: '3 / 4 · PEDRO (15% POOL)',
+          selector: '#orbGrid .au-cell:nth-child(3)',
+          narrative: `Pedro (15% Pool): recibe ${fmtCompactMXN(calc.partners.pedro.total)} neto + ${fmtCompactMXN(calc.caja.viaticos)} de viáticos en planta (${fmtCompactMXN(calc.consolidated.pedroTotalCash)} total).`,
+          orbIndex: 2,
+          delayMs: 2250,
+        },
+        {
+          substepLabel: '4 / 4 · OCTAVIO (10%) & CAJA',
+          selector: '#orbGrid .au-cell:nth-child(4), #orbGrid .au-cell:nth-child(5)',
+          narrative: `Octavio (10% Pool = ${fmtCompactMXN(calc.partners.octavio.total)}) y Caja MASTERIZE conserva ${fmtCompactMXN(calc.caja.free)} libres (${calc.caja.marginPct.toFixed(1)}%).`,
+          orbIndex: 3,
+          delayMs: 3350,
+        },
+      ];
+    case 3:
+      return [
+        {
+          substepLabel: '1 / 3 · REEMBOLSO OMAR',
+          selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(1)',
+          narrative: `Deducción 1 de Caja (${fmtCompactMXN(calc.caja.gross)}): Reembolso a Omar por ${fmtCompactMXN(calc.caja.omarReimb)} (3m IA + Plan).`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · 2 MONITORES DANIEL',
+          selector: '.deck-slide[data-slide="3"] .ctrl-row:nth-child(2), .deck-slide[data-slide="3"] .ctrl-row:nth-child(3)',
+          narrative: `Deducción 2 · Equipamiento Daniel: 2 monitores Mercado Libre por ${fmtCompactMXN(calc.caja.monitorsTotal)}.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · VIÁTICOS & UTILIDAD LIBRE',
+          selector: '.deck-slide[data-slide="3"] .ctrl-slider-row, .deck-slide[data-slide="3"] .dial-wrap',
+          narrative: `Deducción 3 · Viáticos Pedro (${fmtCompactMXN(calc.caja.viaticos)}), dejando ${fmtCompactMXN(calc.caja.free)} libres (${calc.caja.marginPct.toFixed(1)}% margen) en Caja.`,
+          delayMs: 2700,
+        },
+      ];
+    case 4:
+      return [
+        {
+          substepLabel: '1 / 3 · PÓLIZA MENSUAL',
+          selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(1)',
+          narrative: `Inicia tras Hito 3: Iguala mensual de ${fmtCompactMXN(calc.iguala.gross)}/mes para operación continua de ARTEPISA.`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · STACK IA & CLOUD',
+          selector: '.deck-slide[data-slide="4"] .ctrl-row:nth-child(2), .deck-slide[data-slide="4"] .ctrl-row:nth-child(3), .deck-slide[data-slide="4"] .ctrl-row:nth-child(4)',
+          narrative: `Stack IA cubierto (${fmtCompactMXN(calc.iguala.costTotal)}/mes): Azure ${fmtCompactMXN(calc.iguala.azure)} + Claude ${fmtCompactMXN(calc.iguala.claude)} + Google AI ${fmtCompactMXN(calc.iguala.googleAi)}.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · MRR LIBRE ANUAL',
+          selector: '.deck-slide[data-slide="4"] .dial-wrap, #igualaAnnualPill',
+          narrative: `Quedan ${fmtCompactMXN(calc.iguala.freeMonthly)}/mes libres (${calc.iguala.marginPct.toFixed(1)}% margen), acumulando ${fmtCompactMXN(calc.iguala.freeAnnual)}/año en Caja.`,
+          delayMs: 2700,
+        },
+      ];
+    case 5:
+      return [
+        {
+          substepLabel: '1 / 3 · CAJA & CLOSER SPEI',
+          selector: '#speiTableBody tr:nth-child(1), #speiTableBody tr:nth-child(2)',
+          narrative: `SPEI Empresas/Comisión: Caja (${fmtCompactMXN(calc.hitos.h1.caja)} / ${fmtCompactMXN(calc.hitos.h2.caja)} / ${fmtCompactMXN(calc.hitos.h3.caja)}) y Closer (${fmtCompactMXN(calc.hitos.total.closer)}).`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · 4 SOCIOS POOL SPEI',
+          selector: '#speiTableBody tr:nth-child(3), #speiTableBody tr:nth-child(4), #speiTableBody tr:nth-child(5), #speiTableBody tr:nth-child(6)',
+          narrative: `SPEI Socios: Daniel ${fmtCompactMXN(calc.partners.daniel.total)} · Omar ${fmtCompactMXN(calc.partners.omarPool.total)} · Pedro ${fmtCompactMXN(calc.partners.pedro.total)} · Octavio ${fmtCompactMXN(calc.partners.octavio.total)}.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · CONCILIACIÓN 100%',
+          selector: '#speiTableFoot tr',
+          narrative: `General Ledger 100% cuadrado: H1 (${fmtCompactMXN(calc.hitos.h1.gross)}) + H2 (${fmtCompactMXN(calc.hitos.h2.gross)}) + H3 (${fmtCompactMXN(calc.hitos.h3.gross)}) = ${fmtCompactMXN(calc.gross)}.`,
+          delayMs: 2700,
+        },
+      ];
+    case 6:
+    default:
+      return [
+        {
+          substepLabel: '1 / 3 · COBRO H1 & GASTOS DÍA 1',
+          selector: '#nextStepsGrid .step-card:nth-child(1), #nextStepsGrid .step-card:nth-child(2)',
+          narrative: `Paso 01 y 02: Facturar Hito 1 (${fmtCompactMXN(calc.hitos.h1.gross)} + IVA) y liquidar ${fmtCompactMXN(calc.caja.expenses)} de gastos en Día 1.`,
+          delayMs: 40,
+        },
+        {
+          substepLabel: '2 / 3 · HITOS 2–3 & PÓLIZA MRR',
+          selector: '#nextStepsGrid .step-card:nth-child(3), #nextStepsGrid .step-card:nth-child(4)',
+          narrative: `Paso 03 y 04: Dispersar Hitos 2 y 3 (${fmtCompactMXN(calc.hitos.h2.gross)} c/u) y activar iguala de ${fmtCompactMXN(calc.iguala.gross)}/mes.`,
+          delayMs: 1350,
+        },
+        {
+          substepLabel: '3 / 3 · TESORERÍA AÑO 1',
+          selector: '.exec-kpi-strip',
+          narrative: `Tesorería Libre Año 1: ${fmtCompactMXN(calc.caja.free)} (Contrato) + ${fmtCompactMXN(calc.iguala.freeAnnual)} (Iguala 12m) = ${fmtCompactMXN(calc.year1FreeTreasury)} libres.`,
+          delayMs: 2700,
+        },
+      ];
+  }
+}
+
 /* ============================================================================
    BROWSER PRESENTATION & CALCULATOR CONTROLLER
    ============================================================================ */
@@ -1235,6 +1448,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   let manualMoodOverride = false;
   let speakerStartTime = Date.now();
   let speakerTimerId = 0;
+  let choreoTimers = [];
+  let autoPlayTimerId = 0;
 
   function setText(id, text) {
     const el = document.getElementById(id);
@@ -1446,7 +1661,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const maxBarPx = 84;
 
     container.innerHTML = cols
-      .map((c) => {
+      .map((c, idx) => {
         const hasVal = c.data.gross > 0;
         const totalRatio = hasVal ? Math.max(0.18, c.data.gross / maxGross) : 0;
         const hPx = Math.round(totalRatio * maxBarPx);
@@ -1458,7 +1673,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         const valText = isPct ? c.pctLabel : fmtCompactMXN(c.data.gross);
 
         return `
-          <div class="biz-bar-col ${isSel ? 'is-selected' : ''}" data-bar-hito="${c.key}">
+          <div class="biz-bar-col ${isSel ? 'is-selected' : ''}" data-bar-hito="${c.key}" style="--bar-idx:${idx}">
             <div class="biz-bar-val">${valText}</div>
             <div class="biz-bar-well">
               <div class="biz-bar-seg" style="height:${clH}px;background:#f5a524" title="Closer: ${fmtMXN(c.data.closer)}"></div>
@@ -1634,6 +1849,101 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     `;
   }
 
+  function clearChoreographyTimers() {
+    while (choreoTimers.length > 0) {
+      clearTimeout(choreoTimers.pop());
+    }
+    document.querySelectorAll('.is-spotlight').forEach((el) => {
+      el.classList.remove('is-spotlight');
+    });
+  }
+
+  function syncAutoPlayUI() {
+    const playing = Boolean(appState.isAutoPlaying);
+    const pulseDot = document.getElementById('guidedPulseDot');
+    if (pulseDot) pulseDot.classList.toggle('is-playing', playing);
+
+    const bannerBtn = document.getElementById('autoPlayBannerBtn');
+    if (bannerBtn) bannerBtn.classList.toggle('is-playing', playing);
+    setText('autoPlayBannerIcon', playing ? '⏸' : '▶');
+    setText('autoPlayBannerLabel', playing ? 'Pausar Guía' : 'Auto-Guía');
+
+    const footerAutoBtn = document.getElementById('autoPlayBtn');
+    if (footerAutoBtn) {
+      footerAutoBtn.classList.toggle('is-playing', playing);
+      footerAutoBtn.textContent = playing ? '⏸ Pausa' : '▶ Auto';
+    }
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayTimerId) {
+      clearTimeout(autoPlayTimerId);
+      autoPlayTimerId = 0;
+    }
+    appState.isAutoPlaying = false;
+    syncAutoPlayUI();
+  }
+
+  function runSlideChoreography() {
+    clearChoreographyTimers();
+    const steps = buildSlideChoreography(appState.currentSlide, latestCalc, Boolean(appState.isOverview));
+    if (!steps || steps.length === 0) return;
+
+    const totalSlides = SLIDES_META.length;
+    const idx = appState.currentSlide;
+    setText(
+      'guidedStepBadge',
+      appState.isOverview
+        ? 'VISTA GRID · 7 DIAPOSITIVAS EN VIVO'
+        : `PASO 0${idx + 1} / 0${totalSlides} · PRESENTACIÓN GUIADA`
+    );
+
+    const narrEl = document.getElementById('guidedNarrativeText');
+    const progEl = document.getElementById('guidedProgressFill');
+
+    if (isReducedMotion()) {
+      const last = steps[steps.length - 1];
+      setText('guidedSubstepPill', last.substepLabel);
+      if (narrEl) narrEl.innerHTML = emphasise(last.narrative);
+      if (progEl) progEl.style.width = '100%';
+      return;
+    }
+
+    steps.forEach((step, sIdx) => {
+      const tId = window.setTimeout(() => {
+        document.querySelectorAll('.is-spotlight').forEach((el) => {
+          el.classList.remove('is-spotlight');
+        });
+        if (step.selector) {
+          document.querySelectorAll(step.selector).forEach((el) => {
+            el.classList.add('is-spotlight');
+          });
+        }
+        setText('guidedSubstepPill', step.substepLabel);
+        if (narrEl) narrEl.innerHTML = emphasise(step.narrative);
+        if (progEl) {
+          progEl.style.width = `${Math.round(((sIdx + 1) / steps.length) * 100)}%`;
+        }
+        if (typeof step.orbIndex === 'number' && orbCells[step.orbIndex]) {
+          const cell = orbCells[step.orbIndex];
+          cell.surgeEnergy = 1.3;
+          cell.springVel = 0.85;
+          spawnSplashDroplets(cell, 136, cell.currentRatio, 8);
+          ensureMasterLoopRunning();
+        }
+      }, step.delayMs);
+      choreoTimers.push(tId);
+    });
+
+    const lastDelay = steps[steps.length - 1].delayMs || 0;
+    const clearId = window.setTimeout(() => {
+      document.querySelectorAll('.is-spotlight').forEach((el) => {
+        el.classList.remove('is-spotlight');
+      });
+    }, lastDelay + 2200);
+    choreoTimers.push(clearId);
+  }
+
   function syncSlidePresentation() {
     const totalSlides = SLIDES_META.length;
     const idx = Math.max(0, Math.min(totalSlides - 1, appState.currentSlide));
@@ -1656,30 +1966,68 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     document.querySelectorAll('[data-slide-to]').forEach((btn) => {
       const bIdx = parseInt(btn.getAttribute('data-slide-to'), 10);
-      btn.classList.toggle('is-active', bIdx === idx);
+      btn.classList.toggle('is-active', !appState.isOverview && bIdx === idx);
     });
 
+    const stepGridBtn = document.getElementById('stepGridBtn');
+    if (stepGridBtn) {
+      stepGridBtn.classList.toggle('is-active', Boolean(appState.isOverview));
+    }
+    const overviewBtn = document.getElementById('overviewToggleBtn');
+    if (overviewBtn) {
+      overviewBtn.classList.toggle('is-active', Boolean(appState.isOverview));
+    }
+
+    // Center active step pill in horizontal mobile stepper without vertical jump
+    const stepsNav = document.querySelector('.deck-steps');
+    const activeStepBtn = stepsNav && stepsNav.querySelector('.deck-step-btn.is-active');
+    if (stepsNav && activeStepBtn && typeof stepsNav.scrollTo === 'function') {
+      const targetLeft =
+        activeStepBtn.offsetLeft - stepsNav.clientWidth / 2 + activeStepBtn.clientWidth / 2;
+      stepsNav.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: isReducedMotion() ? 'auto' : 'smooth',
+      });
+    }
+
     const meta = SLIDES_META[idx] || SLIDES_META[0];
-    setText('slideCounterText', `0${idx + 1} / 0${totalSlides}`);
-    setText('slideNameText', meta.name);
+    setText('slideCounterText', appState.isOverview ? 'GRID 7/7' : `0${idx + 1} / 0${totalSlides}`);
+    setText('slideNameText', appState.isOverview ? 'Vista Grid Completa' : meta.name);
 
     const nextMeta = idx + 1 < totalSlides ? SLIDES_META[idx + 1] : null;
     setText(
       'speakerNextSlide',
-      nextMeta ? `Siguiente: 0${idx + 2} · ${nextMeta.name}` : 'Fin de presentación (↺ Inicio)'
+      appState.isOverview
+        ? 'Fin de presentación (↺ Inicio)'
+        : nextMeta
+          ? `Siguiente: 0${idx + 2} · ${nextMeta.name}`
+          : 'Siguiente: ⊞ Vista Grid Completa'
     );
 
     const progressBar = document.getElementById('deckProgressBar');
     if (progressBar) {
-      progressBar.style.width = `${(((idx + 1) / totalSlides) * 100).toFixed(2)}%`;
+      const totalStepsWithGrid = totalSlides + 1;
+      const currentStepNum = appState.isOverview ? totalStepsWithGrid : idx + 1;
+      progressBar.style.width = `${((currentStepNum / totalStepsWithGrid) * 100).toFixed(2)}%`;
     }
 
     const prevBtn = document.getElementById('prevSlideBtn');
     const nextBtn = document.getElementById('nextSlideBtn');
-    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (prevBtn) prevBtn.disabled = idx === 0 && !appState.isOverview;
+
+    const nextLabelText = appState.isOverview
+      ? '↺ Inicio · Paso 01'
+      : nextMeta
+        ? `Siguiente: 0${idx + 2} · ${nextMeta.name} →`
+        : 'Siguiente: ⊞ Ver Grid Completo →';
+
     if (nextBtn) {
-      nextBtn.textContent = idx === totalSlides - 1 ? '↺ Inicio' : 'Siguiente →';
+      nextBtn.textContent = nextLabelText;
     }
+    setText(
+      'bannerNextStepLabel',
+      appState.isOverview ? '↺ Inicio' : nextMeta ? 'Siguiente Paso →' : '⊞ Ver Grid →'
+    );
 
     const notesBar = document.getElementById('speakerNotesBar');
     if (notesBar) {
@@ -1687,6 +2035,28 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
     setText('speakerNoteText', meta.getNote(latestCalc));
     syncSpeakerTimerLoop();
+    syncAutoPlayUI();
+  }
+
+  function scrollStageTopOnMobile() {
+    if (
+      typeof window !== 'undefined' &&
+      window.innerWidth <= 960 &&
+      typeof window.scrollTo === 'function'
+    ) {
+      window.scrollTo({ top: 0, behavior: isReducedMotion() ? 'auto' : 'smooth' });
+    }
+  }
+
+  function enterOverviewStep() {
+    appState.isOverview = true;
+    appState.isBlackout = false;
+    pulseOrbMood('speaking', 1200);
+    syncControlButtons();
+    syncSlidePresentation();
+    runSlideChoreography();
+    scrollStageTopOnMobile();
+    ensureMasterLoopRunning();
   }
 
   function goToSlide(index) {
@@ -1700,6 +2070,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     else if (appState.currentSlide === 3 || appState.currentSlide === 4) appState.activeView = 'dials';
     else if (appState.currentSlide === 5) appState.activeView = 'spei';
     else appState.activeView = 'all';
+
+    const slideMoods = ['listening', 'thinking', 'working', 'working', 'thinking', 'speaking', 'speaking'];
+    pulseOrbMood(slideMoods[appState.currentSlide] || 'working', 1100);
 
     syncControlButtons();
     syncSlidePresentation();
@@ -1715,7 +2088,58 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         }
       });
     }
+    runSlideChoreography();
+    scrollStageTopOnMobile();
     ensureMasterLoopRunning();
+  }
+
+  function scheduleAutoPlayNext() {
+    if (autoPlayTimerId) {
+      clearTimeout(autoPlayTimerId);
+      autoPlayTimerId = 0;
+    }
+    if (!appState.isAutoPlaying) return;
+
+    autoPlayTimerId = window.setTimeout(() => {
+      if (!appState.isAutoPlaying) return;
+      if (!appState.isOverview && appState.currentSlide < SLIDES_META.length - 1) {
+        goToSlide(appState.currentSlide + 1);
+        scheduleAutoPlayNext();
+      } else if (!appState.isOverview && appState.currentSlide === SLIDES_META.length - 1) {
+        enterOverviewStep();
+        scheduleAutoPlayNext();
+      } else {
+        stopAutoPlay();
+      }
+    }, 5200);
+  }
+
+  function toggleAutoPlay() {
+    if (appState.isAutoPlaying) {
+      stopAutoPlay();
+      return;
+    }
+    appState.isAutoPlaying = true;
+    syncAutoPlayUI();
+    if (appState.isOverview) {
+      goToSlide(0);
+    } else {
+      runSlideChoreography();
+    }
+    scheduleAutoPlayNext();
+  }
+
+  function advanceOneButtonStep() {
+    if (!appState.isOverview && appState.currentSlide < SLIDES_META.length - 1) {
+      goToSlide(appState.currentSlide + 1);
+    } else if (!appState.isOverview && appState.currentSlide === SLIDES_META.length - 1) {
+      enterOverviewStep();
+    } else {
+      goToSlide(0);
+    }
+    if (appState.isAutoPlaying) {
+      scheduleAutoPlayNext();
+    }
   }
 
   function syncControlButtons() {
@@ -1934,6 +2358,17 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('step4Free', `${fmtCompactMXN(c.iguala.freeMonthly)}/mes`);
     setText('step4Annual', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
 
+    // Refresh Guided Banner text with latest calculated numbers
+    const currentSteps = buildSlideChoreography(
+      appState.currentSlide,
+      c,
+      Boolean(appState.isOverview)
+    );
+    const narrEl = document.getElementById('guidedNarrativeText');
+    if (narrEl && currentSteps.length > 0) {
+      narrEl.innerHTML = emphasise(currentSteps[0].narrative);
+    }
+
     syncControlButtons();
     syncSlidePresentation();
   }
@@ -1949,6 +2384,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const el = document.getElementById(id);
       if (!el) return;
       el.addEventListener('input', () => {
+        stopAutoPlay();
         appState[key] = Math.max(0, parseFloat(el.value) || 0);
         if (key === 'viaticos') {
           const rng = document.getElementById('rngViaticos');
@@ -1963,6 +2399,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const el = document.getElementById(id);
       if (!el) return;
       el.addEventListener('change', () => {
+        stopAutoPlay();
         appState[key] = el.checked;
         pulseOrbMood('working', 900);
         updateUI();
@@ -1986,6 +2423,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const rngViaticos = document.getElementById('rngViaticos');
     if (rngViaticos) {
       rngViaticos.addEventListener('input', () => {
+        stopAutoPlay();
         appState.viaticos = Math.max(0, parseFloat(rngViaticos.value) || 0);
         const inp = document.getElementById('inpViaticos');
         if (inp) inp.value = appState.viaticos;
@@ -1996,6 +2434,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     document.querySelectorAll('[data-viaticos]').forEach((btn) => {
       btn.addEventListener('click', () => {
+        stopAutoPlay();
         const val = Math.max(0, parseFloat(btn.getAttribute('data-viaticos')) || 0);
         appState.viaticos = val;
         appState.chkViaticos = true;
@@ -2092,6 +2531,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     };
     document.querySelectorAll('[data-orbit-provider]').forEach((nodeEl) => {
       nodeEl.addEventListener('click', () => {
+        stopAutoPlay();
         const pKey = nodeEl.getAttribute('data-orbit-provider');
         goToSlide(4);
         const inpId = providerInputMap[pKey];
@@ -2105,34 +2545,68 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // Slide Stepper Navigation
     document.querySelectorAll('[data-slide-to]').forEach((btn) => {
       btn.addEventListener('click', () => {
+        stopAutoPlay();
         goToSlide(parseInt(btn.getAttribute('data-slide-to'), 10));
       });
     });
 
-    const prevBtn = document.getElementById('prevSlideBtn');
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (appState.currentSlide > 0) goToSlide(appState.currentSlide - 1);
+    const stepGridBtn = document.getElementById('stepGridBtn');
+    if (stepGridBtn) {
+      stepGridBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        if (appState.isOverview) {
+          goToSlide(appState.currentSlide);
+        } else {
+          enterOverviewStep();
+        }
       });
     }
 
-    const nextBtn = document.getElementById('nextSlideBtn');
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        if (appState.currentSlide < SLIDES_META.length - 1) {
-          goToSlide(appState.currentSlide + 1);
-        } else {
-          goToSlide(0);
+    const prevBtn = document.getElementById('prevSlideBtn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        if (appState.isOverview) {
+          goToSlide(SLIDES_META.length - 1);
+        } else if (appState.currentSlide > 0) {
+          goToSlide(appState.currentSlide - 1);
         }
       });
+    }
+
+    // One-Button Guided Presentation & Step-by-Step Advancement
+    const nextBtn = document.getElementById('nextSlideBtn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', advanceOneButtonStep);
+    }
+
+    const bannerNextBtn = document.getElementById('bannerNextStepBtn');
+    if (bannerNextBtn) {
+      bannerNextBtn.addEventListener('click', advanceOneButtonStep);
+    }
+
+    const autoPlayBtn = document.getElementById('autoPlayBtn');
+    if (autoPlayBtn) {
+      autoPlayBtn.addEventListener('click', toggleAutoPlay);
+    }
+
+    const autoPlayBannerBtn = document.getElementById('autoPlayBannerBtn');
+    if (autoPlayBannerBtn) {
+      autoPlayBannerBtn.addEventListener('click', toggleAutoPlay);
     }
 
     // Overview Grid Mode ([ESC] or Grid button)
     const overviewBtn = document.getElementById('overviewToggleBtn');
     if (overviewBtn) {
       overviewBtn.addEventListener('click', () => {
-        appState.isOverview = !appState.isOverview;
-        syncSlidePresentation();
+        stopAutoPlay();
+        if (appState.isOverview) {
+          appState.isOverview = false;
+          syncSlidePresentation();
+          runSlideChoreography();
+        } else {
+          enterOverviewStep();
+        }
       });
     }
 
@@ -2140,8 +2614,25 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       slideEl.addEventListener('click', (e) => {
         if (!appState.isOverview) return;
         if (e.target.closest('input, button, a')) return;
+        stopAutoPlay();
         const sIdx = parseInt(slideEl.getAttribute('data-slide'), 10);
         goToSlide(sIdx);
+      });
+    });
+
+    // Interactive Card Tap-to-Spotlight within slides
+    document.querySelectorAll('.bucket-card').forEach((card, bIdx) => {
+      card.addEventListener('click', () => {
+        if (appState.isOverview) return;
+        clearChoreographyTimers();
+        card.classList.add('is-spotlight');
+        const steps = buildSlideChoreography(0, latestCalc, false);
+        const step = steps[bIdx] || steps[0];
+        if (step) {
+          setText('guidedSubstepPill', step.substepLabel);
+          const narrEl = document.getElementById('guidedNarrativeText');
+          if (narrEl) narrEl.innerHTML = emphasise(step.narrative);
+        }
       });
     });
 
@@ -2209,23 +2700,33 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
       if (e.key === ' ' && e.shiftKey) {
         e.preventDefault();
-        if (appState.currentSlide > 0) {
+        stopAutoPlay();
+        if (appState.isOverview) {
+          goToSlide(SLIDES_META.length - 1);
+        } else if (appState.currentSlide > 0) {
           goToSlide(appState.currentSlide - 1);
         }
       } else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
-        if (appState.currentSlide < SLIDES_META.length - 1) {
-          goToSlide(appState.currentSlide + 1);
-        }
+        advanceOneButtonStep();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
-        if (appState.currentSlide > 0) {
+        stopAutoPlay();
+        if (appState.isOverview) {
+          goToSlide(SLIDES_META.length - 1);
+        } else if (appState.currentSlide > 0) {
           goToSlide(appState.currentSlide - 1);
         }
       } else if (e.key === 'Escape') {
         e.preventDefault();
-        appState.isOverview = !appState.isOverview;
-        syncSlidePresentation();
+        stopAutoPlay();
+        if (appState.isOverview) {
+          appState.isOverview = false;
+          syncSlidePresentation();
+          runSlideChoreography();
+        } else {
+          enterOverviewStep();
+        }
       } else if (e.key === 's' || e.key === 'S') {
         e.preventDefault();
         appState.showNotes = !appState.showNotes;
@@ -2233,8 +2734,15 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       } else if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
         toggleFullscreen();
+      } else if (e.key === 'p' || e.key === 'P') {
+        e.preventDefault();
+        toggleAutoPlay();
       } else if (e.key >= '1' && e.key <= '7') {
+        stopAutoPlay();
         goToSlide(parseInt(e.key, 10) - 1);
+      } else if (e.key === '8') {
+        stopAutoPlay();
+        enterOverviewStep();
       }
     });
 
@@ -2275,9 +2783,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
           const dx = touch.clientX - touchStartX;
           const dy = touch.clientY - touchStartY;
           if (Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-            if (dx < 0 && appState.currentSlide < SLIDES_META.length - 1) {
-              goToSlide(appState.currentSlide + 1);
+            if (dx < 0) {
+              advanceOneButtonStep();
             } else if (dx > 0 && appState.currentSlide > 0) {
+              stopAutoPlay();
               goToSlide(appState.currentSlide - 1);
             }
           }
@@ -2289,6 +2798,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     // ProviderOrbit Quick View Switcher
     document.querySelectorAll('[data-view]').forEach((btn) => {
       btn.addEventListener('click', () => {
+        stopAutoPlay();
         const v = btn.getAttribute('data-view');
         appState.activeView = v;
         if (v === 'orbs') goToSlide(2);
@@ -2310,6 +2820,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const resetBtn = document.getElementById('resetBtn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
+        stopAutoPlay();
         const keepSlide = appState.currentSlide;
         manualMoodOverride = false;
         Object.assign(appState, DEFAULTS, { currentSlide: keepSlide });
@@ -2362,6 +2873,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     voiceOrbEngine = initVoiceOrbEngine(() => appState, getEffectiveOrbMood);
     bindEvents();
     updateUI(true);
+    runSlideChoreography();
     ensureMasterLoopRunning();
   }
 
@@ -2376,6 +2888,8 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     calculateFinancials,
     buildOrbItems,
+    buildSlideChoreography,
+    emphasise,
     cycleAt,
     body,
     fmtShortK,

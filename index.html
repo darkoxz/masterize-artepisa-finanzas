@@ -57,6 +57,9 @@
         <button type="button" class="deck-step-btn" data-slide-to="6">
           <span class="step-num">07</span><span class="step-label">Pasos</span>
         </button>
+        <button type="button" class="deck-step-btn" id="stepGridBtn" data-step-grid="true" title="Vista Grid Completa">
+          <span class="step-num">⊞</span><span class="step-label">Grid</span>
+        </button>
       </nav>
 
       <!-- Utility Controls -->
@@ -74,8 +77,37 @@
 
     <!-- WORKSPACE: 7-SLIDE PRESENTATION STAGE + AGENTIC OS LIVE COMPANION RAIL -->
     <div class="deck-workspace">
-      <!-- PRESENTATION STAGE (7 SLIDES) -->
+      <!-- PRESENTATION STAGE (7 SLIDES + GUIDED PRESENTATION HUD) -->
       <main class="deck-stage op-main" id="deckStage">
+
+        <!-- ==================================================================
+             ONE-BUTTON GUIDED PRESENTATION HUD (Agentic OS V4.7)
+             ================================================================== -->
+        <div class="guided-banner ws-anywhere-card" id="guidedBanner" role="region" aria-label="Guía de Presentación Interactiva">
+          <div class="design-render-rim" aria-hidden="true"></div>
+          <div class="guided-banner-top">
+            <div class="guided-status-group">
+              <span class="guided-pulse-dot" id="guidedPulseDot"></span>
+              <span class="ws-eyebrow" id="guidedStepBadge">PASO 01 / 07 · PRESENTACIÓN GUIADA</span>
+              <span class="ws-anywhere-pill on" id="guidedSubstepPill">1 / 3 · BOLSAS MAESTRAS</span>
+            </div>
+            <div class="guided-banner-actions">
+              <button type="button" class="op-button guided-auto-btn" id="autoPlayBannerBtn" title="Reproducir recorrido animado automático">
+                <span id="autoPlayBannerIcon">▶</span>
+                <span id="autoPlayBannerLabel">Auto-Guía</span>
+              </button>
+              <button type="button" class="ws-primary guided-next-pill" id="bannerNextStepBtn" title="Toca para avanzar y seguir las animaciones y el grid">
+                <span id="bannerNextStepLabel">Siguiente Paso →</span>
+              </button>
+            </div>
+          </div>
+          <p class="guided-narrative" id="guidedNarrativeText">
+            De cada peso sin IVA (<b>$150,000</b>): <b>70%</b> va al Pool de socios (<b>$105,000</b>), <b>20%</b> a Caja MASTERIZE (<b>$30,000</b>) y <b>10%</b> a Closer (<b>$15,000</b>).
+          </p>
+          <div class="guided-progress-track" aria-hidden="true">
+            <div class="guided-progress-fill" id="guidedProgressFill" style="width: 33%"></div>
+          </div>
+        </div>
 
         <!-- ==================================================================
              SLIDE 01: EL CONTRATO ($150,000 MXN -> 3 BOLSAS MAESTRAS)
@@ -591,19 +623,20 @@
       <div class="deck-blackout-hint">Pausa de Orador · Presiona <code>B</code>, <code>.</code> o <code>ESC</code> para reanudar</div>
     </div>
 
-    <!-- BOTTOM PRESENTATION FOOTER -->
-    <footer class="deck-footer">
+    <!-- BOTTOM PRESENTATION FOOTER (Sticky Mobile-First 1-Button Presentation Dock) -->
+    <footer class="deck-footer" id="deckFooter">
+      <div class="deck-progress-track">
+        <div class="deck-progress-bar" id="deckProgressBar" style="width: 14.28%"></div>
+      </div>
       <div class="deck-footer-controls">
-        <button type="button" id="prevSlideBtn" class="op-button">← Anterior</button>
+        <button type="button" id="prevSlideBtn" class="op-button footer-prev-btn" title="Paso anterior (←)">← Anterior</button>
+        <button type="button" id="autoPlayBtn" class="op-button footer-auto-btn" title="Reproducir o pausar guía automática">▶ Auto</button>
         <div class="deck-counter">
           <span id="slideCounterText">01 / 07</span>
           <span class="deck-counter-sep">·</span>
           <span id="slideNameText">El Contrato</span>
         </div>
-        <button type="button" id="nextSlideBtn" class="ws-primary">Siguiente →</button>
-      </div>
-      <div class="deck-progress-track">
-        <div class="deck-progress-bar" id="deckProgressBar" style="width: 14.28%"></div>
+        <button type="button" id="nextSlideBtn" class="ws-primary one-tap-main-btn">Siguiente: 02 · 3 Hitos →</button>
       </div>
     </footer>
   </div>
