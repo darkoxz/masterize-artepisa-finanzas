@@ -28,6 +28,8 @@ const DEFAULTS = {
   activeView: 'all',     // 'all' | 'orbs' | 'dials' | 'spei'
   orbMood: 'idle',       // 'idle' | 'listening' | 'thinking' | 'working' | 'speaking' | 'error'
   currentSlide: 0,       // 0..6
+  activeSubstepIndex: 0,
+  hasActiveSpotlight: false,
   isOverview: false,
   showNotes: false,
   isBlackout: false,
@@ -1240,7 +1242,7 @@ function buildOrbItems(calc, state = DEFAULTS) {
  * Pure choreography builder for the One-Button Guided Presentation & Grid flow.
  * Returns the animated spotlight sequence and narratives for each slide (0..6) and Grid Overview.
  */
-function buildSlideChoreography(slideIdx, calc, isOverview = false) {
+function buildSlideChoreography(slideIdx, calc, isOverview = false, state = DEFAULTS) {
   if (isOverview) {
     return [
       {
@@ -1315,6 +1317,31 @@ function buildSlideChoreography(slideIdx, calc, isOverview = false) {
         },
       ];
     case 2:
+      if (state && state.orbGroup === 'buckets') {
+        return [
+          {
+            substepLabel: '1 / 3 · ORBE POOL EQUIPO (70%)',
+            selector: '#orbGrid .au-cell:nth-child(1)',
+            narrative: `Bolsa 1 · Pool Equipo (70%): ${fmtCompactMXN(calc.hitos.total.pool)} distribuidos entre Daniel (50%), Omar (25%), Pedro (15%) y Octavio (10%).`,
+            orbIndex: 0,
+            delayMs: 40,
+          },
+          {
+            substepLabel: '2 / 3 · ORBE CAJA MASTERIZE (20%)',
+            selector: '#orbGrid .au-cell:nth-child(2)',
+            narrative: `Bolsa 2 · Caja MASTERIZE (20%): ${fmtCompactMXN(calc.caja.gross)} brutos → cubre ${fmtCompactMXN(calc.caja.expenses)} de gastos y retiene ${fmtCompactMXN(calc.caja.free)} libres.`,
+            orbIndex: 1,
+            delayMs: 1350,
+          },
+          {
+            substepLabel: '3 / 3 · ORBE CLOSER OMAR (10%)',
+            selector: '#orbGrid .au-cell:nth-child(3)',
+            narrative: `Bolsa 3 · Closer Omar (10%): ${fmtCompactMXN(calc.hitos.total.closer)} de comisión comercial liquidada proporcionalmente en H1, H2 y H3.`,
+            orbIndex: 2,
+            delayMs: 2700,
+          },
+        ];
+      }
       return [
         {
           substepLabel: '1 / 4 · DANIEL (50% POOL)',
@@ -1607,6 +1634,11 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
           } else {
             stateObj.splashes = [];
           }
+          if (!appState.isOverview && appState.currentSlide === 2) {
+            clearChoreographyTimers();
+            const subIdx = appState.orbGroup === 'buckets' ? Math.min(2, idx) : Math.min(3, idx);
+            activateSubstep(subIdx, { scrollIntoView: false, skipOrbSurge: true });
+          }
           ensureMasterLoopRunning();
         });
 
@@ -1847,31 +1879,42 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         <td>${fmtCell(calc.hitos.total.gross, calc.hitos.total.gross)}</td>
       </tr>
     `;
+
+    tbody.querySelectorAll('tr').forEach((trEl, rIdx) => {
+      trEl.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 5) return;
+        clearChoreographyTimers();
+        activateSubstep(rIdx < 2 ? 0 : 1, { scrollIntoView: false });
+      });
+    });
+
+    tfoot.querySelectorAll('tr').forEach((trEl) => {
+      trEl.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 5) return;
+        clearChoreographyTimers();
+        activateSubstep(2, { scrollIntoView: false });
+      });
+    });
   }
 
   function clearChoreographyTimers() {
     while (choreoTimers.length > 0) {
       clearTimeout(choreoTimers.pop());
     }
+    appState.hasActiveSpotlight = false;
     document.querySelectorAll('.is-spotlight').forEach((el) => {
       el.classList.remove('is-spotlight');
     });
   }
 
   function syncAutoPlayUI() {
-    const playing = Boolean(appState.isAutoPlaying);
-    const pulseDot = document.getElementById('guidedPulseDot');
-    if (pulseDot) pulseDot.classList.toggle('is-playing', playing);
-
-    const bannerBtn = document.getElementById('autoPlayBannerBtn');
-    if (bannerBtn) bannerBtn.classList.toggle('is-playing', playing);
-    setText('autoPlayBannerIcon', playing ? '⏸' : '▶');
-    setText('autoPlayBannerLabel', playing ? 'Pausar Guía' : 'Auto-Guía');
-
-    const footerAutoBtn = document.getElementById('autoPlayBtn');
-    if (footerAutoBtn) {
-      footerAutoBtn.classList.toggle('is-playing', playing);
-      footerAutoBtn.textContent = playing ? '⏸ Pausa' : '▶ Auto';
+    const autoBtn = document.getElementById('autoPlayBtn');
+    const autoLabel = document.getElementById('autoPlayLabel');
+    if (autoBtn) {
+      autoBtn.classList.toggle('is-active', Boolean(appState.isAutoPlaying));
+    }
+    if (autoLabel) {
+      autoLabel.textContent = appState.isAutoPlaying ? '⏸ Auto' : '▶ Auto';
     }
   }
 
@@ -1884,9 +1927,111 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     syncAutoPlayUI();
   }
 
+  function scrollSpotlightIntoView(els) {
+    if (!els || els.length === 0 || typeof window === 'undefined') return;
+    const validRects = els
+      .map((el) => (el && typeof el.getBoundingClientRect === 'function' ? el.getBoundingClientRect() : null))
+      .filter((r) => r && r.height > 0);
+    if (validRects.length === 0) return;
+
+    const topbarEl = document.querySelector('.deck-topbar');
+    const bannerEl = document.getElementById('guidedBanner');
+    const footerEl = document.getElementById('deckFooter');
+
+    const topbarBottom = topbarEl ? topbarEl.getBoundingClientRect().bottom : 64;
+    const bannerRect = bannerEl ? bannerEl.getBoundingClientRect() : null;
+    const bannerStyle = bannerEl && window.getComputedStyle ? window.getComputedStyle(bannerEl) : null;
+    const isBannerSticky = bannerStyle && bannerStyle.position === 'sticky';
+    const topSafeBound = isBannerSticky && bannerRect ? bannerRect.bottom + 10 : topbarBottom + 10;
+    const bottomSafeBound = footerEl ? footerEl.getBoundingClientRect().top - 10 : window.innerHeight - 64;
+
+    const minTop = Math.min(...validRects.map((r) => r.top));
+    const maxBottom = Math.max(...validRects.map((r) => r.bottom));
+
+    if (maxBottom <= bottomSafeBound && minTop >= topSafeBound) {
+      return;
+    }
+
+    const currentScrollY =
+      window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    let deltaY = 0;
+    const availableWindow = Math.max(120, bottomSafeBound - topSafeBound);
+    const groupHeight = maxBottom - minTop;
+
+    if (groupHeight > availableWindow || minTop < topSafeBound) {
+      deltaY = minTop - topSafeBound;
+    } else if (maxBottom > bottomSafeBound) {
+      deltaY = maxBottom - bottomSafeBound + 8;
+    }
+
+    if (Math.abs(deltaY) > 6 && typeof window.scrollTo === 'function') {
+      const nextTop = Math.max(0, currentScrollY + deltaY);
+      window.scrollTo({
+        top: nextTop,
+        behavior: isReducedMotion() ? 'auto' : 'smooth',
+      });
+    }
+  }
+
+  function activateSubstep(subIdx, options = {}) {
+    const steps = buildSlideChoreography(
+      appState.currentSlide,
+      latestCalc,
+      Boolean(appState.isOverview),
+      appState
+    );
+    if (!steps || steps.length === 0) return;
+
+    const clampedIdx = Math.max(0, Math.min(steps.length - 1, subIdx));
+    const step = steps[clampedIdx];
+    appState.activeSubstepIndex = clampedIdx;
+    appState.hasActiveSpotlight = true;
+
+    document.querySelectorAll('.is-spotlight').forEach((el) => {
+      el.classList.remove('is-spotlight');
+    });
+
+    const matchedEls = [];
+    if (step.selector) {
+      document.querySelectorAll(step.selector).forEach((el) => {
+        el.classList.add('is-spotlight');
+        matchedEls.push(el);
+      });
+    }
+
+    setText('guidedSubstepPill', step.substepLabel);
+    const narrEl = document.getElementById('guidedNarrativeText');
+    if (narrEl) narrEl.innerHTML = emphasise(step.narrative);
+
+    const progEl = document.getElementById('guidedProgressFill');
+    if (progEl) {
+      progEl.style.width = `${Math.round(((clampedIdx + 1) / steps.length) * 100)}%`;
+    }
+
+    if (!options.skipOrbSurge && typeof step.orbIndex === 'number' && orbCells[step.orbIndex]) {
+      const cell = orbCells[step.orbIndex];
+      if (!isReducedMotion()) {
+        cell.surgeEnergy = 1.3;
+        cell.springVel = 0.85;
+        spawnSplashDroplets(cell, 136, cell.currentRatio, 8);
+      }
+      ensureMasterLoopRunning();
+    }
+
+    if (options.scrollIntoView && matchedEls.length > 0) {
+      scrollSpotlightIntoView(matchedEls);
+    }
+  }
+
   function runSlideChoreography() {
     clearChoreographyTimers();
-    const steps = buildSlideChoreography(appState.currentSlide, latestCalc, Boolean(appState.isOverview));
+    appState.activeSubstepIndex = 0;
+    const steps = buildSlideChoreography(
+      appState.currentSlide,
+      latestCalc,
+      Boolean(appState.isOverview),
+      appState
+    );
     if (!steps || steps.length === 0) return;
 
     const totalSlides = SLIDES_META.length;
@@ -1902,7 +2047,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const progEl = document.getElementById('guidedProgressFill');
 
     if (isReducedMotion()) {
-      const last = steps[steps.length - 1];
+      const lastIdx = steps.length - 1;
+      const last = steps[lastIdx];
+      appState.activeSubstepIndex = lastIdx;
+      appState.hasActiveSpotlight = false;
       setText('guidedSubstepPill', last.substepLabel);
       if (narrEl) narrEl.innerHTML = emphasise(last.narrative);
       if (progEl) progEl.style.width = '100%';
@@ -1911,32 +2059,14 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     steps.forEach((step, sIdx) => {
       const tId = window.setTimeout(() => {
-        document.querySelectorAll('.is-spotlight').forEach((el) => {
-          el.classList.remove('is-spotlight');
-        });
-        if (step.selector) {
-          document.querySelectorAll(step.selector).forEach((el) => {
-            el.classList.add('is-spotlight');
-          });
-        }
-        setText('guidedSubstepPill', step.substepLabel);
-        if (narrEl) narrEl.innerHTML = emphasise(step.narrative);
-        if (progEl) {
-          progEl.style.width = `${Math.round(((sIdx + 1) / steps.length) * 100)}%`;
-        }
-        if (typeof step.orbIndex === 'number' && orbCells[step.orbIndex]) {
-          const cell = orbCells[step.orbIndex];
-          cell.surgeEnergy = 1.3;
-          cell.springVel = 0.85;
-          spawnSplashDroplets(cell, 136, cell.currentRatio, 8);
-          ensureMasterLoopRunning();
-        }
+        activateSubstep(sIdx, { scrollIntoView: sIdx > 0 });
       }, step.delayMs);
       choreoTimers.push(tId);
     });
 
     const lastDelay = steps[steps.length - 1].delayMs || 0;
     const clearId = window.setTimeout(() => {
+      appState.hasActiveSpotlight = false;
       document.querySelectorAll('.is-spotlight').forEach((el) => {
         el.classList.remove('is-spotlight');
       });
@@ -1961,7 +2091,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
     document.querySelectorAll('.deck-slide').forEach((slideEl) => {
       const sIdx = parseInt(slideEl.getAttribute('data-slide'), 10);
-      slideEl.classList.toggle('is-active', sIdx === idx);
+      slideEl.classList.toggle('is-active', !appState.isOverview && sIdx === idx);
     });
 
     document.querySelectorAll('[data-slide-to]').forEach((btn) => {
@@ -2026,7 +2156,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
     setText(
       'bannerNextStepLabel',
-      appState.isOverview ? '↺ Inicio' : nextMeta ? 'Siguiente Paso →' : '⊞ Ver Grid →'
+      appState.isOverview ? '↺ Inicio' : nextMeta ? 'Siguiente →' : '⊞ Ver Grid →'
     );
 
     const notesBar = document.getElementById('speakerNotesBar');
@@ -2039,12 +2169,17 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   }
 
   function scrollStageTopOnMobile() {
-    if (
-      typeof window !== 'undefined' &&
-      window.innerWidth <= 960 &&
-      typeof window.scrollTo === 'function'
-    ) {
-      window.scrollTo({ top: 0, behavior: isReducedMotion() ? 'auto' : 'smooth' });
+    if (typeof window === 'undefined') return;
+    const resetNow = () => {
+      if (typeof window.scrollTo === 'function') {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      }
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    };
+    resetNow();
+    if (typeof window.requestAnimationFrame === 'function') {
+      window.requestAnimationFrame(resetNow);
     }
   }
 
@@ -2054,8 +2189,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     pulseOrbMood('speaking', 1200);
     syncControlButtons();
     syncSlidePresentation();
-    runSlideChoreography();
     scrollStageTopOnMobile();
+    runSlideChoreography();
     ensureMasterLoopRunning();
   }
 
@@ -2088,8 +2223,8 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         }
       });
     }
-    runSlideChoreography();
     scrollStageTopOnMobile();
+    runSlideChoreography();
     ensureMasterLoopRunning();
   }
 
@@ -2099,6 +2234,18 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       autoPlayTimerId = 0;
     }
     if (!appState.isAutoPlaying) return;
+
+    const currentSteps = buildSlideChoreography(
+      appState.currentSlide,
+      latestCalc,
+      Boolean(appState.isOverview),
+      appState
+    );
+    const lastDelay =
+      currentSteps && currentSteps.length > 0
+        ? currentSteps[currentSteps.length - 1].delayMs || 0
+        : 2700;
+    const waitMs = Math.max(5200, lastDelay + 2400);
 
     autoPlayTimerId = window.setTimeout(() => {
       if (!appState.isAutoPlaying) return;
@@ -2111,7 +2258,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       } else {
         stopAutoPlay();
       }
-    }, 5200);
+    }, waitMs);
   }
 
   function toggleAutoPlay() {
@@ -2358,15 +2505,37 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('step4Free', `${fmtCompactMXN(c.iguala.freeMonthly)}/mes`);
     setText('step4Annual', `${fmtCompactMXN(c.iguala.freeAnnual)}/año`);
 
-    // Refresh Guided Banner text with latest calculated numbers
+    // Refresh Guided Banner text & active spotlight for the current substep (preserving substep state)
     const currentSteps = buildSlideChoreography(
       appState.currentSlide,
       c,
-      Boolean(appState.isOverview)
+      Boolean(appState.isOverview),
+      appState
     );
-    const narrEl = document.getElementById('guidedNarrativeText');
-    if (narrEl && currentSteps.length > 0) {
-      narrEl.innerHTML = emphasise(currentSteps[0].narrative);
+    if (currentSteps && currentSteps.length > 0) {
+      const subIdx = Math.max(
+        0,
+        Math.min(currentSteps.length - 1, appState.activeSubstepIndex || 0)
+      );
+      appState.activeSubstepIndex = subIdx;
+      const activeStep = currentSteps[subIdx] || currentSteps[0];
+      setText('guidedSubstepPill', activeStep.substepLabel);
+      const narrEl = document.getElementById('guidedNarrativeText');
+      if (narrEl) {
+        narrEl.innerHTML = emphasise(activeStep.narrative);
+      }
+      const progEl = document.getElementById('guidedProgressFill');
+      if (progEl) {
+        progEl.style.width = `${Math.round(((subIdx + 1) / currentSteps.length) * 100)}%`;
+      }
+      if (appState.hasActiveSpotlight && activeStep.selector) {
+        document.querySelectorAll('.is-spotlight').forEach((el) => {
+          el.classList.remove('is-spotlight');
+        });
+        document.querySelectorAll(activeStep.selector).forEach((el) => {
+          el.classList.add('is-spotlight');
+        });
+      }
     }
 
     syncControlButtons();
@@ -2375,6 +2544,12 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
   function setHitoFilter(hito) {
     appState.selectedHito = hito;
+    if (!appState.isOverview && appState.currentSlide === 1) {
+      clearChoreographyTimers();
+      const mapIdx = hito === 'h1' ? 0 : hito === 'h2' ? 1 : 2;
+      appState.activeSubstepIndex = mapIdx;
+      appState.hasActiveSpotlight = true;
+    }
     pulseOrbMood('thinking', 900);
     updateUI();
   }
@@ -2461,8 +2636,12 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     document.querySelectorAll('[data-orb-group]').forEach((btn) => {
       btn.addEventListener('click', () => {
         appState.orbGroup = btn.getAttribute('data-orb-group');
+        appState.activeSubstepIndex = 0;
         pulseOrbMood('thinking', 1000);
         updateUI(true);
+        if (!appState.isOverview && appState.currentSlide === 2) {
+          runSlideChoreography();
+        }
       });
     });
 
@@ -2585,6 +2764,22 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       bannerNextBtn.addEventListener('click', advanceOneButtonStep);
     }
 
+    const substepPill = document.getElementById('guidedSubstepPill');
+    if (substepPill) {
+      substepPill.addEventListener('click', () => {
+        clearChoreographyTimers();
+        const steps = buildSlideChoreography(
+          appState.currentSlide,
+          latestCalc,
+          Boolean(appState.isOverview),
+          appState
+        );
+        if (!steps || steps.length === 0) return;
+        const nextSub = ((appState.activeSubstepIndex || 0) + 1) % steps.length;
+        activateSubstep(nextSub, { scrollIntoView: true });
+      });
+    }
+
     const autoPlayBtn = document.getElementById('autoPlayBtn');
     if (autoPlayBtn) {
       autoPlayBtn.addEventListener('click', toggleAutoPlay);
@@ -2625,16 +2820,61 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       card.addEventListener('click', () => {
         if (appState.isOverview) return;
         clearChoreographyTimers();
-        card.classList.add('is-spotlight');
-        const steps = buildSlideChoreography(0, latestCalc, false);
-        const step = steps[bIdx] || steps[0];
-        if (step) {
-          setText('guidedSubstepPill', step.substepLabel);
-          const narrEl = document.getElementById('guidedNarrativeText');
-          if (narrEl) narrEl.innerHTML = emphasise(step.narrative);
-        }
+        activateSubstep(bIdx, { scrollIntoView: false });
       });
     });
+
+    document.querySelectorAll('#nextStepsGrid .step-card').forEach((card, sIdx) => {
+      card.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 6) return;
+        clearChoreographyTimers();
+        activateSubstep(sIdx < 2 ? 0 : 1, { scrollIntoView: false });
+      });
+    });
+
+    const execKpiStrip = document.querySelector('.exec-kpi-strip');
+    if (execKpiStrip) {
+      execKpiStrip.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 6) return;
+        clearChoreographyTimers();
+        activateSubstep(2, { scrollIntoView: false });
+      });
+    }
+
+    // Slides 04 & 05: tap dial or expense rows to inspect substeps
+    document.querySelectorAll('[data-slide="3"] .dial-wrap, [data-slide="4"] .dial-wrap').forEach((dialEl) => {
+      dialEl.addEventListener('click', () => {
+        if (appState.isOverview || (appState.currentSlide !== 3 && appState.currentSlide !== 4)) return;
+        clearChoreographyTimers();
+        activateSubstep(2, { scrollIntoView: false });
+      });
+    });
+
+    document.querySelectorAll('[data-slide="3"] .ctrl-row, [data-slide="3"] .ctrl-slider-row').forEach((rowEl, rIdx) => {
+      rowEl.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 3) return;
+        clearChoreographyTimers();
+        const targetSub = rIdx === 0 ? 0 : rIdx < 3 ? 1 : 2;
+        activateSubstep(targetSub, { scrollIntoView: false });
+      });
+    });
+
+    document.querySelectorAll('[data-slide="4"] .ctrl-row').forEach((rowEl, rIdx) => {
+      rowEl.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 4) return;
+        clearChoreographyTimers();
+        activateSubstep(rIdx === 0 ? 0 : 1, { scrollIntoView: false });
+      });
+    });
+
+    const bankSparkCard = document.querySelector('[data-slide="4"] .bank-spark-card');
+    if (bankSparkCard) {
+      bankSparkCard.addEventListener('click', () => {
+        if (appState.isOverview || appState.currentSlide !== 4) return;
+        clearChoreographyTimers();
+        activateSubstep(2, { scrollIntoView: false });
+      });
+    }
 
     // Speaker Notes ([S] or Notas button)
     const notesBtn = document.getElementById('notesToggleBtn');
