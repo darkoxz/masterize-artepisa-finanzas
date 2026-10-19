@@ -1295,6 +1295,25 @@ code {
   color: var(--ws-muted);
 }
 
+.bucket-mini-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.bucket-mini-pills span {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--op-inset);
+  border: 1px solid var(--op-cell-border);
+  color: var(--op-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .dot-pool { color: #c8afe9; }
 .dot-caja { color: #a2d1bf; }
 .dot-closer { color: #f5a524; }
@@ -1321,7 +1340,7 @@ code {
 }
 
 /* ============================================================================
-   SLIDE 02: 3 HITOS BAR CHART & SUMMARY CARDS
+   SLIDE 02: 3 HITOS BAR CHART, H1 50/50 SHOWCASE & SUMMARY CARDS
    ============================================================================ */
 
 .biz-rev-legend {
@@ -1346,20 +1365,166 @@ code {
   border-radius: 3px;
 }
 
+.h1-split-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: var(--op-inset);
+  border: 1px solid var(--op-cell-border);
+}
+
+.h1-split-top-bar {
+  display: flex;
+  height: 26px;
+  border-radius: 7px;
+  overflow: hidden;
+  gap: 3px;
+}
+
+.h1-bar-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #121016;
+  border-radius: 5px;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.h1-bar-half.is-caja {
+  background: #a2d1bf;
+}
+
+.h1-bar-half.is-socios {
+  background: linear-gradient(90deg, #c8afe9 0%, #c8afe9 78%, #f5a524 100%);
+}
+
+.h1-split-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.h1-half-card {
+  background: var(--op-cell-bg);
+  border: 1px solid var(--op-cell-border);
+  border-radius: 9px;
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.h1-half-card:hover {
+  border-color: var(--op-card-border);
+}
+
+.h1-half-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.h1-half-head strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--op-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.h1-half-badge {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 99px;
+}
+
+.h1-half-badge.badge-caja {
+  background: rgba(162, 209, 191, 0.16);
+  color: #a2d1bf;
+  border: 1px solid rgba(162, 209, 191, 0.38);
+}
+
+.h1-half-badge.badge-socios {
+  background: rgba(200, 175, 233, 0.16);
+  color: #c8afe9;
+  border: 1px solid rgba(200, 175, 233, 0.38);
+}
+
+:root:not(.dark) .h1-half-badge.badge-caja {
+  color: #1f7a58;
+}
+
+:root:not(.dark) .h1-half-badge.badge-socios {
+  color: #6b439b;
+}
+
+.h1-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.h1-item-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--op-inset);
+  border: 1px solid var(--op-cell-border);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--ws-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.h1-item-chip b {
+  color: var(--op-ink);
+  font-weight: 600;
+}
+
+.h1-item-chip.is-mint {
+  border-color: rgba(162, 209, 191, 0.35);
+}
+
+.h1-item-chip.is-mint b {
+  color: var(--op-mint);
+}
+
+.h1-item-chip.is-lavender b {
+  color: var(--op-accent);
+}
+
 .biz-revenue-chart {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   align-items: end;
-  height: 156px;
-  padding: 10px 0 4px;
+  height: 132px;
+  padding: 6px 0 2px;
 }
 
 .biz-bar-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   height: 100%;
   justify-content: flex-end;
   cursor: pointer;
@@ -1376,7 +1541,7 @@ code {
 .biz-bar-well {
   width: 100%;
   max-width: 84px;
-  height: 108px;
+  height: 92px;
   border-radius: 10px;
   background: var(--op-inset);
   border: 1px solid var(--op-cell-border);
@@ -1422,10 +1587,10 @@ code {
   background: var(--op-cell-bg);
   border: 1px solid var(--op-cell-border);
   border-radius: 10px;
-  padding: 12px 14px;
+  padding: 11px 13px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
@@ -1453,8 +1618,27 @@ code {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   color: var(--ws-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.hito-partner-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+  padding-top: 5px;
+  border-top: 1px dashed var(--op-cell-border);
+}
+
+.hito-partner-row span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  background: var(--op-inset);
+  color: var(--op-ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1471,13 +1655,13 @@ code {
 .au-cell {
   position: relative;
   border-radius: 12px;
-  padding: 14px 12px;
+  padding: 12px 11px;
   background: var(--op-cell-bg);
   border: 1px solid var(--op-cell-border);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
   overflow: hidden;
   transition: border-color 0.18s ease, transform 0.18s ease;
@@ -1517,9 +1701,20 @@ code {
   font-variant-numeric: tabular-nums;
 }
 
+.au-cell-role {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ws-label);
+  text-align: left;
+  position: relative;
+  z-index: 3;
+  margin-top: -3px;
+}
+
 .au-canvas-wrap {
-  width: 136px;
-  height: 136px;
+  width: 124px;
+  height: 124px;
   display: grid;
   place-items: center;
   position: relative;
@@ -1527,14 +1722,14 @@ code {
 }
 
 .au-canvas {
-  width: 136px;
-  height: 136px;
+  width: 124px;
+  height: 124px;
   display: block;
 }
 
 .au-metric {
   font-family: var(--font-display);
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.8px;
   color: var(--op-ink);
@@ -1546,7 +1741,7 @@ code {
 
 .au-sub {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--ws-muted);
   font-variant-numeric: tabular-nums;
   text-align: center;
@@ -1554,9 +1749,138 @@ code {
   z-index: 3;
 }
 
+.au-hito-strip {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  margin-top: 2px;
+  position: relative;
+  z-index: 3;
+}
+
+.au-hito-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 2px;
+  border-radius: 5px;
+  background: var(--op-inset);
+  border: 1px solid var(--op-cell-border);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.au-hito-chip em {
+  font-style: normal;
+  font-size: 8px;
+  color: var(--ws-label);
+  line-height: 1.1;
+}
+
+.au-hito-chip b {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--op-ink);
+  line-height: 1.2;
+}
+
+.au-hito-chip.is-active {
+  border-color: var(--op-accent);
+  background: var(--op-pill-active-bg);
+}
+
+.au-hito-chip.is-active em,
+.au-hito-chip.is-active b {
+  color: var(--op-pill-active-ink);
+}
+
 /* ============================================================================
    SLIDES 04 & 05: CAJA MASTERIZE & IGUALA MRR DIALS
    ============================================================================ */
+
+.caja-breakdown-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: var(--op-inset);
+  border: 1px solid var(--op-cell-border);
+}
+
+.caja-split-bar {
+  display: flex;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  gap: 2px;
+}
+
+.caja-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #121016;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.seg-reimb { background: #c8afe9; }
+.seg-mon { background: #38bdf8; }
+.seg-viat { background: #f5a524; }
+.seg-libre { background: #a2d1bf; }
+
+.caja-split-chips {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.caja-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--op-cell-bg);
+  border: 1px solid var(--op-cell-border);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--ws-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.caja-chip:hover {
+  border-color: var(--op-card-border);
+}
+
+.caja-chip b {
+  color: var(--op-ink);
+  margin-left: auto;
+}
+
+.caja-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-reimb { background: #c8afe9; }
+.dot-mon { background: #38bdf8; }
+.dot-viat { background: #f5a524; }
+.dot-libre { background: #a2d1bf; }
 
 .inst-body {
   display: grid;
@@ -1887,15 +2211,16 @@ code {
 
 .exec-kpi-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 14px 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  padding: 13px 16px;
 }
 
 .exec-kpi-item {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
+  min-width: 0;
 }
 
 .op-mini-label {
@@ -1916,6 +2241,16 @@ code {
 
 .op-mini-val.is-negative {
   color: var(--ws-error);
+}
+
+.op-mini-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ws-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ============================================================================
@@ -2435,7 +2770,17 @@ code {
     height: 42px;
   }
 
-  /* Slide 02 Compact Mobile Fit (3 Hitos) */
+  /* Slide 02 Compact Mobile Fit (3 Hitos & 50/50 H1 Split) */
+  .h1-split-cards {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .h1-bar-half {
+    font-size: 9px;
+    padding: 0 5px;
+  }
+
   .biz-revenue-chart {
     height: 112px;
     gap: 10px;
@@ -2508,6 +2853,11 @@ code {
   }
 
   /* Slides 04 & 05 Compact Radial Dials + Deductions */
+  .caja-split-chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
   .dial-wrap,
   .dial-svg {
     width: 126px;
