@@ -1242,6 +1242,10 @@ code {
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #121016;
+  padding: 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: width 0.3s ease;
 }
 
@@ -1394,6 +1398,13 @@ code {
   color: #121016;
   border-radius: 5px;
   padding: 0 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.h1-bar-half > span {
+  display: block;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1442,6 +1453,7 @@ code {
   font-weight: 700;
   color: var(--op-ink);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .h1-half-badge {
@@ -1451,6 +1463,9 @@ code {
   letter-spacing: 0.04em;
   padding: 2px 7px;
   border-radius: 99px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .h1-half-badge.badge-caja {
@@ -1463,6 +1478,12 @@ code {
   background: rgba(200, 175, 233, 0.16);
   color: #c8afe9;
   border: 1px solid rgba(200, 175, 233, 0.38);
+}
+
+.h1-half-badge.is-deficit {
+  background: var(--ws-error-soft);
+  color: var(--ws-error);
+  border: 1px solid var(--ws-error-border);
 }
 
 :root:not(.dark) .h1-half-badge.badge-caja {
@@ -1505,6 +1526,14 @@ code {
 
 .h1-item-chip.is-mint b {
   color: var(--op-mint);
+}
+
+.h1-item-chip.is-deficit {
+  border-color: var(--ws-error-border);
+}
+
+.h1-item-chip.is-deficit b {
+  color: var(--ws-error);
 }
 
 .h1-item-chip.is-lavender b {
@@ -1870,6 +1899,18 @@ code {
   margin-left: auto;
 }
 
+.caja-chip.is-free-chip b {
+  color: var(--op-mint);
+}
+
+.caja-chip.is-deficit {
+  border-color: var(--ws-error-border);
+}
+
+.caja-chip.is-deficit b {
+  color: var(--ws-error);
+}
+
 .caja-dot {
   width: 7px;
   height: 7px;
@@ -1881,6 +1922,7 @@ code {
 .dot-mon { background: #38bdf8; }
 .dot-viat { background: #f5a524; }
 .dot-libre { background: #a2d1bf; }
+.dot-deficit { background: var(--ws-error); }
 
 .inst-body {
   display: grid;
@@ -2434,6 +2476,23 @@ code {
   background: rgba(132, 98, 171, 0.14) !important;
 }
 
+.biz-bar-col.is-spotlight {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  transform: translateY(-2px);
+}
+
+.biz-bar-col.is-spotlight .biz-bar-well {
+  border-color: var(--op-accent) !important;
+  box-shadow:
+    0 0 0 1px var(--op-accent),
+    0 8px 22px rgba(200, 175, 233, 0.24) !important;
+}
+
+.biz-bar-col.is-spotlight .biz-bar-label {
+  color: var(--op-accent);
+}
+
 /* Slide 01: Split Bar & Buckets & Sparkline Entrance */
 .deck-slide.is-active .split-seg,
 .deck-shell.is-overview .deck-slide .split-seg {
@@ -2496,7 +2555,8 @@ code {
 .deck-slide.is-active .step-card:nth-child(4),
 .deck-slide.is-active .exec-kpi-item:nth-child(4) { animation-delay: 245ms; }
 
-.deck-slide.is-active .au-cell:nth-child(5) { animation-delay: 310ms; }
+.deck-slide.is-active .au-cell:nth-child(5),
+.deck-slide.is-active .exec-kpi-item:nth-child(5) { animation-delay: 310ms; }
 
 @keyframes item-spring-up {
   from {
@@ -2748,6 +2808,12 @@ code {
     height: 25px;
   }
 
+  .split-seg {
+    font-size: 9.5px;
+    letter-spacing: 0;
+    padding: 0 2px;
+  }
+
   .hero-three-buckets {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 7px;
@@ -2777,8 +2843,8 @@ code {
   }
 
   .h1-bar-half {
-    font-size: 9px;
-    padding: 0 5px;
+    font-size: 8.5px;
+    padding: 0 4px;
   }
 
   .biz-revenue-chart {
@@ -2906,15 +2972,26 @@ code {
   /* Slide 06 Compact SPEI Table */
   .spei-table th,
   .spei-table td {
-    padding: 7px 6px;
-    font-size: 11px;
+    padding: 6px 4px;
+    font-size: 10px;
     white-space: nowrap;
   }
 
+  .spei-table td:first-child {
+    font-size: 10.5px;
+    max-width: 128px;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
   .spei-tag {
-    display: inline;
-    margin-left: 4px;
-    font-size: 9px;
+    display: block;
+    margin-left: 14px;
+    margin-top: 1px;
+    font-size: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* Slide 07 Compact 2x2 Next Steps + 2x2 KPI Strip */
@@ -2946,6 +3023,10 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     padding: 9px 11px;
+  }
+
+  .exec-kpi-strip > .exec-kpi-item:nth-child(5):last-child {
+    grid-column: 1 / -1;
   }
 
   .op-mini-val {
