@@ -576,6 +576,10 @@
     var slides = getSlideElements();
     var total = slides.length || 8;
     var target = Math.max(0, Math.min(total - 1, idx));
+    var current = getCurrentSlideIndex();
+    if (current === target && isRevealReady()) {
+      return;
+    }
     var revealContainer = document.getElementById("revealDeck");
     if (revealContainer && window.innerWidth <= 900) {
       revealContainer.scrollTop = 0;
@@ -668,14 +672,22 @@
 
     // Actualizar Pastillas de Navegación Superior
     var stepPills = document.querySelectorAll(".step-pill[data-slide-to]");
+    var activePill = null;
     stepPills.forEach(function (btn) {
       var targetIdx = parseInt(btn.getAttribute("data-slide-to"), 10);
       var active = targetIdx === idx;
       btn.classList.toggle("is-active", active);
-      if (active && typeof btn.scrollIntoView === "function") {
-        btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-      }
+      if (active) activePill = btn;
     });
+    var topbarSteps = document.querySelector(".topbar-steps");
+    if (topbarSteps && activePill) {
+      var targetLeft = activePill.offsetLeft - (topbarSteps.clientWidth / 2) + (activePill.clientWidth / 2);
+      if (typeof topbarSteps.scrollTo === "function") {
+        topbarSteps.scrollTo({ left: Math.max(0, targetLeft), behavior: "smooth" });
+      } else {
+        topbarSteps.scrollLeft = Math.max(0, targetLeft);
+      }
+    }
 
     // Actualizar Teleprompter [N] y Estudio 4 Tarjetas [P]
     var noteText = currentSlide ? (currentSlide.getAttribute("data-notes") || "") : "";
@@ -812,6 +824,7 @@
     var startY = 0;
     var startTime = 0;
     var isSwiping = false;
+    var isScrollingVertically = false;
     var maxAbsDy = 0;
     var maxAbsDx = 0;
     var swipeIgnored = false;
@@ -830,27 +843,43 @@
 
     revealEl.addEventListener("touchstart", function (e) {
       if (!e.touches || e.touches.length !== 1) return;
+
+      // Si el usuario ya hizo scroll hacia abajo en la lámina, NUNCA disparar swipe horizontal.
+      // Esto blinda la lectura y scroll vertical continuo en todo momento.
+      if (revealEl.scrollTop > 10) {
+        isSwiping = false;
+        isScrollingVertically = true;
+        return;
+      }
+
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       startTime = Date.now();
       isSwiping = true;
+      isScrollingVertically = false;
       maxAbsDy = 0;
       maxAbsDx = 0;
       swipeIgnored = shouldIgnoreSwipe(e.target);
     }, { passive: true });
 
     revealEl.addEventListener("touchmove", function (e) {
-      if (!isSwiping || swipeIgnored || !e.touches || !e.touches.length) return;
+      if (!isSwiping || swipeIgnored || isScrollingVertically || !e.touches || !e.touches.length) return;
       var curX = e.touches[0].clientX;
       var curY = e.touches[0].clientY;
       var curAbsDx = Math.abs(curX - startX);
       var curAbsDy = Math.abs(curY - startY);
       if (curAbsDy > maxAbsDy) maxAbsDy = curAbsDy;
       if (curAbsDx > maxAbsDx) maxAbsDx = curAbsDx;
+
+      // Si el desplazamiento vertical supera 12px o domina la intención, abortar swipe y dar 100% prioridad al scroll
+      if (curAbsDy > 12 && curAbsDy > curAbsDx * 0.65) {
+        isScrollingVertically = true;
+        isSwiping = false;
+      }
     }, { passive: true });
 
     function handleTouchEnd(e) {
-      if (!isSwiping) return;
+      if (!isSwiping || isScrollingVertically) return;
       var wasSwiping = isSwiping;
       var wasIgnored = swipeIgnored;
       isSwiping = false;
@@ -866,13 +895,14 @@
       var peakDy = Math.max(maxAbsDy, absDy);
       var elapsed = Date.now() - startTime;
 
-      // Criterios de swipe ergonómico de pulgar:
-      // 1. Flick ágil: < 650ms, >= 35px de recorrido horizontal, dominancia horizontal
-      // 2. Deslizamiento deliberado: < 1200ms, >= 60px de recorrido horizontal, dominancia horizontal
-      var isFastFlick = elapsed < 650 && absDx >= 35 && absDx > peakDy * 1.15;
-      var isDeliberateSwipe = elapsed < 1200 && absDx >= 60 && absDx > peakDy * 1.15;
+      // Criterios de swipe ergonómico deliberado (nunca interfiere con scroll vertical):
+      // 1. Cero o mínimo movimiento vertical (peakDy < 25px)
+      // 2. Recorrido horizontal claro (absDx >= 50px)
+      // 3. Dominancia horizontal estricta (absDx > peakDy * 1.8)
+      // 4. Tiempo ágil (< 650ms)
+      var isValidSwipe = peakDy < 25 && absDx >= 50 && absDx > peakDy * 1.8 && elapsed < 650;
 
-      if (isFastFlick || isDeliberateSwipe) {
+      if (isValidSwipe) {
         if (dx < 0) {
           nextSlide();
         } else {
@@ -884,9 +914,46 @@
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
     window.addEventListener("touchcancel", function () {
       isSwiping = false;
+      isScrollingVertically = false;
       maxAbsDy = 0;
       maxAbsDx = 0;
     }, { passive: true });
+  }
+
+  /* Delegar arrastres verticales en barras fijas hacia el deck para que nunca se trabe el scroll */
+  function setupBarScrollDelegation() {
+    var topbar = document.querySelector(".apple-topbar");
+    var dock = document.querySelector(".apple-bottom-dock");
+    var revealEl = document.getElementById("revealDeck");
+    if (!revealEl) return;
+
+    [topbar, dock].forEach(function (bar) {
+      if (!bar) return;
+      var startY = 0;
+      var startScroll = 0;
+      var isDragging = false;
+
+      bar.addEventListener("touchstart", function (e) {
+        if (!e.touches || e.touches.length !== 1) return;
+        startY = e.touches[0].clientY;
+        startScroll = revealEl.scrollTop;
+        isDragging = true;
+      }, { passive: true });
+
+      bar.addEventListener("touchmove", function (e) {
+        if (!isDragging || !e.touches || !e.touches.length) return;
+        var dy = e.touches[0].clientY - startY;
+        if (Math.abs(dy) > 8) {
+          revealEl.scrollTop = Math.max(0, startScroll - dy);
+        }
+      }, { passive: true });
+
+      var endDrag = function () {
+        isDragging = false;
+      };
+      bar.addEventListener("touchend", endDrag, { passive: true });
+      bar.addEventListener("touchcancel", endDrag, { passive: true });
+    });
   }
 
   function bindEvents() {
@@ -931,8 +998,9 @@
       });
     });
 
-    // Inicializar motor de gestos táctiles de alto rendimiento
+    // Inicializar motor de gestos táctiles de alto rendimiento y delegación de scroll
     setupTouchSwipe();
+    setupBarScrollDelegation();
 
     // Botones HUD Superiores
     var btnStudio = document.getElementById("btnToggleStudio");

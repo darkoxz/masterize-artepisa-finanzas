@@ -1796,8 +1796,27 @@ html:not(.dark) .logo-for-light { display: block; }
     max-height: calc(100dvh - var(--topbar-offset, 88px) - var(--dock-offset, 64px)) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+
+  .reveal::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .reveal::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .reveal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+
+  html.mz-papel .reveal::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
   }
 
   .reveal .slides {
@@ -1809,6 +1828,7 @@ html:not(.dark) .logo-for-light { display: block; }
     zoom: 1 !important;
     display: block !important;
     touch-action: pan-y pinch-zoom !important;
+    pointer-events: auto !important;
   }
 
   .reveal:not(.overview) .slides > section {
@@ -1820,10 +1840,16 @@ html:not(.dark) .logo-for-light { display: block; }
     transform: none !important;
     display: none !important;
     touch-action: pan-y pinch-zoom !important;
+    pointer-events: auto !important;
   }
 
   .reveal:not(.overview) .slides > section.present {
     display: block !important;
+    pointer-events: auto !important;
+  }
+
+  .reveal .backgrounds {
+    display: none !important;
   }
 
   /* Modo Mosaico [ESC] en pantallas <= 900px: muestra las 8 láminas apiladas */
@@ -1850,8 +1876,12 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 
   .mz-table-scroll {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
     touch-action: pan-x pan-y pinch-zoom !important;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
   }
 
   .mz-slide-frame,
