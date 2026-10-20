@@ -111,7 +111,7 @@ const SLIDES_META = [
   },
   {
     index: 6,
-    name: 'Pasos',
+    name: 'Resumen',
     getNote: (c) =>
       `Tesorería Libre Año 1: ${fmtMXN(c.caja.free)} (Caja H1) + ${fmtMXN(c.iguala.freeAnnual)} (12m Iguala) = ${fmtMXN(c.year1FreeTreasury)}.`,
   },
@@ -304,6 +304,14 @@ const fmtShortK = (val) => {
   const num = Number(val) || 0;
   const sign = num < 0 ? '-' : '';
   const abs = Math.abs(num);
+  if (abs >= 1_000_000) {
+    const m = abs / 1_000_000;
+    const mStr =
+      Math.abs(m - Math.round(m)) < 0.005
+        ? String(Math.round(m))
+        : String(Number(m.toFixed(2)));
+    return `${sign}$${mStr}M`;
+  }
   if (abs >= 1000) {
     const k = abs / 1000;
     // Preserve exact clean decimals (up to 3 places) for exact multiples of $12.50 / $25 / $10
@@ -327,7 +335,7 @@ function emphasise(text) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   return safe.replace(
-    /(-?\$[\d,]+(?:\.\d+)?(?:k|m|\/mes|\/año)?|\b\d+(?:\.\d+)?%|\b(?:MASTERIZE|ARTEPISA|Azure|Claude|Google AI|Gemini|SPEI|Pool|Inversión|Caja|Closer|Socios|Daniel|Omar|Pedro|Octavio|H1|H2|H3|Iguala|Libres?)\b)/g,
+    /(-?\$[\d,]+(?:\.\d+)?(?:k|m|M|\/mes|\/año)?|\b\d+(?:\.\d+)?%|\b(?:MASTERIZE|ARTEPISA|Azure|Claude|Google AI|Gemini|SPEI|Pool|Inversión|Caja|Closer|Socios|Daniel|Omar|Pedro|Octavio|H1|H2|H3|Iguala|Libres?)\b)/g,
     '<b>$1</b>'
   );
 }
@@ -1803,30 +1811,38 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const viatPct = Math.max(0, Math.min(100, (calc.caja.viaticos / totalDenom) * 100));
     const freePct = Math.max(0, Math.min(100, (Math.max(0, calc.caja.free) / totalDenom) * 100));
     const isDeficit = calc.caja.free < 0;
+    const isNarrowCaja = typeof window !== 'undefined' && window.innerWidth <= 640;
     const fmtBarPct = (v) => {
       const r1 = Math.round(v * 10) / 10;
       return Number.isInteger(r1) ? `${r1}%` : `${r1.toFixed(1)}%`;
     };
 
+    const omarBarText =
+      omarPct >= 14 ? (isNarrowCaja ? fmtBarPct(omarPct) : `Omar ${fmtBarPct(omarPct)}`) : '';
+    const monBarText =
+      monPct >= 11 ? (isNarrowCaja ? fmtBarPct(monPct) : `Monitores ${fmtBarPct(monPct)}`) : '';
+    const freeBarText =
+      freePct >= 14 ? (isNarrowCaja ? fmtBarPct(freePct) : `${fmtBarPct(freePct)} Libre`) : '';
+
     wrap.innerHTML = `
       <div class="caja-equation-strip">
-        <span class="eq-item"><em>Apartado en H1:</em> <b>${fmtCompactMXN(calc.caja.gross)}</b></span>
+        <span class="eq-item"><span>${isNarrowCaja ? 'Apartado H1' : 'Apartado en H1:'}</span> <b>${fmtCompactMXN(calc.caja.gross)}</b></span>
         <span class="eq-op">−</span>
-        <span class="eq-item"><em>3 Gastos Arranque:</em> <b>${fmtCompactMXN(calc.caja.expenses)}</b></span>
+        <span class="eq-item"><span>${isNarrowCaja ? '3 Gastos' : '3 Gastos Arranque:'}</span> <b>${isNarrowCaja ? `-${fmtCompactMXN(calc.caja.expenses)}` : fmtCompactMXN(calc.caja.expenses)}</b></span>
         <span class="eq-op">=</span>
-        <span class="eq-item is-result ${isDeficit ? 'is-deficit' : ''}"><em>Caja Libre H1:</em> <b>${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)</b></span>
+        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>${isNarrowCaja ? 'Caja Libre' : 'Caja Libre H1:'}</span> <b>${isNarrowCaja ? fmtCompactMXN(calc.caja.free) : `${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)`}</b></span>
       </div>
       <div class="caja-split-bar" aria-label="Desglose de primeros ${fmtCompactMXN(calc.caja.gross)} en Hito 1">
-        <div class="caja-seg seg-reimb is-omar" style="width:${omarPct.toFixed(1)}%" title="Reembolso Omar: ${fmtMXN(calc.caja.omarReimb)} (${fmtBarPct(omarPct)})">${omarPct >= 14 ? `Omar ${fmtBarPct(omarPct)}` : ''}</div>
-        <div class="caja-seg seg-mon is-mon" style="width:${monPct.toFixed(1)}%" title="2 Monitores Daniel: ${fmtMXN(calc.caja.monitorsTotal)} (${fmtBarPct(monPct)})">${monPct >= 11 ? `Monitores ${fmtBarPct(monPct)}` : ''}</div>
+        <div class="caja-seg seg-reimb is-omar" style="width:${omarPct.toFixed(1)}%" title="Reembolso Omar: ${fmtMXN(calc.caja.omarReimb)} (${fmtBarPct(omarPct)})">${omarBarText}</div>
+        <div class="caja-seg seg-mon is-mon" style="width:${monPct.toFixed(1)}%" title="2 Monitores Daniel: ${fmtMXN(calc.caja.monitorsTotal)} (${fmtBarPct(monPct)})">${monBarText}</div>
         <div class="caja-seg seg-viat is-viat" style="width:${viatPct.toFixed(1)}%" title="Viáticos Pedro: ${fmtMXN(calc.caja.viaticos)} (${fmtBarPct(viatPct)})"></div>
-        <div class="caja-seg seg-libre is-free" style="width:${freePct.toFixed(1)}%" title="Caja Libre: ${fmtMXN(calc.caja.free)} (${fmtBarPct(freePct)})">${freePct >= 14 ? `${fmtBarPct(freePct)} Libre` : ''}</div>
+        <div class="caja-seg seg-libre is-free" style="width:${freePct.toFixed(1)}%" title="Caja Libre: ${fmtMXN(calc.caja.free)} (${fmtBarPct(freePct)})">${freeBarText}</div>
       </div>
       <div class="caja-split-chips">
-        <span class="caja-chip" data-caja-sub="0" title="Reembolso IA Omar: ${fmtMXN(calc.caja.omarReimb)}"><span class="caja-dot dot-reimb"></span>1. Omar IA <b>${fmtCompactMXN(calc.caja.omarReimb)}</b></span>
-        <span class="caja-chip" data-caja-sub="1" title="2 Monitores Daniel: ${fmtMXN(calc.caja.monitorsTotal)}"><span class="caja-dot dot-mon"></span>2. Monitores Daniel <b>${fmtCompactMXN(calc.caja.monitorsTotal)}</b></span>
-        <span class="caja-chip" data-caja-sub="2" title="Viáticos Pedro: ${fmtMXN(calc.caja.viaticos)}"><span class="caja-dot dot-viat"></span>3. Viáticos Pedro <b>${fmtCompactMXN(calc.caja.viaticos)}</b></span>
-        <span class="caja-chip is-free-chip ${isDeficit ? 'is-deficit' : ''}" data-caja-sub="2" title="Caja Libre: ${fmtMXN(calc.caja.free)}"><span class="caja-dot ${isDeficit ? 'dot-deficit' : 'dot-libre'}"></span>✓ Caja Libre <b>${fmtCompactMXN(calc.caja.free)}</b></span>
+        <span class="caja-chip" data-caja-sub="0" title="Reembolso IA Omar: ${fmtMXN(calc.caja.omarReimb)}"><span class="caja-dot dot-reimb"></span><span class="caja-chip-label">1. Omar IA</span><b>${fmtCompactMXN(calc.caja.omarReimb)}</b></span>
+        <span class="caja-chip" data-caja-sub="1" title="2 Monitores Daniel: ${fmtMXN(calc.caja.monitorsTotal)}"><span class="caja-dot dot-mon"></span><span class="caja-chip-label">${isNarrowCaja ? '2. Monitores' : '2. Monitores Daniel'}</span><b>${fmtCompactMXN(calc.caja.monitorsTotal)}</b></span>
+        <span class="caja-chip" data-caja-sub="2" title="Viáticos Pedro: ${fmtMXN(calc.caja.viaticos)}"><span class="caja-dot dot-viat"></span><span class="caja-chip-label">${isNarrowCaja ? '3. Viáticos' : '3. Viáticos Pedro'}</span><b>${fmtCompactMXN(calc.caja.viaticos)}</b></span>
+        <span class="caja-chip is-free-chip ${isDeficit ? 'is-deficit' : ''}" data-caja-sub="2" title="Caja Libre: ${fmtMXN(calc.caja.free)}"><span class="caja-dot ${isDeficit ? 'dot-deficit' : 'dot-libre'}"></span><span class="caja-chip-label">✓ Caja Libre</span><b>${fmtCompactMXN(calc.caja.free)}</b></span>
       </div>
     `;
 
@@ -1849,30 +1865,40 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const geminiPct = Math.max(0, Math.min(100, (calc.iguala.googleAi / totalDenom) * 100));
     const freePct = Math.max(0, Math.min(100, (Math.max(0, calc.iguala.freeMonthly) / totalDenom) * 100));
     const isDeficit = calc.iguala.freeMonthly < 0;
+    const isNarrowIguala = typeof window !== 'undefined' && window.innerWidth <= 640;
     const fmtBarPct = (v) => {
       const r1 = Math.round(v * 10) / 10;
       return Number.isInteger(r1) ? `${r1}%` : `${r1.toFixed(1)}%`;
     };
 
+    const azureBarText =
+      azurePct >= 14 ? (isNarrowIguala ? fmtBarPct(azurePct) : `Azure ${fmtBarPct(azurePct)}`) : '';
+    const claudeBarText =
+      claudePct >= 14 ? (isNarrowIguala ? fmtBarPct(claudePct) : `Claude ${fmtBarPct(claudePct)}`) : '';
+    const geminiBarText =
+      geminiPct >= 14 ? (isNarrowIguala ? fmtBarPct(geminiPct) : `Gemini ${fmtBarPct(geminiPct)}`) : '';
+    const freeBarText =
+      freePct >= 14 ? (isNarrowIguala ? fmtBarPct(freePct) : `${fmtBarPct(freePct)} Libre`) : '';
+
     wrap.innerHTML = `
       <div class="caja-equation-strip">
-        <span class="eq-item"><em>Iguala Mensual:</em> <b>${fmtCompactMXN(calc.iguala.gross)}/mes</b></span>
+        <span class="eq-item"><span>${isNarrowIguala ? 'Iguala/Mes' : 'Iguala Mensual:'}</span> <b>${fmtCompactMXN(calc.iguala.gross)}/m</b></span>
         <span class="eq-op">−</span>
-        <span class="eq-item"><em>Stack IA (3 servicios):</em> <b>${fmtCompactMXN(calc.iguala.costTotal)}/mes</b></span>
+        <span class="eq-item"><span>${isNarrowIguala ? 'Stack IA' : 'Stack IA (3 servicios):'}</span> <b>${isNarrowIguala ? `-${fmtCompactMXN(calc.iguala.costTotal)}/m` : `${fmtCompactMXN(calc.iguala.costTotal)}/mes`}</b></span>
         <span class="eq-op">=</span>
-        <span class="eq-item is-result ${isDeficit ? 'is-deficit' : ''}"><em>Libre / Mes:</em> <b>${fmtCompactMXN(calc.iguala.freeMonthly)}/mes (${fmtCompactMXN(calc.iguala.freeAnnual)}/año)</b></span>
+        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>${isNarrowIguala ? 'Libre/Mes' : 'Libre / Mes:'}</span> <b>${isNarrowIguala ? `${fmtCompactMXN(calc.iguala.freeMonthly)}/m` : `${fmtCompactMXN(calc.iguala.freeMonthly)}/mes (${fmtCompactMXN(calc.iguala.freeAnnual)}/año)`}</b></span>
       </div>
       <div class="caja-split-bar" aria-label="Desglose de Iguala Mensual ${fmtCompactMXN(calc.iguala.gross)}">
-        <div class="caja-seg seg-mon" style="width:${azurePct.toFixed(1)}%" title="Azure Cloud: ${fmtMXN(calc.iguala.azure)}/mes">${azurePct >= 14 ? `Azure ${fmtBarPct(azurePct)}` : ''}</div>
-        <div class="caja-seg seg-reimb" style="width:${claudePct.toFixed(1)}%" title="Claude Team: ${fmtMXN(calc.iguala.claude)}/mes">${claudePct >= 14 ? `Claude ${fmtBarPct(claudePct)}` : ''}</div>
-        <div class="caja-seg seg-viat" style="width:${geminiPct.toFixed(1)}%" title="Google AI Ultra: ${fmtMXN(calc.iguala.googleAi)}/mes">${geminiPct >= 14 ? `Gemini ${fmtBarPct(geminiPct)}` : ''}</div>
-        <div class="caja-seg seg-libre" style="width:${freePct.toFixed(1)}%" title="Libre Mensual: ${fmtMXN(calc.iguala.freeMonthly)}/mes">${freePct >= 14 ? `${fmtBarPct(freePct)} Libre` : ''}</div>
+        <div class="caja-seg seg-mon" style="width:${azurePct.toFixed(1)}%" title="Azure Cloud: ${fmtMXN(calc.iguala.azure)}/mes">${azureBarText}</div>
+        <div class="caja-seg seg-reimb" style="width:${claudePct.toFixed(1)}%" title="Claude Team: ${fmtMXN(calc.iguala.claude)}/mes">${claudeBarText}</div>
+        <div class="caja-seg seg-viat" style="width:${geminiPct.toFixed(1)}%" title="Google AI Ultra: ${fmtMXN(calc.iguala.googleAi)}/mes">${geminiBarText}</div>
+        <div class="caja-seg seg-libre" style="width:${freePct.toFixed(1)}%" title="Libre Mensual: ${fmtMXN(calc.iguala.freeMonthly)}/mes">${freeBarText}</div>
       </div>
       <div class="caja-split-chips">
-        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-mon"></span>1. Azure Cloud <b>${fmtCompactMXN(calc.iguala.azure)}/m</b></span>
-        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-reimb"></span>2. Claude Team <b>${fmtCompactMXN(calc.iguala.claude)}/m</b></span>
-        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-viat"></span>3. Google AI <b>${fmtCompactMXN(calc.iguala.googleAi)}/m</b></span>
-        <span class="caja-chip is-free-chip ${isDeficit ? 'is-deficit' : ''}" data-iguala-sub="2"><span class="caja-dot ${isDeficit ? 'dot-deficit' : 'dot-libre'}"></span>✓ Libre/Mes <b>${fmtCompactMXN(calc.iguala.freeMonthly)}</b></span>
+        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-mon"></span><span class="caja-chip-label">${isNarrowIguala ? '1. Azure' : '1. Azure Cloud'}</span><b>${fmtCompactMXN(calc.iguala.azure)}/m</b></span>
+        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-reimb"></span><span class="caja-chip-label">${isNarrowIguala ? '2. Claude' : '2. Claude Team'}</span><b>${fmtCompactMXN(calc.iguala.claude)}/m</b></span>
+        <span class="caja-chip" data-iguala-sub="1"><span class="caja-dot dot-viat"></span><span class="caja-chip-label">3. Google AI</span><b>${fmtCompactMXN(calc.iguala.googleAi)}/m</b></span>
+        <span class="caja-chip is-free-chip ${isDeficit ? 'is-deficit' : ''}" data-iguala-sub="2"><span class="caja-dot ${isDeficit ? 'dot-deficit' : 'dot-libre'}"></span><span class="caja-chip-label">✓ Libre/Mes</span><b>${fmtCompactMXN(calc.iguala.freeMonthly)}</b></span>
       </div>
     `;
 
@@ -1893,6 +1919,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const isPct = appState.unitMode === 'pct';
     const hasContract = calc.gross > 0;
     const isCajaDeficit = calc.caja.free < 0;
+    const isNarrowH1 = typeof window !== 'undefined' && window.innerWidth <= 640;
 
     // 1. Visual 50/50 Showcase for Hito 1 ($60,000 = $30,000 Inversión/Caja + $30,000 Socios)
     const h1Showcase = document.getElementById('h1SplitShowcase');
@@ -1902,6 +1929,12 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const sociosSharePct = hasContract ? Math.max(0, 100 - cajaSharePct) : 50;
       const cajaHeadStr = isPct ? `${cajaSharePct}% H1` : fmtCompactMXN(calc.hitos.h1.caja);
       const sociosHeadStr = isPct ? `${sociosSharePct}% H1` : fmtCompactMXN(calc.hitos.h1.sociosTotal);
+      const half1BarLabel = isNarrowH1
+        ? `${fmtShortK(calc.hitos.h1.caja)} Caja (${cajaSharePct}%)`
+        : `Mitad 1: ${fmtShortK(calc.hitos.h1.caja)} → Gastos y Caja (${cajaSharePct}%)`;
+      const half2BarLabel = isNarrowH1
+        ? `${fmtShortK(calc.hitos.h1.sociosTotal)} Socios (${sociosSharePct}%)`
+        : `Mitad 2: ${fmtShortK(calc.hitos.h1.sociosTotal)} → 1er Pago Socios (${sociosSharePct}%)`;
 
       h1Showcase.innerHTML = `
         <div class="h1-showcase-caption">
@@ -1909,10 +1942,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         </div>
         <div class="h1-split-top-bar">
           <div class="h1-bar-half is-caja" style="width:${cajaSharePct}%">
-            <span>Mitad 1: ${fmtShortK(calc.hitos.h1.caja)} → Gastos y Caja (${cajaSharePct}%)</span>
+            <span>${half1BarLabel}</span>
           </div>
           <div class="h1-bar-half is-socios" style="width:${sociosSharePct}%">
-            <span>Mitad 2: ${fmtShortK(calc.hitos.h1.sociosTotal)} → 1er Pago Socios (${sociosSharePct}%)</span>
+            <span>${half2BarLabel}</span>
           </div>
         </div>
         <div class="h1-split-cards">
@@ -1958,13 +1991,13 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
 
     const cols = [
-      { key: 'h1', label: 'Cobro 1 · H1 (40%)', pctLabel: hasContract ? '40.0%' : '0.0%', data: calc.hitos.h1 },
-      { key: 'h2', label: 'Cobro 2 · H2 (30%)', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h2 },
-      { key: 'h3', label: 'Cobro 3 · H3 (30%)', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h3 },
-      { key: 'total', label: 'Total Liquidado', pctLabel: hasContract ? '100.0%' : '0.0%', data: calc.hitos.total },
+      { key: 'h1', label: isNarrowH1 ? 'H1 (40%)' : 'Cobro 1 · H1 (40%)', pctLabel: hasContract ? '40.0%' : '0.0%', data: calc.hitos.h1 },
+      { key: 'h2', label: isNarrowH1 ? 'H2 (30%)' : 'Cobro 2 · H2 (30%)', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h2 },
+      { key: 'h3', label: isNarrowH1 ? 'H3 (30%)' : 'Cobro 3 · H3 (30%)', pctLabel: hasContract ? '30.0%' : '0.0%', data: calc.hitos.h3 },
+      { key: 'total', label: isNarrowH1 ? 'Total (100%)' : 'Total Liquidado', pctLabel: hasContract ? '100.0%' : '0.0%', data: calc.hitos.total },
     ];
     const maxGross = Math.max(1, calc.gross);
-    const maxBarPx = 80;
+    const maxBarPx = 64;
 
     container.innerHTML = cols
       .map((c, idx) => {
@@ -2003,7 +2036,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const hitosList = [
         {
           key: 'h1',
-          stepBadge: 'COBRO 1 · HITO 1 (40%)',
+          stepBadge: 'HITO 1 (40%)',
           title: 'H1 · 40%',
           tag: '50% Caja / 50% Socios',
           pctHead: hasContract ? '40.0%' : '0.0%',
@@ -2015,9 +2048,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         },
         {
           key: 'h2',
-          stepBadge: 'COBRO 2 · HITO 2 (30%)',
+          stepBadge: 'HITO 2 (30%)',
           title: 'H2 · 30%',
-          tag: '100% a Socios ($0 Caja)',
+          tag: '100% Socios ($0 Caja)',
           pctHead: hasContract ? '30.0%' : '0.0%',
           d: calc.hitos.h2,
           pDan: calc.partners.daniel.h2,
@@ -2027,9 +2060,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         },
         {
           key: 'h3',
-          stepBadge: 'COBRO 3 · HITO 3 (30%)',
+          stepBadge: 'HITO 3 (30%)',
           title: 'H3 · 30%',
-          tag: '100% Socios · ¡Liquidado!',
+          tag: '100% Socios · Liquidado',
           pctHead: hasContract ? '30.0%' : '0.0%',
           d: calc.hitos.h3,
           pDan: calc.partners.daniel.h3,
@@ -2196,36 +2229,38 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const pedroH1Bank = calc.partners.pedro.h1 + calc.caja.viaticos;
       const octavioH1Bank = calc.partners.octavio.h1;
       const cajaH1Bank = calc.caja.free;
+      const isCajaDeficit = cajaH1Bank < 0;
 
       calloutEl.innerHTML = `
         <div class="spei-callout-head">
-          <span class="ws-eyebrow">GUÍA BANCARIA RÁPIDA · ¿CÓMO SE DISPERSAN LOS PRIMEROS ${fmtCompactMXN(calc.hitos.h1.gross)} DEL HITO 1 (PAGO H1 + REEMBOLSOS)?</span>
+          <span class="spei-callout-badge">GUÍA BANCARIA RÁPIDA · HITO 1 (${fmtCompactMXN(calc.hitos.h1.gross)})</span>
+          <span class="spei-callout-sub">Transferencias reales al recibir el 1er cobro (Pago H1 + Reembolsos de Arranque)</span>
         </div>
         <div class="spei-callout-grid">
-          <div class="spei-callout-item">
-            <span>Omar (H1 + Reembolso IA)</span>
-            <strong>${fmtCompactMXN(omarH1Bank)}</strong>
-            <small>${fmtCompactMXN(calc.partners.omarTotal.h1)} H1 + ${fmtCompactMXN(calc.caja.omarReimb)} IA</small>
+          <div class="spei-callout-item is-omar">
+            <span class="spei-callout-name">Omar (H1 + IA)</span>
+            <strong class="spei-callout-val">${fmtCompactMXN(omarH1Bank)}</strong>
+            <small class="spei-callout-detail">${fmtCompactMXN(calc.partners.omarTotal.h1)} H1 + ${fmtCompactMXN(calc.caja.omarReimb)} IA</small>
           </div>
           <div class="spei-callout-item">
-            <span>Daniel (H1 + 2 Monitores)</span>
-            <strong>${fmtCompactMXN(danielH1Bank)}</strong>
-            <small>${fmtCompactMXN(calc.partners.daniel.h1)} H1 + ${fmtCompactMXN(calc.caja.monitorsTotal)} ML</small>
+            <span class="spei-callout-name">Daniel (H1 + Mon.)</span>
+            <strong class="spei-callout-val">${fmtCompactMXN(danielH1Bank)}</strong>
+            <small class="spei-callout-detail">${fmtCompactMXN(calc.partners.daniel.h1)} H1 + ${fmtCompactMXN(calc.caja.monitorsTotal)} ML</small>
           </div>
           <div class="spei-callout-item">
-            <span>Pedro (H1 + Viáticos)</span>
-            <strong>${fmtCompactMXN(pedroH1Bank)}</strong>
-            <small>${fmtCompactMXN(calc.partners.pedro.h1)} H1 + ${fmtCompactMXN(calc.caja.viaticos)} Viat.</small>
+            <span class="spei-callout-name">Pedro (H1 + Viat.)</span>
+            <strong class="spei-callout-val">${fmtCompactMXN(pedroH1Bank)}</strong>
+            <small class="spei-callout-detail">${fmtCompactMXN(calc.partners.pedro.h1)} H1 + ${fmtCompactMXN(calc.caja.viaticos)} Viat.</small>
           </div>
           <div class="spei-callout-item">
-            <span>Octavio (10% Pool H1)</span>
-            <strong>${fmtCompactMXN(octavioH1Bank)}</strong>
-            <small>100% transferencia directa</small>
+            <span class="spei-callout-name">Octavio (10% Pool)</span>
+            <strong class="spei-callout-val">${fmtCompactMXN(octavioH1Bank)}</strong>
+            <small class="spei-callout-detail">100% transferencia directa</small>
           </div>
-          <div class="spei-callout-item is-mint">
-            <span>Queda en Caja MASTERIZE</span>
-            <strong>${fmtCompactMXN(cajaH1Bank)}</strong>
-            <small>Reserva libre tras pagos H1</small>
+          <div class="spei-callout-item ${isCajaDeficit ? 'is-deficit' : 'is-mint'}">
+            <span class="spei-callout-name">Caja MASTERIZE</span>
+            <strong class="spei-callout-val">${fmtCompactMXN(cajaH1Bank)}</strong>
+            <small class="spei-callout-detail">${isCajaDeficit ? 'Déficit tras gastos H1' : 'Reserva libre tras pagos H1'}</small>
           </div>
         </div>
       `;
@@ -2250,15 +2285,22 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
   function renderSubstepTabs(steps, activeIdx) {
     const tabsContainer = document.getElementById('guidedSubstepTabs');
+    const pillEl = document.getElementById('guidedSubstepPill');
     if (!tabsContainer) return;
     if (!steps || steps.length === 0) {
       tabsContainer.innerHTML = '';
+      if (pillEl) pillEl.hidden = false;
       return;
+    }
+    if (pillEl) {
+      pillEl.hidden = true;
     }
     tabsContainer.innerHTML = steps
       .map((st, idx) => {
         const isAct = idx === activeIdx;
-        return `<button type="button" class="substep-tab-btn ${isAct ? 'is-active' : ''}" data-substep-idx="${idx}">${st.substepLabel}</button>`;
+        const isDone = idx < activeIdx;
+        const cleanLabel = String(st.substepLabel || '').replace(/^\d+\/\d+\s*·\s*/, '');
+        return `<button type="button" class="substep-tab-btn ${isAct ? 'is-active' : ''} ${isDone ? 'is-done' : ''}" data-substep-idx="${idx}"><span class="substep-tab-num">${idx + 1}</span><span>${cleanLabel}</span></button>`;
       })
       .join('');
 
@@ -2684,6 +2726,48 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
   }
 
+  const MOOD_LABELS_ES = {
+    idle: 'REPOSO',
+    listening: 'ESCUCHA',
+    thinking: 'ANÁLISIS',
+    working: 'CÁLCULO',
+    speaking: 'ACTIVO',
+    error: 'ALERTA',
+  };
+
+  function syncSplitBarLabels(c) {
+    const hasContract = c.gross > 0;
+    const vw = typeof window !== 'undefined' ? window.innerWidth : 1440;
+    const isMobileSeg = vw <= 640;
+    const isCompactSeg = vw <= 1180;
+    setText(
+      'segPoolLabel',
+      hasContract
+        ? isMobileSeg
+          ? '70% Socios'
+          : `70% Socios (${fmtShortK(c.hitos.total.pool)})`
+        : '0%'
+    );
+    setText(
+      'segCajaLabel',
+      hasContract
+        ? isMobileSeg
+          ? '20% Caja'
+          : isCompactSeg
+            ? `20% Caja (${fmtShortK(c.caja.gross)})`
+            : `20% Inversión/Caja (${fmtShortK(c.caja.gross)})`
+        : '0%'
+    );
+    setText(
+      'segCloserLabel',
+      hasContract
+        ? isCompactSeg
+          ? '10%'
+          : `10% (${fmtShortK(c.hitos.total.closer)})`
+        : '0%'
+    );
+  }
+
   function syncControlButtons() {
     document.querySelectorAll('[data-hito]').forEach((btn) => {
       btn.classList.toggle('is-active', btn.getAttribute('data-hito') === appState.selectedHito);
@@ -2706,7 +2790,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     });
     const moodCycleBtn = document.getElementById('vdMoodCycleBtn');
     if (moodCycleBtn) {
-      moodCycleBtn.textContent = effMood.toUpperCase();
+      moodCycleBtn.textContent = MOOD_LABELS_ES[effMood] || effMood.toUpperCase();
     }
     document.querySelectorAll('[data-viaticos]').forEach((btn) => {
       const presetVal = parseFloat(btn.getAttribute('data-viaticos'));
@@ -2796,7 +2880,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('sideOctavioTotal', fmtCompactMXN(c.partners.octavio.total));
 
     // Slide 01: Hero Contract
-    const isNarrowSeg = typeof window !== 'undefined' && window.innerWidth <= 560;
     setText('ivaBadge', `Facturado con IVA (16%): ${fmtCompactMXN(c.totalWithIva)}`);
     const slide1TitleEl = document.getElementById('slide1MainTitle');
     if (slide1TitleEl) {
@@ -2810,9 +2893,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       'heroHitosInline',
       `Se cobra en 3 pagos (Hitos): 1º ${fmtCompactMXN(c.hitos.h1.gross)} (40%) · 2º ${fmtCompactMXN(c.hitos.h2.gross)} (30%) · 3º ${fmtCompactMXN(c.hitos.h3.gross)} (30%)`
     );
-    setText('segPoolLabel', hasContract ? (isNarrowSeg ? '70% Socios' : `70% Socios (${fmtShortK(c.hitos.total.pool)})`) : '0%');
-    setText('segCajaLabel', hasContract ? (isNarrowSeg ? '20% Caja' : `20% Inversión/Caja (${fmtShortK(c.caja.gross)})`) : '0%');
-    setText('segCloserLabel', hasContract ? (isNarrowSeg ? '10%' : `10% Closer (${fmtShortK(c.hitos.total.closer)})`) : '0%');
+    syncSplitBarLabels(c);
     setText('wellPoolTotal', isPct ? (hasContract ? '70.0%' : '0.0%') : fmtCompactMXN(c.hitos.total.pool));
     setText('wellCajaTotal', isPct ? (hasContract ? '20.0%' : '0.0%') : fmtCompactMXN(c.caja.gross));
     setText('wellCloserTotal', isPct ? (hasContract ? '10.0%' : '0.0%') : fmtCompactMXN(c.hitos.total.closer));
@@ -3587,11 +3668,10 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     window.addEventListener(
       'resize',
       () => {
-        const hasContract = latestCalc.gross > 0;
-        const isNarrowSeg = window.innerWidth <= 560;
-        setText('segPoolLabel', hasContract ? (isNarrowSeg ? '70% Socios' : `70% Socios (${fmtShortK(latestCalc.buckets.pool)})`) : '0%');
-        setText('segCajaLabel', hasContract ? (isNarrowSeg ? '20% Caja' : `20% Caja (${fmtShortK(latestCalc.buckets.caja)})`) : '0%');
-        setText('segCloserLabel', hasContract ? (isNarrowSeg ? '10% Closer' : `10% Closer (${fmtShortK(latestCalc.buckets.closer)})`) : '0%');
+        syncSplitBarLabels(latestCalc);
+        renderCajaBreakdownBar(latestCalc);
+        renderIgualaBreakdownBar(latestCalc);
+        renderMilestoneBars(latestCalc);
       },
       { passive: true }
     );
