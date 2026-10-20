@@ -580,6 +580,9 @@
     if (revealContainer && window.innerWidth <= 900) {
       revealContainer.scrollTop = 0;
     }
+    try {
+      window.scrollTo(0, 0);
+    } catch (e) {}
     if (isRevealReady()) {
       Reveal.slide(target);
     } else {
@@ -774,7 +777,7 @@
       if (!touchActive || !e.touches || !e.touches.length) return;
       var dx = e.touches[0].clientX - touchStartX;
       var dy = e.touches[0].clientY - touchStartY;
-      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+      if (Math.abs(dx) > 18 || Math.abs(dy) > 18) {
         touchMoved = true;
       }
     }, { passive: true });
@@ -793,7 +796,7 @@
     });
 
     el.addEventListener("click", function (e) {
-      if (Date.now() - lastTapTime < 450) {
+      if (Date.now() - lastTapTime < 400) {
         return;
       }
       handler(e);
@@ -809,7 +812,8 @@
     var startY = 0;
     var startTime = 0;
     var isSwiping = false;
-    var isScrollingVertically = false;
+    var maxAbsDy = 0;
+    var maxAbsDx = 0;
     var swipeIgnored = false;
 
     function shouldIgnoreSwipe(target) {
@@ -820,7 +824,7 @@
         if (maxScroll > 15) return true;
       }
       return Boolean(
-        target.closest("input, textarea, select, .topbar-steps, .apple-topbar, .apple-bottom-dock")
+        target.closest("input, textarea, select, .topbar-steps, .apple-topbar, .apple-bottom-dock, #notes-drawer, #presenter-studio")
       );
     }
 
@@ -830,7 +834,8 @@
       startY = e.touches[0].clientY;
       startTime = Date.now();
       isSwiping = true;
-      isScrollingVertically = false;
+      maxAbsDy = 0;
+      maxAbsDx = 0;
       swipeIgnored = shouldIgnoreSwipe(e.target);
     }, { passive: true });
 
@@ -838,36 +843,36 @@
       if (!isSwiping || swipeIgnored || !e.touches || !e.touches.length) return;
       var curX = e.touches[0].clientX;
       var curY = e.touches[0].clientY;
-      var dx = curX - startX;
-      var dy = curY - startY;
-
-      // Si el desplazamiento vertical se vuelve dominante, delegar al scroll vertical nativo
-      if (!isScrollingVertically && Math.abs(dy) > 15 && Math.abs(dy) > Math.abs(dx) * 1.3) {
-        isScrollingVertically = true;
-      }
+      var curAbsDx = Math.abs(curX - startX);
+      var curAbsDy = Math.abs(curY - startY);
+      if (curAbsDy > maxAbsDy) maxAbsDy = curAbsDy;
+      if (curAbsDx > maxAbsDx) maxAbsDx = curAbsDx;
     }, { passive: true });
 
     function handleTouchEnd(e) {
       if (!isSwiping) return;
       var wasSwiping = isSwiping;
       var wasIgnored = swipeIgnored;
-      var wasVertical = isScrollingVertically;
       isSwiping = false;
-      isScrollingVertically = false;
 
-      if (!wasSwiping || wasIgnored || wasVertical) return;
+      if (!wasSwiping || wasIgnored) return;
       var touch = (e.changedTouches && e.changedTouches[0]) || null;
       if (!touch) return;
 
       var dx = touch.clientX - startX;
       var dy = touch.clientY - startY;
+      var absDx = Math.abs(dx);
+      var absDy = Math.abs(dy);
+      var peakDy = Math.max(maxAbsDy, absDy);
       var elapsed = Date.now() - startTime;
 
-      // Detección natural para pulgar en smartphone (360px-430px):
-      // - Distancia horizontal mínima: 35px
-      // - Tiempo: < 700ms (flick fluido o deslizamiento intencional)
-      // - Ángulo: dx > dy * 1.15 (~41° de inclinación ergonómica de pulgar)
-      if (elapsed < 700 && Math.abs(dx) >= 35 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+      // Criterios de swipe ergonómico de pulgar:
+      // 1. Flick ágil: < 650ms, >= 35px de recorrido horizontal, dominancia horizontal
+      // 2. Deslizamiento deliberado: < 1200ms, >= 60px de recorrido horizontal, dominancia horizontal
+      var isFastFlick = elapsed < 650 && absDx >= 35 && absDx > peakDy * 1.15;
+      var isDeliberateSwipe = elapsed < 1200 && absDx >= 60 && absDx > peakDy * 1.15;
+
+      if (isFastFlick || isDeliberateSwipe) {
         if (dx < 0) {
           nextSlide();
         } else {
@@ -879,7 +884,8 @@
     window.addEventListener("touchend", handleTouchEnd, { passive: true });
     window.addEventListener("touchcancel", function () {
       isSwiping = false;
-      isScrollingVertically = false;
+      maxAbsDy = 0;
+      maxAbsDx = 0;
     }, { passive: true });
   }
 
@@ -1073,6 +1079,14 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     syncMobileViewportOffsets();
+    window.addEventListener("load", syncMobileViewportOffsets);
+    if (document.fonts && typeof document.fonts.ready.then === "function") {
+      document.fonts.ready.then(function () {
+        syncMobileViewportOffsets();
+      });
+    }
+    setTimeout(syncMobileViewportOffsets, 250);
+
     renderAll();
     bindEvents();
 
@@ -1102,6 +1116,9 @@
         if (revealContainer && window.innerWidth <= 900) {
           revealContainer.scrollTop = 0;
         }
+        try {
+          window.scrollTo(0, 0);
+        } catch (e) {}
         updatePresentationHUD();
       });
     } else {

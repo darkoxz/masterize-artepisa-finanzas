@@ -1349,7 +1349,7 @@ html:not(.dark) .logo-for-light { display: block; }
   background: var(--surface-2);
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -1767,6 +1767,7 @@ html:not(.dark) .logo-for-light { display: block; }
     padding-top: 4px;
     border-top: 1px solid var(--border-subtle);
     touch-action: pan-x pan-y pinch-zoom !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .step-pill {
@@ -1790,7 +1791,9 @@ html:not(.dark) .logo-for-light { display: block; }
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-    height: auto !important;
+    height: calc(100vh - var(--topbar-offset, 88px) - var(--dock-offset, 64px)) !important;
+    height: calc(100dvh - var(--topbar-offset, 88px) - var(--dock-offset, 64px)) !important;
+    max-height: calc(100dvh - var(--topbar-offset, 88px) - var(--dock-offset, 64px)) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
@@ -2039,6 +2042,15 @@ html:not(.dark) .logo-for-light { display: block; }
   .mz-studio-grid {
     grid-template-columns: 1fr;
     overflow-y: auto;
+  }
+
+  .mz-notes-drawer {
+    bottom: calc(var(--dock-offset, 64px) + 12px) !important;
+    width: min(94vw, 560px) !important;
+  }
+
+  .mz-sim-field input {
+    font-size: 16px !important;
   }
 }
 
