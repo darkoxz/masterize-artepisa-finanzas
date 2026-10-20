@@ -294,8 +294,11 @@ const fmtMXN = (val, decimals = 2) => {
 
 const fmtCompactMXN = (val) => {
   const num = Number(val) || 0;
-  if (Math.abs(num) >= 1000 && num % 1 === 0) {
-    return fmtMXN(num, 0);
+  if (Math.abs(num) >= 100000) {
+    return fmtMXN(Math.round(num), 0);
+  }
+  if (Math.abs(num) >= 1000 && Math.abs(num - Math.round(num)) < 0.005) {
+    return fmtMXN(Math.round(num), 0);
   }
   return fmtMXN(num, 2);
 };
@@ -1812,7 +1815,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const viatPct = Math.max(0, Math.min(100, (calc.caja.viaticos / totalDenom) * 100));
     const freePct = Math.max(0, Math.min(100, (Math.max(0, calc.caja.free) / totalDenom) * 100));
     const isDeficit = calc.caja.free < 0;
-    const isNarrowCaja = typeof window !== 'undefined' && window.innerWidth <= 640;
+    const isNarrowCaja =
+      Boolean(appState.isOverview) ||
+      (typeof window !== 'undefined' && window.innerWidth <= 640);
     const fmtBarPct = (v) => {
       const r1 = Math.round(v * 10) / 10;
       return Number.isInteger(r1) ? `${r1}%` : `${r1.toFixed(1)}%`;
@@ -1831,7 +1836,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         <span class="eq-op">−</span>
         <span class="eq-item"><span>Gastos</span> <b>-${fmtCompactMXN(calc.caja.expenses)}</b></span>
         <span class="eq-op">=</span>
-        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>Libre</span> <b>${fmtCompactMXN(calc.caja.free)} (${calc.caja.marginPct.toFixed(1)}%)</b></span>
+        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>Libre (${calc.caja.marginPct.toFixed(1)}%)</span> <b>${fmtCompactMXN(calc.caja.free)}</b></span>
       </div>
       <div class="caja-split-bar" aria-label="Caja H1 ${fmtCompactMXN(calc.caja.gross)}">
         <div class="caja-seg seg-reimb is-omar" data-caja-sub="0" style="width:${omarPct.toFixed(1)}%" title="Omar IA: ${fmtMXN(calc.caja.omarReimb)} (${fmtBarPct(omarPct)})">${omarBarText}</div>
@@ -1860,7 +1865,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const geminiPct = Math.max(0, Math.min(100, (calc.iguala.googleAi / totalDenom) * 100));
     const freePct = Math.max(0, Math.min(100, (Math.max(0, calc.iguala.freeMonthly) / totalDenom) * 100));
     const isDeficit = calc.iguala.freeMonthly < 0;
-    const isNarrowIguala = typeof window !== 'undefined' && window.innerWidth <= 640;
+    const isNarrowIguala =
+      Boolean(appState.isOverview) ||
+      (typeof window !== 'undefined' && window.innerWidth <= 640);
     const fmtBarPct = (v) => {
       const r1 = Math.round(v * 10) / 10;
       return Number.isInteger(r1) ? `${r1}%` : `${r1.toFixed(1)}%`;
@@ -1881,7 +1888,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         <span class="eq-op">−</span>
         <span class="eq-item"><span>Stack IA</span> <b>-${fmtCompactMXN(calc.iguala.costTotal)}/m</b></span>
         <span class="eq-op">=</span>
-        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>Libre</span> <b>${fmtCompactMXN(calc.iguala.freeMonthly)}/m (${fmtCompactMXN(calc.iguala.freeAnnual)}/año)</b></span>
+        <span class="eq-item ${isDeficit ? 'is-deficit' : 'is-free'}"><span>Libre (${fmtShortK(calc.iguala.freeAnnual)}/año)</span> <b>${fmtCompactMXN(calc.iguala.freeMonthly)}/m</b></span>
       </div>
       <div class="caja-split-bar" aria-label="Iguala ${fmtCompactMXN(calc.iguala.gross)}">
         <div class="caja-seg seg-mon" data-iguala-sub="1" style="width:${azurePct.toFixed(1)}%" title="Azure: ${fmtMXN(calc.iguala.azure)}/mes">${azureBarText}</div>
@@ -1988,7 +1995,11 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         const cH = hasVal && c.data.caja > 0 ? Math.max(4, Math.round((c.data.caja / g) * hPx)) : 0;
         const clH = hasVal && c.data.closer > 0 ? Math.max(4, Math.round((c.data.closer / g) * hPx)) : 0;
         const isSel = appState.selectedHito === c.key;
-        const valText = isPct ? c.pctLabel : fmtCompactMXN(c.data.gross);
+        const valText = isPct
+          ? c.pctLabel
+          : Math.abs(c.data.gross) >= 1_000_000
+            ? fmtShortK(c.data.gross)
+            : fmtCompactMXN(c.data.gross);
 
         return `
           <div class="biz-bar-col ${isSel ? 'is-selected' : ''}" data-bar-hito="${c.key}" style="--bar-idx:${idx}">
@@ -2597,6 +2608,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     appState.isOverview = true;
     appState.isBlackout = false;
     pulseOrbMood('speaking', 1200);
+    syncSplitBarLabels(latestCalc);
+    renderCajaBreakdownBar(latestCalc);
+    renderIgualaBreakdownBar(latestCalc);
     syncControlButtons();
     syncSlidePresentation();
     scrollStageTopOnMobile();
@@ -2619,6 +2633,9 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const slideMoods = ['listening', 'thinking', 'working', 'working', 'thinking', 'speaking', 'speaking'];
     pulseOrbMood(slideMoods[appState.currentSlide] || 'working', 1100);
 
+    syncSplitBarLabels(latestCalc);
+    renderCajaBreakdownBar(latestCalc);
+    renderIgualaBreakdownBar(latestCalc);
     syncControlButtons();
     syncSlidePresentation();
     if (appState.currentSlide === 2) {
@@ -2711,7 +2728,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   function syncSplitBarLabels(c) {
     const hasContract = c.gross > 0;
     const vw = typeof window !== 'undefined' ? window.innerWidth : 1440;
-    const isMobileSeg = vw <= 640;
+    const isMobileSeg = vw <= 640 || Boolean(appState.isOverview);
     setText(
       'segPoolLabel',
       hasContract
@@ -2894,7 +2911,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     }
 
     // Slide 02: Milestones & First $60k Breakdown
-    setText('slide2Eyebrow', '02 · HITOS');
+    setText('slide2Eyebrow', '02/HITOS');
     setText(
       'hitoChartTitle',
       `${fmtShortK(c.hitos.h1.gross)} · ${fmtShortK(c.hitos.h2.gross)} · ${fmtShortK(c.hitos.h3.gross)}`
@@ -2936,7 +2953,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     syncOrbGridDOM(orbItems, forceReset);
 
     // Slide 04: Caja MASTERIZE ($30,000 in H1 -> $14,000 Libres)
-    setText('slide4Eyebrow', '04 · CAJA H1');
+    setText('slide4Eyebrow', '04/CAJA H1');
     setText('slide4GrossHeadline', fmtCompactMXN(c.caja.gross));
     setText('slide4FreeHeadline', fmtCompactMXN(c.caja.free));
     setText('cajaGrossPill', `-${fmtCompactMXN(c.caja.expenses)}`);
@@ -3000,17 +3017,12 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     setText('step1Omar', fmtCompactMXN(c.partners.omarTotal.h1));
     setText('step1Pedro', fmtCompactMXN(c.partners.pedro.h1));
     setText('step1Octavio', fmtCompactMXN(c.partners.octavio.h1));
-    setText('step1Pool', fmtShortK(c.hitos.h1.pool));
-    setText('step1Closer', fmtShortK(c.hitos.h1.closer));
 
-    setText('step3Title', `${fmtCompactMXN(c.hitos.h2.gross)} + ${fmtCompactMXN(c.hitos.h3.gross)}`);
+    setText('step3Title', `${fmtCompactMXN(c.hitos.h2.gross)} + ${fmtCompactMXN(c.hitos.h3.gross)} (c/hito)`);
     setText('step3Daniel', fmtCompactMXN(c.partners.daniel.h2));
     setText('step3Omar', fmtCompactMXN(c.partners.omarTotal.h2));
     setText('step3Pedro', fmtCompactMXN(c.partners.pedro.h2));
     setText('step3Octavio', fmtCompactMXN(c.partners.octavio.h2));
-    setText('step3Caja', fmtCompactMXN(c.hitos.h2.caja));
-    setText('step3Closer', fmtShortK(c.hitos.h2.closer));
-    setText('step3Pool', fmtShortK(c.hitos.h2.pool));
 
     setText('step4Title', `${fmtCompactMXN(c.iguala.gross)}/m → ${fmtCompactMXN(c.iguala.freeMonthly)}`);
     setText('step4Stack', `-${fmtCompactMXN(c.iguala.costTotal)}`);
@@ -3309,9 +3321,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       overviewBtn.addEventListener('click', () => {
         stopAutoPlay();
         if (appState.isOverview) {
-          appState.isOverview = false;
-          syncSlidePresentation();
-          runSlideChoreography();
+          goToSlide(appState.currentSlide);
         } else {
           enterOverviewStep();
         }
@@ -3465,9 +3475,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         e.preventDefault();
         stopAutoPlay();
         if (appState.isOverview) {
-          appState.isOverview = false;
-          syncSlidePresentation();
-          runSlideChoreography();
+          goToSlide(appState.currentSlide);
         } else {
           enterOverviewStep();
         }
