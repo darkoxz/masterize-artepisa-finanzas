@@ -1,154 +1,211 @@
 {
-  "title": "MASTERIZE · ARTEPISA — División Financiera y Calculadora Interactiva",
+  "title": "MASTERIZE · ARTEPISA — Presentación Financiera del Proyecto",
+  "brand": "apple",
   "theme": "dark",
+  "palette": {
+    "name": "MASTERIZE // APPLE KEYNOTE",
+    "bg": "#0A0A0B",
+    "surface": "#131316",
+    "text": "#F4F4F5",
+    "muted": "#A1A1AA",
+    "border": "#26262C",
+    "accent": "#7C5CFF"
+  },
   "slides": [
     {
       "layout": "title",
-      "tag": "PASO 01 DE 07 // LA REGLA GENERAL DEL CONTRATO",
-      "title": "$150,000 en 3 Bolsas: 70% Socios · 20% Caja · 10% Closer.",
-      "subtitle": "Por cada peso que paga ARTEPISA sin IVA ($150,000 en total · $174,000 con IVA), 70 centavos van a los 4 socios ($105,000), 20 centavos a Inversión y Caja MASTERIZE ($30,000) y 10 centavos a comisión comercial ($15,000).",
-      "author": "Finance Team · MASTERIZE",
+      "tag": "01 // EL CONTRATO ARTEPISA",
+      "title": "$150,000 MXN en 3 Bolsas Claras.",
+      "subtitle": "Contrato total sin IVA ($174,000 con IVA), cobrado en 3 hitos ($60,000 · $45,000 · $45,000). El 70% ($105,000) es para los 4 socios, el 20% ($30,000) para Gastos y Caja MASTERIZE, y el 10% ($15,000) para Comisión Closer.",
+      "author": "MASTERIZE Tech Solutions",
       "date": "Octubre 2026",
-      "notes": "Explicación en 3 segundos: El contrato total es de $150,000 sin IVA (pagado en 3 cobros: $60k, $45k y $45k). Se divide en 3 bolsas: $105,000 (70%) para los 4 socios, $30,000 (20%) para cubrir todos los gastos de arranque y dejar caja libre, y $15,000 (10%) de comisión de cierre."
+      "status": "CUENTAS CLARAS · 100% CUADRADO",
+      "notes": "[SEÑALAR: $150,000 MXN] Aquí está todo el acuerdo en una sola pantalla. El contrato de ARTEPISA es de $150,000 pesos sin IVA. [PAUSA] Se divide en tres bolsas muy simples: 70% ($105,000) para repartir entre los 4 socios, 20% ($30,000) para pagar todos los gastos de arranque y dejar dinero en la Caja de MASTERIZE, y 10% ($15,000) de comisión de cierre comercial para Omar. En la siguiente lámina vemos cómo entra el dinero en 3 pagos."
     },
     {
-      "layout": "metric_impact",
-      "section": "PASO 02 DE 07 // CÓMO SE REPARTEN LOS 3 COBROS (HITOS)",
-      "title": "Primeros $60,000: $30,000 a Gastos/Caja y $30,000 a Socios.",
+      "layout": "stacked_kpi_ledger",
+      "section": "02 // LAS 3 BOLSAS DEL CONTRATO ($150,000 SIN IVA)",
+      "title": "¿A dónde va cada peso del contrato?",
       "metrics": [
         {
-          "value": "$60,000",
-          "label": "Cobro 1 · Hito 1 (40% al firmar)",
-          "context": "Se parte 50/50: Primeros $30,000 llenan el 100% de Gastos y Caja ($16k gastos + $14k libres). Siguientes $30,000 van a Socios ($12k Daniel · $12k Omar · $3.6k Pedro · $2.4k Octavio)."
+          "metric": "$105,000",
+          "label": "70% · Pool de los 4 Socios",
+          "description": "Se reparte por porcentaje entre Daniel (50% = $52,500), Omar (25% = $26,250), Pedro (15% = $15,750) y Octavio (10% = $10,500).",
+          "badge": "70% CONTRATO"
         },
         {
-          "value": "$45,000",
-          "label": "Cobro 2 · Hito 2 (30% avance)",
-          "context": "Como la Caja ya quedó 100% cubierta en el Hito 1 ($0 a Caja), el 100% ($45,000) va directo a Socios: Daniel $20,250 · Omar $14,625 · Pedro $6,075 · Octavio $4,050."
+          "metric": "$30,000",
+          "label": "20% · Inversión y Caja MASTERIZE",
+          "description": "Se aparta completo en el Hito 1. Paga $16,000 de gastos de arranque (reembolso IA, 2 monitores y viáticos) y deja $14,000 libres en Caja.",
+          "badge": "20% CONTRATO"
         },
         {
-          "value": "$45,000",
-          "label": "Cobro 3 · Hito 3 (30% entrega final)",
-          "context": "100% ($45,000) directo a Socios ($0 a Caja): Daniel $20,250 · Omar $14,625 · Pedro $6,075 · Octavio $4,050. Con este pago queda 100% liquidado el contrato de $150,000."
+          "metric": "$15,000",
+          "label": "10% · Comisión Closer (Omar)",
+          "description": "Comisión comercial por cerrar el contrato. Se cobra conforme entra cada hito: $6,000 en Hito 1, $4,500 en Hito 2 y $4,500 en Hito 3.",
+          "badge": "10% CONTRATO"
         }
       ],
-      "notes": "La clave del Hito 1 ($60,000) es que se parte exactamente a la mitad: $30,000 cubren el 100% de la bolsa de Inversión y Caja de todo el proyecto, y los otros $30,000 son el primer pago a socios. Gracias a eso, en los Hitos 2 y 3 ($45,000 c/u) ya no se descuenta nada para Caja y el 100% se reparte entre los socios hasta liquidar."
+      "notes": "[SEÑALAR: Las 3 filas] Si sumamos $105,000 de socios más $30,000 de Caja más $15,000 de Closer, tenemos exactamente los $150,000 del contrato. [PAUSA] Ningún peso queda suelto. Ahora veamos cómo se cobran los 3 hitos."
+    },
+    {
+      "layout": "kpi_tower",
+      "section": "03 // LOS 3 COBROS AL CLIENTE (HITOS 1, 2 Y 3)",
+      "title": "Hito 1 se parte 50/50. Hitos 2 y 3 van 100% a Socios.",
+      "cards": [
+        {
+          "metric": "$60,000",
+          "height_pct": 100,
+          "label": "Hito 1 · 40% al firmar",
+          "description": "Mitad 1 ($30,000) llena toda la Caja y gastos. Mitad 2 ($30,000) es el 1er pago a socios ($6k Closer + $24k Pool)."
+        },
+        {
+          "metric": "$45,000",
+          "height_pct": 75,
+          "label": "Hito 2 · 30% avance",
+          "description": "Caja ya está pagada ($0 a Caja). El 100% ($45,000) se reparte directo a socios ($4.5k Closer + $40.5k Pool)."
+        },
+        {
+          "metric": "$45,000",
+          "height_pct": 75,
+          "label": "Hito 3 · 30% entrega final",
+          "description": "El 100% ($45,000) va directo a socios ($4.5k Closer + $40.5k Pool). Con este cobro queda 100% liquidado."
+        }
+      ],
+      "notes": "[SEÑALAR: Hito 1 $60,000] Esta es la regla más importante para entender el flujo: cuando entran los primeros $60,000 del Hito 1, los partimos exactamente a la mitad. Los primeros $30,000 cubren el 100% de la Caja y los gastos de todo el proyecto. Los otros $30,000 se reparten entre los socios. [PAUSA] Como la Caja ya quedó llena desde el Hito 1, cuando entran el Hito 2 ($45,000) y el Hito 3 ($45,000), ya no se descuenta nada para Caja: el 100% va directo a los socios."
+    },
+    {
+      "layout": "asymmetric_split",
+      "section": "04 // DETALLE DE LOS PRIMEROS $30,000 (CAJA EN HITO 1)",
+      "title": "De los $30,000 de Caja: $16,000 a Gastos y $14,000 Libres.",
+      "primary": {
+        "title": "Los 3 Pagos Únicos de Arranque (-$16,000.00 MXN)",
+        "description": "Se liquidan en cuanto cae el Hito 1 usando la primera mitad ($30,000):",
+        "points": [
+          "**1. Reembolso IA a Omar ($10,660.00):** $10,000 de 3 meses de inversión previa en IA + $660 de plan.",
+          "**2. Dos Monitores para Daniel ($4,172.50):** Monitor Curvo 30\" (`MLM52822704` $3,199.00) + Monitor Portátil 15.6\" (`MLM-2215895794` $973.50).",
+          "**3. Viáticos de Planta para Pedro ($1,167.50):** Traslados y representación en planta ARTEPISA."
+        ]
+      },
+      "secondary": {
+        "title": "CUENTA DE CAJA EN HITO 1",
+        "items": [
+          { "key": "Apartado de Caja en Hito 1", "value": "$30,000.00" },
+          { "key": "Menos Reembolso IA Omar", "value": "-$10,660.00" },
+          { "key": "Menos 2 Monitores Daniel", "value": "-$4,172.50" },
+          { "key": "Menos Viáticos Pedro", "value": "-$1,167.50" },
+          { "key": "Queda Libre en Caja MASTERIZE", "value": "$14,000.00" }
+        ]
+      },
+      "notes": "[SEÑALAR: Cuenta de Caja $14,000.00] Aquí vemos con lupa qué pasa con los primeros $30,000 del Hito 1. Pagamos tres cosas: el reembolso de $10,660 a Omar por los 3 meses de IA que ya puso, los 2 monitores de Mercado Libre para Daniel por $4,172.50, y los viáticos de Pedro por $1,167.50. Eso suma $16,000 cerrados y nos deja $14,000 libres en la Caja de MASTERIZE desde el día uno."
     },
     {
       "layout": "metric_impact",
-      "section": "PASO 03 DE 07 // PAGO TOTAL POR SOCIO (HITO 1 + HITO 2 + HITO 3)",
-      "title": "¿Cuánto recibe cada Socio en cada Hito y en Total?",
+      "section": "05 // ¿CUÁNTO RECIBE CADA SOCIO EN CADA HITO Y EN TOTAL?",
+      "title": "Pago por Socio en Hito 1, Hito 2, Hito 3 y Total.",
       "metrics": [
         {
           "value": "$52,500",
-          "label": "Daniel · 50% del Pool (35% Contrato)",
-          "context": "Hito 1: $12,000 + Hito 2: $20,250 + Hito 3: $20,250 = $52,500 en efectivo (+ $4,172.50 en 2 Monitores en H1 = $56,672.50 Beneficio Total)."
+          "label": "Daniel · 50% del Pool",
+          "context": "Cobra $12,000 en H1 + $20,250 en H2 + $20,250 en H3 = $52,500 en efectivo (+ $4,172.50 en 2 monitores en H1 = $56,672.50 total)."
         },
         {
           "value": "$41,250",
-          "label": "Omar · 25% Pool + 10% Closer (27.5% Contrato)",
-          "context": "Hito 1: $12,000 + Hito 2: $14,625 + Hito 3: $14,625 = $41,250 de utilidad (+ $10,660 de Reembolso IA en H1 = $51,910 Efectivo Total)."
+          "label": "Omar · 25% Pool + 10% Closer",
+          "context": "Pool ($6k / $10,125 / $10,125 = $26,250) + Closer ($6k / $4,500 / $4,500 = $15,000). Total en H1 $12k, H2 $14,625, H3 $14,625 (+ $10,660 reembolso IA = $51,910)."
         },
         {
           "value": "$15,750",
-          "label": "Pedro · 15% del Pool (10.5% Contrato)",
-          "context": "Hito 1: $3,600 + Hito 2: $6,075 + Hito 3: $6,075 = $15,750 de utilidad (+ $1,167.50 de Viáticos Planta en H1 = $16,917.50 Efectivo Total)."
+          "label": "Pedro · 15% del Pool",
+          "context": "Cobra $3,600 en H1 + $6,075 en H2 + $6,075 en H3 = $15,750 de utilidad (+ $1,167.50 de viáticos en H1 = $16,917.50 total)."
         },
         {
           "value": "$10,500",
-          "label": "Octavio · 10% del Pool (7% Contrato)",
-          "context": "Hito 1: $2,400 + Hito 2: $4,050 + Hito 3: $4,050 = $10,500 en efectivo directo (100% liquidado)."
+          "label": "Octavio · 10% del Pool",
+          "context": "Cobra $2,400 en H1 + $4,050 en H2 + $4,050 en H3 = $10,500 en efectivo directo."
         }
       ],
-      "notes": "Cada socio ve con total transparencia cuánto cobra en el Hito 1, en el Hito 2 y en el Hito 3 hasta completar su 100%, además de los reembolsos o equipo entregados en el Hito 1."
-    },
-    {
-      "layout": "asymmetric_split",
-      "section": "PASO 04 DE 07 // DESGLOSE DE LOS PRIMEROS $30,000 (INVERSIÓN Y CAJA EN H1)",
-      "title": "De los $30,000 de Caja en H1: $16,000 a Gastos y $14,000 Libres.",
-      "primary": {
-        "title": "3 Pagos Únicos de Arranque en Hito 1 (-$16,000.00)",
-        "description": "Se pagan de inmediato con la primera mitad ($30,000) del Hito 1:",
-        "points": [
-          "1. Reembolso de Inversión IA a Omar: $10,660.00 ($10,000 de 3 meses IA + $660 Plan)",
-          "2. Compra de 2 Monitores para Daniel: $4,172.50 ($3,199 Curvo 30\" + $973.50 Portátil 15.6\")",
-          "3. Viáticos de Planta para Pedro: $1,167.50 (traslados y representación)"
-        ]
-      },
-      "secondary": {
-        "title": "ECUACIÓN DE CAJA EN HITO 1",
-        "items": [
-          { "key": "Apartado para Caja en H1 (20% Contrato)", "value": "$30,000.00" },
-          { "key": "Menos 3 Pagos de Arranque en H1", "value": "-$16,000.00" },
-          { "key": "Queda Libre en Caja MASTERIZE", "value": "$14,000.00" },
-          { "key": "Margen Libre de Caja", "value": "46.7%" }
-        ]
-      },
-      "notes": "De los primeros $30,000 apartados en el Hito 1 se liquidan los $16,000 de inversión previa/arranque y quedan $14,000.00 MXN libres en la tesorería de MASTERIZE desde el primer cobro."
-    },
-    {
-      "layout": "asymmetric_split",
-      "section": "PASO 05 DE 07 // IGUALA MENSUAL POST-ENTREGA ($10,000/MES)",
-      "title": "Iguala de $10,000/mes: $6,000 Stack IA y $4,000 Libres/mes.",
-      "primary": {
-        "title": "Costo Operativo Mensual IA & Cloud (-$6,000/mes)",
-        "description": "Inicia al liquidar el Hito 3. La iguala paga la infraestructura y deja utilidad mensual:",
-        "points": [
-          "1. Azure Cloud & Base de Datos: $2,000.00/mes (servidores y respaldos)",
-          "2. Claude Team + Claude Code: $2,000.00/mes (licencias de desarrollo IA)",
-          "3. Plan Google AI Ultra (Gemini): $2,000.00/mes (inferencia y agentes)"
-        ]
-      },
-      "secondary": {
-        "title": "TESORERÍA ACUMULADA AÑO 1",
-        "items": [
-          { "key": "Utilidad Libre Mensual (Iguala)", "value": "+$4,000.00/mes" },
-          { "key": "Utilidad Anual Iguala (12 meses)", "value": "+$48,000.00/año" },
-          { "key": "Más Caja Libre del Hito 1", "value": "+$14,000.00" },
-          { "key": "Total Tesorería Libre Año 1", "value": "$62,000.00" }
-        ]
-      },
-      "notes": "La iguala de $10,000/mes cubre los $6,000/mes del Stack IA y deja $4,000/mes libres ($48,000 al año). Sumado a los $14,000 libres del Hito 1, MASTERIZE acumula $62,000 libres en su primer año."
+      "notes": "[SEÑALAR: Las 4 tarjetas de socios] En esta pantalla cada socio puede ver exactamente cuánto recibe en cada uno de los tres cobros y cuánto suma al final. Daniel cierra con $52,500 en efectivo más sus dos monitores. Omar suma $26,250 del Pool más $15,000 de Closer ($41,250 de utilidad) más su reembolso de $10,660. Pedro recibe $15,750 del Pool más sus viáticos. Octavio recibe $10,500 del Pool."
     },
     {
       "layout": "specs_table",
-      "section": "PASO 06 DE 07 // TABLA BANCARIA DE TRANSFERENCIAS SPEI POR HITO",
-      "title": "Tabla de Pagos SPEI por Hito ($60k · $45k · $45k).",
-      "headers": ["Socio / Bolsa", "Regla (%)", "Cobro 1: Hito 1 ($60k)", "Cobro 2: Hito 2 ($45k)", "Cobro 3: Hito 3 ($45k)", "Total Liquidado"],
+      "section": "06 // TABLA DE TRANSFERENCIAS BANCARIAS SPEI POR HITO",
+      "title": "Calendario Exacto de Dispersiones SPEI.",
+      "headers": [
+        "Concepto / Socio",
+        "Participación",
+        "Hito 1 ($60,000)",
+        "Hito 2 ($45,000)",
+        "Hito 3 ($45,000)",
+        "Total ($150,000)"
+      ],
       "rows": [
         ["Inversión y Caja MASTERIZE", "20% (100% en H1)", "$30,000.00", "$0.00", "$0.00", "$30,000.00"],
-        ["Omar · Comisión Closer", "10% por Hito", "$6,000.00", "$4,500.00", "$4,500.00", "$15,000.00"],
-        ["Daniel · 50% Pool Socios", "35% Contrato", "$12,000.00", "$20,250.00", "$20,250.00", "$52,500.00"],
-        ["Omar · 25% Pool Socios", "17.5% Contrato", "$6,000.00", "$10,125.00", "$10,125.00", "$26,250.00"],
+        ["Omar Moranza · Comisión Closer", "10% por Hito", "$6,000.00", "$4,500.00", "$4,500.00", "$15,000.00"],
+        ["Daniel · 50% Pool Socios", "35.0% Contrato", "$12,000.00", "$20,250.00", "$20,250.00", "$52,500.00"],
+        ["Omar Moranza · 25% Pool Socios", "17.5% Contrato", "$6,000.00", "$10,125.00", "$10,125.00", "$26,250.00"],
         ["Pedro · 15% Pool Socios", "10.5% Contrato", "$3,600.00", "$6,075.00", "$6,075.00", "$15,750.00"],
         ["Octavio · 10% Pool Socios", "7.0% Contrato", "$2,400.00", "$4,050.00", "$4,050.00", "$10,500.00"],
-        ["TOTAL LIQUIDADO", "100.0%", "$60,000.00", "$45,000.00", "$45,000.00", "$150,000.00"]
+        ["TOTAL DISPERSADO", "100.0%", "$60,000.00", "$45,000.00", "$45,000.00", "$150,000.00"]
       ],
-      "notes": "Tabla exacta lista para ejecutar las dispersiones SPEI en cuanto caiga cada pago de ARTEPISA."
+      "notes": "[SEÑALAR: Columna Hito 1, Hito 2 y Hito 3] Esta es la tabla bancaria oficial. Cuando cae cada depósito de ARTEPISA, solo seguimos la columna correspondiente para hacer los SPEI sin errores."
     },
     {
-      "layout": "bullets",
-      "section": "PASO 07 DE 07 // RESUMEN EJECUTIVO EN 4 PASOS Y TOTAL POR SOCIO",
-      "title": "Resumen Final: 4 Pasos y Total por Socio.",
-      "items": [
+      "layout": "asymmetric_split",
+      "section": "07 // IGUALA MENSUAL POST-ENTREGA ($10,000/MES)",
+      "title": "Iguala de $10,000/mes: $6,000 a IA y $4,000 Libres.",
+      "primary": {
+        "title": "Gasto Operativo Mensual tras Hito 3 (-$6,000.00/mes)",
+        "description": "Al terminar el Hito 3 arranca la póliza mensual de $10,000 MXN:",
+        "points": [
+          "**1. Servidor y Base de Datos Azure:** $2,000.00 MXN/mes",
+          "**2. Licencias Claude Team / Claude Code:** $2,000.00 MXN/mes",
+          "**3. Plan Google AI Ultra:** $2,000.00 MXN/mes",
+          "**4. Libre cada mes en Caja MASTERIZE:** +$4,000.00 MXN/mes (+$48,000.00 al año)"
+        ]
+      },
+      "secondary": {
+        "title": "CAJA LIBRE ACUMULADA EN EL AÑO 1",
+        "items": [
+          { "key": "Libre en Caja del Hito 1", "value": "+$14,000.00" },
+          { "key": "Libre por Mes de Iguala", "value": "+$4,000.00/mes" },
+          { "key": "Libre en 12 Meses de Iguala", "value": "+$48,000.00/año" },
+          { "key": "Total Caja Libre Año 1", "value": "$62,000.00" }
+        ]
+      },
+      "notes": "[SEÑALAR: Total Caja Libre Año 1 $62,000.00] Después de entregar el Hito 3, ARTEPISA paga $10,000 al mes de iguala. Con eso se pagan $2,000 de Azure, $2,000 de Claude y $2,000 de Google AI Ultra. Quedan $4,000 libres al mes para la Caja de MASTERIZE, que en un año son $48,000. Sumados a los $14,000 libres del Hito 1, la empresa acumula $62,000 libres en su primer año."
+    },
+    {
+      "layout": "timeline",
+      "section": "08 // RESUMEN EN 4 PASOS CRONOLÓGICOS",
+      "title": "Toda la Operación en 4 Pasos Simples.",
+      "events": [
         {
-          "title": "PASO 1 · Hito 1 (Mitad 1): Primeros $30,000 a Gastos y Caja",
-          "description": "Paga Reembolso IA Omar ($10,660), 2 Monitores Daniel ($4,172.50), Viáticos Pedro ($1,167.50) y deja $14,000 libres en Caja MASTERIZE."
+          "date": "PASO 01 · HITO 1 (MITAD 1)",
+          "title": "Primeros $30,000 a Gastos y Caja MASTERIZE",
+          "metric": "$14,000 Libres",
+          "description": "Paga Reembolso IA a Omar ($10,660), 2 Monitores de Daniel ($4,172.50) y Viáticos de Pedro ($1,167.50). Quedan $14,000 libres en Caja."
         },
         {
-          "title": "PASO 2 · Hito 1 (Mitad 2): Siguientes $30,000 a Socios",
-          "description": "Primer pago a socios por sus porcentajes ($24k Pool + $6k Closer): Daniel $12,000 · Omar $12,000 · Pedro $3,600 · Octavio $2,400."
+          "date": "PASO 02 · HITO 1 (MITAD 2)",
+          "title": "Siguientes $30,000 a Socios por Porcentaje",
+          "metric": "$30,000 Socios",
+          "description": "Daniel cobra $12,000 (50% Pool) · Omar $12,000 ($6,000 Pool + $6,000 Closer) · Pedro $3,600 (15% Pool) · Octavio $2,400 (10% Pool)."
         },
         {
-          "title": "PASO 3 · Hitos 2 y 3 ($45,000 + $45,000): Liquidación 100% a Socios",
-          "description": "El 100% de cada cobro va a socios ($0 a Caja). En cada hito: Daniel $20,250 · Omar $14,625 · Pedro $6,075 · Octavio $4,050."
+          "date": "PASO 03 · HITOS 2 Y 3",
+          "title": "Dos Cobros de $45,000 van 100% a Socios",
+          "metric": "$90,000 Socios",
+          "description": "$0 a Caja. En cada cobro de $45,000: Daniel $20,250 · Omar $14,625 ($10,125 Pool + $4,500 Closer) · Pedro $6,075 · Octavio $4,050."
         },
         {
-          "title": "PASO 4 · Iguala Mensual ($10,000/mes) y Tesorería Año 1 ($62,000)",
-          "description": "Cubre -$6,000/mes del Stack IA y deja +$4,000/mes libres (+$48,000/año), sumando $62,000 libres en el Año 1."
+          "date": "PASO 04 · POST-HITO 3",
+          "title": "Iguala de $10,000/mes y Caja Año 1",
+          "metric": "$62,000 Año 1",
+          "description": "Paga $6,000/mes de Stack IA (Azure, Claude, Google AI) y suma +$4,000/mes libres (+$48,000/año) para llegar a $62,000 en Caja."
         }
       ],
-      "notes": "Con estos 4 pasos cronológicos queda 100% claro cómo fluye y se liquida cada peso del proyecto ARTEPISA."
+      "notes": "[SEÑALAR: Los 4 pasos] Para cerrar, estos son los 4 pasos en orden cronológico. Paso 1: primeros $30k de H1 pagan gastos y dejan $14k en Caja. Paso 2: siguientes $30k de H1 van a socios. Paso 3: H2 y H3 ($45k cada uno) van 100% a socios hasta liquidar. Paso 4: la iguala de $10k/mes deja $4k libres al mes y lleva la Caja a $62,000 en el primer año."
     }
   ]
 }

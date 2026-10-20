@@ -1,606 +1,1037 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es-MX" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MASTERIZE/ARTEPISA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MASTERIZE · ARTEPISA — Presentación Financiera</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logos/masterize-app-icon.svg" />
+
+  <!-- Google Fonts oficiales de MASTERIZE: Inter Tight, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Reveal.js 5.1 (Motor /web-presentation-pro) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+
+  <!-- Sistema de diseño Apple Keynote × MASTERIZE Branding -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="design-render-field" aria-hidden="true">
-    <div class="design-lobe lobe-a"></div>
-    <div class="design-lobe lobe-b"></div>
-    <div class="design-lobe lobe-c"></div>
-    <div class="design-lobe lobe-d"></div>
-    <div class="design-lobe lobe-e"></div>
-  </div>
+<body data-deck="masterize-artepisa-finanzas" data-deck-title="ARTEPISA · Finanzas">
 
-  <div class="deck-shell" id="deckShell">
-    <header class="deck-topbar op-header">
-      <div class="deck-brand">
-        <div class="op-logo">
-          <span>M</span>
-          <div class="design-render-rim" aria-hidden="true"></div>
-        </div>
-        <div class="deck-brand-text">
-          <span class="op-brand-name">MASTERIZE</span>
-          <span class="op-brand-sub">ARTEPISA</span>
-        </div>
-        <span class="ws-anywhere-pill mint" id="statusBadge">100%</span>
-      </div>
+  <!-- Puntero Láser [L] -->
+  <div id="laser-dot" class="no-print" aria-hidden="true"></div>
 
-      <nav class="deck-steps" aria-label="Diapositivas">
-        <button type="button" class="deck-step-btn is-active" data-slide-to="0">
-          <span class="step-num">01</span><span class="step-label">Contrato</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="1">
-          <span class="step-num">02</span><span class="step-label">Hitos</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="2">
-          <span class="step-num">03</span><span class="step-label">Socios</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="3">
-          <span class="step-num">04</span><span class="step-label">Caja</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="4">
-          <span class="step-num">05</span><span class="step-label">Iguala</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="5">
-          <span class="step-num">06</span><span class="step-label">SPEI</span>
-        </button>
-        <button type="button" class="deck-step-btn" data-slide-to="6">
-          <span class="step-num">07</span><span class="step-label">Cuentas</span>
-        </button>
-        <button type="button" class="deck-step-btn" id="stepGridBtn" data-step-grid="true" title="Grid (ESC)">
-          <span class="step-label">Grid</span>
-        </button>
-      </nav>
+  <!-- Barra Superior Translúcida estilo Apple × MASTERIZE -->
+  <header class="apple-topbar no-print" role="banner">
+    <div class="topbar-brand">
+      <a href="#/0" class="brand-logo-link" aria-label="Ir al inicio">
+        <img src="assets/logos/masterize-horizontal-claro.svg" alt="MASTERIZE" class="brand-logo logo-for-dark" />
+        <img src="assets/logos/masterize-horizontal-oscuro.svg" alt="MASTERIZE" class="brand-logo logo-for-light" />
+      </a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-project-pill">ARTEPISA</span>
+    </div>
 
-      <div class="deck-actions">
-        <div class="au-switch" role="group" aria-label="Unidades">
-          <button type="button" class="au-switch-btn is-active" data-unit="mxn">$</button>
-          <button type="button" class="au-switch-btn" data-unit="pct">%</button>
-        </div>
-        <button type="button" id="overviewToggleBtn" class="op-button" title="Grid (ESC)">⊞</button>
-        <button type="button" id="notesToggleBtn" class="op-button" title="Notas (S)">Notas</button>
-        <button type="button" id="fullscreenBtn" class="op-button" title="Pantalla completa (F)">⛶</button>
-        <button type="button" id="themeToggleBtn" class="op-button theme-btn" title="Tema" aria-label="Tema">◐</button>
-      </div>
-    </header>
+    <!-- Navegación Directa por Lámina (comprensible en 1 vistazo) -->
+    <nav class="topbar-steps" aria-label="Láminas de la presentación">
+      <button type="button" class="step-pill is-active" data-slide-to="0">
+        <span class="step-pill-num">01</span><span>Portada</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="1">
+        <span class="step-pill-num">02</span><span>3 Bolsas</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="2">
+        <span class="step-pill-num">03</span><span>3 Hitos</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="3">
+        <span class="step-pill-num">04</span><span>Caja $30k</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="4">
+        <span class="step-pill-num">05</span><span>Por Socio</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="5">
+        <span class="step-pill-num">06</span><span>Tabla SPEI</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="6">
+        <span class="step-pill-num">07</span><span>Iguala $10k</span>
+      </button>
+      <button type="button" class="step-pill" data-slide-to="7">
+        <span class="step-pill-num">08</span><span>Resumen</span>
+      </button>
+    </nav>
 
-    <div class="deck-workspace">
-      <main class="deck-stage op-main" id="deckStage">
+    <!-- Controles HUD de /web-presentation-pro -->
+    <div class="topbar-hud">
+      <button type="button" class="hud-btn" id="btnToggleStudio" title="Estudio de Orador 4 Tarjetas [P]">
+        <span>Studio</span><kbd>P</kbd>
+      </button>
+      <button type="button" class="hud-btn" id="btnToggleNotes" title="Guion / Teleprompter [N]">
+        <span>Guion</span><kbd>N</kbd>
+      </button>
+      <button type="button" class="hud-btn" id="btnToggleOverview" title="Vista de Cuadrícula [ESC]">
+        <span> Mosaico</span><kbd>ESC</kbd>
+      </button>
+      <button type="button" class="hud-btn hud-btn-icon" id="btnToggleTheme" title="Cambiar Modo Oscuro / Papel Claro [T]" aria-label="Cambiar tema">
+        <span id="themeIconLabel">☀︎</span>
+      </button>
+      <button type="button" class="hud-btn hud-btn-icon" id="btnFullscreen" title="Pantalla Completa [F]" aria-label="Pantalla completa">
+        <span>⛶</span>
+      </button>
+    </div>
+  </header>
 
-        <div class="guided-banner ws-anywhere-card" id="guidedBanner" role="region" aria-label="Guía">
-          <div class="design-render-rim" aria-hidden="true"></div>
-          <div class="guided-banner-top">
-            <div class="guided-status-group">
-              <span class="guided-pulse-dot" id="guidedPulseDot"></span>
-              <span class="ws-eyebrow" id="guidedStepBadge">01/07</span>
-              <span class="ws-anywhere-pill on" id="guidedSubstepPill" hidden>70%</span>
-              <div class="guided-substep-tabs" id="guidedSubstepTabs" role="tablist"></div>
+  <!-- Escenario Principal Reveal.js (1600×900 en Desktop / Nativo legible en Móvil) -->
+  <div class="reveal" id="revealDeck">
+    <div class="slides">
+
+      <!-- =====================================================================
+           SLIDE 01: PORTADA APPLE KEYNOTE × MASTERIZE ($150,000 MXN)
+           ===================================================================== -->
+      <section
+        data-layout="S01"
+        data-title="El Contrato ARTEPISA: $150,000 MXN en 3 Bolsas"
+        data-notes="[SEÑALAR: $150,000 MXN] Aquí está todo el acuerdo en una sola pantalla. El contrato de ARTEPISA es de $150,000 pesos sin IVA ($174,000 con IVA). [PAUSA] Se divide en tres bolsas muy simples: 70% ($105,000) para repartir entre los 4 socios, 20% ($30,000) para pagar todos los gastos de arranque y dejar dinero libre en la Caja de MASTERIZE, y 10% ($15,000) de comisión de cierre comercial para Omar. En la siguiente lámina vemos cada bolsa."
+      >
+        <div class="mz-slide-frame mz-cover-frame">
+          <div class="mz-cover-top">
+            <div class="mz-kicker-row">
+              <img src="assets/logos/masterize-isotipo-violeta.svg" alt="" class="mz-iso-mark" />
+              <span class="mz-kicker">LÁMINA 01 DE 08 // ACUERDO FINANCIERO DE SOCIOS</span>
             </div>
-            <div class="guided-banner-actions">
-              <button type="button" class="op-button guided-auto-btn" id="autoPlayBannerBtn" title="Auto (P)">
-                <span id="autoPlayBannerIcon">▶</span>
-                <span id="autoPlayBannerLabel">Auto</span>
-              </button>
-              <button type="button" class="ws-primary guided-next-pill" id="bannerNextStepBtn" title="Siguiente (→)">
-                <span id="bannerNextStepLabel">02 →</span>
-              </button>
-            </div>
-          </div>
-          <p class="guided-narrative" id="guidedNarrativeText">$150,000</p>
-          <div class="guided-progress-track" aria-hidden="true">
-            <div class="guided-progress-fill" id="guidedProgressFill" style="width: 33%"></div>
-          </div>
-        </div>
-
-        <!-- SLIDE 01: CONTRATO ($150,000 -> 70% / 20% / 10%) -->
-        <section class="deck-slide is-active" data-slide="0" data-section="hero">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow">01/CONTRATO</span>
-              <span class="ws-anywhere-pill on" id="ivaBadge">+IVA $174,000</span>
-            </div>
-
-            <h1 class="slide-title" id="slide1MainTitle">$150,000</h1>
-
-            <div class="hero-contract-bar ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <div class="hero-input-row">
-                <div class="hero-input-label">
-                  <strong>Sin IVA</strong>
-                  <span id="heroHitosInline">$60k/$45k/$45k</span>
-                </div>
-                <div class="biz-bank-InputWrap">
-                  <span class="biz-currency-prefix">$</span>
-                  <input
-                    id="contractGrossInput"
-                    class="biz-gross-input"
-                    type="number"
-                    min="0"
-                    step="1000"
-                    value="150000"
-                    aria-label="Contrato bruto MXN"
-                  />
-                </div>
-              </div>
-
-              <div class="split-master-bar" aria-label="70/20/10">
-                <div class="split-seg seg-pool" id="segPoolBar" style="width:70%"><span id="segPoolLabel">70%</span></div>
-                <div class="split-seg seg-caja" id="segCajaBar" style="width:20%"><span id="segCajaLabel">20%</span></div>
-                <div class="split-seg seg-closer" id="segCloserBar" style="width:10%"><span id="segCloserLabel">10%</span></div>
-              </div>
-
-              <dl class="ws-anywhere-counts hero-three-buckets">
-                <div class="bucket-card is-pool">
-                  <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>70% POOL</span><span class="dot-pool"></span></dt>
-                  <dd id="wellPoolTotal">$105,000</dd>
-                  <small id="wellPoolSub">Socios</small>
-                  <div class="bucket-mini-pills" id="poolMiniPills"></div>
-                </div>
-                <div class="bucket-card is-caja">
-                  <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>20% CAJA</span><span class="dot-caja"></span></dt>
-                  <dd id="wellCajaTotal">$30,000</dd>
-                  <small id="wellCajaSub">$14,000 Libre</small>
-                  <div class="bucket-mini-pills" id="cajaMiniPills"></div>
-                </div>
-                <div class="bucket-card is-closer">
-                  <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>10% CLOSER</span><span class="dot-closer"></span></dt>
-                  <dd id="wellCloserTotal">$15,000</dd>
-                  <small id="wellCloserSub">Omar</small>
-                  <div class="bucket-mini-pills" id="closerMiniPills"></div>
-                </div>
-              </dl>
-
-              <div class="biz-bank-art" id="bankSparkArt" aria-label="Curva"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SLIDE 02: HITOS ($60K = $30K CAJA + $30K SOCIOS; H2/H3 100% SOCIOS) -->
-        <section class="deck-slide" data-slide="1" data-section="hitos">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow" id="slide2Eyebrow">02/HITOS</span>
-              <span class="ws-anywhere-pill on" id="hitoChartTitle">$60k/$45k/$45k</span>
-            </div>
-
-            <h2 class="slide-title" id="slide2MainTitle">H1 $60,000</h2>
-
-            <article class="ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <header>
-                <div class="biz-rev-legend">
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Caja <span id="slide2CajaSplitLegend">20%</span></span>
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#c8afe9"></span>Pool 70%</span>
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#f5a524"></span>Closer 10%</span>
-                </div>
-                <div class="au-switch" role="group" aria-label="Hito">
-                  <button type="button" class="au-switch-btn is-active" data-hito="total" id="hitoTotalBtn">$150k</button>
-                  <button type="button" class="au-switch-btn" data-hito="h1">H1</button>
-                  <button type="button" class="au-switch-btn" data-hito="h2">H2</button>
-                  <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
-                </div>
-              </header>
-
-              <div class="h1-split-showcase" id="h1SplitShowcase"></div>
-              <div class="hito-cards-grid" id="hitoSummaryCards"></div>
-              <div class="biz-revenue-chart" id="milestoneBarChart"></div>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 03: SOCIOS (50%/25%/15%/10%) -->
-        <section class="deck-slide" data-slide="2" data-section="orbs">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow">03/SOCIOS</span>
-              <div class="au-controls">
-                <div class="au-switch" role="group" aria-label="Hito">
-                  <button type="button" class="au-switch-btn is-active" data-hito="total">Total</button>
-                  <button type="button" class="au-switch-btn" data-hito="h1">H1</button>
-                  <button type="button" class="au-switch-btn" data-hito="h2">H2</button>
-                  <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
-                </div>
-                <div class="au-switch" role="group" aria-label="Grupo">
-                  <button type="button" class="au-switch-btn is-active" data-orb-group="partners">Socios</button>
-                  <button type="button" class="au-switch-btn" data-orb-group="buckets">Bolsas</button>
-                </div>
-                <div class="au-switch" role="group" aria-label="Modo">
-                  <button type="button" class="au-switch-btn is-active" data-render-mode="orb">●</button>
-                  <button type="button" class="au-switch-btn" data-render-mode="bar">▮</button>
-                </div>
-              </div>
-            </div>
-
-            <h2 class="slide-title" id="orbStageHeadline">Socios</h2>
-
-            <div class="au-grid" id="orbGrid"></div>
-          </div>
-        </section>
-
-        <!-- SLIDE 04: CAJA H1 ($30,000 -> $14,000 LIBRE) -->
-        <section class="deck-slide" data-slide="3" data-section="dials">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow" id="slide4Eyebrow">04/CAJA H1</span>
-              <span class="ws-anywhere-pill on" id="cajaGrossPill">-$16,000</span>
-            </div>
-
-            <h2 class="slide-title"><span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span></h2>
-
-            <article class="ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <div class="caja-breakdown-bar-wrap" id="cajaBreakdownBarWrap"></div>
-
-              <div class="inst-body">
-                <div class="dial-wrap">
-                  <svg id="cajaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
-                  <div class="dial-center">
-                    <div class="dial-val" id="cajaDialVal">$14,000</div>
-                    <div class="dial-caption">LIBRE</div>
-                    <div class="dial-pct-badge" id="cajaDialPct">46.7%</div>
-                  </div>
-                </div>
-
-                <div class="ctrl-list">
-                  <div class="ctrl-row">
-                    <div class="ctrl-left">
-                      <input type="checkbox" id="chkOmarReimb" class="ctrl-check" checked />
-                      <div class="ctrl-label-group">
-                        <label for="chkOmarReimb" class="ctrl-name">Omar IA</label>
-                        <span class="ctrl-meta">$10k+$660</span>
-                      </div>
-                    </div>
-                    <input type="number" id="inpOmarReimb" class="ctrl-input" value="10660" min="0" step="100" />
-                  </div>
-
-                  <div class="ctrl-row">
-                    <div class="ctrl-left">
-                      <input type="checkbox" id="chkMon30" class="ctrl-check" checked />
-                      <div class="ctrl-label-group">
-                        <label for="chkMon30" class="ctrl-name">
-                          Daniel 30"
-                          <a href="https://www.mercadolibre.com.mx/monitor-gamer-curvo-fyhxele-30-pulgadas-2k-wfhd-200hz-1ms/p/MLM52822704" target="_blank" rel="noopener noreferrer" class="ml-chip">ML↗</a>
-                        </label>
-                      </div>
-                    </div>
-                    <input type="number" id="inpMon30" class="ctrl-input" value="3199" min="0" step="50" />
-                  </div>
-
-                  <div class="ctrl-row">
-                    <div class="ctrl-left">
-                      <input type="checkbox" id="chkMon15" class="ctrl-check" checked />
-                      <div class="ctrl-label-group">
-                        <label for="chkMon15" class="ctrl-name">
-                          Daniel 15.6"
-                          <a href="https://articulo.mercadolibre.com.mx/MLM-2215895794-monitor-portatil-156-fhd-1080p-ips-hdr-usb-c-hdmi-con-funda-_JM" target="_blank" rel="noopener noreferrer" class="ml-chip">ML↗</a>
-                        </label>
-                        <span class="ctrl-meta"><strong id="monTotalInline">$4,172.50</strong></span>
-                      </div>
-                    </div>
-                    <input type="number" id="inpMon15" class="ctrl-input" value="973.50" min="0" step="25" />
-                  </div>
-
-                  <div class="ctrl-slider-row">
-                    <div class="ctrl-slider-top">
-                      <div class="ctrl-left">
-                        <input type="checkbox" id="chkViaticos" class="ctrl-check" checked />
-                        <div class="ctrl-label-group">
-                          <label for="chkViaticos" class="ctrl-name">Pedro Viáticos</label>
-                        </div>
-                      </div>
-                      <input type="number" id="inpViaticos" class="ctrl-input" value="1167.50" min="0" step="50" />
-                    </div>
-                    <input type="range" id="rngViaticos" class="ctrl-range" min="0" max="6000" step="25" value="1167.50" />
-                    <div class="preset-pills">
-                      <button type="button" class="preset-pill" data-viaticos="0">$0</button>
-                      <button type="button" class="preset-pill is-active" data-viaticos="1167.5">$1,167.50</button>
-                      <button type="button" class="preset-pill" data-viaticos="1500">$1,500</button>
-                      <button type="button" class="preset-pill" data-viaticos="2500">$2,500</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 05: IGUALA MENSUAL ($10,000/MES -> $4,000 LIBRE) -->
-        <section class="deck-slide" data-slide="4" data-section="iguala">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow">05/IGUALA</span>
-              <span class="ws-anywhere-pill on" id="igualaAnnualPill">+$48,000/año</span>
-            </div>
-
-            <h2 class="slide-title"><span id="slide5GrossHeadline">$10,000</span> → <span id="slide5FreeHeadline">$4,000</span>/mes</h2>
-
-            <article class="ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <div class="caja-breakdown-bar-wrap" id="igualaBreakdownBarWrap"></div>
-
-              <div class="inst-body">
-                <div class="dial-wrap">
-                  <svg id="igualaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
-                  <div class="dial-center">
-                    <div class="dial-val" id="igualaDialVal">$4,000</div>
-                    <div class="dial-caption">LIBRE</div>
-                    <div class="dial-pct-badge" id="igualaDialPct">40.0%</div>
-                  </div>
-                </div>
-
-                <div class="ctrl-list">
-                  <div class="ctrl-row">
-                    <div class="ctrl-label-group">
-                      <label for="inpIgualaGross" class="ctrl-name">Iguala</label>
-                    </div>
-                    <input type="number" id="inpIgualaGross" class="ctrl-input" value="10000" min="0" step="500" />
-                  </div>
-
-                  <div class="ctrl-row">
-                    <div class="ctrl-label-group">
-                      <label for="inpAzure" class="ctrl-name">Azure</label>
-                    </div>
-                    <input type="number" id="inpAzure" class="ctrl-input" value="2000" min="0" step="100" />
-                  </div>
-
-                  <div class="ctrl-row">
-                    <div class="ctrl-label-group">
-                      <label for="inpClaude" class="ctrl-name">Claude</label>
-                    </div>
-                    <input type="number" id="inpClaude" class="ctrl-input" value="2000" min="0" step="100" />
-                  </div>
-
-                  <div class="ctrl-row">
-                    <div class="ctrl-label-group">
-                      <label for="inpGoogleAi" class="ctrl-name">Google AI</label>
-                    </div>
-                    <input type="number" id="inpGoogleAi" class="ctrl-input" value="2000" min="0" step="100" />
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 06: SPEI POR HITO -->
-        <section class="deck-slide" data-slide="5" data-section="spei">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow">06/SPEI</span>
-              <div class="au-controls">
-                <span class="ws-anywhere-pill on" id="speiCheckLabel">$150,000.00</span>
-                <button id="resetBtn" type="button" class="op-button">Reset</button>
-                <button id="exportCsvBtn" type="button" class="ws-primary">CSV</button>
-              </div>
-            </div>
-
-            <h2 class="slide-title"><span id="slide6Headline">$60k/$45k/$45k</span></h2>
-
-            <article class="ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <div class="spei-table-wrap">
-                <table class="spei-table">
-                  <thead>
-                    <tr>
-                      <th>Cuenta</th>
-                      <th>%</th>
-                      <th id="speiThH1">H1</th>
-                      <th id="speiThH2">H2</th>
-                      <th id="speiThH3">H3</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody id="speiTableBody"></tbody>
-                  <tfoot id="speiTableFoot"></tfoot>
-                </table>
-              </div>
-              <div class="spei-h1-callout" id="speiH1CashCallout"></div>
-            </article>
-          </div>
-        </section>
-
-        <!-- SLIDE 07: CUENTAS FINALES -->
-        <section class="deck-slide" data-slide="6" data-section="steps">
-          <div class="slide-inner">
-            <div class="slide-head">
-              <span class="ws-eyebrow">07/CUENTAS</span>
-              <span class="ws-anywhere-pill mint">Año 1 Libre: <strong id="slide7TreasuryVal">$62,000</strong></span>
-            </div>
-
-            <h2 class="slide-title">Cuentas · <span id="slide7Headline">$62,000</span> Caja Año 1</h2>
-
-            <div class="steps-grid" id="nextStepsGrid">
-              <article class="step-card ws-anywhere-card">
-                <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge" id="step1Badge">01</div>
-                <strong class="step-card-title" id="step1Title">$30,000</strong>
-                <p class="step-card-desc"><span>IA <code id="step2Omar"></code></span><span>Mon <code id="step2Mon"></code></span><span>Viat <code id="step2Viat"></code></span><span>Libre <code id="step1Caja"></code></span></p>
-              </article>
-
-              <article class="step-card ws-anywhere-card">
-                <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge" id="step2Badge">02</div>
-                <strong class="step-card-title" id="step2Title">$30,000</strong>
-                <p class="step-card-desc"><span>Dan <code id="step1Daniel"></code></span><span>Omar <code id="step1Omar"></code></span><span>Ped <code id="step1Pedro"></code></span><span>Oct <code id="step1Octavio"></code></span></p>
-              </article>
-
-              <article class="step-card ws-anywhere-card">
-                <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">03 · H2+H3 (×2)</div>
-                <strong class="step-card-title" id="step3Title">$45k × 2</strong>
-                <p class="step-card-desc"><span>Dan <code id="step3Daniel"></code></span><span>Omar <code id="step3Omar"></code></span><span>Ped <code id="step3Pedro"></code></span><span>Oct <code id="step3Octavio"></code></span></p>
-              </article>
-
-              <article class="step-card ws-anywhere-card">
-                <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">04 · IGUALA</div>
-                <strong class="step-card-title" id="step4Title">$10,000/m</strong>
-                <p class="step-card-desc"><span>IA <code id="step4Stack"></code></span><span>Libre <code id="step4Free"></code></span><span><code id="step4Annual"></code></span></p>
-              </article>
-            </div>
-
-            <div class="exec-kpi-strip ws-anywhere-card">
-              <div class="design-render-rim" aria-hidden="true"></div>
-              <div class="exec-kpi-item">
-                <span class="op-mini-label">Daniel</span>
-                <span class="op-mini-val" id="sideDanielTotal">$56,672.50</span>
-                <small class="op-mini-sub" id="sideDanielSub"></small>
-              </div>
-              <div class="exec-kpi-item">
-                <span class="op-mini-label">Omar</span>
-                <span class="op-mini-val" id="sideOmarCash">$51,910</span>
-                <small class="op-mini-sub" id="sideOmarSub"></small>
-              </div>
-              <div class="exec-kpi-item">
-                <span class="op-mini-label">Pedro</span>
-                <span class="op-mini-val" id="sidePedroTotal">$16,917.50</span>
-                <small class="op-mini-sub" id="sidePedroSub"></small>
-              </div>
-              <div class="exec-kpi-item">
-                <span class="op-mini-label">Octavio</span>
-                <span class="op-mini-val" id="sideOctavioTotal">$10,500</span>
-                <small class="op-mini-sub" id="sideOctavioSub">10%</small>
-              </div>
-              <div class="exec-kpi-item">
-                <span class="op-mini-label">Caja</span>
-                <span class="op-mini-val" id="sideCajaFree">$14,000</span>
-                <small class="op-mini-sub">+<span id="sideIgualaFree">$4,000/m</span></small>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- AGENTIC OS V4.7 LIVE COMPANION RAIL -->
-      <aside class="op-companion-rail" aria-label="Tesorería">
-        <article class="ws-anywhere-card vd-card">
-          <div class="design-render-rim" aria-hidden="true"></div>
-          <div class="vd-head">
-            <span class="vd-status">
-              <span class="vd-mood-dot" id="vdMoodDot"></span>
-              <span id="vdModeLabel">AÑO 1</span>
+            <span class="mz-status-pill">
+              <span class="mz-status-dot"></span>
+              <span>Facturado con IVA (16%): <strong id="coverWithIva">$174,000 MXN</strong></span>
             </span>
-            <button type="button" class="vd-mood-btn" id="vdMoodCycleBtn">IDLE</button>
           </div>
 
-          <div class="vd-stage" id="voiceDockStage">
-            <canvas id="nebulaCanvas" width="216" height="158"></canvas>
-            <canvas id="voiceOrbCanvas" width="224" height="224"></canvas>
+          <div class="mz-cover-hero">
+            <p class="mz-eyebrow-apple">Contrato de Implementación ARTEPISA (Sin IVA)</p>
+            <h1 class="mz-hero-number" id="coverContractTotal">$150,000 <small>MXN</small></h1>
+            <p class="mz-hero-subtitle">
+              Se cobra en <strong>3 hitos</strong> (<span id="coverHitosInline">$60,000 · $45,000 · $45,000</span>) y se reparte en <strong>3 bolsas claras</strong>:
+            </p>
           </div>
 
-          <div class="vd-foot">
-            <div class="vd-treasury-row">
-              <div class="vd-treasury-copy">
-                <span class="vd-treasury-label">LIBRE</span>
-                <small class="vd-treasury-sub" id="vdTreasuryFormula">$14k+$48k</small>
+          <!-- 3 Bolsas en Tarjetas Apple Bento -->
+          <div class="mz-bento-grid mz-bento-3">
+            <article class="mz-bento-card is-highlight-subtle">
+              <div class="mz-card-top">
+                <span class="mz-badge-pct">70% del Contrato</span>
+                <span class="mz-dot-indicator is-violet"></span>
               </div>
-              <strong class="vd-treasury-val" id="vdTreasuryVal">$62,000</strong>
-            </div>
-            <div class="vd-mood-strip" role="group" aria-label="Mood">
-              <button type="button" class="vd-pill is-active" data-orb-mood="idle">Idle</button>
-              <button type="button" class="vd-pill" data-orb-mood="listening">Listen</button>
-              <button type="button" class="vd-pill" data-orb-mood="thinking">Think</button>
-              <button type="button" class="vd-pill" data-orb-mood="working">Work</button>
-              <button type="button" class="vd-pill" data-orb-mood="speaking">Speak</button>
-            </div>
-          </div>
-        </article>
+              <div class="mz-card-value" id="coverPoolVal">$105,000</div>
+              <h2 class="mz-card-title">Pool de los 4 Socios</h2>
+              <p class="mz-card-desc">
+                Daniel <strong>50%</strong> (<span id="coverDanVal">$52,500</span>) · Omar <strong>25%</strong> (<span id="coverOmarPoolVal">$26,250</span>) · Pedro <strong>15%</strong> (<span id="coverPedVal">$15,750</span>) · Octavio <strong>10%</strong> (<span id="coverOctVal">$10,500</span>).
+              </p>
+            </article>
 
-        <article class="ws-anywhere-card orbit-card" id="providerOrbitCard">
-          <div class="design-render-rim" aria-hidden="true"></div>
-          <div class="vd-head">
-            <span class="ws-eyebrow">STACK IA</span>
-            <span class="ws-anywhere-pill mint" id="orbitStackMeta">$6,000/m</span>
-          </div>
+            <article class="mz-bento-card">
+              <div class="mz-card-top">
+                <span class="mz-badge-pct is-emerald">20% del Contrato</span>
+                <span class="mz-dot-indicator is-emerald"></span>
+              </div>
+              <div class="mz-card-value" id="coverCajaVal">$30,000</div>
+              <h2 class="mz-card-title">Inversión y Caja MASTERIZE</h2>
+              <p class="mz-card-desc">
+                Se aparta completo en el Hito 1. Paga <strong id="coverExpensesVal">$16,000</strong> de gastos de arranque y deja <strong class="text-emerald" id="coverCajaFreeVal">$14,000 libres</strong> en Caja.
+              </p>
+            </article>
 
-          <div class="provider-orbit-wrap" id="providerOrbit">
-            <div class="provider-orbit-ring">
-              <div class="orbit-node node-claude" data-orbit-provider="claude" title="Claude ($2,000/mes)">
-                <span class="orbit-pulse"></span>
-                <span class="orbit-label">Claude</span>
+            <article class="mz-bento-card">
+              <div class="mz-card-top">
+                <span class="mz-badge-pct is-amber">10% del Contrato</span>
+                <span class="mz-dot-indicator is-amber"></span>
               </div>
-              <div class="orbit-node node-gemini" data-orbit-provider="gemini" title="Gemini ($2,000/mes)">
-                <span class="orbit-pulse"></span>
-                <span class="orbit-label">Gemini</span>
-              </div>
-              <div class="orbit-node node-azure" data-orbit-provider="azure" title="Azure ($2,000/mes)">
-                <span class="orbit-pulse"></span>
-                <span class="orbit-label">Azure</span>
-              </div>
-              <div class="orbit-node node-jev" data-orbit-provider="jev" title="Iguala $10,000/mes">
-                <span class="orbit-pulse"></span>
-                <span class="orbit-label">Iguala</span>
-              </div>
-            </div>
-            <div class="provider-orbit-core">
-              <span class="orbit-core-title">IA</span>
-              <span class="orbit-core-sub">ON</span>
-            </div>
+              <div class="mz-card-value" id="coverCloserVal">$15,000</div>
+              <h2 class="mz-card-title">Comisión Closer (Omar)</h2>
+              <p class="mz-card-desc">
+                10% en cada cobro por cierre comercial: <strong id="coverCloserH1">$6,000</strong> en Hito 1 · <strong id="coverCloserH2">$4,500</strong> en Hito 2 · <strong id="coverCloserH3">$4,500</strong> en Hito 3.
+              </p>
+            </article>
           </div>
 
-          <div class="orbit-quick-nav" role="group" aria-label="Atajos">
-            <button type="button" class="orbit-nav-btn is-active" data-view="all">
-              <span>Contrato</span>
-              <strong id="navPillAll">$150k</strong>
-            </button>
-            <button type="button" class="orbit-nav-btn" data-view="orbs">
-              <span>Socios</span>
-              <strong>70%</strong>
-            </button>
-            <button type="button" class="orbit-nav-btn" data-view="dials">
-              <span>Caja</span>
-              <strong id="navPillCaja">$14k+$4k</strong>
-            </button>
-            <button type="button" class="orbit-nav-btn" data-view="spei">
-              <span>SPEI</span>
-              <strong>CSV</strong>
-            </button>
-          </div>
-        </article>
-      </aside>
-    </div>
-
-    <aside class="speaker-notes-bar" id="speakerNotesBar" hidden>
-      <div class="speaker-notes-inner">
-        <div class="speaker-notes-meta">
-          <span class="ws-eyebrow">NOTAS</span>
-          <span class="ws-anywhere-pill" id="speakerTimer">00:00</span>
-          <span class="ws-anywhere-pill on" id="speakerNextSlide">02</span>
+          <footer class="mz-cover-footer">
+            <span><strong>MASTERIZE TECH SOLUTIONS</strong> · Finanzas Internas</span>
+            <span>Usa las flechas <strong>← →</strong> o toca <strong>Siguiente</strong> para ver paso a paso</span>
+          </footer>
         </div>
-        <p id="speakerNoteText">$150,000</p>
-      </div>
-    </aside>
+      </section>
 
-    <div class="deck-blackout" id="deckBlackout" hidden aria-hidden="true">
-      <div class="deck-blackout-hint"><code>B</code>/<code>ESC</code></div>
-    </div>
+      <!-- =====================================================================
+           SLIDE 02: LAS 3 BOLSAS DEL CONTRATO (S20 STACKED KPI LEDGER)
+           ===================================================================== -->
+      <section
+        data-layout="S20"
+        data-title="Las 3 Bolsas del Contrato ($150,000 sin IVA)"
+        data-notes="[SEÑALAR: Barra de proporción 70 / 20 / 10] Por cada peso que entra sin IVA, la regla general es fija: 70 centavos van a la bolsa de socios, 20 centavos a la Caja de MASTERIZE y 10 centavos a la comisión comercial de cierre. [PAUSA] Si sumamos $105,000 más $30,000 más $15,000, da exactamente los $150,000 del contrato."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 02 · LA REGLA GENERAL DEL CONTRATO</span>
+            <span class="mz-slide-index">02 / 08</span>
+          </div>
 
-    <footer class="deck-footer" id="deckFooter">
-      <div class="deck-progress-track">
-        <div class="deck-progress-bar" id="deckProgressBar" style="width: 14.28%"></div>
-      </div>
-      <div class="deck-footer-controls">
-        <button type="button" id="prevSlideBtn" class="op-button footer-prev-btn" title="Anterior (←)">←</button>
-        <button type="button" id="autoPlayBtn" class="op-button footer-auto-btn" title="Auto (P)">Auto</button>
-        <div class="deck-counter">
-          <span id="slideCounterText">01/07</span>
-          <span id="slideNameText">Contrato</span>
+          <h2 class="mz-slide-title">¿A dónde va cada peso de los <span id="s2TitleGross">$150,000</span>?</h2>
+          <p class="mz-slide-lead">
+            Antes de ver los 3 pagos, así se divide el total del contrato en tres bolsas exactas:
+          </p>
+
+          <!-- Barra Proporcional Apple 70% / 20% / 10% -->
+          <div class="mz-proportion-bar" aria-label="Proporción 70% Socios, 20% Caja, 10% Closer">
+            <div class="mz-prop-seg is-violet" style="width: 70%">
+              <span>70% Socios (<strong id="s2BarPool">$105,000</strong>)</span>
+            </div>
+            <div class="mz-prop-seg is-emerald" style="width: 20%">
+              <span>20% Caja (<strong id="s2BarCaja">$30,000</strong>)</span>
+            </div>
+            <div class="mz-prop-seg is-amber" style="width: 10%">
+              <span>10% Closer (<strong id="s2BarCloser">$15,000</strong>)</span>
+            </div>
+          </div>
+
+          <!-- Libro Mayor S20 (3 Filas Limpias) -->
+          <div class="mz-ledger-card">
+            <div class="mz-ledger-row">
+              <div class="mz-ledger-amount text-accent" id="s2RowPool">$105,000</div>
+              <div class="mz-ledger-body">
+                <div class="mz-ledger-title">1. Bolsa de los 4 Socios (70% del contrato)</div>
+                <div class="mz-ledger-desc">
+                  Se reparte según el porcentaje de cada socio en el Pool: <strong>Daniel 50%</strong> (<span id="s2Dan">$52,500</span>) · <strong>Omar 25%</strong> (<span id="s2Omar">$26,250</span>) · <strong>Pedro 15%</strong> (<span id="s2Ped">$15,750</span>) · <strong>Octavio 10%</strong> (<span id="s2Oct">$10,500</span>).
+                </div>
+              </div>
+              <div class="mz-ledger-tag">70.0%</div>
+            </div>
+
+            <div class="mz-ledger-row">
+              <div class="mz-ledger-amount text-emerald" id="s2RowCaja">$30,000</div>
+              <div class="mz-ledger-body">
+                <div class="mz-ledger-title">2. Bolsa de Inversión y Caja MASTERIZE (20% del contrato)</div>
+                <div class="mz-ledger-desc">
+                  Se llena al 100% desde el primer cobro (Hito 1). Cubre todos los gastos de arranque (<strong id="s2Exp">$16,000</strong>) y deja <strong class="text-emerald" id="s2Free">$14,000 libres</strong> en la cuenta de MASTERIZE.
+                </div>
+              </div>
+              <div class="mz-ledger-tag is-emerald">20.0%</div>
+            </div>
+
+            <div class="mz-ledger-row">
+              <div class="mz-ledger-amount text-amber" id="s2RowCloser">$15,000</div>
+              <div class="mz-ledger-body">
+                <div class="mz-ledger-title">3. Comisión Closer por Cierre Comercial (10% del contrato)</div>
+                <div class="mz-ledger-desc">
+                  Para <strong>Omar Moranza</strong> por el cierre de la cuenta. Se paga el 10% de cada cobro: <strong id="s2CloserH1">$6,000</strong> en Hito 1 + <strong id="s2CloserH2">$4,500</strong> en Hito 2 + <strong id="s2CloserH3">$4,500</strong> en Hito 3.
+                </div>
+              </div>
+              <div class="mz-ledger-tag is-amber">10.0%</div>
+            </div>
+          </div>
         </div>
-        <button type="button" id="nextSlideBtn" class="ws-primary one-tap-main-btn">02 →</button>
-      </div>
-    </footer>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 03: CÓMO SE REPARTEN LOS 3 COBROS / HITOS (S06 KPI TOWER)
+           ===================================================================== -->
+      <section
+        data-layout="S06"
+        data-title="Cómo se reparten los 3 Cobros (Hitos 1, 2 y 3)"
+        data-notes="[SEÑALAR: Hito 1 $60,000] ¿Cómo se reparte el dinero cuando paga el cliente? Muy fácil: en el Hito 1 entran $60,000 y se parten exactamente a la mitad. Los primeros $30,000 llenan toda la bolsa de Caja y gastos. Los otros $30,000 van a los socios. [PAUSA] Como en el Hito 1 ya quedó pagada toda la Caja, cuando entran el Hito 2 ($45,000) y el Hito 3 ($45,000), ya no se quita nada para Caja: el 100% va directo a los socios hasta liquidar."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 03 · CALENDARIO DE LOS 3 COBROS AL CLIENTE</span>
+            <span class="mz-slide-index">03 / 08</span>
+          </div>
+
+          <h2 class="mz-slide-title">Hito 1 se parte 50/50. Hitos 2 y 3 van 100% a Socios.</h2>
+          <p class="mz-slide-lead">
+            La Caja de <strong id="s3LeadCaja">$30,000</strong> se aparta completa en el Hito 1 para que los Hitos 2 y 3 vayan íntegros al equipo:
+          </p>
+
+          <div class="mz-bento-grid mz-bento-3 mz-hitos-grid">
+            <!-- HITO 1 -->
+            <article class="mz-bento-card mz-hito-card is-primary-hito">
+              <div class="mz-hito-head">
+                <span class="mz-hito-badge is-violet">COBRO 1 · HITO 1 (40% AL FIRMAR)</span>
+                <div class="mz-hito-amount" id="s3H1Gross">$60,000</div>
+              </div>
+
+              <div class="mz-hito-split-visual">
+                <div class="mz-split-half is-emerald">
+                  <span class="mz-half-label">MITAD 1 · CAJA (50%)</span>
+                  <strong class="mz-half-val" id="s3H1Caja">$30,000</strong>
+                  <small class="mz-half-sub">Paga $16k gastos + deja $14k libres</small>
+                </div>
+                <div class="mz-split-half is-violet">
+                  <span class="mz-half-label">MITAD 2 · SOCIOS (50%)</span>
+                  <strong class="mz-half-val" id="s3H1Socios">$30,000</strong>
+                  <small class="mz-half-sub">1er pago a socios por %</small>
+                </div>
+              </div>
+
+              <ul class="mz-mini-breakdown">
+                <li><span>Caja y Gastos MASTERIZE</span><strong class="text-emerald" id="s3H1ListCaja">$30,000</strong></li>
+                <li><span>Closer Omar (10% de H1)</span><strong class="text-amber" id="s3H1ListCloser">$6,000</strong></li>
+                <li><span>Daniel (50% Pool)</span><strong id="s3H1ListDan">$12,000</strong></li>
+                <li><span>Omar (25% Pool)</span><strong id="s3H1ListOmar">$6,000</strong></li>
+                <li><span>Pedro (15% Pool)</span><strong id="s3H1ListPed">$3,600</strong></li>
+                <li><span>Octavio (10% Pool)</span><strong id="s3H1ListOct">$2,400</strong></li>
+              </ul>
+            </article>
+
+            <!-- HITO 2 -->
+            <article class="mz-bento-card mz-hito-card">
+              <div class="mz-hito-head">
+                <span class="mz-hito-badge">COBRO 2 · HITO 2 (30% AVANCE)</span>
+                <div class="mz-hito-amount" id="s3H2Gross">$45,000</div>
+              </div>
+
+              <div class="mz-hito-split-visual is-single">
+                <div class="mz-split-half is-violet">
+                  <span class="mz-half-label">100% DIRECTO A SOCIOS ($0 A CAJA)</span>
+                  <strong class="mz-half-val" id="s3H2Socios">$45,000</strong>
+                  <small class="mz-half-sub">La Caja ya quedó cubierta en el Hito 1</small>
+                </div>
+              </div>
+
+              <ul class="mz-mini-breakdown">
+                <li><span>Caja MASTERIZE (Ya cubierta)</span><strong class="text-muted">$0</strong></li>
+                <li><span>Closer Omar (10% de H2)</span><strong class="text-amber" id="s3H2ListCloser">$4,500</strong></li>
+                <li><span>Daniel (50% Pool)</span><strong id="s3H2ListDan">$20,250</strong></li>
+                <li><span>Omar (25% Pool)</span><strong id="s3H2ListOmar">$10,125</strong></li>
+                <li><span>Pedro (15% Pool)</span><strong id="s3H2ListPed">$6,075</strong></li>
+                <li><span>Octavio (10% Pool)</span><strong id="s3H2ListOct">$4,050</strong></li>
+              </ul>
+            </article>
+
+            <!-- HITO 3 -->
+            <article class="mz-bento-card mz-hito-card">
+              <div class="mz-hito-head">
+                <span class="mz-hito-badge">COBRO 3 · HITO 3 (30% ENTREGA FINAL)</span>
+                <div class="mz-hito-amount" id="s3H3Gross">$45,000</div>
+              </div>
+
+              <div class="mz-hito-split-visual is-single">
+                <div class="mz-split-half is-violet">
+                  <span class="mz-half-label">100% DIRECTO A SOCIOS · LIQUIDACIÓN</span>
+                  <strong class="mz-half-val" id="s3H3Socios">$45,000</strong>
+                  <small class="mz-half-sub">Con este pago se liquida el 100% a cada socio</small>
+                </div>
+              </div>
+
+              <ul class="mz-mini-breakdown">
+                <li><span>Caja MASTERIZE (Ya cubierta)</span><strong class="text-muted">$0</strong></li>
+                <li><span>Closer Omar (10% de H3)</span><strong class="text-amber" id="s3H3ListCloser">$4,500</strong></li>
+                <li><span>Daniel (50% Pool)</span><strong id="s3H3ListDan">$20,250</strong></li>
+                <li><span>Omar (25% Pool)</span><strong id="s3H3ListOmar">$10,125</strong></li>
+                <li><span>Pedro (15% Pool)</span><strong id="s3H3ListPed">$6,075</strong></li>
+                <li><span>Octavio (10% Pool)</span><strong id="s3H3ListOct">$4,050</strong></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 04: PRIMEROS $30,000 DE CAJA EN HITO 1 (S08 ASYMMETRIC SPLIT)
+           ===================================================================== -->
+      <section
+        data-layout="S08"
+        data-title="Primeros $30,000 del Hito 1: $16,000 Gastos y $14,000 Libres"
+        data-notes="[SEÑALAR: Ecuación $30,000 - $16,000 = $14,000] Veamos exactamente en qué se usan los primeros $30,000 que apartamos en el Hito 1 para la Caja de MASTERIZE. [PAUSA] Se hacen solo 3 pagos de arranque: $10,660 a Omar como reembolso por los 3 meses de herramientas de IA que pagó por adelantado, $4,172.50 para comprar los 2 monitores de trabajo de Daniel en Mercado Libre, y $1,167.50 para los viáticos de Pedro. Esos 3 gastos suman $16,000 exactos y dejan $14,000 libres en la cuenta de MASTERIZE."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 04 · DESGLOSE DE LOS PRIMEROS $30,000 (CAJA EN HITO 1)</span>
+            <span class="mz-slide-index">04 / 08</span>
+          </div>
+
+          <h2 class="mz-slide-title">¿En qué se usan los primeros <span id="s4TitleCaja">$30,000</span> del Hito 1?</h2>
+
+          <!-- Ecuación Visual Estilo Apple -->
+          <div class="mz-equation-banner">
+            <div class="mz-eq-item">
+              <span class="mz-eq-label">Apartado Caja en Hito 1</span>
+              <strong class="mz-eq-val" id="s4EqCaja">$30,000.00</strong>
+            </div>
+            <span class="mz-eq-sign">−</span>
+            <div class="mz-eq-item">
+              <span class="mz-eq-label">3 Pagos de Arranque</span>
+              <strong class="mz-eq-val text-amber" id="s4EqGastos">$16,000.00</strong>
+            </div>
+            <span class="mz-eq-sign">=</span>
+            <div class="mz-eq-item is-result">
+              <span class="mz-eq-label">Libre en Caja MASTERIZE</span>
+              <strong class="mz-eq-val text-emerald" id="s4EqLibre">$14,000.00</strong>
+            </div>
+          </div>
+
+          <div class="mz-split-12">
+            <!-- Columna Izquierda (7 cols): Los 3 Pagos Explicados -->
+            <div class="mz-col-7 mz-bento-card">
+              <div class="mz-section-subhead">LOS 3 PAGOS ÚNICOS DE ARRANQUE (<span id="s4SubGastos">-$16,000.00 MXN</span>)</div>
+
+              <div class="mz-expense-list">
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">01</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">Reembolso de Inversión IA a Omar Moranza</div>
+                    <div class="mz-expense-desc">
+                      Reembolso íntegro por <strong>3 meses de inversión previa en IA ($10,000.00)</strong> más <strong>$660.00 de plan complementario</strong>.
+                    </div>
+                  </div>
+                  <div class="mz-expense-amt" id="s4OmarReimb">$10,660.00</div>
+                </div>
+
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">02</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">2 Monitores de Trabajo para Daniel (Mercado Libre)</div>
+                    <div class="mz-expense-desc">
+                      <a href="https://www.mercadolibre.com.mx/monitor-gamer-curvo-fyhxele-30-pulgadas-2k-wfhd-200hz-1ms/p/MLM52822704" target="_blank" rel="noopener noreferrer" class="mz-inline-link">Monitor Curvo 30" WFHD 200Hz (MLM52822704 · <span id="s4Mon30">$3,199.00</span>) ↗</a>
+                      +
+                      <a href="https://articulo.mercadolibre.com.mx/MLM-2215895794-monitor-portatil-156-fhd-1080p-ips-hdr-usb-c-hdmi-con-funda-_JM" target="_blank" rel="noopener noreferrer" class="mz-inline-link">Monitor Portátil 15.6" FHD (MLM-2215895794 · <span id="s4Mon15">$973.50</span>) ↗</a>
+                    </div>
+                  </div>
+                  <div class="mz-expense-amt" id="s4MonTotal">$4,172.50</div>
+                </div>
+
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">03</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">Viáticos Operativos de Planta para Pedro</div>
+                    <div class="mz-expense-desc">
+                      Traslados y visitas operativas a la planta ARTEPISA.
+                    </div>
+                  </div>
+                  <div class="mz-expense-amt" id="s4PedViat">$1,167.50</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha (5 cols): Resumen de Cuenta Caja -->
+            <div class="mz-col-5 mz-bento-card mz-receipt-card">
+              <div class="mz-section-subhead">ESTADO DE CAJA MASTERIZE EN HITO 1</div>
+              <div class="mz-receipt-rows">
+                <div class="mz-receipt-row">
+                  <span>Mitad 1 del Hito 1 (20% Contrato)</span>
+                  <strong id="s4RecGross">+$30,000.00</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>1. Reembolso IA Omar</span>
+                  <strong class="text-muted" id="s4RecOmar">-$10,660.00</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>2. Monitores 30" + 15.6" Daniel</span>
+                  <strong class="text-muted" id="s4RecMon">-$4,172.50</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>3. Viáticos Planta Pedro</span>
+                  <strong class="text-muted" id="s4RecViat">-$1,167.50</strong>
+                </div>
+                <div class="mz-receipt-row is-total">
+                  <span>Queda Libre en Caja MASTERIZE</span>
+                  <strong class="text-emerald" id="s4RecFree">$14,000.00</strong>
+                </div>
+              </div>
+              <div class="mz-receipt-foot">
+                <span>Margen libre conservado en Caja: <strong class="text-emerald" id="s4RecPct">46.7%</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 05: ¿CUÁNTO RECIBE CADA SOCIO? (S04 / S19 4-PARTNER BENTO)
+           ===================================================================== -->
+      <section
+        data-layout="S19"
+        data-title="¿Cuánto recibe cada Socio en Hito 1, Hito 2, Hito 3 y Total?"
+        data-notes="[SEÑALAR: Las 4 tarjetas de socios] Esta es la lámina que cada socio consulta para ver lo suyo. Arriba de cada tarjeta viene su porcentaje y el total de su bolsa; adentro se ve cuánto recibe en el Hito 1, en el Hito 2 y en el Hito 3, y abajo se muestra si además recibe reembolso, monitores o viáticos en el Hito 1."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 05 · PAGO INDIVIDUAL POR SOCIO (HITO 1 + HITO 2 + HITO 3)</span>
+            <span class="mz-slide-index">05 / 08</span>
+          </div>
+
+          <h2 class="mz-slide-title">¿Cuánto cobra cada Socio en cada Hito y en Total?</h2>
+          <p class="mz-slide-lead">
+            Pool de Socios (<strong id="s5PoolTotal">$105,000</strong>) + Comisión Closer (<strong id="s5CloserTotal">$15,000</strong>) + Reembolsos y Equipo en Hito 1:
+          </p>
+
+          <div class="mz-bento-grid mz-bento-4">
+            <!-- DANIEL -->
+            <article class="mz-bento-card mz-partner-card">
+              <div class="mz-partner-top">
+                <div>
+                  <span class="mz-partner-role">50% DEL POOL · 35% CONTRATO</span>
+                  <h3 class="mz-partner-name">Daniel</h3>
+                </div>
+                <span class="mz-badge-pct">50% Pool</span>
+              </div>
+
+              <div class="mz-partner-hero-val" id="s5DanPool">$52,500</div>
+              <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
+
+              <div class="mz-partner-hitos">
+                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5DanH1">$12,000</strong></div>
+                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5DanH2">$20,250</strong></div>
+                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5DanH3">$20,250</strong></div>
+              </div>
+
+              <div class="mz-partner-extra">
+                <span>+ 2 Monitores en Hito 1: <strong id="s5DanMon">+$4,172.50</strong></span>
+                <div class="mz-partner-grand">Beneficio Total: <strong id="s5DanGrand">$56,672.50</strong></div>
+              </div>
+            </article>
+
+            <!-- OMAR MORANZA -->
+            <article class="mz-bento-card mz-partner-card is-highlight-subtle">
+              <div class="mz-partner-top">
+                <div>
+                  <span class="mz-partner-role">25% POOL + 10% CLOSER</span>
+                  <h3 class="mz-partner-name">Omar Moranza</h3>
+                </div>
+                <span class="mz-badge-pct">25% + 10%</span>
+              </div>
+
+              <div class="mz-partner-hero-val" id="s5OmarUtil">$41,250</div>
+              <span class="mz-partner-hero-sub">Pool <strong id="s5OmarPoolOnly">$26,250</strong> + Closer <strong id="s5OmarCloserOnly">$15,000</strong></span>
+
+              <div class="mz-partner-hitos">
+                <div class="mz-ph-row">
+                  <span>Hito 1 (<small id="s5OmarH1Break">$6k Pool + $6k Closer</small>)</span>
+                  <strong id="s5OmarH1">$12,000</strong>
+                </div>
+                <div class="mz-ph-row">
+                  <span>Hito 2 (<small id="s5OmarH2Break">$10,125 + $4,500</small>)</span>
+                  <strong id="s5OmarH2">$14,625</strong>
+                </div>
+                <div class="mz-ph-row">
+                  <span>Hito 3 (<small id="s5OmarH3Break">$10,125 + $4,500</small>)</span>
+                  <strong id="s5OmarH3">$14,625</strong>
+                </div>
+              </div>
+
+              <div class="mz-partner-extra">
+                <span>+ Reembolso IA en Hito 1: <strong id="s5OmarReimb">+$10,660.00</strong></span>
+                <div class="mz-partner-grand">Efectivo Total: <strong id="s5OmarGrand">$51,910.00</strong></div>
+              </div>
+            </article>
+
+            <!-- PEDRO -->
+            <article class="mz-bento-card mz-partner-card">
+              <div class="mz-partner-top">
+                <div>
+                  <span class="mz-partner-role">15% DEL POOL · 10.5% CONTRATO</span>
+                  <h3 class="mz-partner-name">Pedro</h3>
+                </div>
+                <span class="mz-badge-pct">15% Pool</span>
+              </div>
+
+              <div class="mz-partner-hero-val" id="s5PedPool">$15,750</div>
+              <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
+
+              <div class="mz-partner-hitos">
+                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5PedH1">$3,600</strong></div>
+                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5PedH2">$6,075</strong></div>
+                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5PedH3">$6,075</strong></div>
+              </div>
+
+              <div class="mz-partner-extra">
+                <span>+ Viáticos Planta en Hito 1: <strong id="s5PedViat">+$1,167.50</strong></span>
+                <div class="mz-partner-grand">Efectivo Total: <strong id="s5PedGrand">$16,917.50</strong></div>
+              </div>
+            </article>
+
+            <!-- OCTAVIO -->
+            <article class="mz-bento-card mz-partner-card">
+              <div class="mz-partner-top">
+                <div>
+                  <span class="mz-partner-role">10% DEL POOL · 7% CONTRATO</span>
+                  <h3 class="mz-partner-name">Octavio</h3>
+                </div>
+                <span class="mz-badge-pct">10% Pool</span>
+              </div>
+
+              <div class="mz-partner-hero-val" id="s5OctPool">$10,500</div>
+              <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
+
+              <div class="mz-partner-hitos">
+                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5OctH1">$2,400</strong></div>
+                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5OctH2">$4,050</strong></div>
+                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5OctH3">$4,050</strong></div>
+              </div>
+
+              <div class="mz-partner-extra">
+                <span>Sin reembolsos pendientes</span>
+                <div class="mz-partner-grand">Efectivo Total: <strong id="s5OctGrand">$10,500.00</strong></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 06: TABLA BANCARIA SPEI POR HITO (S21 SPECS TABLE)
+           ===================================================================== -->
+      <section
+        data-layout="S21"
+        data-title="Tabla Oficial de Transferencias SPEI por Hito"
+        data-notes="[SEÑALAR: Tabla SPEI] Esta tabla concentra todas las transferencias por hito en un solo lugar. Cuando entra el Hito 1 de $60,000, el Hito 2 de $45,000 o el Hito 3 de $45,000, aquí están los montos exactos a dispersar. Además incluye el botón para descargar el CSV bancario."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 06 · TABLA BANCARIA DE DISPERSIONES SPEI</span>
+            <div class="mz-header-actions">
+              <button type="button" class="mz-btn-csv" id="exportCsvBtn">⬇ Descargar CSV SPEI</button>
+              <span class="mz-slide-index">06 / 08</span>
+            </div>
+          </div>
+
+          <h2 class="mz-slide-title">Calendario Exacto de Pagos SPEI por Hito</h2>
+
+          <div class="mz-table-card">
+            <div class="mz-table-scroll">
+              <table class="mz-spei-table" aria-label="Tabla de pagos SPEI por hito">
+                <thead>
+                  <tr>
+                    <th>Concepto / Beneficiario</th>
+                    <th>Regla Pactada</th>
+                    <th class="num" id="thSpeiH1">Hito 1 ($60,000)</th>
+                    <th class="num" id="thSpeiH2">Hito 2 ($45,000)</th>
+                    <th class="num" id="thSpeiH3">Hito 3 ($45,000)</th>
+                    <th class="num">Total Liquidado</th>
+                  </tr>
+                </thead>
+                <tbody id="speiTableBody">
+                  <tr>
+                    <td><strong>Inversión y Caja MASTERIZE</strong> <small class="mz-td-note">($16k gastos + $14k libres)</small></td>
+                    <td><span class="mz-rule-pill is-emerald">20% (100% en H1)</span></td>
+                    <td class="num"><strong>$30,000.00</strong></td>
+                    <td class="num text-muted">$0.00</td>
+                    <td class="num text-muted">$0.00</td>
+                    <td class="num"><strong class="text-emerald">$30,000.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Omar Moranza · Comisión Closer</strong></td>
+                    <td><span class="mz-rule-pill is-amber">10% por Hito</span></td>
+                    <td class="num">$6,000.00</td>
+                    <td class="num">$4,500.00</td>
+                    <td class="num">$4,500.00</td>
+                    <td class="num"><strong class="text-amber">$15,000.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Daniel · Socio Líder Técnico</strong></td>
+                    <td><span class="mz-rule-pill">50% del Pool (35% Contrato)</span></td>
+                    <td class="num">$12,000.00</td>
+                    <td class="num">$20,250.00</td>
+                    <td class="num">$20,250.00</td>
+                    <td class="num"><strong>$52,500.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Omar Moranza · Socio</strong></td>
+                    <td><span class="mz-rule-pill">25% del Pool (17.5% Contrato)</span></td>
+                    <td class="num">$6,000.00</td>
+                    <td class="num">$10,125.00</td>
+                    <td class="num">$10,125.00</td>
+                    <td class="num"><strong>$26,250.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pedro · Socio Legal y Planta</strong></td>
+                    <td><span class="mz-rule-pill">15% del Pool (10.5% Contrato)</span></td>
+                    <td class="num">$3,600.00</td>
+                    <td class="num">$6,075.00</td>
+                    <td class="num">$6,075.00</td>
+                    <td class="num"><strong>$15,750.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Octavio · Socio Implementación</strong></td>
+                    <td><span class="mz-rule-pill">10% del Pool (7% Contrato)</span></td>
+                    <td class="num">$2,400.00</td>
+                    <td class="num">$4,050.00</td>
+                    <td class="num">$4,050.00</td>
+                    <td class="num"><strong>$10,500.00</strong></td>
+                  </tr>
+                </tbody>
+                <tfoot id="speiTableFoot">
+                  <tr>
+                    <td><strong>TOTAL DISPERSADO (SIN IVA)</strong></td>
+                    <td><strong>100.0% Cuadrado</strong></td>
+                    <td class="num"><strong>$60,000.00</strong></td>
+                    <td class="num"><strong>$45,000.00</strong></td>
+                    <td class="num"><strong>$45,000.00</strong></td>
+                    <td class="num"><strong class="text-accent">$150,000.00</strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div class="mz-spei-callout" id="speiH1CashCallout">
+              <strong>Nota de Transferencias Reales en el Hito 1 ($60,000):</strong>
+              Sumando su Pool + Closer + Reembolso/Viáticos de los primeros $30k, en el Hito 1 se transfiere:
+              <strong>Omar $22,660.00</strong> ($6k Pool + $6k Closer + $10,660 Reembolso IA) ·
+              <strong>Daniel $12,000.00</strong> (+ $4,172.50 compra de 2 monitores) ·
+              <strong>Pedro $4,767.50</strong> ($3,600 Pool + $1,167.50 Viáticos) ·
+              <strong>Octavio $2,400.00</strong> ·
+              <strong>Caja Libre MASTERIZE $14,000.00</strong>.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 07: IGUALA MENSUAL ($10,000/MES) Y CAJA AÑO 1 ($62,000)
+           ===================================================================== -->
+      <section
+        data-layout="S08"
+        data-title="Iguala Mensual ($10,000/mes) y Caja Libre Año 1 ($62,000)"
+        data-notes="[SEÑALAR: $10,000/mes -> $4,000/mes libres] Una vez entregado el Hito 3, inicia la iguala mensual de $10,000 pesos. De ahí se pagan $6,000 al mes de infraestructura ($2,000 de Azure, $2,000 de Claude Team/Code y $2,000 de Google AI Ultra) y quedan $4,000 libres cada mes para la Caja de MASTERIZE ($48,000 al año). Sumando los $14,000 libres del Hito 1 más los $48,000 del primer año de iguala, MASTERIZE cierra el Año 1 con $62,000 libres en Caja."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 07 · PÓLIZA MENSUAL POST-HITO 3 Y TESORERÍA AÑO 1</span>
+            <span class="mz-slide-index">07 / 08</span>
+          </div>
+
+          <h2 class="mz-slide-title">Iguala de <span id="s7TitleIguala">$10,000</span>/mes: <span id="s7TitleStack">$6,000</span> a IA y <span class="text-emerald" id="s7TitleFree">$4,000</span> Libres/mes</h2>
+
+          <!-- Ecuación Visual Iguala + Año 1 -->
+          <div class="mz-equation-banner">
+            <div class="mz-eq-item">
+              <span class="mz-eq-label">Caja Libre Hito 1</span>
+              <strong class="mz-eq-val" id="s7EqH1Free">$14,000.00</strong>
+            </div>
+            <span class="mz-eq-sign">+</span>
+            <div class="mz-eq-item">
+              <span class="mz-eq-label">12 Meses de Iguala Libre (<span id="s7EqMoFree">$4,000</span> × 12)</span>
+              <strong class="mz-eq-val text-accent" id="s7EqYrFree">$48,000.00</strong>
+            </div>
+            <span class="mz-eq-sign">=</span>
+            <div class="mz-eq-item is-result">
+              <span class="mz-eq-label">Caja Libre MASTERIZE Año 1</span>
+              <strong class="mz-eq-val text-emerald" id="s7EqTotalYear1">$62,000.00</strong>
+            </div>
+          </div>
+
+          <div class="mz-split-12">
+            <!-- Columna Izquierda: Desglose de los $10,000/mes -->
+            <div class="mz-col-7 mz-bento-card">
+              <div class="mz-section-subhead">¿CÓMO SE USAN LOS <span id="s7SubIguala">$10,000.00</span>/MES DE LA IGUALA?</div>
+
+              <div class="mz-expense-list">
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">A</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">Infraestructura Azure Cloud</div>
+                    <div class="mz-expense-desc">Servidores de producción y base de datos de ARTEPISA.</div>
+                  </div>
+                  <div class="mz-expense-amt" id="s7Azure">$2,000.00/mes</div>
+                </div>
+
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">B</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">Licencias Claude (Anthropic)</div>
+                    <div class="mz-expense-desc">Suscripción Claude Team / Code para desarrollo y mantenimiento del sistema.</div>
+                  </div>
+                  <div class="mz-expense-amt" id="s7Claude">$2,000.00/mes</div>
+                </div>
+
+                <div class="mz-expense-item">
+                  <div class="mz-expense-num">C</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title">Plan Google AI Ultra (Gemini)</div>
+                    <div class="mz-expense-desc">Modelos Gemini y operación continua de agentes.</div>
+                  </div>
+                  <div class="mz-expense-amt" id="s7Google">$2,000.00/mes</div>
+                </div>
+
+                <div class="mz-expense-item is-free-row">
+                  <div class="mz-expense-num is-emerald">✔</div>
+                  <div class="mz-expense-info">
+                    <div class="mz-expense-title text-emerald">Excedente Libre cada Mes para Caja MASTERIZE</div>
+                    <div class="mz-expense-desc">Se acumula íntegro en la tesorería de la empresa (<strong id="s7AnnualInline">+$48,000.00 al año</strong>).</div>
+                  </div>
+                  <div class="mz-expense-amt text-emerald" id="s7MoFree">+$4,000.00/mes</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Crecimiento de Caja Año 1 -->
+            <div class="mz-col-5 mz-bento-card mz-receipt-card">
+              <div class="mz-section-subhead">ACUMULADO EN CAJA MASTERIZE (AÑO 1)</div>
+              <div class="mz-receipt-rows">
+                <div class="mz-receipt-row">
+                  <span>Iguala Mensual Cobrada</span>
+                  <strong id="s7RecIguala">+$10,000.00/mes</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>Menos Stack IA (Azure + Claude + Google)</span>
+                  <strong class="text-muted" id="s7RecStack">-$6,000.00/mes</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>Utilidad Libre Mensual (40%)</span>
+                  <strong class="text-emerald" id="s7RecMoFree">+$4,000.00/mes</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>Utilidad Libre en 12 Meses</span>
+                  <strong id="s7RecYrFree">+$48,000.00/año</strong>
+                </div>
+                <div class="mz-receipt-row">
+                  <span>Más Reserva Libre del Hito 1</span>
+                  <strong id="s7RecH1Free">+$14,000.00</strong>
+                </div>
+                <div class="mz-receipt-row is-total">
+                  <span>Total Caja Libre Fin del Año 1</span>
+                  <strong class="text-emerald" id="s7RecTotalYear1">$62,000.00</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SLIDE 08: RESUMEN EN 4 PASOS + SIMULADOR INTERACTIVO EN VIVO
+           ===================================================================== -->
+      <section
+        data-layout="S11"
+        data-title="Resumen en 4 Pasos + Calculadora Interactiva"
+        data-notes="[SEÑALAR: Los 4 pasos y la Calculadora] Aquí cerramos con el resumen completo en 4 pasos cronológicos a la izquierda, y a la derecha tenemos la calculadora interactiva por si queremos simular cualquier cambio en viáticos, monitores o monto del contrato y ver cómo se actualiza toda la presentación al instante."
+      >
+        <div class="mz-slide-frame">
+          <div class="mz-slide-header">
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 08 · RESUMEN FINAL EN 4 PASOS Y CALCULADORA INTERACTIVA</span>
+            <div class="mz-header-actions">
+              <button type="button" class="mz-btn-reset" id="resetBtn">↺ Restablecer Acuerdo Oficial</button>
+              <span class="mz-slide-index">08 / 08</span>
+            </div>
+          </div>
+
+          <h2 class="mz-slide-title">Todo el Acuerdo en 4 Pasos + Simulador en Vivo</h2>
+
+          <div class="mz-split-12">
+            <!-- Columna Izquierda (7 cols): Los 4 Pasos Cronológicos -->
+            <div class="mz-col-7 mz-timeline-card mz-bento-card">
+              <div class="mz-section-subhead">LOS 4 PASOS EN ORDEN CRONOLÓGICO</div>
+
+              <div class="mz-steps-timeline">
+                <div class="mz-tl-step">
+                  <div class="mz-tl-badge is-emerald">PASO 1 · HITO 1 (MITAD 1)</div>
+                  <div class="mz-tl-content">
+                    <div class="mz-tl-head">
+                      <strong>Primeros <span id="s8Step1Caja">$30,000</span> a Gastos y Caja MASTERIZE</strong>
+                      <span class="text-emerald" id="s8Step1Free">+$14,000 libres</span>
+                    </div>
+                    <p>
+                      Paga Reembolso IA a Omar (<strong id="s8Step1Omar">$10,660</strong>), 2 Monitores de Daniel (<strong id="s8Step1Mon">$4,172.50</strong>) y Viáticos de Pedro (<strong id="s8Step1Viat">$1,167.50</strong>).
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mz-tl-step">
+                  <div class="mz-tl-badge is-violet">PASO 2 · HITO 1 (MITAD 2)</div>
+                  <div class="mz-tl-content">
+                    <div class="mz-tl-head">
+                      <strong>Siguientes <span id="s8Step2Socios">$30,000</span> a Socios por Porcentaje</strong>
+                      <span class="text-accent">1er Pago Socios</span>
+                    </div>
+                    <p>
+                      Daniel <strong id="s8Step2Dan">$12,000</strong> · Omar <strong id="s8Step2Omar">$12,000</strong> ($6k Pool + $6k Closer) · Pedro <strong id="s8Step2Ped">$3,600</strong> · Octavio <strong id="s8Step2Oct">$2,400</strong>.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mz-tl-step">
+                  <div class="mz-tl-badge is-violet">PASO 3 · HITOS 2 Y 3</div>
+                  <div class="mz-tl-content">
+                    <div class="mz-tl-head">
+                      <strong>Dos cobros de <span id="s8Step3Each">$45,000</span> van 100% a Socios ($0 a Caja)</strong>
+                      <span class="text-accent" id="s8Step3Total">$90,000 Socios</span>
+                    </div>
+                    <p>
+                      En cada cobro: Daniel <strong id="s8Step3Dan">$20,250</strong> · Omar <strong id="s8Step3Omar">$14,625</strong> ($10,125 Pool + $4,500 Closer) · Pedro <strong id="s8Step3Ped">$6,075</strong> · Octavio <strong id="s8Step3Oct">$4,050</strong>.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mz-tl-step">
+                  <div class="mz-tl-badge is-amber">PASO 4 · POST-HITO 3</div>
+                  <div class="mz-tl-content">
+                    <div class="mz-tl-head">
+                      <strong>Iguala de <span id="s8Step4Iguala">$10,000</span>/mes y Caja Año 1</strong>
+                      <span class="text-emerald" id="s8Step4Year1">$62,000 Año 1</span>
+                    </div>
+                    <p>
+                      Paga <strong id="s8Step4Stack">$6,000/mes</strong> de Stack IA (Azure, Claude, Google AI) y deja <strong class="text-emerald" id="s8Step4Free">+$4,000/mes libres</strong> (<span id="s8Step4Annual">+$48,000/año</span>).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha (5 cols): Calculadora / Simulador Limpio estilo Apple -->
+            <div class="mz-col-5 mz-bento-card mz-sim-card" data-no-nav="true">
+              <div class="mz-section-subhead">SIMULADOR INTERACTIVO (OPCIONAL)</div>
+              <p class="mz-sim-note">Si ajustas algún monto aquí, se recalcula toda la presentación en vivo:</p>
+
+              <div class="mz-sim-grid">
+                <label class="mz-sim-field">
+                  <span>Contrato Sin IVA ($)</span>
+                  <input type="number" id="contractGrossInput" value="150000" min="0" step="1000" />
+                </label>
+
+                <label class="mz-sim-field">
+                  <span>Reembolso IA Omar ($)</span>
+                  <input type="number" id="inpOmarReimb" value="10660" min="0" step="100" />
+                </label>
+
+                <label class="mz-sim-field">
+                  <span>Monitor 30" Daniel ($)</span>
+                  <input type="number" id="inpMon30" value="3199" min="0" step="50" />
+                </label>
+
+                <label class="mz-sim-field">
+                  <span>Monitor 15.6" Daniel ($)</span>
+                  <input type="number" id="inpMon15" value="973.50" min="0" step="25" />
+                </label>
+
+                <label class="mz-sim-field">
+                  <span>Viáticos Pedro ($)</span>
+                  <input type="number" id="inpViaticos" value="1167.50" min="0" step="50" />
+                </label>
+
+                <label class="mz-sim-field">
+                  <span>Iguala Mensual ($)</span>
+                  <input type="number" id="inpIgualaGross" value="10000" min="0" step="500" />
+                </label>
+              </div>
+
+              <!-- Resumen Rápido de Totales en el Simulador -->
+              <div class="mz-sim-summary">
+                <div class="mz-sim-sum-item">
+                  <span>Caja Libre H1</span>
+                  <strong class="text-emerald" id="simCajaFree">$14,000.00</strong>
+                </div>
+                <div class="mz-sim-sum-item">
+                  <span>Caja Libre Año 1</span>
+                  <strong class="text-emerald" id="simYear1Free">$62,000.00</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </div>
 
+  <!-- =========================================================================
+       BARRA INFERIOR DE NAVEGACIÓN (DOCK APPLE TRANSLÚCIDO PARA MÓVIL Y DESKTOP)
+       ========================================================================= -->
+  <footer class="apple-bottom-dock no-print" role="contentinfo">
+    <button type="button" class="dock-nav-btn" id="prevSlideBtn" aria-label="Lámina anterior">
+      <span>←</span><span class="dock-btn-text">Anterior</span>
+    </button>
+
+    <div class="dock-progress-center">
+      <div class="dock-slide-meta">
+        <strong id="dockSlideNum">01 / 08</strong>
+        <span class="dock-meta-sep">·</span>
+        <span id="dockSlideTitle">El Contrato ARTEPISA</span>
+      </div>
+      <div class="dock-progress-track" aria-hidden="true">
+        <div class="dock-progress-fill" id="dockProgressFill" style="width: 12.5%"></div>
+      </div>
+    </div>
+
+    <button type="button" class="dock-nav-btn is-primary" id="nextSlideBtn" aria-label="Siguiente lámina">
+      <span class="dock-btn-text" id="nextSlideBtnText">Siguiente</span><span>→</span>
+    </button>
+  </footer>
+
+  <!-- =========================================================================
+       TELEPROMPTER COMPACTO [N] (/web-presentation-pro)
+       ========================================================================= -->
+  <aside id="notes-drawer" class="mz-notes-drawer no-print" hidden aria-label="Teleprompter">
+    <div class="mz-notes-header">
+      <div>
+        <strong class="text-accent">GUION DE ORADOR</strong>
+        <span> · Tecla [P] Estudio 4 Tarjetas · [N] Cerrar</span>
+      </div>
+      <div class="mz-notes-right">
+        <span id="notes-timer" class="mz-mono">00:00</span>
+        <button type="button" class="mz-close-sm" id="btnCloseNotes">✕</button>
+      </div>
+    </div>
+    <p id="notes-content" class="mz-notes-body">
+      Aquí está todo el acuerdo en una sola pantalla.
+    </p>
+  </aside>
+
+  <!-- =========================================================================
+       ESTUDIO DE ORADOR MAGNÉTICO DE 4 TARJETAS [P] (/web-presentation-pro)
+       ========================================================================= -->
+  <aside id="presenter-studio" class="mz-presenter-studio no-print" hidden aria-label="Estudio de Orador">
+    <div class="mz-studio-topbar">
+      <div>
+        <strong class="text-accent">MAGNETIC PRESENTER STUDIO</strong>
+        <span> // 4-CARD HUD · Usa ← → para cambiar de lámina · [R] Reiniciar reloj · [P] Cerrar</span>
+      </div>
+      <button type="button" class="mz-studio-close" id="btnCloseStudio">Cerrar [P]</button>
+    </div>
+
+    <div class="mz-studio-grid">
+      <!-- Tarjeta 1 y 2: Slide Actual + Siguiente Slide -->
+      <div class="mz-studio-col-left">
+        <div class="mz-studio-card">
+          <div class="mz-studio-tag is-violet">● LÁMINA ACTUAL (<span id="studio-curr-idx">01 / 08</span>)</div>
+          <div class="mz-studio-card-body">
+            <div id="studio-curr-layout" class="mz-studio-layout">LAYOUT // S01</div>
+            <h3 id="studio-curr-title" class="mz-studio-title">El Contrato ARTEPISA</h3>
+          </div>
+          <div class="mz-studio-foot">Sincronizado en tiempo real con la presentación</div>
+        </div>
+
+        <div class="mz-studio-card">
+          <div class="mz-studio-tag is-emerald">→ SIGUIENTE LÁMINA (<span id="studio-next-idx">02</span>)</div>
+          <div class="mz-studio-card-body">
+            <div id="studio-next-layout" class="mz-studio-layout">PRÓXIMO // S20</div>
+            <h3 id="studio-next-title" class="mz-studio-title is-next">Las 3 Bolsas del Contrato</h3>
+          </div>
+          <div id="studio-next-notes" class="mz-studio-foot"></div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3: Guion Hablado bajo las 3 Leyes de Hierro -->
+      <div class="mz-studio-card mz-studio-script-card">
+        <div class="mz-studio-tag is-amber">◆ GUION DE ORADOR (SEÑALES CLAVE)</div>
+        <div id="studio-script" class="mz-studio-script"></div>
+        <div class="mz-studio-foot">3 Leyes de Hierro: Señales visuales · Ritmo hablado directo · Puente a la siguiente lámina</div>
+      </div>
+
+      <!-- Tarjeta 4: Reloj de Ensayo y Controles -->
+      <div class="mz-studio-card mz-studio-timer-card">
+        <div class="mz-studio-tag is-emerald">⏱ RELOJ Y CONTROL</div>
+        <div class="mz-studio-timer-center">
+          <div id="studio-timer" class="mz-studio-clock">00:00</div>
+          <div class="mz-studio-clock-sub">TIEMPO TRANSCURRIDO</div>
+          <div class="mz-studio-nav-btns">
+            <button type="button" class="mz-studio-btn" id="studioPrevBtn">← Anterior</button>
+            <button type="button" class="mz-studio-btn is-primary" id="studioNextBtn">Siguiente →</button>
+          </div>
+        </div>
+        <button type="button" class="mz-studio-reset" id="studioResetTimerBtn">Reiniciar Reloj [R]</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Reveal.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+  <!-- Lógica Financiera Reactiva + Controles /web-presentation-pro -->
   <script src="app.js"></script>
 </body>
 </html>
