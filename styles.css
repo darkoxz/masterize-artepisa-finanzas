@@ -463,12 +463,13 @@ html:not(.dark) .logo-for-light { display: block; }
 }
 
 .mz-eyebrow-apple {
-  font-family: var(--font-title);
+  font-family: var(--font-display);
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent);
   margin: 0;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .mz-hero-number {
@@ -480,6 +481,20 @@ html:not(.dark) .logo-for-light { display: block; }
   color: var(--text);
   margin: 0;
   font-variant-numeric: tabular-nums;
+}
+
+.mz-currency-sign {
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-right: 2px;
+}
+
+.mz-forja-sig {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
 }
 
 .mz-hero-number small {
@@ -1534,9 +1549,9 @@ html:not(.dark) .logo-for-light { display: block; }
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(10, 10, 11, 0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: var(--surface-glass);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
   padding: 28px 36px;
   display: flex;
   flex-direction: column;
@@ -1552,17 +1567,17 @@ html:not(.dark) .logo-for-light { display: block; }
   align-items: center;
   justify-content: space-between;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #A1A1AA;
+  color: var(--text-muted);
 }
 
 .mz-studio-close {
   appearance: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: 12px;
   padding: 6px 14px;
@@ -1585,10 +1600,11 @@ html:not(.dark) .logo-for-light { display: block; }
 }
 
 .mz-studio-card {
-  background: #131316;
-  border: 1px solid #26262C;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--r-card);
   padding: 24px;
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1601,14 +1617,14 @@ html:not(.dark) .logo-for-light { display: block; }
   font-weight: 700;
   letter-spacing: 0.08em;
 }
-.mz-studio-tag.is-violet { color: #9179FF; }
-.mz-studio-tag.is-emerald { color: #3DD68C; }
-.mz-studio-tag.is-amber { color: #FAB219; }
+.mz-studio-tag.is-violet { color: var(--accent); }
+.mz-studio-tag.is-emerald { color: var(--emerald); }
+.mz-studio-tag.is-amber { color: var(--amber); }
 
 .mz-studio-layout {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: #8A8A93;
+  color: var(--text-faint);
   margin-bottom: 6px;
 }
 
@@ -1616,22 +1632,22 @@ html:not(.dark) .logo-for-light { display: block; }
   font-family: var(--font-title);
   font-size: 26px;
   font-weight: 700;
-  color: #F4F4F5;
+  color: var(--text);
   margin: 0;
   line-height: 1.2;
 }
 
 .mz-studio-title.is-next {
   font-size: 21px;
-  color: #D4D4D8;
+  color: var(--text-muted);
 }
 
 .mz-studio-foot {
   font-family: var(--font-mono);
   font-size: 11.5px;
-  color: #8A8A93;
+  color: var(--text-faint);
   padding-top: 12px;
-  border-top: 1px solid #26262C;
+  border-top: 1px solid var(--border);
 }
 
 .mz-studio-script {
@@ -1640,7 +1656,7 @@ html:not(.dark) .logo-for-light { display: block; }
   margin: 16px 0;
   font-size: 19px;
   line-height: 1.6;
-  color: #F4F4F5;
+  color: var(--text);
 }
 
 .mz-studio-timer-center {
@@ -1652,14 +1668,14 @@ html:not(.dark) .logo-for-light { display: block; }
   font-family: var(--font-mono);
   font-size: 56px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--text);
   font-variant-numeric: tabular-nums;
 }
 
 .mz-studio-clock-sub {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #8A8A93;
+  color: var(--text-faint);
   margin: 6px 0 20px;
 }
 
@@ -1671,9 +1687,9 @@ html:not(.dark) .logo-for-light { display: block; }
 
 .mz-studio-btn {
   appearance: none;
-  border: 1px solid #26262C;
-  background: #1B1B20;
-  color: #F4F4F5;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
   font-family: var(--font-mono);
   font-size: 12px;
   padding: 9px 14px;
@@ -1691,9 +1707,9 @@ html:not(.dark) .logo-for-light { display: block; }
 .mz-studio-reset {
   appearance: none;
   width: 100%;
-  border: 1px solid #26262C;
+  border: 1px solid var(--border);
   background: transparent;
-  color: #A1A1AA;
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 12px;
   padding: 9px;
@@ -1712,8 +1728,8 @@ html:not(.dark) .logo-for-light { display: block; }
   .apple-topbar {
     height: auto;
     flex-wrap: wrap;
-    padding: 10px 14px;
-    gap: 8px;
+    padding: 8px 14px;
+    gap: 6px;
   }
 
   .topbar-brand {
@@ -1745,6 +1761,7 @@ html:not(.dark) .logo-for-light { display: block; }
     width: 100%;
     padding-top: 4px;
     border-top: 1px solid var(--border-subtle);
+    touch-action: pan-x pan-y pinch-zoom !important;
   }
 
   .step-pill {
@@ -1752,11 +1769,16 @@ html:not(.dark) .logo-for-light { display: block; }
     padding: 5px 10px;
   }
 
-  /* Desactivar la reducción 0.24x de 1600×900 en pantallas verticales de teléfono */
+  /* Desactivar la reducción 0.24x de 1600×900 y habilitar scroll táctil nativo pan-y */
+  .reveal,
+  .reveal-viewport {
+    touch-action: pan-y pinch-zoom !important;
+  }
+
   .reveal {
-    top: 92px !important;
-    bottom: 58px !important;
-    height: calc(100dvh - 150px) !important;
+    top: var(--topbar-offset, 96px) !important;
+    bottom: var(--dock-offset, 58px) !important;
+    height: calc(100dvh - var(--topbar-offset, 96px) - var(--dock-offset, 58px)) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
@@ -1770,9 +1792,10 @@ html:not(.dark) .logo-for-light { display: block; }
     transform: none !important;
     zoom: 1 !important;
     display: block !important;
+    touch-action: pan-y pinch-zoom !important;
   }
 
-  .reveal .slides > section {
+  .reveal:not(.overview) .slides > section {
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -1780,10 +1803,39 @@ html:not(.dark) .logo-for-light { display: block; }
     height: auto !important;
     transform: none !important;
     display: none !important;
+    touch-action: pan-y pinch-zoom !important;
   }
 
-  .reveal .slides > section.present {
+  .reveal:not(.overview) .slides > section.present {
     display: block !important;
+  }
+
+  /* Modo Mosaico [ESC] en pantallas <= 900px: muestra las 8 láminas apiladas */
+  .reveal.overview .slides > section {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: calc(100% - 24px) !important;
+    height: auto !important;
+    margin: 12px auto !important;
+    transform: none !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 2px solid var(--border) !important;
+    border-radius: var(--r-card) !important;
+    background: var(--bg) !important;
+    cursor: pointer !important;
+  }
+
+  .reveal.overview .slides > section.present {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px var(--accent-soft) !important;
+  }
+
+  .mz-table-scroll {
+    touch-action: pan-x pan-y pinch-zoom !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mz-slide-frame,
@@ -1929,6 +1981,43 @@ html:not(.dark) .logo-for-light { display: block; }
   #dockSlideTitle {
     display: none;
   }
+
+  .mz-studio-grid {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+/* Modo horizontal en teléfono (ej. 844×390): barra superior e inferior compactas de 1 fila */
+@media (max-width: 900px) and (max-height: 500px) {
+  .apple-topbar {
+    flex-wrap: nowrap;
+    padding: 6px 12px;
+    height: 46px;
+  }
+
+  .topbar-steps {
+    order: 2;
+    width: auto;
+    flex: 1;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .topbar-hud {
+    order: 3;
+    margin-left: 0;
+  }
+
+  .apple-bottom-dock {
+    height: 44px;
+  }
+
+  .dock-nav-btn {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1938,6 +2027,96 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 }
 
+/* ============================================================================
+   14. EXPORTACIÓN E IMPRESIÓN PDF WIDESCREEN 16:9 (8 LÁMINAS COMPLETAS)
+   ============================================================================ */
+@page {
+  size: 1600px 900px;
+  margin: 0;
+}
+
 @media print {
-  .no-print { display: none !important; }
+  .no-print,
+  .apple-topbar,
+  .apple-bottom-dock,
+  #notes-drawer,
+  #presenter-studio,
+  #laser-dot,
+  .reveal .backgrounds,
+  .reveal .pause-overlay,
+  .reveal .aria-status,
+  .reveal .controls,
+  .reveal .progress,
+  .reveal .slide-number,
+  .reveal .speaker-notes {
+    display: none !important;
+  }
+
+  html, body {
+    width: 1600px !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .reveal,
+  .reveal-viewport {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 1600px !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  .reveal .slides {
+    position: static !important;
+    width: 1600px !important;
+    height: auto !important;
+    inset: auto !important;
+    transform: none !important;
+    zoom: 1 !important;
+    display: block !important;
+  }
+
+  .reveal .slides > section,
+  .reveal .slides > section.past,
+  .reveal .slides > section.present,
+  .reveal .slides > section.future {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 1600px !important;
+    height: 900px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    overflow: hidden !important;
+    background: var(--bg) !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .reveal .slides > section:last-of-type {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .mz-slide-frame,
+  .mz-cover-frame {
+    width: 1600px !important;
+    height: 900px !important;
+    max-width: 1520px !important;
+    padding: 36px 64px !important;
+    display: flex !important;
+  }
 }

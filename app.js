@@ -55,6 +55,17 @@
     });
   }
 
+  function fmtCompactK(n) {
+    var num = Math.max(0, Number(n) || 0);
+    if (num >= 1000 && Math.abs(num % 1000) < 0.01) {
+      return "$" + (num / 1000).toFixed(0) + "k";
+    }
+    if (num >= 1000) {
+      return "$" + (num / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+    }
+    return fmtCurrency(num);
+  }
+
   function setText(id, val) {
     var el = document.getElementById(id);
     if (el) el.textContent = val;
@@ -202,11 +213,21 @@
   function renderAll() {
     var m = computeFinancials();
 
+    // Actualizar Pastillas Superiores y Títulos Cortos dinámicos
+    setText("pillCajaLabel", "Caja " + fmtCompactK(m.cajaTotal));
+    setText("pillIgualaLabel", "Iguala " + fmtCompactK(m.igualaGross));
+    SHORT_TITLES[3] = "Caja Hito 1 (" + fmtCurrency(m.cajaTotal) + ")";
+    SHORT_TITLES[6] = "Iguala Mensual (" + fmtCurrency(m.igualaGross) + "/mes)";
+
     // SLIDE 01: Portada
     setText("coverWithIva", fmtCurrency(m.withIva) + " MXN");
     var coverTotalEl = document.getElementById("coverContractTotal");
     if (coverTotalEl) {
-      coverTotalEl.innerHTML = fmtCurrency(m.gross) + " <small>MXN</small>";
+      var numFormatted = fmtCurrency(m.gross).replace(/^\$/, "");
+      coverTotalEl.innerHTML =
+        '<span class="mz-currency-sign">$</span><span id="coverContractNum">' +
+        numFormatted +
+        "</span> <small>MXN</small>";
     }
     setText(
       "coverHitosInline",
@@ -247,6 +268,10 @@
     setText("s3LeadCaja", fmtCurrency(m.cajaTotal));
     setText("s3H1Gross", fmtCurrency(m.h1Gross));
     setText("s3H1Caja", fmtCurrency(m.h1Caja));
+    setText(
+      "s3H1CajaSub",
+      "Paga " + fmtCurrency(m.startupExpenses) + " gastos + deja " + fmtCurrency(m.cajaFreeH1) + " libres"
+    );
     setText("s3H1Socios", fmtCurrency(m.h1SociosTotal));
     setText("s3H1ListCaja", fmtCurrency(m.h1Caja));
     setText("s3H1ListCloser", fmtCurrency(m.h1Closer));
@@ -272,6 +297,7 @@
     setText("s3H3ListOct", fmtCurrency(m.octH3));
 
     // SLIDE 04: Caja Hito 1 ($30,000)
+    setText("s4KickerCaja", fmtCurrency(m.cajaTotal));
     setText("s4TitleCaja", fmtCurrency(m.cajaTotal));
     setText("s4EqCaja", fmtCurrency(m.cajaTotal, 2));
     setText("s4EqGastos", fmtCurrency(m.startupExpenses, 2));
@@ -437,6 +463,7 @@
     setText("s8Step2Socios", fmtCurrency(m.h1SociosTotal));
     setText("s8Step2Dan", fmtCurrency(m.danH1));
     setText("s8Step2Omar", fmtCurrency(m.omarUtilH1));
+    setText("s8Step2OmarBreak", fmtCurrency(m.omarPoolH1) + " Pool + " + fmtCurrency(m.h1Closer) + " Closer");
     setText("s8Step2Ped", fmtCurrency(m.pedH1));
     setText("s8Step2Oct", fmtCurrency(m.octH1));
 
@@ -444,6 +471,7 @@
     setText("s8Step3Total", fmtCurrency(m.h2Gross + m.h3Gross) + " Socios");
     setText("s8Step3Dan", fmtCurrency(m.danH2));
     setText("s8Step3Omar", fmtCurrency(m.omarUtilH2));
+    setText("s8Step3OmarBreak", fmtCurrency(m.omarPoolH2) + " Pool + " + fmtCurrency(m.h2Closer) + " Closer");
     setText("s8Step3Ped", fmtCurrency(m.pedH2));
     setText("s8Step3Oct", fmtCurrency(m.octH2));
 
@@ -455,9 +483,11 @@
 
     setText("simCajaFree", fmtCurrency(m.cajaFreeH1, 2));
     setText("simYear1Free", fmtCurrency(m.year1FreeTotal, 2));
+
+    updatePresentationHUD();
   }
 
-  /* ---------- Exportar CSV Bancario SPEI ---------- */
+  /* ---------- Exportar CSV Bancario SPEI Completo ---------- */
   function exportSpeiCsv() {
     var m = computeFinancials();
     var rows = [
@@ -468,7 +498,22 @@
       ["Omar Moranza - 25% Pool Socios", "17.5% Contrato", m.omarPoolH1.toFixed(2), m.omarPoolH2.toFixed(2), m.omarPoolH3.toFixed(2), m.omarPool.toFixed(2)],
       ["Pedro - 15% Pool Socios", "10.5% Contrato", m.pedH1.toFixed(2), m.pedH2.toFixed(2), m.pedH3.toFixed(2), m.pedPool.toFixed(2)],
       ["Octavio - 10% Pool Socios", "7.0% Contrato", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octH3.toFixed(2), m.octPool.toFixed(2)],
-      ["TOTAL DISPERSADO SIN IVA", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.h3Gross.toFixed(2), m.gross.toFixed(2)]
+      ["TOTAL DISPERSADO SIN IVA", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.h3Gross.toFixed(2), m.gross.toFixed(2)],
+      [],
+      ["DESGLOSE DE CAJA HITO 1 ($30,000.00)", "Detalle", "Monto Hito 1", "", "", ""],
+      ["Reembolso IA Omar Moranza", "3 meses IA ($10,000) + Plan ($660)", m.omarReimb.toFixed(2), "", "", ""],
+      ["Monitor Curvo 30\" Daniel (MLM52822704)", "Equipo de trabajo Mercado Libre", m.mon30.toFixed(2), "", "", ""],
+      ["Monitor Portatil 15.6\" Daniel (MLM-2215895794)", "Equipo de trabajo Mercado Libre", m.mon15.toFixed(2), "", "", ""],
+      ["Viaticos Operativos Planta Pedro", "Traslados y visitas ARTEPISA", m.viaticos.toFixed(2), "", "", ""],
+      ["Reserva Libre en Caja MASTERIZE", "Remanente neto en tesoreria H1", m.cajaFreeH1.toFixed(2), "", "", ""],
+      [],
+      ["TRANSFERENCIAS REALES EN EFECTIVO HITO 1", "Composicion", "SPEI Hito 1", "SPEI Hito 2", "SPEI Hito 3", "Total Proyecto"],
+      ["Omar Moranza (Pool + Closer + Reembolso IA)", "25% Pool + 10% Closer + Reembolso", m.omarCashH1.toFixed(2), m.omarUtilH2.toFixed(2), m.omarUtilH3.toFixed(2), m.omarGrand.toFixed(2)],
+      ["Daniel (Efectivo Pool Socios)", "50% Pool Socios", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danH3.toFixed(2), m.danPool.toFixed(2)],
+      ["Compra 2 Monitores Daniel (Mercado Libre)", "MLM52822704 + MLM-2215895794", m.monTotal.toFixed(2), "0.00", "0.00", m.monTotal.toFixed(2)],
+      ["Pedro (Pool + Viaticos Planta)", "15% Pool + Viaticos H1", m.pedCashH1.toFixed(2), m.pedH2.toFixed(2), m.pedH3.toFixed(2), m.pedGrand.toFixed(2)],
+      ["Octavio (Efectivo Pool Socios)", "10% Pool Socios", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octH3.toFixed(2), m.octGrand.toFixed(2)],
+      ["Caja Libre MASTERIZE (Retencion Tesoreria)", "Reserva libre H1", m.cajaFreeH1.toFixed(2), "0.00", "0.00", m.cajaFreeH1.toFixed(2)]
     ];
 
     var csvContent = "\uFEFF" + rows.map(function (r) {
@@ -488,6 +533,97 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
+  /* ---------- Navegación Unificada (Reveal.js + Fallback Autónomo) ---------- */
+  var fallbackIdx = 0;
+
+  function isRevealReady() {
+    return typeof Reveal !== "undefined" && typeof Reveal.isReady === "function" && Reveal.isReady();
+  }
+
+  function getSlideElements() {
+    if (isRevealReady() && typeof Reveal.getSlides === "function") {
+      return Reveal.getSlides();
+    }
+    return Array.prototype.slice.call(document.querySelectorAll(".reveal .slides > section"));
+  }
+
+  function getCurrentSlideIndex() {
+    if (isRevealReady() && typeof Reveal.getState === "function" && Reveal.getState()) {
+      return Reveal.getState().indexh || 0;
+    }
+    return fallbackIdx;
+  }
+
+  function applyFallbackSlideState(idx) {
+    var slides = getSlideElements();
+    if (!slides.length) return;
+    fallbackIdx = Math.max(0, Math.min(slides.length - 1, idx));
+    slides.forEach(function (sec, i) {
+      sec.classList.toggle("present", i === fallbackIdx);
+      sec.classList.toggle("past", i < fallbackIdx);
+      sec.classList.toggle("future", i > fallbackIdx);
+      if (!isRevealReady()) {
+        sec.style.display = i === fallbackIdx ? "block" : "none";
+      }
+    });
+    if (!isRevealReady()) {
+      try {
+        history.replaceState(null, "", "#/" + fallbackIdx);
+      } catch (e) {}
+      updatePresentationHUD();
+    }
+  }
+
+  function goToSlide(idx) {
+    var slides = getSlideElements();
+    var total = slides.length || 8;
+    var target = Math.max(0, Math.min(total - 1, idx));
+    if (isRevealReady()) {
+      Reveal.slide(target);
+    } else {
+      applyFallbackSlideState(target);
+    }
+  }
+
+  function nextSlide() {
+    var slides = getSlideElements();
+    var idx = getCurrentSlideIndex();
+    if (idx < slides.length - 1) {
+      goToSlide(idx + 1);
+    }
+  }
+
+  function prevSlide() {
+    var idx = getCurrentSlideIndex();
+    if (idx > 0) {
+      goToSlide(idx - 1);
+    }
+  }
+
+  function toggleOverviewMode() {
+    if (isRevealReady() && typeof Reveal.toggleOverview === "function") {
+      Reveal.toggleOverview();
+    } else {
+      var rev = document.getElementById("revealDeck");
+      if (rev) rev.classList.toggle("overview");
+    }
+  }
+
+  /* ---------- Ajuste Dinámico de Geometría Móvil (Cero Solapamiento) ---------- */
+  function syncMobileViewportOffsets() {
+    var topbar = document.querySelector(".apple-topbar");
+    var dock = document.querySelector(".apple-bottom-dock");
+    var root = document.documentElement;
+    if (topbar) {
+      var th = Math.ceil(topbar.getBoundingClientRect().height);
+      if (th > 0) root.style.setProperty("--topbar-offset", th + "px");
+    }
+    if (dock) {
+      var dh = Math.ceil(dock.getBoundingClientRect().height);
+      if (dh > 0) root.style.setProperty("--dock-offset", dh + "px");
+    }
+  }
+
   /* ---------- HUD y Estudio de Orador 4 Tarjetas (/web-presentation-pro) ---------- */
   function formatSpeakerNotesHtml(rawNotes) {
     var safe = String(rawNotes || "")
@@ -500,12 +636,13 @@
   }
 
   function updatePresentationHUD() {
-    if (typeof Reveal === "undefined" || !Reveal.isReady()) return;
-    var slides = Reveal.getSlides();
+    syncMobileViewportOffsets();
+    var slides = getSlideElements();
+    if (!slides.length) return;
     var total = slides.length || 8;
-    var idx = (Reveal.getState() && Reveal.getState().indexh) || 0;
+    var idx = getCurrentSlideIndex();
     var currentSlide = slides[idx];
-    var nextSlide = slides[idx + 1];
+    var nextSlideEl = slides[idx + 1];
 
     var numStr = String(idx + 1).padStart(2, "0") + " / " + String(total).padStart(2, "0");
     var shortTitle = SHORT_TITLES[idx] || ("Lámina " + (idx + 1));
@@ -533,12 +670,6 @@
       }
     });
 
-    // En móvil, hacer scroll al tope al cambiar de lámina
-    var revealContainer = document.getElementById("revealDeck");
-    if (revealContainer && window.innerWidth <= 900) {
-      revealContainer.scrollTop = 0;
-    }
-
     // Actualizar Teleprompter [N] y Estudio 4 Tarjetas [P]
     var noteText = currentSlide ? (currentSlide.getAttribute("data-notes") || "") : "";
     var currTitle = currentSlide ? (currentSlide.getAttribute("data-title") || shortTitle) : shortTitle;
@@ -558,11 +689,11 @@
       studioScriptEl.innerHTML = formatSpeakerNotesHtml(noteText);
     }
 
-    if (nextSlide) {
+    if (nextSlideEl) {
       setText("studio-next-idx", String(idx + 2).padStart(2, "0"));
-      setText("studio-next-layout", "PRÓXIMO // " + (nextSlide.getAttribute("data-layout") || "SLIDE"));
-      setText("studio-next-title", nextSlide.getAttribute("data-title") || ("Lámina " + (idx + 2)));
-      setText("studio-next-notes", nextSlide.getAttribute("data-notes") || "");
+      setText("studio-next-layout", "PRÓXIMO // " + (nextSlideEl.getAttribute("data-layout") || "SLIDE"));
+      setText("studio-next-title", nextSlideEl.getAttribute("data-title") || ("Lámina " + (idx + 2)));
+      setText("studio-next-notes", nextSlideEl.getAttribute("data-notes") || "");
     } else {
       setText("studio-next-idx", "FIN");
       setText("studio-next-layout", "CIERRE");
@@ -618,12 +749,15 @@
   }
 
   function bindEvents() {
+    window.addEventListener("resize", syncMobileViewportOffsets, { passive: true });
+    window.addEventListener("orientationchange", syncMobileViewportOffsets, { passive: true });
+
     // Pastillas de pasos superiores
     document.querySelectorAll(".step-pill[data-slide-to]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var target = parseInt(btn.getAttribute("data-slide-to"), 10);
-        if (!isNaN(target) && typeof Reveal !== "undefined") {
-          Reveal.slide(target);
+        if (!isNaN(target)) {
+          goToSlide(target);
         }
       });
     });
@@ -632,22 +766,72 @@
     var prevBtn = document.getElementById("prevSlideBtn");
     if (prevBtn) {
       prevBtn.addEventListener("click", function () {
-        if (typeof Reveal !== "undefined") Reveal.prev();
+        prevSlide();
       });
     }
 
     var nextBtn = document.getElementById("nextSlideBtn");
     if (nextBtn) {
       nextBtn.addEventListener("click", function () {
-        if (typeof Reveal === "undefined") return;
-        var slides = Reveal.getSlides();
-        var idx = (Reveal.getState() && Reveal.getState().indexh) || 0;
+        var slides = getSlideElements();
+        var idx = getCurrentSlideIndex();
         if (idx >= slides.length - 1) {
-          Reveal.slide(0);
+          goToSlide(0);
         } else {
-          Reveal.next();
+          nextSlide();
         }
       });
+    }
+
+    // En modo Mosaico [ESC] en móvil/tablet, tocar cualquier lámina salta a ella y cierra Mosaico
+    document.querySelectorAll(".reveal .slides > section").forEach(function (sec, idx) {
+      sec.addEventListener("click", function () {
+        var rev = document.getElementById("revealDeck");
+        var inOverview = (isRevealReady() && Reveal.isOverview && Reveal.isOverview()) ||
+          (rev && rev.classList.contains("overview"));
+        if (inOverview && window.innerWidth <= 900) {
+          goToSlide(idx);
+          toggleOverviewMode();
+        }
+      });
+    });
+
+    // Gestos táctiles pasivos estilo Apple (permite scroll vertical 100% nativo y swipe horizontal limpio)
+    var revealEl = document.getElementById("revealDeck");
+    if (revealEl) {
+      var swipeStartX = 0;
+      var swipeStartY = 0;
+      var swipeIgnored = false;
+      var swipeActive = false;
+
+      function shouldIgnoreSwipe(target) {
+        if (!target || typeof target.closest !== "function") return false;
+        return Boolean(
+          target.closest("[data-prevent-swipe], .mz-table-scroll, .topbar-steps, input, textarea, select, button, a")
+        );
+      }
+
+      revealEl.addEventListener("touchstart", function (e) {
+        if (!e.touches || e.touches.length !== 1) return;
+        swipeIgnored = shouldIgnoreSwipe(e.target);
+        swipeStartX = e.touches[0].clientX;
+        swipeStartY = e.touches[0].clientY;
+        swipeActive = true;
+      }, { passive: true });
+
+      revealEl.addEventListener("touchend", function (e) {
+        if (!swipeActive || swipeIgnored || !e.changedTouches || !e.changedTouches.length) {
+          swipeActive = false;
+          return;
+        }
+        swipeActive = false;
+        var dx = e.changedTouches[0].clientX - swipeStartX;
+        var dy = e.changedTouches[0].clientY - swipeStartY;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.8) {
+          if (dx < 0) nextSlide();
+          else prevSlide();
+        }
+      }, { passive: true });
     }
 
     // Botones HUD Superiores
@@ -665,9 +849,7 @@
 
     var btnOverview = document.getElementById("btnToggleOverview");
     if (btnOverview) {
-      btnOverview.addEventListener("click", function () {
-        if (typeof Reveal !== "undefined") Reveal.toggleOverview();
-      });
+      btnOverview.addEventListener("click", toggleOverviewMode);
     }
 
     var btnTheme = document.getElementById("btnToggleTheme");
@@ -678,10 +860,10 @@
 
     // Botones dentro del Presenter Studio [P]
     var studioPrev = document.getElementById("studioPrevBtn");
-    if (studioPrev) studioPrev.addEventListener("click", function () { Reveal.prev(); });
+    if (studioPrev) studioPrev.addEventListener("click", prevSlide);
 
     var studioNext = document.getElementById("studioNextBtn");
-    if (studioNext) studioNext.addEventListener("click", function () { Reveal.next(); });
+    if (studioNext) studioNext.addEventListener("click", nextSlide);
 
     var studioReset = document.getElementById("studioResetTimerBtn");
     if (studioReset) studioReset.addEventListener("click", resetTimer);
@@ -757,6 +939,17 @@
       } else if (k === "f") {
         e.preventDefault();
         toggleFullscreen();
+      } else if (!isRevealReady()) {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          prevSlide();
+        } else if (e.key === "Escape") {
+          e.preventDefault();
+          toggleOverviewMode();
+        }
       }
     });
 
@@ -787,6 +980,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    syncMobileViewportOffsets();
     renderAll();
     bindEvents();
 
@@ -804,15 +998,23 @@
         center: true,
         controls: false,
         progress: false,
-        touch: true,
+        touch: false,
         pdfSeparateFragments: false
       }).then(function () {
         updatePresentationHUD();
       });
 
       Reveal.on("slidechanged", function () {
+        var revealContainer = document.getElementById("revealDeck");
+        if (revealContainer && window.innerWidth <= 900) {
+          revealContainer.scrollTop = 0;
+        }
         updatePresentationHUD();
       });
+    } else {
+      var initialMatch = (window.location.hash || "").match(/^#\/(\d+)/);
+      var startIdx = initialMatch ? parseInt(initialMatch[1], 10) : 0;
+      applyFallbackSlideState(startIdx);
     }
   });
 })();

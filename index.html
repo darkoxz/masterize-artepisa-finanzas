@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Reveal.js 5.1 (Motor /web-presentation-pro) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <!-- Reveal.js 5.1 (Motor /web-presentation-pro auto-hospedado localmente) -->
+  <link rel="stylesheet" href="assets/vendor/reveal.min.css" />
 
   <!-- Sistema de diseño Apple Keynote × MASTERIZE Branding -->
   <link rel="stylesheet" href="styles.css" />
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Navegación Directa por Lámina (comprensible en 1 vistazo) -->
-    <nav class="topbar-steps" aria-label="Láminas de la presentación">
+    <nav class="topbar-steps" aria-label="Láminas de la presentación" data-prevent-swipe="true">
       <button type="button" class="step-pill is-active" data-slide-to="0">
         <span class="step-pill-num">01</span><span>Portada</span>
       </button>
@@ -45,7 +45,7 @@
         <span class="step-pill-num">03</span><span>3 Hitos</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="3">
-        <span class="step-pill-num">04</span><span>Caja $30k</span>
+        <span class="step-pill-num">04</span><span id="pillCajaLabel">Caja $30k</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="4">
         <span class="step-pill-num">05</span><span>Por Socio</span>
@@ -54,7 +54,7 @@
         <span class="step-pill-num">06</span><span>Tabla SPEI</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="6">
-        <span class="step-pill-num">07</span><span>Iguala $10k</span>
+        <span class="step-pill-num">07</span><span id="pillIgualaLabel">Iguala $10k</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="7">
         <span class="step-pill-num">08</span><span>Resumen</span>
@@ -106,8 +106,8 @@
           </div>
 
           <div class="mz-cover-hero">
-            <p class="mz-eyebrow-apple">Contrato de Implementación ARTEPISA (Sin IVA)</p>
-            <h1 class="mz-hero-number" id="coverContractTotal">$150,000 <small>MXN</small></h1>
+            <p class="mz-eyebrow-apple">CONTRATO DE IMPLEMENTACIÓN ARTEPISA (SIN IVA)</p>
+            <h1 class="mz-hero-number" id="coverContractTotal"><span class="mz-currency-sign">$</span><span id="coverContractNum">150,000</span> <small>MXN</small></h1>
             <p class="mz-hero-subtitle">
               Se cobra en <strong>3 hitos</strong> (<span id="coverHitosInline">$60,000 · $45,000 · $45,000</span>) y se reparte en <strong>3 bolsas claras</strong>:
             </p>
@@ -153,7 +153,7 @@
           </div>
 
           <footer class="mz-cover-footer">
-            <span><strong>MASTERIZE TECH SOLUTIONS</strong> · Finanzas Internas</span>
+            <span><strong class="mz-forja-sig">MASTERIZE</strong> | Your future · Finanzas Internas</span>
             <span>Usa las flechas <strong>← →</strong> o toca <strong>Siguiente</strong> para ver paso a paso</span>
           </footer>
         </div>
@@ -260,7 +260,7 @@
                 <div class="mz-split-half is-emerald">
                   <span class="mz-half-label">MITAD 1 · CAJA (50%)</span>
                   <strong class="mz-half-val" id="s3H1Caja">$30,000</strong>
-                  <small class="mz-half-sub">Paga $16k gastos + deja $14k libres</small>
+                  <small class="mz-half-sub" id="s3H1CajaSub">Paga $16,000 gastos + deja $14,000 libres</small>
                 </div>
                 <div class="mz-split-half is-violet">
                   <span class="mz-half-label">MITAD 2 · SOCIOS (50%)</span>
@@ -342,7 +342,7 @@
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
-            <span class="mz-kicker"><strong class="text-accent">//</strong> 04 · DESGLOSE DE LOS PRIMEROS $30,000 (CAJA EN HITO 1)</span>
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 04 · DESGLOSE DE LOS PRIMEROS <span id="s4KickerCaja">$30,000</span> (CAJA EN HITO 1)</span>
             <span class="mz-slide-index">04 / 08</span>
           </div>
 
@@ -594,7 +594,7 @@
           <h2 class="mz-slide-title">Calendario Exacto de Pagos SPEI por Hito</h2>
 
           <div class="mz-table-card">
-            <div class="mz-table-scroll">
+            <div class="mz-table-scroll" data-prevent-swipe="true">
               <table class="mz-spei-table" aria-label="Tabla de pagos SPEI por hito">
                 <thead>
                   <tr>
@@ -840,7 +840,7 @@
                       <span class="text-accent">1er Pago Socios</span>
                     </div>
                     <p>
-                      Daniel <strong id="s8Step2Dan">$12,000</strong> · Omar <strong id="s8Step2Omar">$12,000</strong> ($6k Pool + $6k Closer) · Pedro <strong id="s8Step2Ped">$3,600</strong> · Octavio <strong id="s8Step2Oct">$2,400</strong>.
+                      Daniel <strong id="s8Step2Dan">$12,000</strong> · Omar <strong id="s8Step2Omar">$12,000</strong> (<span id="s8Step2OmarBreak">$6,000 Pool + $6,000 Closer</span>) · Pedro <strong id="s8Step2Ped">$3,600</strong> · Octavio <strong id="s8Step2Oct">$2,400</strong>.
                     </p>
                   </div>
                 </div>
@@ -853,7 +853,7 @@
                       <span class="text-accent" id="s8Step3Total">$90,000 Socios</span>
                     </div>
                     <p>
-                      En cada cobro: Daniel <strong id="s8Step3Dan">$20,250</strong> · Omar <strong id="s8Step3Omar">$14,625</strong> ($10,125 Pool + $4,500 Closer) · Pedro <strong id="s8Step3Ped">$6,075</strong> · Octavio <strong id="s8Step3Oct">$4,050</strong>.
+                      En cada cobro: Daniel <strong id="s8Step3Dan">$20,250</strong> · Omar <strong id="s8Step3Omar">$14,625</strong> (<span id="s8Step3OmarBreak">$10,125 Pool + $4,500 Closer</span>) · Pedro <strong id="s8Step3Ped">$6,075</strong> · Octavio <strong id="s8Step3Oct">$4,050</strong>.
                     </p>
                   </div>
                 </div>
@@ -874,7 +874,7 @@
             </div>
 
             <!-- Columna Derecha (5 cols): Calculadora / Simulador Limpio estilo Apple -->
-            <div class="mz-col-5 mz-bento-card mz-sim-card" data-no-nav="true">
+            <div class="mz-col-5 mz-bento-card mz-sim-card" data-no-nav="true" data-prevent-swipe="true">
               <div class="mz-section-subhead">SIMULADOR INTERACTIVO (OPCIONAL)</div>
               <p class="mz-sim-note">Si ajustas algún monto aquí, se recalcula toda la presentación en vivo:</p>
 
@@ -1029,8 +1029,8 @@
     </div>
   </aside>
 
-  <!-- Reveal.js Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+  <!-- Reveal.js Script (Auto-hospedado localmente) -->
+  <script src="assets/vendor/reveal.min.js"></script>
   <!-- Lógica Financiera Reactiva + Controles /web-presentation-pro -->
   <script src="app.js"></script>
 </body>
