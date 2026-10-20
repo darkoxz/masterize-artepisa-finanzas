@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MASTERIZE · ARTEPISA — Presentación Financiera y Calculadora Paso a Paso</title>
+  <title>MASTERIZE/ARTEPISA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- JACK ROBERTS AGENTIC OS V4.7 — PRIME-CYCLE CHROMATIC DRIFT LOBES (17s/19s/23s/29s/31s + 9s Breathe) -->
   <div class="design-render-field" aria-hidden="true">
     <div class="design-lobe lobe-a"></div>
     <div class="design-lobe lobe-b"></div>
@@ -20,7 +19,6 @@
   </div>
 
   <div class="deck-shell" id="deckShell">
-    <!-- TOP PRESENTATION BAR (Agentic OS V4.7 + /web-presentation-pro Navigation) -->
     <header class="deck-topbar op-header">
       <div class="deck-brand">
         <div class="op-logo">
@@ -28,13 +26,12 @@
           <div class="design-render-rim" aria-hidden="true"></div>
         </div>
         <div class="deck-brand-text">
-          <span class="op-brand-name">MASTERIZE <span class="op-os-tag">V4.7</span></span>
-          <span class="op-brand-sub">ARTEPISA · FINANZAS</span>
+          <span class="op-brand-name">MASTERIZE</span>
+          <span class="op-brand-sub">ARTEPISA</span>
         </div>
-        <span class="ws-anywhere-pill mint" id="statusBadge">100% OK</span>
+        <span class="ws-anywhere-pill mint" id="statusBadge">100%</span>
       </div>
 
-      <!-- 7-Slide Stepper Navigation -->
       <nav class="deck-steps" aria-label="Diapositivas">
         <button type="button" class="deck-step-btn is-active" data-slide-to="0">
           <span class="step-num">01</span><span class="step-label">Contrato</span>
@@ -46,7 +43,7 @@
           <span class="step-num">03</span><span class="step-label">Socios</span>
         </button>
         <button type="button" class="deck-step-btn" data-slide-to="3">
-          <span class="step-num">04</span><span class="step-label">Caja H1</span>
+          <span class="step-num">04</span><span class="step-label">Caja</span>
         </button>
         <button type="button" class="deck-step-btn" data-slide-to="4">
           <span class="step-num">05</span><span class="step-label">Iguala</span>
@@ -55,85 +52,69 @@
           <span class="step-num">06</span><span class="step-label">SPEI</span>
         </button>
         <button type="button" class="deck-step-btn" data-slide-to="6">
-          <span class="step-num">07</span><span class="step-label">Resumen</span>
+          <span class="step-num">07</span><span class="step-label">Cuentas</span>
         </button>
-        <button type="button" class="deck-step-btn" id="stepGridBtn" data-step-grid="true" title="Ver todas las diapositivas (ESC)">
-          <span class="step-num">⊞</span><span class="step-label">Grid</span>
+        <button type="button" class="deck-step-btn" id="stepGridBtn" data-step-grid="true" title="Grid (ESC)">
+          <span class="step-label">Grid</span>
         </button>
       </nav>
 
-      <!-- Utility Controls -->
       <div class="deck-actions">
         <div class="au-switch" role="group" aria-label="Unidades">
-          <button type="button" class="au-switch-btn is-active" data-unit="mxn" title="Ver en Pesos MXN">$</button>
-          <button type="button" class="au-switch-btn" data-unit="pct" title="Ver en Porcentajes">%</button>
+          <button type="button" class="au-switch-btn is-active" data-unit="mxn">$</button>
+          <button type="button" class="au-switch-btn" data-unit="pct">%</button>
         </div>
-        <button type="button" id="overviewToggleBtn" class="op-button" title="Vista de cuadrícula (ESC)">⊞ Grid</button>
-        <button type="button" id="notesToggleBtn" class="op-button" title="Notas de orador (S)">Notas</button>
+        <button type="button" id="overviewToggleBtn" class="op-button" title="Grid (ESC)">⊞</button>
+        <button type="button" id="notesToggleBtn" class="op-button" title="Notas (S)">Notas</button>
         <button type="button" id="fullscreenBtn" class="op-button" title="Pantalla completa (F)">⛶</button>
-        <button type="button" id="themeToggleBtn" class="op-button theme-btn" title="Cambiar tema claro/oscuro" aria-label="Tema">◐</button>
+        <button type="button" id="themeToggleBtn" class="op-button theme-btn" title="Tema" aria-label="Tema">◐</button>
       </div>
     </header>
 
-    <!-- WORKSPACE: 7-SLIDE PRESENTATION STAGE + AGENTIC OS LIVE COMPANION RAIL -->
     <div class="deck-workspace">
-      <!-- PRESENTATION STAGE (7 SLIDES + GUIDED PRESENTATION HUD) -->
       <main class="deck-stage op-main" id="deckStage">
 
-        <!-- ==================================================================
-             GUIDED PRESENTATION TAKEAWAY BAR (/web-presentation-pro + V4.7)
-             ================================================================== -->
-        <div class="guided-banner ws-anywhere-card" id="guidedBanner" role="region" aria-label="Explicación paso a paso">
+        <div class="guided-banner ws-anywhere-card" id="guidedBanner" role="region" aria-label="Guía">
           <div class="design-render-rim" aria-hidden="true"></div>
           <div class="guided-banner-top">
             <div class="guided-status-group">
               <span class="guided-pulse-dot" id="guidedPulseDot"></span>
-              <span class="ws-eyebrow" id="guidedStepBadge">PASO 01 / 07</span>
-              <span class="ws-anywhere-pill on" id="guidedSubstepPill" hidden title="Clic para ver el siguiente punto clave de esta diapositiva">1/3 · POOL 70%</span>
-              <div class="guided-substep-tabs" id="guidedSubstepTabs" role="tablist" aria-label="Puntos clave de la diapositiva">
-                <!-- Populated by app.js -->
-              </div>
+              <span class="ws-eyebrow" id="guidedStepBadge">01/07</span>
+              <span class="ws-anywhere-pill on" id="guidedSubstepPill" hidden>70%</span>
+              <div class="guided-substep-tabs" id="guidedSubstepTabs" role="tablist"></div>
             </div>
             <div class="guided-banner-actions">
-              <button type="button" class="op-button guided-auto-btn" id="autoPlayBannerBtn" title="Reproducción automática (P)">
+              <button type="button" class="op-button guided-auto-btn" id="autoPlayBannerBtn" title="Auto (P)">
                 <span id="autoPlayBannerIcon">▶</span>
                 <span id="autoPlayBannerLabel">Auto</span>
               </button>
-              <button type="button" class="ws-primary guided-next-pill" id="bannerNextStepBtn" title="Ir a la siguiente diapositiva (→)">
-                <span id="bannerNextStepLabel">Siguiente →</span>
+              <button type="button" class="ws-primary guided-next-pill" id="bannerNextStepBtn" title="Siguiente (→)">
+                <span id="bannerNextStepLabel">02 →</span>
               </button>
             </div>
           </div>
-          <p class="guided-narrative" id="guidedNarrativeText">
-            De los <b>$150,000</b> del contrato, el <b>70%</b> (<b>$105,000</b>) va directo a los 4 <b>Socios</b>, el <b>20%</b> (<b>$30,000</b>) a <b>Inversión</b> y <b>Caja</b>, y el <b>10%</b> (<b>$15,000</b>) a comisión <b>Closer</b>.
-          </p>
+          <p class="guided-narrative" id="guidedNarrativeText">$150,000</p>
           <div class="guided-progress-track" aria-hidden="true">
             <div class="guided-progress-fill" id="guidedProgressFill" style="width: 33%"></div>
           </div>
         </div>
 
-        <!-- ==================================================================
-             SLIDE 01: EL CONTRATO ($150,000 MXN -> 3 BOLSAS MAESTRAS)
-             ================================================================== -->
+        <!-- SLIDE 01: CONTRATO ($150,000 -> 70% / 20% / 10%) -->
         <section class="deck-slide is-active" data-slide="0" data-section="hero">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow">PASO 01 DE 07 · ¿CÓMO SE DIVIDE EL CONTRATO?</span>
-              <span class="ws-anywhere-pill on" id="ivaBadge">Facturado con IVA (16%): $174,000</span>
+              <span class="ws-eyebrow">01/CONTRATO</span>
+              <span class="ws-anywhere-pill on" id="ivaBadge">+IVA $174,000</span>
             </div>
 
-            <h1 class="slide-title" id="slide1MainTitle">$150,000 en 3 Bolsas: 70% · 20% · 10%<span class="op-dot">.</span></h1>
-            <p class="slide-sub" id="slide1Lead">
-              De cada peso que entra sin IVA, <strong>70 centavos</strong> son para los 4 socios (<strong>$105,000</strong>), <strong>20 centavos</strong> cubren todos los gastos y la caja de MASTERIZE (<strong>$30,000</strong>), y <strong>10 centavos</strong> son la comisión comercial de cierre (<strong>$15,000</strong>).
-            </p>
+            <h1 class="slide-title" id="slide1MainTitle">$150,000</h1>
 
-            <!-- Editable Gross Contract Input -->
             <div class="hero-contract-bar ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
               <div class="hero-input-row">
                 <div class="hero-input-label">
-                  <strong>Monto Total del Contrato (Sin IVA · Editable)</strong>
-                  <span id="heroHitosInline">Se cobra en 3 pagos (Hitos): 1º $60,000 (40%) · 2º $45,000 (30%) · 3º $45,000 (30%)</span>
+                  <strong>Sin IVA</strong>
+                  <span id="heroHitosInline">$60k/$45k/$45k</span>
                 </div>
                 <div class="biz-bank-InputWrap">
                   <span class="biz-currency-prefix">$</span>
@@ -149,112 +130,79 @@
                 </div>
               </div>
 
-              <!-- Proportional Split Bar (70 / 20 / 10) -->
               <div class="split-master-bar" aria-label="70/20/10">
-                <div class="split-seg seg-pool" id="segPoolBar" style="width:70%"><span id="segPoolLabel">70% Socios ($105k)</span></div>
-                <div class="split-seg seg-caja" id="segCajaBar" style="width:20%"><span id="segCajaLabel">20% Inversión/Caja ($30k)</span></div>
-                <div class="split-seg seg-closer" id="segCloserBar" style="width:10%"><span id="segCloserLabel">10% ($15k)</span></div>
+                <div class="split-seg seg-pool" id="segPoolBar" style="width:70%"><span id="segPoolLabel">70%</span></div>
+                <div class="split-seg seg-caja" id="segCajaBar" style="width:20%"><span id="segCajaLabel">20%</span></div>
+                <div class="split-seg seg-closer" id="segCloserBar" style="width:10%"><span id="segCloserLabel">10%</span></div>
               </div>
 
-              <!-- 3 Master Buckets -->
               <dl class="ws-anywhere-counts hero-three-buckets">
                 <div class="bucket-card is-pool">
                   <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>BOLSA 1 · 70% POOL SOCIOS</span><span class="dot-pool">●</span></dt>
+                  <dt><span>70% POOL</span><span class="dot-pool"></span></dt>
                   <dd id="wellPoolTotal">$105,000</dd>
-                  <small id="wellPoolSub">50% Daniel · 25% Omar · 15% Pedro · 10% Octavio</small>
-                  <div class="bucket-mini-pills" id="poolMiniPills">
-                    <span><b>Daniel (50%)</b> <em>$52,500</em></span>
-                    <span><b>Omar (25%)</b> <em>$26,250</em></span>
-                    <span><b>Pedro (15%)</b> <em>$15,750</em></span>
-                    <span><b>Octavio (10%)</b> <em>$10,500</em></span>
-                  </div>
+                  <small id="wellPoolSub">Socios</small>
+                  <div class="bucket-mini-pills" id="poolMiniPills"></div>
                 </div>
                 <div class="bucket-card is-caja">
                   <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>BOLSA 2 · 20% INVERSIÓN Y CAJA</span><span class="dot-caja">●</span></dt>
+                  <dt><span>20% CAJA</span><span class="dot-caja"></span></dt>
                   <dd id="wellCajaTotal">$30,000</dd>
-                  <small id="wellCajaSub">Se aparta 100% en Hito 1 · Quedan $14,000 Libres</small>
-                  <div class="bucket-mini-pills" id="cajaMiniPills">
-                    <span><b>Gastos Arranque H1</b> <em>-$16,000</em></span>
-                    <span><b>Caja Libre MASTERIZE</b> <em>+$14,000</em></span>
-                  </div>
+                  <small id="wellCajaSub">$14,000 Libre</small>
+                  <div class="bucket-mini-pills" id="cajaMiniPills"></div>
                 </div>
                 <div class="bucket-card is-closer">
                   <div class="design-render-rim" aria-hidden="true"></div>
-                  <dt><span>BOLSA 3 · 10% CLOSER COMERCIAL</span><span class="dot-closer">●</span></dt>
+                  <dt><span>10% CLOSER</span><span class="dot-closer"></span></dt>
                   <dd id="wellCloserTotal">$15,000</dd>
-                  <small id="wellCloserSub">Comisión de Cierre (Omar Moranza · 10% por Hito)</small>
-                  <div class="bucket-mini-pills" id="closerMiniPills">
-                    <span><b>Hito 1 (40%)</b> <em>$6,000</em></span>
-                    <span><b>Hito 2 (30%)</b> <em>$4,500</em></span>
-                    <span><b>Hito 3 (30%)</b> <em>$4,500</em></span>
-                  </div>
+                  <small id="wellCloserSub">Omar</small>
+                  <div class="bucket-mini-pills" id="closerMiniPills"></div>
                 </div>
               </dl>
 
-              <!-- Visible SVG Sparkline Curve (.biz-bank-art) with Milestone Timeline Labels -->
-              <div class="biz-bank-art" id="bankSparkArt" aria-label="Curva de cobros acumulados"></div>
+              <div class="biz-bank-art" id="bankSparkArt" aria-label="Curva"></div>
             </div>
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 02: PRIMEROS $60,000 Y LIQUIDACIÓN POR HITOS
-             ================================================================== -->
+        <!-- SLIDE 02: HITOS ($60K = $30K CAJA + $30K SOCIOS; H2/H3 100% SOCIOS) -->
         <section class="deck-slide" data-slide="1" data-section="hitos">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow" id="slide2Eyebrow">PASO 02 DE 07 · ¿CÓMO SE USAN LOS PRIMEROS $60K Y CUÁNDO SE LIQUIDA EL RESTO?</span>
-              <span class="ws-anywhere-pill on" id="hitoChartTitle">3 Cobros: $60k · $45k · $45k</span>
+              <span class="ws-eyebrow" id="slide2Eyebrow">02/HITOS</span>
+              <span class="ws-anywhere-pill on" id="hitoChartTitle">$60k/$45k/$45k</span>
             </div>
 
-            <h2 class="slide-title" id="slide2MainTitle">Primeros $60k: $30k Inversión + $30k Socios<span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide2Lead">
-              El <strong>Hito 1 ($60,000)</strong> se parte exactamente a la mitad: <strong>$30,000</strong> llenan el 100% de la bolsa de Gastos y Caja, y los otros <strong>$30,000</strong> se reparten entre los socios. Como la Caja ya queda 100% cubierta, los <strong>Hitos 2 y 3 ($45,000 c/u)</strong> van <strong>100% directo a los socios</strong> hasta liquidar.
-            </p>
+            <h2 class="slide-title" id="slide2MainTitle">H1 $60,000</h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
               <header>
                 <div class="biz-rev-legend">
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Inversión y Caja <span id="slide2CajaSplitLegend">20% (Se cubre 100% en H1)</span></span>
-                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#c8afe9"></span>Pool Socios 70%</span>
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#a2d1bf"></span>Caja <span id="slide2CajaSplitLegend">20%</span></span>
+                  <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#c8afe9"></span>Pool 70%</span>
                   <span class="biz-legend-item"><span class="biz-legend-swatch" style="background:#f5a524"></span>Closer 10%</span>
                 </div>
-                <div class="au-switch" role="group" aria-label="Filtrar Hito">
+                <div class="au-switch" role="group" aria-label="Hito">
                   <button type="button" class="au-switch-btn is-active" data-hito="total" id="hitoTotalBtn">$150k</button>
-                  <button type="button" class="au-switch-btn" data-hito="h1">Hito 1</button>
-                  <button type="button" class="au-switch-btn" data-hito="h2">Hito 2</button>
-                  <button type="button" class="au-switch-btn" data-hito="h3">Hito 3</button>
+                  <button type="button" class="au-switch-btn" data-hito="h1">H1</button>
+                  <button type="button" class="au-switch-btn" data-hito="h2">H2</button>
+                  <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
                 </div>
               </header>
 
-              <!-- Visual 50/50 Breakdown of First $60,000 ($30k Inversión/Caja + $30k Reparto Socios) -->
-              <div class="h1-split-showcase" id="h1SplitShowcase">
-                <!-- Populated by app.js -->
-              </div>
-
-              <!-- 3 Step-by-Step Milestone Progression Cards (H1 -> H2 -> H3) -->
-              <div class="hito-cards-grid" id="hitoSummaryCards">
-                <!-- Populated by app.js -->
-              </div>
-
-              <!-- Visual Stacked Bar Comparison (H1, H2, H3, Total) -->
-              <div class="biz-revenue-chart" id="milestoneBarChart">
-                <!-- Populated by app.js -->
-              </div>
+              <div class="h1-split-showcase" id="h1SplitShowcase"></div>
+              <div class="hito-cards-grid" id="hitoSummaryCards"></div>
+              <div class="biz-revenue-chart" id="milestoneBarChart"></div>
             </article>
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 03: LO QUE LE TOCA A CADA SOCIO (H1 -> H2 -> H3 = TOTAL)
-             ================================================================== -->
+        <!-- SLIDE 03: SOCIOS (50%/25%/15%/10%) -->
         <section class="deck-slide" data-slide="2" data-section="orbs">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow">PASO 03 DE 07 · ¿CUÁNTO RECIBE CADA SOCIO EN CADA HITO Y EN TOTAL?</span>
+              <span class="ws-eyebrow">03/SOCIOS</span>
               <div class="au-controls">
                 <div class="au-switch" role="group" aria-label="Hito">
                   <button type="button" class="au-switch-btn is-active" data-hito="total">Total</button>
@@ -263,111 +211,91 @@
                   <button type="button" class="au-switch-btn" data-hito="h3">H3</button>
                 </div>
                 <div class="au-switch" role="group" aria-label="Grupo">
-                  <button type="button" class="au-switch-btn is-active" data-orb-group="partners">Por Socio</button>
-                  <button type="button" class="au-switch-btn" data-orb-group="buckets">Por Bolsa</button>
+                  <button type="button" class="au-switch-btn is-active" data-orb-group="partners">Socios</button>
+                  <button type="button" class="au-switch-btn" data-orb-group="buckets">Bolsas</button>
                 </div>
                 <div class="au-switch" role="group" aria-label="Modo">
-                  <button type="button" class="au-switch-btn is-active" data-render-mode="orb" title="Esferas líquidas">●</button>
-                  <button type="button" class="au-switch-btn" data-render-mode="bar" title="Barras líquidas">▮</button>
+                  <button type="button" class="au-switch-btn is-active" data-render-mode="orb">●</button>
+                  <button type="button" class="au-switch-btn" data-render-mode="bar">▮</button>
                 </div>
               </div>
             </div>
 
-            <h2 class="slide-title" id="orbStageHeadline">Lo que recibe cada Socio (50% · 25% · 15% · 10%)<span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide3Lead">
-              Cada tarjeta muestra el <strong>pago directo por contrato</strong> sumando los 3 cobros (<strong>Hito 1 + Hito 2 + Hito 3</strong>) y, en el recuadro inferior, su <strong>beneficio total</strong> incluyendo reembolso o equipo entregado en el Hito 1.
-            </p>
+            <h2 class="slide-title" id="orbStageHeadline">Socios</h2>
 
-            <div class="au-grid" id="orbGrid">
-              <!-- Populated by app.js with 60fps Liquid Surge Orbs + H1/H2/H3 strips + .design-render-rim -->
-            </div>
+            <div class="au-grid" id="orbGrid"></div>
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 04: PRIMEROS $30,000 DE INVERSIÓN Y CAJA ($30,000 -> $14,000 LIBRES)
-             ================================================================== -->
+        <!-- SLIDE 04: CAJA H1 ($30,000 -> $14,000 LIBRE) -->
         <section class="deck-slide" data-slide="3" data-section="dials">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow" id="slide4Eyebrow">PASO 04 DE 07 · ¿EN QUÉ SE USAN LOS PRIMEROS $30,000 DE CAJA (HITO 1)?</span>
-              <span class="ws-anywhere-pill on" id="cajaGrossPill">Gastos H1: -$16,000</span>
+              <span class="ws-eyebrow" id="slide4Eyebrow">04/CAJA H1</span>
+              <span class="ws-anywhere-pill on" id="cajaGrossPill">-$16,000</span>
             </div>
 
-            <h2 class="slide-title">Primeros <span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span> Libres<span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide4Lead">
-              De los primeros <strong>$30,000</strong> apartados en el Hito 1 se pagan de inmediato estos <strong>3 gastos únicos de arranque (-$16,000)</strong> y quedan <strong>$14,000 libres</strong> en la Caja de MASTERIZE. Puedes activar o ajustar cualquier monto para simular escenarios.
-            </p>
+            <h2 class="slide-title"><span id="slide4GrossHeadline">$30,000</span> → <span id="slide4FreeHeadline">$14,000</span></h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
-
-              <!-- Visual Stacked Bar + Equation of the $30,000 H1 Investment/Caja Bucket -->
-              <div class="caja-breakdown-bar-wrap" id="cajaBreakdownBarWrap">
-                <!-- Populated by app.js -->
-              </div>
+              <div class="caja-breakdown-bar-wrap" id="cajaBreakdownBarWrap"></div>
 
               <div class="inst-body">
                 <div class="dial-wrap">
                   <svg id="cajaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
                   <div class="dial-center">
                     <div class="dial-val" id="cajaDialVal">$14,000</div>
-                    <div class="dial-caption">CAJA LIBRE H1</div>
+                    <div class="dial-caption">LIBRE</div>
                     <div class="dial-pct-badge" id="cajaDialPct">46.7%</div>
                   </div>
                 </div>
 
                 <div class="ctrl-list">
-                  <!-- Omar $10,660 -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkOmarReimb" class="ctrl-check" checked />
                       <div class="ctrl-label-group">
-                        <label for="chkOmarReimb" class="ctrl-name">1. Omar · Reembolso de Inversión IA</label>
-                        <span class="ctrl-meta">3 meses de herramientas IA ($10,000) + Plan ($660) · Se liquida en Hito 1</span>
+                        <label for="chkOmarReimb" class="ctrl-name">Omar IA</label>
+                        <span class="ctrl-meta">$10k+$660</span>
                       </div>
                     </div>
                     <input type="number" id="inpOmarReimb" class="ctrl-input" value="10660" min="0" step="100" />
                   </div>
 
-                  <!-- Monitor 1: 30" -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkMon30" class="ctrl-check" checked />
                       <div class="ctrl-label-group">
                         <label for="chkMon30" class="ctrl-name">
-                          2A. Daniel · Monitor Curvo 30" WFHD
-                          <a href="https://www.mercadolibre.com.mx/monitor-gamer-curvo-fyhxele-30-pulgadas-2k-wfhd-200hz-1ms/p/MLM52822704" target="_blank" rel="noopener noreferrer" class="ml-chip">Ver en ML ↗</a>
+                          Daniel 30"
+                          <a href="https://www.mercadolibre.com.mx/monitor-gamer-curvo-fyhxele-30-pulgadas-2k-wfhd-200hz-1ms/p/MLM52822704" target="_blank" rel="noopener noreferrer" class="ml-chip">ML↗</a>
                         </label>
-                        <span class="ctrl-meta">Equipo de desarrollo principal · Se compra en Hito 1</span>
                       </div>
                     </div>
                     <input type="number" id="inpMon30" class="ctrl-input" value="3199" min="0" step="50" />
                   </div>
 
-                  <!-- Monitor 2: 15.6" -->
                   <div class="ctrl-row">
                     <div class="ctrl-left">
                       <input type="checkbox" id="chkMon15" class="ctrl-check" checked />
                       <div class="ctrl-label-group">
                         <label for="chkMon15" class="ctrl-name">
-                          2B. Daniel · Monitor Portátil 15.6" FHD
-                          <a href="https://articulo.mercadolibre.com.mx/MLM-2215895794-monitor-portatil-156-fhd-1080p-ips-hdr-usb-c-hdmi-con-funda-_JM" target="_blank" rel="noopener noreferrer" class="ml-chip">Ver en ML ↗</a>
+                          Daniel 15.6"
+                          <a href="https://articulo.mercadolibre.com.mx/MLM-2215895794-monitor-portatil-156-fhd-1080p-ips-hdr-usb-c-hdmi-con-funda-_JM" target="_blank" rel="noopener noreferrer" class="ml-chip">ML↗</a>
                         </label>
-                        <span class="ctrl-meta">Suma de los 2 Monitores para Daniel: <strong id="monTotalInline">$4,172.50</strong></span>
+                        <span class="ctrl-meta"><strong id="monTotalInline">$4,172.50</strong></span>
                       </div>
                     </div>
                     <input type="number" id="inpMon15" class="ctrl-input" value="973.50" min="0" step="25" />
                   </div>
 
-                  <!-- Pedro -->
                   <div class="ctrl-slider-row">
                     <div class="ctrl-slider-top">
                       <div class="ctrl-left">
                         <input type="checkbox" id="chkViaticos" class="ctrl-check" checked />
                         <div class="ctrl-label-group">
-                          <label for="chkViaticos" class="ctrl-name">3. Pedro · Viáticos de Planta ARTEPISA</label>
-                          <span class="ctrl-meta">Traslados y representación legal/operativa · Se cubre en Hito 1</span>
+                          <label for="chkViaticos" class="ctrl-name">Pedro Viáticos</label>
                         </div>
                       </div>
                       <input type="number" id="inpViaticos" class="ctrl-input" value="1167.50" min="0" step="50" />
@@ -375,7 +303,7 @@
                     <input type="range" id="rngViaticos" class="ctrl-range" min="0" max="6000" step="25" value="1167.50" />
                     <div class="preset-pills">
                       <button type="button" class="preset-pill" data-viaticos="0">$0</button>
-                      <button type="button" class="preset-pill is-active" data-viaticos="1167.5">$1,167.50 (Base)</button>
+                      <button type="button" class="preset-pill is-active" data-viaticos="1167.5">$1,167.50</button>
                       <button type="button" class="preset-pill" data-viaticos="1500">$1,500</button>
                       <button type="button" class="preset-pill" data-viaticos="2500">$2,500</button>
                     </div>
@@ -386,35 +314,26 @@
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 05: IGUALA MENSUAL ($10,000/MES -> $4,000 LIBRES)
-             ================================================================== -->
+        <!-- SLIDE 05: IGUALA MENSUAL ($10,000/MES -> $4,000 LIBRE) -->
         <section class="deck-slide" data-slide="4" data-section="iguala">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow">PASO 05 DE 07 · ¿CÓMO FUNCIONA LA IGUALA MENSUAL AL TERMINAR EL PROYECTO?</span>
+              <span class="ws-eyebrow">05/IGUALA</span>
               <span class="ws-anywhere-pill on" id="igualaAnnualPill">+$48,000/año</span>
             </div>
 
-            <h2 class="slide-title">Iguala <span id="slide5GrossHeadline">$10,000</span> → <span id="slide5FreeHeadline">$4,000</span> Libres/mes<span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide5Lead">
-              Al entregar el Hito 3 inicia la póliza mensual de <strong>$10,000/mes</strong>. Con ella se pagan los <strong>$6,000/mes</strong> del Stack IA/Cloud y quedan <strong>$4,000/mes libres</strong> (<strong>$48,000 al año</strong>) para la Caja de MASTERIZE.
-            </p>
+            <h2 class="slide-title"><span id="slide5GrossHeadline">$10,000</span> → <span id="slide5FreeHeadline">$4,000</span>/mes</h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
-
-              <!-- Visual Stacked Bar + Equation of the $10,000/mes Iguala -->
-              <div class="caja-breakdown-bar-wrap" id="igualaBreakdownBarWrap">
-                <!-- Populated by app.js -->
-              </div>
+              <div class="caja-breakdown-bar-wrap" id="igualaBreakdownBarWrap"></div>
 
               <div class="inst-body">
                 <div class="dial-wrap">
                   <svg id="igualaDialSvg" class="dial-svg" viewBox="0 0 200 200"></svg>
                   <div class="dial-center">
                     <div class="dial-val" id="igualaDialVal">$4,000</div>
-                    <div class="dial-caption">LIBRE / MES</div>
+                    <div class="dial-caption">LIBRE</div>
                     <div class="dial-pct-badge" id="igualaDialPct">40.0%</div>
                   </div>
                 </div>
@@ -422,32 +341,28 @@
                 <div class="ctrl-list">
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpIgualaGross" class="ctrl-name">Cobro Mensual · Póliza / Iguala ARTEPISA</label>
-                      <span class="ctrl-meta">Inicia al liquidar el Hito 3 (ingreso recurrente mensual)</span>
+                      <label for="inpIgualaGross" class="ctrl-name">Iguala</label>
                     </div>
                     <input type="number" id="inpIgualaGross" class="ctrl-input" value="10000" min="0" step="500" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpAzure" class="ctrl-name">1. Azure Cloud &amp; Base de Datos</label>
-                      <span class="ctrl-meta">Servidores en la nube, base de datos y respaldos</span>
+                      <label for="inpAzure" class="ctrl-name">Azure</label>
                     </div>
                     <input type="number" id="inpAzure" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpClaude" class="ctrl-name">2. Claude Team + Claude Code</label>
-                      <span class="ctrl-meta">Licencias de desarrollo y mantenimiento asistido por IA</span>
+                      <label for="inpClaude" class="ctrl-name">Claude</label>
                     </div>
                     <input type="number" id="inpClaude" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
 
                   <div class="ctrl-row">
                     <div class="ctrl-label-group">
-                      <label for="inpGoogleAi" class="ctrl-name">3. Plan Google AI Ultra (Gemini)</label>
-                      <span class="ctrl-meta">Motor de inferencia, modelos multimodales y agentes</span>
+                      <label for="inpGoogleAi" class="ctrl-name">Google AI</label>
                     </div>
                     <input type="number" id="inpGoogleAi" class="ctrl-input" value="2000" min="0" step="100" />
                   </div>
@@ -457,24 +372,19 @@
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 06: MATRIZ DE DISPERSIÓN SPEI POR HITO HASTA LIQUIDAR
-             ================================================================== -->
+        <!-- SLIDE 06: SPEI POR HITO -->
         <section class="deck-slide" data-slide="5" data-section="spei">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow">PASO 06 DE 07 · ¿CUÁNTO SE TRANSFIERE EN EL BANCO EN CADA COBRO (SPEI)?</span>
+              <span class="ws-eyebrow">06/SPEI</span>
               <div class="au-controls">
                 <span class="ws-anywhere-pill on" id="speiCheckLabel">$150,000.00</span>
-                <button id="resetBtn" type="button" class="op-button" title="Restaurar valores originales">↺ Reset</button>
-                <button id="exportCsvBtn" type="button" class="ws-primary" title="Descargar tabla en Excel / CSV">↓ Descargar CSV</button>
+                <button id="resetBtn" type="button" class="op-button">Reset</button>
+                <button id="exportCsvBtn" type="button" class="ws-primary">CSV</button>
               </div>
             </div>
 
-            <h2 class="slide-title">Liquidación: <span id="slide6Headline">$60k · $45k · $45k</span><span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide6Lead">
-              Tabla bancaria exacta lista para ejecutar las transferencias SPEI en cuanto ARTEPISA deposite el <strong>Hito 1 ($60,000)</strong>, el <strong>Hito 2 ($45,000)</strong> y el <strong>Hito 3 ($45,000)</strong>.
-            </p>
+            <h2 class="slide-title"><span id="slide6Headline">$60k/$45k/$45k</span></h2>
 
             <article class="ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
@@ -482,122 +392,105 @@
                 <table class="spei-table">
                   <thead>
                     <tr>
-                      <th>Socio / Bolsa</th>
-                      <th>Regla (%)</th>
-                      <th id="speiThH1">Hito 1 · 40% ($60k)</th>
-                      <th id="speiThH2">Hito 2 · 30% ($45k)</th>
-                      <th id="speiThH3">Hito 3 · 30% ($45k)</th>
-                      <th>Total Liquidado</th>
+                      <th>Cuenta</th>
+                      <th>%</th>
+                      <th id="speiThH1">H1</th>
+                      <th id="speiThH2">H2</th>
+                      <th id="speiThH3">H3</th>
+                      <th>Total</th>
                     </tr>
                   </thead>
-                  <tbody id="speiTableBody">
-                    <!-- Populated by app.js -->
-                  </tbody>
-                  <tfoot id="speiTableFoot">
-                    <!-- Populated by app.js -->
-                  </tfoot>
+                  <tbody id="speiTableBody"></tbody>
+                  <tfoot id="speiTableFoot"></tfoot>
                 </table>
               </div>
-
-              <!-- Practical Bank Dispersion Summary for Hito 1 (Contract Share + Reimbursements) -->
-              <div class="spei-h1-callout" id="speiH1CashCallout">
-                <!-- Populated by app.js -->
-              </div>
+              <div class="spei-h1-callout" id="speiH1CashCallout"></div>
             </article>
           </div>
         </section>
 
-        <!-- ==================================================================
-             SLIDE 07: RUTA DE LIQUIDACIÓN Y TOTAL POR SOCIO
-             ================================================================== -->
+        <!-- SLIDE 07: CUENTAS FINALES -->
         <section class="deck-slide" data-slide="6" data-section="steps">
           <div class="slide-inner">
             <div class="slide-head">
-              <span class="ws-eyebrow">PASO 07 DE 07 · RESUMEN EJECUTIVO DE PRINCIPIO A FIN</span>
-              <span class="ws-anywhere-pill mint">Tesorería Libre Año 1: <strong id="slide7TreasuryVal">$62,000</strong></span>
+              <span class="ws-eyebrow">07/CUENTAS</span>
+              <span class="ws-anywhere-pill mint"><strong id="slide7TreasuryVal">$62,000</strong></span>
             </div>
 
-            <h2 class="slide-title">Liquidación 100% + <span id="slide7Headline">$62,000</span> Año 1<span class="op-dot">.</span></h2>
-            <p class="slide-sub" id="slide7Lead">
-              Así se resume todo el acuerdo en <strong>4 pasos cronológicos</strong>, seguido del <strong>monto total consolidado</strong> que recibe cada socio (efectivo del contrato + reembolso o equipo).
-            </p>
+            <h2 class="slide-title"><span id="slide7Headline">$62,000</span></h2>
 
             <div class="steps-grid" id="nextStepsGrid">
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge" id="step1Badge">PASO 1 · HITO 1 (MITAD 1: PRIMEROS $30K)</div>
-                <strong class="step-card-title" id="step1Title">$30,000 · Inversión y Caja</strong>
-                <p class="step-card-desc">Se pagan gastos de arranque: Reembolso Omar <code id="step2Omar">$10,660</code> · 2 Monitores Daniel <code id="step2Mon">$4,172.50</code> · Viáticos Pedro <code id="step2Viat">$1,167.50</code> · Y quedan en Caja Libre <code id="step1Caja">$14,000</code>.</p>
+                <div class="step-badge" id="step1Badge">01</div>
+                <strong class="step-card-title" id="step1Title">$30,000</strong>
+                <p class="step-card-desc"><span>IA <code id="step2Omar"></code></span><span>Mon <code id="step2Mon"></code></span><span>Viat <code id="step2Viat"></code></span><span>Libre <code id="step1Caja"></code></span></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge" id="step2Badge">PASO 2 · HITO 1 (MITAD 2: SIGUIENTES $30K)</div>
-                <strong class="step-card-title" id="step2Title">$30,000 · 1er Pago Socios</strong>
-                <p class="step-card-desc">Se reparte entre socios: Daniel <code id="step1Daniel">$12,000</code> · Omar <code id="step1Omar">$12,000</code> · Pedro <code id="step1Pedro">$3,600</code> · Octavio <code id="step1Octavio">$2,400</code> (<code id="step1Pool">$24k</code> Pool + <code id="step1Closer">$6k</code> Closer).</p>
+                <div class="step-badge" id="step2Badge">02</div>
+                <strong class="step-card-title" id="step2Title">$30,000</strong>
+                <p class="step-card-desc"><span>Dan <code id="step1Daniel"></code></span><span>Omar <code id="step1Omar"></code></span><span>Ped <code id="step1Pedro"></code></span><span>Oct <code id="step1Octavio"></code></span><span id="step1Pool" hidden></span><span id="step1Closer" hidden></span></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">PASO 3 · HITOS 2 Y 3 (100% A SOCIOS)</div>
-                <strong class="step-card-title" id="step3Title">$45,000 + $45,000 a Socios</strong>
-                <p class="step-card-desc">En cada hito ($0 Caja): Daniel <code id="step3Daniel">$20,250</code> · Omar <code id="step3Omar">$14,625</code> · Pedro <code id="step3Pedro">$6,075</code> · Octavio <code id="step3Octavio">$4,050</code> (<code id="step3Pool">$40.5k</code> Pool + <code id="step3Closer">$4.5k</code> Closer)<span id="step3Caja" hidden>$0</span>.</p>
+                <div class="step-badge">03 · H2+H3</div>
+                <strong class="step-card-title" id="step3Title">$45k+$45k</strong>
+                <p class="step-card-desc"><span>Dan <code id="step3Daniel"></code></span><span>Omar <code id="step3Omar"></code></span><span>Ped <code id="step3Pedro"></code></span><span>Oct <code id="step3Octavio"></code></span><span id="step3Pool" hidden></span><span id="step3Closer" hidden></span><span id="step3Caja" hidden></span></p>
               </article>
 
               <article class="step-card ws-anywhere-card">
                 <div class="design-render-rim" aria-hidden="true"></div>
-                <div class="step-badge">PASO 4 · IGUALA MENSUAL POST-ENTREGA</div>
-                <strong class="step-card-title" id="step4Title">$10,000/mes → $4,000 Libres</strong>
-                <p class="step-card-desc">Paga Stack IA <code id="step4Stack">-$6,000</code>/mes · Quedan Libres <code id="step4Free">$4,000</code>/mes · Acumulado <code id="step4Annual">$48,000/año</code> para MASTERIZE.</p>
+                <div class="step-badge">04 · IGUALA</div>
+                <strong class="step-card-title" id="step4Title">$10,000/m</strong>
+                <p class="step-card-desc"><span>IA <code id="step4Stack"></code></span><span>Libre <code id="step4Free"></code></span><span><code id="step4Annual"></code></span></p>
               </article>
             </div>
 
-            <!-- Executive Consolidated Strip (What Everyone Gets in Total) -->
             <div class="exec-kpi-strip ws-anywhere-card">
               <div class="design-render-rim" aria-hidden="true"></div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Daniel · Total</span>
+                <span class="op-mini-label">Daniel</span>
                 <span class="op-mini-val" id="sideDanielTotal">$56,672.50</span>
-                <small class="op-mini-sub" id="sideDanielSub">$52,500 efectivo + Monitores</small>
+                <small class="op-mini-sub" id="sideDanielSub"></small>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Omar · Total</span>
+                <span class="op-mini-label">Omar</span>
                 <span class="op-mini-val" id="sideOmarCash">$51,910</span>
-                <small class="op-mini-sub" id="sideOmarSub">$41,250 utilidad + Reembolso</small>
+                <small class="op-mini-sub" id="sideOmarSub"></small>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Pedro · Total</span>
+                <span class="op-mini-label">Pedro</span>
                 <span class="op-mini-val" id="sidePedroTotal">$16,917.50</span>
-                <small class="op-mini-sub" id="sidePedroSub">$15,750 efectivo + Viáticos</small>
+                <small class="op-mini-sub" id="sidePedroSub"></small>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Octavio · Total</span>
+                <span class="op-mini-label">Octavio</span>
                 <span class="op-mini-val" id="sideOctavioTotal">$10,500</span>
-                <small class="op-mini-sub" id="sideOctavioSub">10% Pool (100% Efectivo)</small>
+                <small class="op-mini-sub" id="sideOctavioSub">10%</small>
               </div>
               <div class="exec-kpi-item">
-                <span class="op-mini-label">Caja Libre + Iguala</span>
+                <span class="op-mini-label">Caja</span>
                 <span class="op-mini-val" id="sideCajaFree">$14,000</span>
-                <small class="op-mini-sub">Iguala Libre: <span id="sideIgualaFree">$4,000/mes</span></small>
+                <small class="op-mini-sub">+<span id="sideIgualaFree">$4,000/m</span></small>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <!-- ====================================================================
-           AGENTIC OS V4.7 LIVE COMPANION RAIL (VoiceOrbCanvas + ProviderOrbit)
-           ==================================================================== -->
-      <aside class="op-companion-rail" aria-label="Resumen de Tesorería Año 1 y Stack IA">
-        <!-- 1. WebGL 3D VoiceOrbCanvas + Nebula Backdrop Dock -->
+      <!-- AGENTIC OS V4.7 LIVE COMPANION RAIL -->
+      <aside class="op-companion-rail" aria-label="Tesorería">
         <article class="ws-anywhere-card vd-card">
           <div class="design-render-rim" aria-hidden="true"></div>
           <div class="vd-head">
             <span class="vd-status">
               <span class="vd-mood-dot" id="vdMoodDot"></span>
-              <span id="vdModeLabel">TESORERÍA AÑO 1</span>
+              <span id="vdModeLabel">AÑO 1</span>
             </span>
-            <button type="button" class="vd-mood-btn" id="vdMoodCycleBtn" title="Cambiar estado visual del orbe">REPOSO</button>
+            <button type="button" class="vd-mood-btn" id="vdMoodCycleBtn">IDLE</button>
           </div>
 
           <div class="vd-stage" id="voiceDockStage">
@@ -608,27 +501,26 @@
           <div class="vd-foot">
             <div class="vd-treasury-row">
               <div class="vd-treasury-copy">
-                <span class="vd-treasury-label">CAJA LIBRE AÑO 1</span>
-                <small class="vd-treasury-sub" id="vdTreasuryFormula">$14k H1 + $48k Iguala</small>
+                <span class="vd-treasury-label">LIBRE</span>
+                <small class="vd-treasury-sub" id="vdTreasuryFormula">$14k+$48k</small>
               </div>
               <strong class="vd-treasury-val" id="vdTreasuryVal">$62,000</strong>
             </div>
             <div class="vd-mood-strip" role="group" aria-label="Mood">
-              <button type="button" class="vd-pill is-active" data-orb-mood="idle">Reposo</button>
-              <button type="button" class="vd-pill" data-orb-mood="listening">Escucha</button>
-              <button type="button" class="vd-pill" data-orb-mood="thinking">Análisis</button>
-              <button type="button" class="vd-pill" data-orb-mood="working">Cálculo</button>
-              <button type="button" class="vd-pill" data-orb-mood="speaking">Activo</button>
+              <button type="button" class="vd-pill is-active" data-orb-mood="idle">Idle</button>
+              <button type="button" class="vd-pill" data-orb-mood="listening">Listen</button>
+              <button type="button" class="vd-pill" data-orb-mood="thinking">Think</button>
+              <button type="button" class="vd-pill" data-orb-mood="working">Work</button>
+              <button type="button" class="vd-pill" data-orb-mood="speaking">Speak</button>
             </div>
           </div>
         </article>
 
-        <!-- 2. ProviderOrbit (AI Stack Rotating Ring + Quick Nav) -->
         <article class="ws-anywhere-card orbit-card" id="providerOrbitCard">
           <div class="design-render-rim" aria-hidden="true"></div>
           <div class="vd-head">
-            <span class="ws-eyebrow">COSTO STACK IA</span>
-            <span class="ws-anywhere-pill mint" id="orbitStackMeta">$6,000/mes</span>
+            <span class="ws-eyebrow">STACK IA</span>
+            <span class="ws-anywhere-pill mint" id="orbitStackMeta">$6,000/m</span>
           </div>
 
           <div class="provider-orbit-wrap" id="providerOrbit">
@@ -652,63 +544,59 @@
             </div>
             <div class="provider-orbit-core">
               <span class="orbit-core-title">IA</span>
-              <span class="orbit-core-sub">ACTIVO</span>
+              <span class="orbit-core-sub">ON</span>
             </div>
           </div>
 
-          <div class="orbit-quick-nav" role="group" aria-label="Atajos rápidos">
+          <div class="orbit-quick-nav" role="group" aria-label="Atajos">
             <button type="button" class="orbit-nav-btn is-active" data-view="all">
-              <span>01 · Contrato</span>
+              <span>Contrato</span>
               <strong id="navPillAll">$150k</strong>
             </button>
             <button type="button" class="orbit-nav-btn" data-view="orbs">
-              <span>03 · Socios</span>
+              <span>Socios</span>
               <strong>70%</strong>
             </button>
             <button type="button" class="orbit-nav-btn" data-view="dials">
-              <span>04 · Caja</span>
-              <strong id="navPillCaja">$14k + $4k</strong>
+              <span>Caja</span>
+              <strong id="navPillCaja">$14k+$4k</strong>
             </button>
             <button type="button" class="orbit-nav-btn" data-view="spei">
-              <span>06 · SPEI</span>
-              <strong>Tabla</strong>
+              <span>SPEI</span>
+              <strong>CSV</strong>
             </button>
           </div>
         </article>
       </aside>
     </div>
 
-    <!-- SPEAKER NOTES CONSOLE (Toggled with [S] or Notas button) -->
     <aside class="speaker-notes-bar" id="speakerNotesBar" hidden>
       <div class="speaker-notes-inner">
         <div class="speaker-notes-meta">
-          <span class="ws-eyebrow">NOTAS DEL PRESENTADOR</span>
+          <span class="ws-eyebrow">NOTAS</span>
           <span class="ws-anywhere-pill" id="speakerTimer">00:00</span>
-          <span class="ws-anywhere-pill on" id="speakerNextSlide">Siguiente: 02 · Hitos</span>
+          <span class="ws-anywhere-pill on" id="speakerNextSlide">02</span>
         </div>
-        <p id="speakerNoteText">70% Pool ($105,000) · 20% Caja ($30,000) · 10% Closer ($15,000).</p>
+        <p id="speakerNoteText">$150,000</p>
       </div>
     </aside>
 
-    <!-- BLACKOUT / PAUSE OVERLAY ([B] or [.]) -->
     <div class="deck-blackout" id="deckBlackout" hidden aria-hidden="true">
-      <div class="deck-blackout-hint">Presentación en pausa · Presiona <code>B</code> o <code>ESC</code> para continuar</div>
+      <div class="deck-blackout-hint"><code>B</code>/<code>ESC</code></div>
     </div>
 
-    <!-- BOTTOM PRESENTATION FOOTER (Sticky Mobile-First 1-Button Presentation Dock) -->
     <footer class="deck-footer" id="deckFooter">
       <div class="deck-progress-track">
         <div class="deck-progress-bar" id="deckProgressBar" style="width: 14.28%"></div>
       </div>
       <div class="deck-footer-controls">
-        <button type="button" id="prevSlideBtn" class="op-button footer-prev-btn" title="Diapositiva anterior (←)">← Anterior</button>
-        <button type="button" id="autoPlayBtn" class="op-button footer-auto-btn" title="Reproducción automática (P)">▶ Auto</button>
+        <button type="button" id="prevSlideBtn" class="op-button footer-prev-btn" title="Anterior (←)">←</button>
+        <button type="button" id="autoPlayBtn" class="op-button footer-auto-btn" title="Auto (P)">Auto</button>
         <div class="deck-counter">
-          <span id="slideCounterText">01 / 07</span>
-          <span class="deck-counter-sep">·</span>
+          <span id="slideCounterText">01/07</span>
           <span id="slideNameText">Contrato</span>
         </div>
-        <button type="button" id="nextSlideBtn" class="ws-primary one-tap-main-btn">02 · Hitos →</button>
+        <button type="button" id="nextSlideBtn" class="ws-primary one-tap-main-btn">02 →</button>
       </div>
     </footer>
   </div>

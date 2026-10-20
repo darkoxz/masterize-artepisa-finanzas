@@ -1479,6 +1479,11 @@ code {
   flex-shrink: 0;
 }
 
+.dot-pool::before,
+.dot-caja::before,
+.dot-closer::before {
+  content: "●";
+}
 .dot-pool { color: #c8afe9; }
 .dot-caja { color: #a2d1bf; }
 .dot-closer { color: #f5a524; }
@@ -2692,6 +2697,10 @@ code {
 }
 
 .step-card-desc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: center;
   font-size: 11.5px;
   color: var(--ws-muted);
   line-height: 1.45;
