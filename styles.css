@@ -115,6 +115,11 @@ html, body {
   transition: background-color 250ms var(--ease-apple), color 250ms var(--ease-apple);
 }
 
+button, a, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Retícula Sutil de Plano MASTERIZE */
 body:not(.low-power)::before {
   content: "";
@@ -1765,8 +1770,11 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 
   .step-pill {
-    font-size: 12px;
-    padding: 5px 10px;
+    font-size: 13px;
+    padding: 7px 12px;
+    min-height: 36px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Desactivar la reducción 0.24x de 1600×900 y habilitar scroll táctil nativo pan-y */
@@ -1776,12 +1784,17 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 
   .reveal {
-    top: var(--topbar-offset, 96px) !important;
-    bottom: var(--dock-offset, 58px) !important;
-    height: calc(100dvh - var(--topbar-offset, 96px) - var(--dock-offset, 58px)) !important;
+    position: fixed !important;
+    top: var(--topbar-offset, 88px) !important;
+    bottom: var(--dock-offset, 64px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
   }
 
   .reveal .slides {
@@ -1840,9 +1853,14 @@ html:not(.dark) .logo-for-light { display: block; }
 
   .mz-slide-frame,
   .mz-cover-frame {
-    padding: 18px 16px 28px !important;
+    padding: 16px 14px 48px !important;
     height: auto !important;
+    min-height: 100%;
+    box-sizing: border-box !important;
     gap: 16px;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
   }
 
   .mz-cover-top {
@@ -1852,19 +1870,20 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 
   .mz-hero-number {
-    font-size: 54px;
+    font-size: clamp(38px, 11vw, 54px);
+    line-height: 1.05;
   }
 
   .mz-hero-number small {
-    font-size: 22px;
+    font-size: clamp(16px, 4.5vw, 22px);
   }
 
   .mz-hero-subtitle {
-    font-size: 16px;
+    font-size: clamp(14px, 4vw, 16px);
   }
 
   .mz-slide-title {
-    font-size: 26px;
+    font-size: clamp(21px, 5.8vw, 26px);
     line-height: 1.15;
   }
 
@@ -1965,13 +1984,48 @@ html:not(.dark) .logo-for-light { display: block; }
   }
 
   .apple-bottom-dock {
-    padding: 0 12px;
+    height: auto !important;
+    min-height: 60px;
+    padding: 8px 14px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 12px));
     gap: 8px;
+    z-index: 100;
   }
 
   .dock-nav-btn {
-    padding: 0 13px;
-    font-size: 12.5px;
+    min-width: 96px;
+    height: 46px;
+    padding: 0 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: var(--r-pill);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .dock-nav-btn:active {
+    transform: scale(0.95);
+    filter: brightness(1.15);
+  }
+
+  .dock-progress-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  #dockSlideNum {
+    font-size: 13px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
   }
 
   .dock-slide-meta span:not(#dockSlideTitle) {

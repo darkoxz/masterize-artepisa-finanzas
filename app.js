@@ -74,7 +74,6 @@
   /* ---------- Motor de Cálculo Financiero ARTEPISA ---------- */
   function computeFinancials() {
     var gross = Math.max(0, Number(state.contractGross) || 0);
-    var withIva = gross * 1.16;
 
     // 3 Bolsas Maestras: 70% Pool Socios / 20% Caja MASTERIZE / 10% Closer Omar
     var poolTotal = gross * 0.70;
@@ -155,7 +154,6 @@
 
     return {
       gross: gross,
-      withIva: withIva,
       poolTotal: poolTotal,
       cajaTotal: cajaTotal,
       closerTotal: closerTotal,
@@ -220,7 +218,7 @@
     SHORT_TITLES[6] = "Iguala Mensual (" + fmtCurrency(m.igualaGross) + "/mes)";
 
     // SLIDE 01: Portada
-    setText("coverWithIva", fmtCurrency(m.withIva) + " MXN");
+    setText("coverContractBadge", fmtCurrency(m.gross) + " MXN");
     var coverTotalEl = document.getElementById("coverContractTotal");
     if (coverTotalEl) {
       var numFormatted = fmtCurrency(m.gross).replace(/^\$/, "");
@@ -414,7 +412,7 @@
     if (tfoot) {
       tfoot.innerHTML =
         '<tr>' +
-          '<td><strong>TOTAL DISPERSADO (SIN IVA)</strong></td>' +
+          '<td><strong>TOTAL DISPERSADO</strong></td>' +
           '<td><strong>100.0% Cuadrado</strong></td>' +
           '<td class="num"><strong>' + fmtCurrency(m.h1Gross, 2) + '</strong></td>' +
           '<td class="num"><strong>' + fmtCurrency(m.h2Gross, 2) + '</strong></td>' +
@@ -498,7 +496,7 @@
       ["Omar Moranza - 25% Pool Socios", "17.5% Contrato", m.omarPoolH1.toFixed(2), m.omarPoolH2.toFixed(2), m.omarPoolH3.toFixed(2), m.omarPool.toFixed(2)],
       ["Pedro - 15% Pool Socios", "10.5% Contrato", m.pedH1.toFixed(2), m.pedH2.toFixed(2), m.pedH3.toFixed(2), m.pedPool.toFixed(2)],
       ["Octavio - 10% Pool Socios", "7.0% Contrato", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octH3.toFixed(2), m.octPool.toFixed(2)],
-      ["TOTAL DISPERSADO SIN IVA", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.h3Gross.toFixed(2), m.gross.toFixed(2)],
+      ["TOTAL DISPERSADO", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.h3Gross.toFixed(2), m.gross.toFixed(2)],
       [],
       ["DESGLOSE DE CAJA HITO 1 ($30,000.00)", "Detalle", "Monto Hito 1", "", "", ""],
       ["Reembolso IA Omar Moranza", "3 meses IA ($10,000) + Plan ($660)", m.omarReimb.toFixed(2), "", "", ""],
@@ -578,6 +576,10 @@
     var slides = getSlideElements();
     var total = slides.length || 8;
     var target = Math.max(0, Math.min(total - 1, idx));
+    var revealContainer = document.getElementById("revealDeck");
+    if (revealContainer && window.innerWidth <= 900) {
+      revealContainer.scrollTop = 0;
+    }
     if (isRevealReady()) {
       Reveal.slide(target);
     } else {
@@ -590,6 +592,8 @@
     var idx = getCurrentSlideIndex();
     if (idx < slides.length - 1) {
       goToSlide(idx + 1);
+    } else {
+      goToSlide(0);
     }
   }
 
@@ -748,13 +752,144 @@
     startTime = Date.now();
   }
 
+  /* ---------- Ayudante de Respuesta Táctil Inmediata (0ms delay) ---------- */
+  function bindFastTap(el, handler) {
+    if (!el) return;
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchMoved = false;
+    var touchActive = false;
+    var lastTapTime = 0;
+
+    el.addEventListener("touchstart", function (e) {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchMoved = false;
+        touchActive = true;
+      }
+    }, { passive: true });
+
+    el.addEventListener("touchmove", function (e) {
+      if (!touchActive || !e.touches || !e.touches.length) return;
+      var dx = e.touches[0].clientX - touchStartX;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+        touchMoved = true;
+      }
+    }, { passive: true });
+
+    el.addEventListener("touchend", function (e) {
+      if (touchActive && !touchMoved) {
+        lastTapTime = Date.now();
+        if (e.cancelable) e.preventDefault();
+        handler(e);
+      }
+      touchActive = false;
+    });
+
+    el.addEventListener("touchcancel", function () {
+      touchActive = false;
+    });
+
+    el.addEventListener("click", function (e) {
+      if (Date.now() - lastTapTime < 450) {
+        return;
+      }
+      handler(e);
+    });
+  }
+
+  /* ---------- Gestos Táctiles Móviles Suaves y Precisos (Swipe Ergonómico) ---------- */
+  function setupTouchSwipe() {
+    var revealEl = document.getElementById("revealDeck");
+    if (!revealEl) return;
+
+    var startX = 0;
+    var startY = 0;
+    var startTime = 0;
+    var isSwiping = false;
+    var isScrollingVertically = false;
+    var swipeIgnored = false;
+
+    function shouldIgnoreSwipe(target) {
+      if (!target || typeof target.closest !== "function") return false;
+      var tableScroll = target.closest(".mz-table-scroll");
+      if (tableScroll) {
+        var maxScroll = tableScroll.scrollWidth - tableScroll.clientWidth;
+        if (maxScroll > 15) return true;
+      }
+      return Boolean(
+        target.closest("input, textarea, select, .topbar-steps, .apple-topbar, .apple-bottom-dock")
+      );
+    }
+
+    revealEl.addEventListener("touchstart", function (e) {
+      if (!e.touches || e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      startTime = Date.now();
+      isSwiping = true;
+      isScrollingVertically = false;
+      swipeIgnored = shouldIgnoreSwipe(e.target);
+    }, { passive: true });
+
+    revealEl.addEventListener("touchmove", function (e) {
+      if (!isSwiping || swipeIgnored || !e.touches || !e.touches.length) return;
+      var curX = e.touches[0].clientX;
+      var curY = e.touches[0].clientY;
+      var dx = curX - startX;
+      var dy = curY - startY;
+
+      // Si el desplazamiento vertical se vuelve dominante, delegar al scroll vertical nativo
+      if (!isScrollingVertically && Math.abs(dy) > 15 && Math.abs(dy) > Math.abs(dx) * 1.3) {
+        isScrollingVertically = true;
+      }
+    }, { passive: true });
+
+    function handleTouchEnd(e) {
+      if (!isSwiping) return;
+      var wasSwiping = isSwiping;
+      var wasIgnored = swipeIgnored;
+      var wasVertical = isScrollingVertically;
+      isSwiping = false;
+      isScrollingVertically = false;
+
+      if (!wasSwiping || wasIgnored || wasVertical) return;
+      var touch = (e.changedTouches && e.changedTouches[0]) || null;
+      if (!touch) return;
+
+      var dx = touch.clientX - startX;
+      var dy = touch.clientY - startY;
+      var elapsed = Date.now() - startTime;
+
+      // Detección natural para pulgar en smartphone (360px-430px):
+      // - Distancia horizontal mínima: 35px
+      // - Tiempo: < 700ms (flick fluido o deslizamiento intencional)
+      // - Ángulo: dx > dy * 1.15 (~41° de inclinación ergonómica de pulgar)
+      if (elapsed < 700 && Math.abs(dx) >= 35 && Math.abs(dx) > Math.abs(dy) * 1.15) {
+        if (dx < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }
+
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", function () {
+      isSwiping = false;
+      isScrollingVertically = false;
+    }, { passive: true });
+  }
+
   function bindEvents() {
     window.addEventListener("resize", syncMobileViewportOffsets, { passive: true });
     window.addEventListener("orientationchange", syncMobileViewportOffsets, { passive: true });
 
-    // Pastillas de pasos superiores
+    // Pastillas de pasos superiores (toque rápido 0ms)
     document.querySelectorAll(".step-pill[data-slide-to]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
+      bindFastTap(btn, function () {
         var target = parseInt(btn.getAttribute("data-slide-to"), 10);
         if (!isNaN(target)) {
           goToSlide(target);
@@ -762,24 +897,18 @@
       });
     });
 
-    // Botones Anterior / Siguiente del Dock Inferior
+    // Botones Anterior / Siguiente del Dock Inferior (toque rápido 0ms)
     var prevBtn = document.getElementById("prevSlideBtn");
     if (prevBtn) {
-      prevBtn.addEventListener("click", function () {
+      bindFastTap(prevBtn, function () {
         prevSlide();
       });
     }
 
     var nextBtn = document.getElementById("nextSlideBtn");
     if (nextBtn) {
-      nextBtn.addEventListener("click", function () {
-        var slides = getSlideElements();
-        var idx = getCurrentSlideIndex();
-        if (idx >= slides.length - 1) {
-          goToSlide(0);
-        } else {
-          nextSlide();
-        }
+      bindFastTap(nextBtn, function () {
+        nextSlide();
       });
     }
 
@@ -796,74 +925,37 @@
       });
     });
 
-    // Gestos táctiles pasivos estilo Apple (permite scroll vertical 100% nativo y swipe horizontal limpio)
-    var revealEl = document.getElementById("revealDeck");
-    if (revealEl) {
-      var swipeStartX = 0;
-      var swipeStartY = 0;
-      var swipeIgnored = false;
-      var swipeActive = false;
-
-      function shouldIgnoreSwipe(target) {
-        if (!target || typeof target.closest !== "function") return false;
-        return Boolean(
-          target.closest("[data-prevent-swipe], .mz-table-scroll, .topbar-steps, input, textarea, select, button, a")
-        );
-      }
-
-      revealEl.addEventListener("touchstart", function (e) {
-        if (!e.touches || e.touches.length !== 1) return;
-        swipeIgnored = shouldIgnoreSwipe(e.target);
-        swipeStartX = e.touches[0].clientX;
-        swipeStartY = e.touches[0].clientY;
-        swipeActive = true;
-      }, { passive: true });
-
-      revealEl.addEventListener("touchend", function (e) {
-        if (!swipeActive || swipeIgnored || !e.changedTouches || !e.changedTouches.length) {
-          swipeActive = false;
-          return;
-        }
-        swipeActive = false;
-        var dx = e.changedTouches[0].clientX - swipeStartX;
-        var dy = e.changedTouches[0].clientY - swipeStartY;
-        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.8) {
-          if (dx < 0) nextSlide();
-          else prevSlide();
-        }
-      }, { passive: true });
-    }
+    // Inicializar motor de gestos táctiles de alto rendimiento
+    setupTouchSwipe();
 
     // Botones HUD Superiores
     var btnStudio = document.getElementById("btnToggleStudio");
-    if (btnStudio) btnStudio.addEventListener("click", togglePresenterStudio);
+    if (btnStudio) bindFastTap(btnStudio, togglePresenterStudio);
 
     var btnCloseStudio = document.getElementById("btnCloseStudio");
-    if (btnCloseStudio) btnCloseStudio.addEventListener("click", togglePresenterStudio);
+    if (btnCloseStudio) bindFastTap(btnCloseStudio, togglePresenterStudio);
 
     var btnNotes = document.getElementById("btnToggleNotes");
-    if (btnNotes) btnNotes.addEventListener("click", toggleNotesDrawer);
+    if (btnNotes) bindFastTap(btnNotes, toggleNotesDrawer);
 
     var btnCloseNotes = document.getElementById("btnCloseNotes");
-    if (btnCloseNotes) btnCloseNotes.addEventListener("click", toggleNotesDrawer);
+    if (btnCloseNotes) bindFastTap(btnCloseNotes, toggleNotesDrawer);
 
     var btnOverview = document.getElementById("btnToggleOverview");
-    if (btnOverview) {
-      btnOverview.addEventListener("click", toggleOverviewMode);
-    }
+    if (btnOverview) bindFastTap(btnOverview, toggleOverviewMode);
 
     var btnTheme = document.getElementById("btnToggleTheme");
-    if (btnTheme) btnTheme.addEventListener("click", toggleTheme);
+    if (btnTheme) bindFastTap(btnTheme, toggleTheme);
 
     var btnFull = document.getElementById("btnFullscreen");
-    if (btnFull) btnFull.addEventListener("click", toggleFullscreen);
+    if (btnFull) bindFastTap(btnFull, toggleFullscreen);
 
     // Botones dentro del Presenter Studio [P]
     var studioPrev = document.getElementById("studioPrevBtn");
-    if (studioPrev) studioPrev.addEventListener("click", prevSlide);
+    if (studioPrev) bindFastTap(studioPrev, prevSlide);
 
     var studioNext = document.getElementById("studioNextBtn");
-    if (studioNext) studioNext.addEventListener("click", nextSlide);
+    if (studioNext) bindFastTap(studioNext, nextSlide);
 
     var studioReset = document.getElementById("studioResetTimerBtn");
     if (studioReset) studioReset.addEventListener("click", resetTimer);
@@ -984,6 +1076,7 @@
     renderAll();
     bindEvents();
 
+    var isMobile = window.innerWidth <= 900;
     if (typeof Reveal !== "undefined") {
       Reveal.initialize({
         width: 1600,
@@ -993,7 +1086,7 @@
         maxScale: 1.8,
         scrollActivationWidth: null,
         hash: true,
-        transition: "fade",
+        transition: isMobile ? "none" : "fade",
         transitionSpeed: "fast",
         center: true,
         controls: false,
@@ -1016,5 +1109,10 @@
       var startIdx = initialMatch ? parseInt(initialMatch[1], 10) : 0;
       applyFallbackSlideState(startIdx);
     }
+
+    // Exponer métodos de navegación globalmente para verificación y accesibilidad
+    window.goToSlide = goToSlide;
+    window.nextSlide = nextSlide;
+    window.prevSlide = prevSlide;
   });
 })();

@@ -8,15 +8,15 @@
 
 ## 1. Conciliación Contable Integral (GL Reconciler & Statement Auditor)
 
-### 1.1 Ecuación Fundamental del Contrato ($150,000.00 MXN Sin IVA)
-Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato bruto de implementación por **$150,000.00 MXN** (más $24,000.00 MXN de IVA al 16% = **$174,000.00 MXN** facturados) se divide en **3 Bolsas Maestras**:
+### 1.1 Ecuación Fundamental del Contrato ($150,000.00 MXN)
+Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide en **3 Bolsas Maestras**:
 
 | Bolsa Maestra | % sobre Bruto | Monto Total (MXN) | Propósito Financiero |
 | :--- | :---: | ---: | :--- |
 | **1. Pool Neto Equipo** | **70.0%** | **$105,000.00** | Pago directo a los 4 socios operativos (Daniel, Omar, Pedro, Octavio) |
 | **2. Caja MASTERIZE** | **20.0%** | **$30,000.00** | Pago de gastos iniciales ($16,000.00) + Utilidad libre empresa ($14,000.00) |
 | **3. Comisión Closer (Omar)** | **10.0%** | **$15,000.00** | Comisión comercial directa por cierre del contrato |
-| **TOTAL CONTRATO (SIN IVA)** | **100.0%** | **$150,000.00** | **Desbalance contable: $0.00 MXN (100% Cuadrado)** |
+| **TOTAL CONTRATO** | **100.0%** | **$150,000.00** | **Desbalance contable: $0.00 MXN (100% Cuadrado)** |
 
 ---
 
