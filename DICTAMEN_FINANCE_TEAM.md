@@ -9,14 +9,15 @@
 ## 1. Conciliación Contable Integral (GL Reconciler & Statement Auditor)
 
 ### 1.1 Ecuación Fundamental del Contrato ($150,000.00 MXN)
-Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide con las siguientes reglas pactadas:
+Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide con las siguientes reglas definitivas (respetando la palabra dada a los 4 socios para ARTEPISA):
 - **Comisión Closer (Omar):** Baja de 10% a **5.0% del Contrato ($7,500.00 MXN)**, y el otro **5.0%** se suma al **Pool del Equipo**, llevándolo de 70% a **75.0% del Contrato ($112,500.00 MXN)**.
-- **Participación en el Pool (75% = $112,500.00 MXN):** Daniel **50%** ($56,250.00) · Omar **25%** ($28,125.00) · Pedro **15%** ($16,875.00) · Octavio se reduce a **8%** ($9,000.00) y el **2% restante del Pool ($2,250.00)** pasa a la **Caja de MASTERIZE**.
+- **Participación en el Pool (75% = $112,500.00 MXN):** Se reparte al **100%** entre los 4 socios respetando sus porcentajes acordados: Daniel **50%** ($56,250.00) · Omar **25%** ($28,125.00) · Pedro **15%** ($16,875.00) · Octavio **10%** ($11,250.00).
+- **Inversión y Caja MASTERIZE (20% = $30,000.00 MXN):** Se aparta íntegra en el Hito 1, cubre los **$16,000.00 MXN** de gastos de arranque y deja **$14,000.00 MXN libres** en tesorería.
 
 | Bolsa Maestra | % sobre Bruto | Monto Total (MXN) | Propósito Financiero |
 | :--- | :---: | ---: | :--- |
-| **1. Pool Efectivo Socios (98% del Pool 75%)** | **73.5%** | **$110,250.00** | Pago directo a los 4 socios operativos (Daniel 50%, Omar 25%, Pedro 15%, Octavio 8% sobre el Pool de $112,500) |
-| **2. Caja MASTERIZE (20% Base H1 + 2% Pool)** | **21.5%** | **$32,250.00** | $30,000.00 en Hito 1 + $2,250.00 (2% Pool de Octavio) → Paga $16,000.00 gastos + deja **$16,250.00 libres** |
+| **1. Pool de los 4 Socios (100% del Pool 75%)** | **75.0%** | **$112,500.00** | Pago directo a los 4 socios operativos (Daniel 50%, Omar 25%, Pedro 15%, Octavio 10% sobre el Pool de $112,500) |
+| **2. Inversión y Caja MASTERIZE (Apartada en Hito 1)** | **20.0%** | **$30,000.00** | $30,000.00 en Hito 1 → Paga $16,000.00 gastos de arranque + deja **$14,000.00 libres** en Caja |
 | **3. Comisión Closer (Omar)** | **5.0%** | **$7,500.00** | Comisión comercial directa del 5% por cierre del contrato |
 | **TOTAL CONTRATO** | **100.0%** | **$150,000.00** | **Desbalance contable: $0.00 MXN (100% Cuadrado)** |
 
@@ -24,25 +25,25 @@ Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$
 
 ### 1.2 Dictamen FP&A de Capital de Trabajo: ¿Cómo se dividen los 3 cobros (Hitos 1, 2 y 3) hasta liquidar?
 El cobro al cliente ARTEPISA ocurre en 3 hitos (**Hito 1: 40% = $60,000** · **Hito 2: 30% = $45,000** · **Hito 3: 30% = $45,000**).  
-- **1. Primeros $30,000.00 MXN del Hito 1 (20% Base de Inversión y Caja MASTERIZE):** Se apartan en el primer cobro para cubrir de inmediato los **$16,000.00 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), compra de 2 monitores de trabajo para Daniel ($4,172.50) y viáticos de Pedro ($1,167.50)— dejando **+$14,000.00 MXN libres** de esa mitad.
-- **2. Siguientes $30,000.00 MXN del Hito 1 (5% Closer + Pool Hito 1):** La segunda mitad de los primeros $60,000.00 se reparte en **$3,000.00 MXN** de Comisión Closer (5% sobre H1) y **$27,000.00 MXN** al Pool del Hito 1: Daniel 50% = **$13,500.00** · Omar 25% = **$6,750.00** · Pedro 15% = **$4,050.00** · Octavio 8% = **$2,160.00** · Caja MASTERIZE (2% restante de Octavio) = **+$540.00** (cerrando Hito 1 con **$30,540.00** brutos a Caja y **$14,540.00 libres**).
-- **3. Hitos 2 y 3 ($45,000.00 c/u):** En cada cobro de $45,000.00 se dispersan **$2,250.00 MXN** de Comisión Closer (5%) y **$42,750.00 MXN** del Pool: Daniel 50% = **$21,375.00** · Omar 25% = **$10,687.50** · Pedro 15% = **$6,412.50** · Octavio 8% = **$3,420.00** · Caja MASTERIZE (2% Pool) = **+$855.00** hasta liquidar el 100%.
+- **1. Primeros $30,000.00 MXN del Hito 1 (20% de Inversión y Caja MASTERIZE):** Se apartan íntegros en el primer cobro para cubrir de inmediato los **$16,000.00 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), compra de 2 monitores de trabajo para Daniel ($4,172.50) y viáticos de Pedro ($1,167.50)— dejando **+$14,000.00 MXN libres** en la Caja de MASTERIZE.
+- **2. Siguientes $30,000.00 MXN del Hito 1 (5% Closer + Pool Hito 1):** La segunda mitad de los primeros $60,000.00 se reparte en **$3,000.00 MXN** de Comisión Closer (5% sobre H1) y **$27,000.00 MXN** al Pool del Hito 1: Daniel 50% = **$13,500.00** · Omar 25% = **$6,750.00** · Pedro 15% = **$4,050.00** · Octavio 10% = **$2,700.00**.
+- **3. Hitos 2 y 3 ($45,000.00 c/u — $0 a Caja):** Como la Caja ya quedó cubierta al 100% en el Hito 1, en cada cobro de $45,000.00 se dispersan **$2,250.00 MXN** de Comisión Closer (5%) y **$42,750.00 MXN** del Pool: Daniel 50% = **$21,375.00** · Omar 25% = **$10,687.50** · Pedro 15% = **$6,412.50** · Octavio 10% = **$4,275.00** hasta liquidar el 100%.
 
 | Concepto / Destino | Split | Hito 1 ($60k) | Hito 2 ($45k) | Hito 3 ($45k) | Total Liquidado |
 | :--- | :---: | ---: | ---: | ---: | ---: |
 | **Cobro Bruto ARTEPISA** | **100% Bruto** | **$60,000.00** | **$45,000.00** | **$45,000.00** | **$150,000.00** |
-| **Inversión y Caja MASTERIZE** | 20% H1 + 2% Pool (21.5% Bruto) | $30,540.00 | $855.00 | $855.00 | **$32,250.00** |
+| **Inversión y Caja MASTERIZE** | 20% Bruto (100% en H1) | $30,000.00 | $0.00 | $0.00 | **$30,000.00** |
 | **Omar Moranza (Closer)** | 5% Bruto | $3,000.00 | $2,250.00 | $2,250.00 | **$7,500.00** |
-| **Pool Neto Socios (98% del Pool 75%)** | **73.5% Bruto** | **$26,460.00** | **$41,895.00** | **$41,895.00** | **$110,250.00** |
+| **Pool Socios (75% Bruto)** | **75.0% Bruto** | **$27,000.00** | **$42,750.00** | **$42,750.00** | **$112,500.00** |
 | ↳ **Daniel** (Líder Técnico) | 50% Pool (37.5% Bruto) | $13,500.00 | $21,375.00 | $21,375.00 | **$56,250.00** |
 | ↳ **Omar Moranza** (Socio) | 25% Pool (18.75% Bruto) | $6,750.00 | $10,687.50 | $10,687.50 | **$28,125.00** |
 | ↳ **Pedro** (Legal / Planta) | 15% Pool (11.25% Bruto) | $4,050.00 | $6,412.50 | $6,412.50 | **$16,875.00** |
-| ↳ **Octavio** (Implementación) | 8% Pool (6.0% Bruto) | $2,160.00 | $3,420.00 | $3,420.00 | **$9,000.00** |
+| ↳ **Octavio** (Implementación) | 10% Pool (7.5% Bruto) | $2,700.00 | $4,275.00 | $4,275.00 | **$11,250.00** |
 
 ---
 
-### 1.3 Auditoría de la Caja MASTERIZE ($32,250.00 MXN: $30,000.00 H1 + $2,250.00 2% Pool)
-De los **$32,250.00 MXN** que integran la bolsa de Inversión y Caja MASTERIZE ($30,000.00 apartados en Hito 1 + $2,250.00 del 2% restante de Octavio), se ejecutan tres pagos únicos de arranque y el resto queda libre en tesorería:
+### 1.3 Auditoría de la Caja MASTERIZE ($30,000.00 MXN en Hito 1)
+De los **$30,000.00 MXN** que integran la bolsa de Inversión y Caja MASTERIZE (apartados íntegros en el Hito 1), se ejecutan tres pagos únicos de arranque y el resto queda libre en tesorería:
 
 1. **Reembolso a Omar Moranza ($10,660.00 MXN):**
    - $10,000.00 MXN por 3 meses de inversión previa en plataformas de IA + $660.00 MXN de plan complementario.
@@ -51,22 +52,22 @@ De los **$32,250.00 MXN** que integran la bolsa de Inversión y Caja MASTERIZE (
    - Monitor Portátil 15.6" FHD HDR (`MLM-2215895794`): **$973.50 MXN**.
 3. **Viáticos Legales y Operativos de Pedro ($1,167.50 MXN — ajustable):**
    - Traslados y representación en planta ARTEPISA.
-4. **Utilidad Libre en Caja MASTERIZE ($16,250.00 MXN):**
-   - Equivalente al **50.39% de margen libre** sobre la bolsa de Caja ($32,250.00 - $16,000.00 = **$16,250.00 MXN**, conformados por $14,000.00 base H1 + $2,250.00 del 2% Pool).
+4. **Utilidad Libre en Caja MASTERIZE ($14,000.00 MXN):**
+   - Equivalente al **46.67% de margen libre** sobre la bolsa de Caja ($30,000.00 - $16,000.00 = **$14,000.00 MXN**).
 
 ---
 
 ### 1.4 Consolidado de Beneficio Total por Socio (Efectivo + Especie)
 Para transparencia absoluta entre socios, el flujo total que recibe cada integrante sumando participación en Pool, comisión comercial, reembolsos y equipamiento es:
 
-| Socio / Entidad | Pool Socios (73.5%) | Closer (5%) | Reembolso / Viáticos / Hardware | Efectivo / Beneficio Total |
+| Socio / Entidad | Pool Socios (75%) | Closer (5%) | Reembolso / Viáticos / Hardware | Efectivo / Beneficio Total |
 | :--- | ---: | ---: | ---: | ---: |
 | **Daniel** | $56,250.00 | $0.00 | +$4,172.50 (2 Monitores ML) | **$60,422.50** ($56,250 Cash) |
 | **Omar Moranza** | $28,125.00 | $7,500.00 | +$10,660.00 (Reembolso IA) | **$46,285.00** ($35,625 Utilidad) |
 | **Pedro** | $16,875.00 | $0.00 | +$1,167.50 (Viáticos Planta) | **$18,042.50** Cash Total |
-| **Octavio** | $9,000.00 | $0.00 | $0.00 (2% = $2,250 pasa a Caja) | **$9,000.00** Cash Total |
-| **Caja MASTERIZE (Libre)** | — | — | Reserva neta ($14k H1 + $2,250 2% Pool) | **$16,250.00** Utilidad Libre |
-| **SUMA DE CONTROL** | **$110,250.00** | **$7,500.00** | **$16,000.00 + $16,250.00 = $32,250.00** | **$150,000.00 MXN (100%)** |
+| **Octavio** | $11,250.00 | $0.00 | $0.00 | **$11,250.00** Cash Total |
+| **Caja MASTERIZE (Libre)** | — | — | Reserva neta Hito 1 | **$14,000.00** Utilidad Libre |
+| **SUMA DE CONTROL** | **$112,500.00** | **$7,500.00** | **$16,000.00 + $14,000.00 = $30,000.00** | **$150,000.00 MXN (100%)** |
 
 ---
 
@@ -76,11 +77,53 @@ Al concluir el Hito 3 inicia la póliza recurrente de **$10,000.00 MXN/mes**:
 - **Claude Team + Claude Code (Equipo en proyecto activo):** -$2,000.00 MXN/mes (20%)
 - **Plan Google AI Ultra:** -$2,000.00 MXN/mes (20%)
 - **Excedente Libre a Caja MASTERIZE:** **+$4,000.00 MXN/mes (40.0% Margen FCF)** → **$48,000.00 MXN/año**.
-- **Tesorería Libre Acumulada Año 1:** $16,250.00 (Implementación: $14,000 base H1 + $2,250 2% Pool) + $48,000.00 (12 meses de iguala) = **$64,250.00 MXN**.
+- **Tesorería Libre Acumulada Año 1:** $14,000.00 (Caja Libre Hito 1) + $48,000.00 (12 meses de iguala) = **$62,000.00 MXN**.
 
 ---
 
-## 2. Directrices de `/finance-team` para `/web-presentation-pro` (Cómo debe ser la Presentación)
+## 2. Arquitectura Financiera de Escalabilidad: Siguientes Talleres (Talleres 2..N) y Bolsa de Personal Extra
+
+Mientras que en el **Taller 1 (ARTEPISA)** el Pool es del **75% ($112,500)** y Daniel recibe el **50% del Pool ($56,250)** por construir la arquitectura base del ERP desde cero, a partir del **Taller #2** el **75%–80% del código base ya existe y es propiedad exclusiva de MASTERIZE**. Por lo tanto, el modelo financiero evoluciona a un **Esquema de 4 Bolsas** que permite contratar desarrolladores/implementadores externos y equilibra las ganancias entre el CEO/Dueño (Omar) y el Arquitecto Técnico (Daniel):
+
+### 2.1 Tabulador Oficial para Talleres 2 en Adelante (Base Ejemplo: Contrato de $150,000.00 MXN)
+
+| Bolsa / Beneficiario | Regla Taller 2+ | % sobre Contrato | Monto ($150,000 MXN) | Condición de Devengamiento ("No Work, No Pool") |
+| :--- | :---: | :---: | ---: | :--- |
+| **1. Caja y Tesorería MASTERIZE** | **20.0% Contrato** | 20.00% | **$30,000.00** | Intocable en cuenta MASTERIZE (infraestructura, impuestos RESICO, reserva legal y crecimiento) |
+| **2. Bolsa de Ejecución / Personal Extra** | **20.0% Contrato** | 20.00% | **$30,000.00** | Pago fijo por entregable a devs/implementadores contratados (0% de acciones). Si un socio absorbe esta carga extra, cobra el bono operativo |
+| **3. Omar Moranza (CEO / Dueño + Closer)** | **35% Pool + 5% Closer** | **24.25%** | **$36,375.00** | $28,875.00 (35% del Pool de $82,500) + $7,500.00 (5% Closer). Paridad ejecutiva con el Líder Técnico |
+| **4. Daniel (Socio / Arquitecto Técnico)** | **40% Pool Socios** | **22.00%** | **$33,000.00** | Supervisión de arquitectura, code review y despliegue (su carga operativa baja ~70% gracias al código base y al personal extra) |
+| **5. Pedro (Socio Legal y Planta)** | **15% Pool Socios** | 8.25% | **$12,375.00** | Condicionado a ejecutar contratos, levantamiento en planta y actas UAT de ese taller |
+| **6. Octavio (Socio Implementación)** | **10% Pool Socios** | 5.50% | **$8,250.00** | Condicionado a ejecutar carga de catálogos, pruebas UAT y capacitación (más bono de la Bolsa 2 si ejecuta módulos extra) |
+| **TOTAL TALLER 2+** | **100.0% Cuadrado** | **100.00%** | **$150,000.00** | **Equilibrio real entre socios + presupuesto para contratar equipo sin ceder equity** |
+
+### 2.2 Proyección Acumulada a 5 Talleres (Taller 1 ARTEPISA + Talleres 2 a 5)
+- **Tesorería Libre en Caja MASTERIZE:** $14,000 (T1) + $120,000 (4 × $30,000 en T2–T5) + $240,000 (5 igualas anuales × $48,000 libres) = **$374,000.00 MXN libres en Caja**.
+- **Presupuesto para Personal Extra Contratado (T2–T5):** 4 × $30,000 = **$120,000.00 MXN** pagados por entregable sin diluir acciones.
+- **Ganancia Directa de Daniel (T1–T5):** $56,250 (T1) + $132,000 (4 × $33,000) = **$188,250.00 MXN** (+ $4,172.50 en monitores).
+- **Ganancia Directa de Omar Moranza (T1–T5):** $35,625 (T1) + $145,500 (4 × $36,375) = **$181,125.00 MXN** (+ $10,660 reembolso IA + titularidad y control de MASTERIZE).
+
+---
+
+## 3. Blindaje Fiscal Crítico: RESICO Persona Física (Art. 113-J LISR) y Regla de CFDI Espejo
+
+Dado que **Omar Moranza** factura ante ARTEPISA S.A. de C.V. bajo el **Régimen Simplificado de Confianza (RESICO Persona Física)**:
+1. **Retención Obligatoria de ISR (1.25%) e IVA (16%):** Cuando una Persona Moral (ARTEPISA S.A. de C.V.) paga a una Persona Física en RESICO, aplica retención del **1.25% de ISR** sobre el subtotal (Art. 113-J LISR), y en RESICO **no existen deducciones autorizadas para efectos de ISR** (el ISR de 1.0% a 2.5% se calcula sobre el ingreso bruto cobrado), aunque el acreditamiento de IVA sí exige CFDI con IVA trasladado.
+2. **Prohibición de Dispersiones SPEI "En Negro" (Regla de CFDI Espejo):** Si Omar dispersa por SPEI a Daniel ($56,250), Pedro ($16,875) y Octavio ($11,250) sin que ellos emitan su propio **CFDI de Ingresos** a favor de Omar Moranza, Omar absorbería de su propia bolsa el 100% de la carga fiscal de todo el contrato. Por ello, **es requisito indispensable que cada socio emita su CFDI correspondiente antes de cada SPEI** (o que cualquier diferencial de ISR de RESICO sobre la bolsa general se cubra desde la Caja de MASTERIZE y nunca del bolsillo personal de Omar).
+
+---
+
+## 4. Arquitectura de los 4 Contratos Internos de MASTERIZE (Gobernanza de Socios)
+
+Los machotes completos listos para firma se encuentran en `../03_Legal_y_Gobernanza_Contractual/`:
+1. **[`08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md`](../03_Legal_y_Gobernanza_Contractual/08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md):** Regula exclusivamente el Caso 1 ARTEPISA ($150,000 MXN: 20% Caja, 5% Closer, 75% Pool `50/25/15/10`), los entregables obligatorios por Hito 1, 2 y 3, el comodato de los 2 monitores de Daniel hasta concluir el Hito 3 y la iguala mensual 100% para Caja MASTERIZE.
+2. **[`09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md`](../03_Legal_y_Gobernanza_Contractual/09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md):** Establece la regla para los Talleres 2 en adelante (20% Caja, 5% Closer, 20% Bolsa de Personal Extra y 55% Pool de Socios con paridad ejecutiva `35% Omar + 5% Closer = 24.25%` vs `40% Daniel = 22.00%`) y la cláusula *"No Work, No Pool"*.
+3. **[`10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md`](../03_Legal_y_Gobernanza_Contractual/10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md):** Reconoce a Omar Moranza como fundador, CEO y titular de la marca **MASTERIZE**, y establece el esquema estándar de Silicon Valley de **Reverse Vesting a 4 años (48 meses) con Cliff de 12 meses** (quien abandone antes de 12 meses o 4 talleres completados se retira con **0% de acciones**).
+4. **[`11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md`](../03_Legal_y_Gobernanza_Contractual/11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md):** Convenio de Confidencialidad (NDA), **Cesión Patrimonial del 100% del Código y Arquitectura (*Work-for-Hire*)** a favor de Omar Moranza / MASTERIZE, No Competencia por 24 meses y **Cláusula de No Abandono Intempestivo** (preaviso mínimo de 45 días y pérdida del 100% de hitos pendientes en caso de abandono).
+
+---
+
+## 5. Directrices de `/finance-team` para `/web-presentation-pro` (Cómo debe ser la Presentación)
 
 Para que **cualquier socio o persona sin formación financiera entienda en menos de 3 segundos por pantalla cómo se dividió el dinero**, la interfaz opera bajo estas reglas estrictas:
 
@@ -91,12 +134,12 @@ Para que **cualquier socio o persona sin formación financiera entienda en menos
 3. **Sistema Visual Apple Keynote × MASTERIZE (`/web-presentation-pro`):**
    - Modo Taller Oscuro (`#0A0A0B`) y Modo Papel Claro (`#F5F5F7`), tipografía `Masterize Forja` / `Inter Tight` / `JetBrains Mono`, teleprompter `[N]` y Presenter Studio de 4 tarjetas `[P]`.
 4. **Estructura Exacta de las 8 Diapositivas:**
-   - **Slide 01 · Portada ($150,000 MXN):** Las 3 bolsas claras: `Pool 75% ($112,500 -> 98% Socios = $110,250)` · `Caja MASTERIZE 21.5% ($30k H1 + $2,250 2% Pool = $32,250)` · `Closer 5% ($7,500)`.
-   - **Slide 02 · Las 3 Bolsas del Contrato ($150,000):** Barra proporcional (`73.5% Socios $110,250` · `21.5% Caja $32,250` · `5% Closer $7,500`) y Libro Mayor S20.
-   - **Slide 03 · Los 3 Cobros (Hitos 1, 2 y 3):** División 50/50 en Hito 1 (`$30,000` Caja Base + `$30,000` Pool/Closer, sumando `+$540` del 2% Pool a Caja) y liquidación en `H2 ($45k)` y `H3 ($45k)` (`$44,145` Socios/Closer + `$855` del 2% Pool a Caja en cada uno).
-   - **Slide 04 · Caja MASTERIZE ($32,250 → $16,250 Libres):** Desglose de `$30,000` H1 + `$2,250` (2% Pool de Octavio) menos los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$16,250` Libres).
-   - **Slide 05 · Pago Individual por Socio:** Tarjetas por socio con desglose `H1 · H2 · H3` y total (`Daniel $56.25k + monitores`, `Omar $35.625k + reembolso`, `Pedro $16.875k + viáticos`, `Octavio $9k` con su `2% = $2,250` en Caja).
+   - **Slide 01 · Portada ($150,000 MXN):** Las 3 bolsas claras: `Pool 75% ($112,500)` · `Caja MASTERIZE 20% ($30,000 en H1 -> $14,000 Libres)` · `Closer 5% ($7,500)`.
+   - **Slide 02 · Las 3 Bolsas del Contrato ($150,000):** Barra proporcional (`75% Pool Socios $112,500` · `20% Caja $30,000` · `5% Closer $7,500`) y Libro Mayor S20.
+   - **Slide 03 · Los 3 Cobros (Hitos 1, 2 y 3):** División 50/50 en Hito 1 (`$30,000` Caja + `$30,000` Pool/Closer) y liquidación 100% a Socios/Closer en `H2 ($45k)` y `H3 ($45k)`.
+   - **Slide 04 · Caja MASTERIZE ($30,000 → $14,000 Libres):** Desglose de `$30,000` en H1 menos los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$14,000` Libres).
+   - **Slide 05 · Pago Individual por Socio:** Tarjetas por socio con desglose `H1 · H2 · H3` y total (`Daniel $56.25k + monitores`, `Omar $35.625k + reembolso`, `Pedro $16.875k + viáticos`, `Octavio $11.25k` con su `10%` íntegro).
    - **Slide 06 · Tabla Bancaria SPEI por Hito:** Tabla cuadrada al 100% con exportación CSV en 1 clic.
-   - **Slide 07 · Iguala Mensual ($10k/mes → $4k Libres):** Stack IA (`$2k` Azure + `$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$64,250`).
+   - **Slide 07 · Iguala Mensual ($10k/mes → $4k Libres):** Stack IA (`$2k` Azure + `$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$62,000`).
    - **Slide 08 · Resumen en 4 Pasos + Simulador en Vivo:** Línea de tiempo cronológica y simulador interactivo reactivo.
 
