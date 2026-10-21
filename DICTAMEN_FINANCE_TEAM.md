@@ -9,38 +9,40 @@
 ## 1. Conciliación Contable Integral (GL Reconciler & Statement Auditor)
 
 ### 1.1 Ecuación Fundamental del Contrato ($150,000.00 MXN)
-Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide en **3 Bolsas Maestras**:
+Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide con las siguientes reglas pactadas:
+- **Comisión Closer (Omar):** Baja de 10% a **5.0% del Contrato ($7,500.00 MXN)**, y el otro **5.0%** se suma al **Pool del Equipo**, llevándolo de 70% a **75.0% del Contrato ($112,500.00 MXN)**.
+- **Participación en el Pool (75% = $112,500.00 MXN):** Daniel **50%** ($56,250.00) · Omar **25%** ($28,125.00) · Pedro **15%** ($16,875.00) · Octavio se reduce a **8%** ($9,000.00) y el **2% restante del Pool ($2,250.00)** pasa a la **Caja de MASTERIZE**.
 
 | Bolsa Maestra | % sobre Bruto | Monto Total (MXN) | Propósito Financiero |
 | :--- | :---: | ---: | :--- |
-| **1. Pool Neto Equipo** | **70.0%** | **$105,000.00** | Pago directo a los 4 socios operativos (Daniel, Omar, Pedro, Octavio) |
-| **2. Caja MASTERIZE** | **20.0%** | **$30,000.00** | Pago de gastos iniciales ($16,000.00) + Utilidad libre empresa ($14,000.00) |
-| **3. Comisión Closer (Omar)** | **10.0%** | **$15,000.00** | Comisión comercial directa por cierre del contrato |
+| **1. Pool Efectivo Socios (98% del Pool 75%)** | **73.5%** | **$110,250.00** | Pago directo a los 4 socios operativos (Daniel 50%, Omar 25%, Pedro 15%, Octavio 8% sobre el Pool de $112,500) |
+| **2. Caja MASTERIZE (20% Base H1 + 2% Pool)** | **21.5%** | **$32,250.00** | $30,000.00 en Hito 1 + $2,250.00 (2% Pool de Octavio) → Paga $16,000.00 gastos + deja **$16,250.00 libres** |
+| **3. Comisión Closer (Omar)** | **5.0%** | **$7,500.00** | Comisión comercial directa del 5% por cierre del contrato |
 | **TOTAL CONTRATO** | **100.0%** | **$150,000.00** | **Desbalance contable: $0.00 MXN (100% Cuadrado)** |
 
 ---
 
-### 1.2 Dictamen FP&A de Capital de Trabajo: ¿Cómo se dividen los primeros $60,000 (Hito 1) y los siguientes hitos hasta liquidar?
+### 1.2 Dictamen FP&A de Capital de Trabajo: ¿Cómo se dividen los 3 cobros (Hitos 1, 2 y 3) hasta liquidar?
 El cobro al cliente ARTEPISA ocurre en 3 hitos (**Hito 1: 40% = $60,000** · **Hito 2: 30% = $45,000** · **Hito 3: 30% = $45,000**).  
-- **1. Primeros $30,000.00 MXN del Hito 1 (100% de la Bolsa de Inversión y Caja MASTERIZE):** Se apartan íntegros en el primer cobro para cubrir de inmediato los **$16,000.00 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), compra de 2 monitores de trabajo para Daniel ($4,172.50) y viáticos de Pedro ($1,167.50)— y dejar desde el Día 1 los **+$14,000.00 MXN libres** en la Caja de MASTERIZE.
-- **2. Siguientes $30,000.00 MXN del Hito 1 (1er Pago a Socios por %):** La segunda mitad de los primeros $60,000.00 se reparte de inmediato entre los socios conforme a los porcentajes pactados: **$6,000.00 MXN** de Comisión Closer (10% sobre H1) y **$24,000.00 MXN** al Pool Neto (Daniel 50% = $12,000 · Omar 25% = $6,000 · Pedro 15% = $3,600 · Octavio 10% = $2,400).
-- **3. Hitos 2 y 3 ($45,000.00 c/u · Liquidación 100% a Socios):** Como la bolsa de Inversión y Caja ($30,000.00) queda 100% cubierta en el Hito 1, en los Hitos 2 y 3 la Caja retiene **$0.00 MXN** y el **100% de cada cobro ($45,000.00 en H2 y $45,000.00 en H3)** se dispersa directamente a los socios ($4,500 Closer + $40,500 Pool en cada hito) hasta liquidar el 100% de lo que le corresponde a cada uno.
+- **1. Primeros $30,000.00 MXN del Hito 1 (20% Base de Inversión y Caja MASTERIZE):** Se apartan en el primer cobro para cubrir de inmediato los **$16,000.00 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), compra de 2 monitores de trabajo para Daniel ($4,172.50) y viáticos de Pedro ($1,167.50)— dejando **+$14,000.00 MXN libres** de esa mitad.
+- **2. Siguientes $30,000.00 MXN del Hito 1 (5% Closer + Pool Hito 1):** La segunda mitad de los primeros $60,000.00 se reparte en **$3,000.00 MXN** de Comisión Closer (5% sobre H1) y **$27,000.00 MXN** al Pool del Hito 1: Daniel 50% = **$13,500.00** · Omar 25% = **$6,750.00** · Pedro 15% = **$4,050.00** · Octavio 8% = **$2,160.00** · Caja MASTERIZE (2% restante de Octavio) = **+$540.00** (cerrando Hito 1 con **$30,540.00** brutos a Caja y **$14,540.00 libres**).
+- **3. Hitos 2 y 3 ($45,000.00 c/u):** En cada cobro de $45,000.00 se dispersan **$2,250.00 MXN** de Comisión Closer (5%) y **$42,750.00 MXN** del Pool: Daniel 50% = **$21,375.00** · Omar 25% = **$10,687.50** · Pedro 15% = **$6,412.50** · Octavio 8% = **$3,420.00** · Caja MASTERIZE (2% Pool) = **+$855.00** hasta liquidar el 100%.
 
 | Concepto / Destino | Split | Hito 1 ($60k) | Hito 2 ($45k) | Hito 3 ($45k) | Total Liquidado |
 | :--- | :---: | ---: | ---: | ---: | ---: |
 | **Cobro Bruto ARTEPISA** | **100% Bruto** | **$60,000.00** | **$45,000.00** | **$45,000.00** | **$150,000.00** |
-| **Inversión y Caja MASTERIZE** | 20% Bruto (100% en H1) | $30,000.00 | $0.00 | $0.00 | **$30,000.00** |
-| **Omar Moranza (Closer)** | 10% Bruto | $6,000.00 | $4,500.00 | $4,500.00 | **$15,000.00** |
-| **Pool Neto Equipo** | **70% Bruto** | **$24,000.00** | **$40,500.00** | **$40,500.00** | **$105,000.00** |
-| ↳ **Daniel** (Líder Técnico) | 50% Pool (35.0% Bruto) | $12,000.00 | $20,250.00 | $20,250.00 | **$52,500.00** |
-| ↳ **Omar Moranza** (Socio) | 25% Pool (17.5% Bruto) | $6,000.00 | $10,125.00 | $10,125.00 | **$26,250.00** |
-| ↳ **Pedro** (Legal / Planta) | 15% Pool (10.5% Bruto) | $3,600.00 | $6,075.00 | $6,075.00 | **$15,750.00** |
-| ↳ **Octavio** (Implementación) | 10% Pool (7.0% Bruto) | $2,400.00 | $4,050.00 | $4,050.00 | **$10,500.00** |
+| **Inversión y Caja MASTERIZE** | 20% H1 + 2% Pool (21.5% Bruto) | $30,540.00 | $855.00 | $855.00 | **$32,250.00** |
+| **Omar Moranza (Closer)** | 5% Bruto | $3,000.00 | $2,250.00 | $2,250.00 | **$7,500.00** |
+| **Pool Neto Socios (98% del Pool 75%)** | **73.5% Bruto** | **$26,460.00** | **$41,895.00** | **$41,895.00** | **$110,250.00** |
+| ↳ **Daniel** (Líder Técnico) | 50% Pool (37.5% Bruto) | $13,500.00 | $21,375.00 | $21,375.00 | **$56,250.00** |
+| ↳ **Omar Moranza** (Socio) | 25% Pool (18.75% Bruto) | $6,750.00 | $10,687.50 | $10,687.50 | **$28,125.00** |
+| ↳ **Pedro** (Legal / Planta) | 15% Pool (11.25% Bruto) | $4,050.00 | $6,412.50 | $6,412.50 | **$16,875.00** |
+| ↳ **Octavio** (Implementación) | 8% Pool (6.0% Bruto) | $2,160.00 | $3,420.00 | $3,420.00 | **$9,000.00** |
 
 ---
 
-### 1.3 Auditoría de los Primeros $30,000.00 MXN (Inversión y Caja MASTERIZE en Hito 1)
-De los primeros **$30,000.00 MXN** que se apartan en el Hito 1 para Inversión y Caja MASTERIZE, se ejecutan tres pagos únicos de arranque y el resto queda libre en tesorería:
+### 1.3 Auditoría de la Caja MASTERIZE ($32,250.00 MXN: $30,000.00 H1 + $2,250.00 2% Pool)
+De los **$32,250.00 MXN** que integran la bolsa de Inversión y Caja MASTERIZE ($30,000.00 apartados en Hito 1 + $2,250.00 del 2% restante de Octavio), se ejecutan tres pagos únicos de arranque y el resto queda libre en tesorería:
 
 1. **Reembolso a Omar Moranza ($10,660.00 MXN):**
    - $10,000.00 MXN por 3 meses de inversión previa en plataformas de IA + $660.00 MXN de plan complementario.
@@ -49,22 +51,22 @@ De los primeros **$30,000.00 MXN** que se apartan en el Hito 1 para Inversión y
    - Monitor Portátil 15.6" FHD HDR (`MLM-2215895794`): **$973.50 MXN**.
 3. **Viáticos Legales y Operativos de Pedro ($1,167.50 MXN — ajustable):**
    - Traslados y representación en planta ARTEPISA.
-4. **Utilidad Libre en Caja MASTERIZE ($14,000.00 MXN):**
-   - Equivalente al **46.67% de margen libre** sobre la bolsa de Caja ($30,000.00 - $16,000.00 = **$14,000.00 MXN**).
+4. **Utilidad Libre en Caja MASTERIZE ($16,250.00 MXN):**
+   - Equivalente al **50.39% de margen libre** sobre la bolsa de Caja ($32,250.00 - $16,000.00 = **$16,250.00 MXN**, conformados por $14,000.00 base H1 + $2,250.00 del 2% Pool).
 
 ---
 
 ### 1.4 Consolidado de Beneficio Total por Socio (Efectivo + Especie)
 Para transparencia absoluta entre socios, el flujo total que recibe cada integrante sumando participación en Pool, comisión comercial, reembolsos y equipamiento es:
 
-| Socio / Entidad | Pool Neto (70%) | Closer (10%) | Reembolso / Viáticos / Hardware | Efectivo / Beneficio Total |
+| Socio / Entidad | Pool Socios (73.5%) | Closer (5%) | Reembolso / Viáticos / Hardware | Efectivo / Beneficio Total |
 | :--- | ---: | ---: | ---: | ---: |
-| **Daniel** | $52,500.00 | $0.00 | +$4,172.50 (2 Monitores ML) | **$56,672.50** ($52,500 Cash) |
-| **Omar Moranza** | $26,250.00 | $15,000.00 | +$10,660.00 (Reembolso IA) | **$51,910.00** ($41,250 Utilidad) |
-| **Pedro** | $15,750.00 | $0.00 | +$1,167.50 (Viáticos Planta) | **$16,917.50** Cash Total |
-| **Octavio** | $10,500.00 | $0.00 | $0.00 | **$10,500.00** Cash Total |
-| **Caja MASTERIZE (Libre)** | — | — | Reserva neta tras deducciones | **$14,000.00** Utilidad Libre |
-| **SUMA DE CONTROL** | **$105,000.00** | **$15,000.00** | **$16,000.00 + $14,000.00 = $30,000.00** | **$150,000.00 MXN (100%)** |
+| **Daniel** | $56,250.00 | $0.00 | +$4,172.50 (2 Monitores ML) | **$60,422.50** ($56,250 Cash) |
+| **Omar Moranza** | $28,125.00 | $7,500.00 | +$10,660.00 (Reembolso IA) | **$46,285.00** ($35,625 Utilidad) |
+| **Pedro** | $16,875.00 | $0.00 | +$1,167.50 (Viáticos Planta) | **$18,042.50** Cash Total |
+| **Octavio** | $9,000.00 | $0.00 | $0.00 (2% = $2,250 pasa a Caja) | **$9,000.00** Cash Total |
+| **Caja MASTERIZE (Libre)** | — | — | Reserva neta ($14k H1 + $2,250 2% Pool) | **$16,250.00** Utilidad Libre |
+| **SUMA DE CONTROL** | **$110,250.00** | **$7,500.00** | **$16,000.00 + $16,250.00 = $32,250.00** | **$150,000.00 MXN (100%)** |
 
 ---
 
@@ -74,26 +76,27 @@ Al concluir el Hito 3 inicia la póliza recurrente de **$10,000.00 MXN/mes**:
 - **Claude Team + Claude Code (Equipo en proyecto activo):** -$2,000.00 MXN/mes (20%)
 - **Plan Google AI Ultra:** -$2,000.00 MXN/mes (20%)
 - **Excedente Libre a Caja MASTERIZE:** **+$4,000.00 MXN/mes (40.0% Margen FCF)** → **$48,000.00 MXN/año**.
-- **Tesorería Libre Acumulada Año 1:** $14,000.00 (Implementación) + $48,000.00 (12 meses de iguala) = **$62,000.00 MXN**.
+- **Tesorería Libre Acumulada Año 1:** $16,250.00 (Implementación: $14,000 base H1 + $2,250 2% Pool) + $48,000.00 (12 meses de iguala) = **$64,250.00 MXN**.
 
 ---
 
 ## 2. Directrices de `/finance-team` para `/web-presentation-pro` (Cómo debe ser la Presentación)
 
-Para que **cualquier socio o persona sin formación financiera entienda en menos de 3 segundos por pantalla cómo se dividió el dinero**, la interfaz debe transformarse bajo estas 5 reglas estrictas:
+Para que **cualquier socio o persona sin formación financiera entienda en menos de 3 segundos por pantalla cómo se dividió el dinero**, la interfaz opera bajo estas reglas estrictas:
 
-1. **Formato Presentación Paso a Paso (7 Diapositivas Secuenciales):**
-   - En lugar de mostrar todos los tableros amontonados, presentar **una sola pregunta financiera por diapositiva** con navegación por teclado (`←` `→` `Espacio`), selector superior de pasos (`01` a `07`) y vista de cuadrícula (`ESC`).
-2. **Depuración Radical de Texto (Máximo 15–25 palabras por diapositiva):**
-   - Eliminar jerga técnica innecesaria (*"Telemetría 60fps"*, *"22 burbujas"*, *"ProviderOrbit"*, párrafos explicativos largos).
-   - Dejar únicamente: **Número de Paso + Titular de 4 a 6 palabras + Cifras Grandes (`tabular-nums`) + Etiquetas de 2 a 3 palabras**.
-3. **Sistema Visual & Motion Engine Jack Roberts Agentic OS V4.7 (`/moranza-ux-ui`):**
-   - Pizarra de obsidiana oscura (`#0e0e11`) con 5 lóbulos de deriva cromática en ciclos primos (`17s`, `19s`, `23s`, `29s`, `31s` + respiración `9s`), bordes de cristal cónico (`.design-render-rim`), `VoiceOrbCanvas` WebGL 3D + `nebulaCanvas`, `ProviderOrbit`, curva SVG `.biz-bank-art` visible y esferas de oleaje líquido a 60fps (`22` burbujas efervescentes, doble onda sinusoidal, cáusticas `lighter` y salpicaduras balísticas a `320 px/s²`).
-4. **Estructura Exacta de las 7 Diapositivas:**
-   - **Slide 01 · El Contrato ($150,000):** La división maestra `70% Socios ($105k)` · `20% Inversión/Caja ($30k)` · `10% Closer ($15k)`.
-   - **Slide 02 · Primeros $60k y Liquidación por Hitos:** Explicación visual 50/50 de los primeros `$60,000` (`$30,000` a Inversión/Caja + `$30,000` a Socios por %) y cómo `H2 ($45k)` y `H3 ($45k)` van 100% a Socios hasta liquidar.
-   - **Slide 03 · ¿Cuánto le toca a cada uno?:** Esferas de nivel líquido con tira `H1 · H2 · H3` mostrando cuánto cobra cada socio en cada hito hasta su total (`Daniel $52.5k + monitores`, `Omar $41.25k + reembolso`, `Pedro $15.75k + viáticos`, `Octavio $10.5k`).
-   - **Slide 04 · Primeros $30k: Inversión y Caja ($30k → $14k Libres):** Barra visual y calculadora interactiva de los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$14,000` Libres).
-   - **Slide 05 · Iguala Mensual ($10k/mes → $4k Libres):** Calculadora interactiva del Stack IA (`$2k` Azure + `$2k` Claude + `$2k` Google AI) y Tesorería Año 1 (`$62,000`).
-   - **Slide 06 · Pagos por Hito hasta Liquidar (SPEI):** Tabla bancaria limpia por hito con exportación CSV en 1 clic.
-   - **Slide 07 · Resumen Final y Liquidación:** Los 4 bloques cronológicos (`1os $30k Inversión`, `Siguientes $30k Socios`, `H2 y H3 Liquidación 100%`, `Iguala Mensual`) y tira consolidada de totales por socio.
+1. **Formato Presentación Paso a Paso (8 Diapositivas Secuenciales):**
+   - Presentar **una sola pregunta financiera por diapositiva** con navegación por teclado (`←` `→` `Espacio`), selector superior de pasos (`01` a `08`) y vista de cuadrícula (`ESC`).
+2. **Depuración Radical de Texto:**
+   - Mostrar únicamente: **Número de Paso + Titular claro + Cifras Grandes (`tabular-nums`) + Etiquetas concisas**.
+3. **Sistema Visual Apple Keynote × MASTERIZE (`/web-presentation-pro`):**
+   - Modo Taller Oscuro (`#0A0A0B`) y Modo Papel Claro (`#F5F5F7`), tipografía `Masterize Forja` / `Inter Tight` / `JetBrains Mono`, teleprompter `[N]` y Presenter Studio de 4 tarjetas `[P]`.
+4. **Estructura Exacta de las 8 Diapositivas:**
+   - **Slide 01 · Portada ($150,000 MXN):** Las 3 bolsas claras: `Pool 75% ($112,500 -> 98% Socios = $110,250)` · `Caja MASTERIZE 21.5% ($30k H1 + $2,250 2% Pool = $32,250)` · `Closer 5% ($7,500)`.
+   - **Slide 02 · Las 3 Bolsas del Contrato ($150,000):** Barra proporcional (`73.5% Socios $110,250` · `21.5% Caja $32,250` · `5% Closer $7,500`) y Libro Mayor S20.
+   - **Slide 03 · Los 3 Cobros (Hitos 1, 2 y 3):** División 50/50 en Hito 1 (`$30,000` Caja Base + `$30,000` Pool/Closer, sumando `+$540` del 2% Pool a Caja) y liquidación en `H2 ($45k)` y `H3 ($45k)` (`$44,145` Socios/Closer + `$855` del 2% Pool a Caja en cada uno).
+   - **Slide 04 · Caja MASTERIZE ($32,250 → $16,250 Libres):** Desglose de `$30,000` H1 + `$2,250` (2% Pool de Octavio) menos los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$16,250` Libres).
+   - **Slide 05 · Pago Individual por Socio:** Tarjetas por socio con desglose `H1 · H2 · H3` y total (`Daniel $56.25k + monitores`, `Omar $35.625k + reembolso`, `Pedro $16.875k + viáticos`, `Octavio $9k` con su `2% = $2,250` en Caja).
+   - **Slide 06 · Tabla Bancaria SPEI por Hito:** Tabla cuadrada al 100% con exportación CSV en 1 clic.
+   - **Slide 07 · Iguala Mensual ($10k/mes → $4k Libres):** Stack IA (`$2k` Azure + `$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$64,250`).
+   - **Slide 08 · Resumen en 4 Pasos + Simulador en Vivo:** Línea de tiempo cronológica y simulador interactivo reactivo.
+

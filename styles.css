@@ -662,7 +662,7 @@ html:not(.dark) .logo-for-light { display: block; }
 
 .mz-prop-seg.is-violet { background: var(--accent-fill); }
 .mz-prop-seg.is-emerald { background: #149E63; }
-.mz-prop-seg.is-amber { background: #C87D0A; }
+.mz-prop-seg.is-amber { background: #C87D0A; min-width: 210px; flex-shrink: 0; }
 
 .mz-ledger-card {
   background: var(--surface);
@@ -1955,6 +1955,7 @@ html:not(.dark) .logo-for-light { display: block; }
 
   .mz-prop-seg {
     width: 100% !important;
+    min-width: 0 !important;
     padding: 10px 12px;
     font-size: 13px;
   }
