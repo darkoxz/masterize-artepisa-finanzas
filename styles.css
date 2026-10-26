@@ -2371,3 +2371,24 @@ html:not(.dark) .logo-for-light { display: block; }
   .mz-line-title { font-size: 22px; }
   .mz-flow-strip span { font-size: 12.5px; }
 }
+
+/* Lámina de aprendizajes: errores de cada quien con su regla */
+.mz-lessons-grid .mz-bento-card { justify-content: flex-start; }
+.mz-lesson-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+.mz-lesson-rule {
+  margin: auto 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.mz-lesson-rule strong { color: var(--emerald); }

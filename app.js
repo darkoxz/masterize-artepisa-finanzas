@@ -20,15 +20,11 @@
   var state = Object.assign({}, DEFAULTS);
 
   var SHORT_TITLES = [
-    "El Contrato ARTEPISA",
-    "Las 3 Bolsas del Contrato",
-    "Los 2 Pagos de ARTEPISA",
-    "Caja MASTERIZE ($30,000)",
-    "Pago Individual por Socio",
-    "Tabla Bancaria SPEI",
-    "Iguala Mensual ($10,000/mes)",
-    "Resumen en 4 Pasos",
-    "Roles y áreas"
+    "Qué fue ARTEPISA",
+    "Cuánto recibe cada quien",
+    "Lo que aprendimos",
+    "Roles y áreas",
+    "Lo que sigue"
   ];
 
   /* ---------- Formateadores Numéricos ---------- */
@@ -224,8 +220,6 @@
     // Actualizar Pastillas Superiores y Títulos Cortos dinámicos
     setText("pillCajaLabel", "Caja " + fmtCompactK(m.cajaTotal));
     setText("pillIgualaLabel", "Iguala " + fmtCompactK(m.igualaGross));
-    SHORT_TITLES[3] = "Caja MASTERIZE (" + fmtCurrency(m.cajaTotal) + ")";
-    SHORT_TITLES[6] = "Iguala Mensual (" + fmtCurrency(m.igualaGross) + "/mes)";
 
     // SLIDE 01: Portada
     setText("coverContractBadge", fmtCurrency(m.gross) + " MXN");
