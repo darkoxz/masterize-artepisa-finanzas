@@ -37,8 +37,8 @@ El cobro al cliente ARTEPISA ocurre en 3 hitos (**Hito 1: 40% = $60,000** · **H
 | **Pool Socios (75% Bruto)** | **75.0% Bruto** | **$27,000.00** | **$42,750.00** | **$42,750.00** | **$112,500.00** |
 | ↳ **Daniel** (Líder Técnico) | 50% Pool (37.5% Bruto) | $13,500.00 | $21,375.00 | $21,375.00 | **$56,250.00** |
 | ↳ **Omar Moranza** (Socio) | 25% Pool (18.75% Bruto) | $6,750.00 | $10,687.50 | $10,687.50 | **$28,125.00** |
-| ↳ **Pedro** (Legal / Planta) | 15% Pool (11.25% Bruto) | $4,050.00 | $6,412.50 | $6,412.50 | **$16,875.00** |
-| ↳ **Octavio** (Implementación) | 10% Pool (7.5% Bruto) | $2,700.00 | $4,275.00 | $4,275.00 | **$11,250.00** |
+| ↳ **Pedro** (CLO) | 15% Pool (11.25% Bruto) | $4,050.00 | $6,412.50 | $6,412.50 | **$16,875.00** |
+| ↳ **Octavio** (Innovación) | 10% Pool (7.5% Bruto) | $2,700.00 | $4,275.00 | $4,275.00 | **$11,250.00** |
 
 ---
 
@@ -71,13 +71,20 @@ Para transparencia absoluta entre socios, el flujo total que recibe cada integra
 
 ---
 
-### 1.5 Póliza Mensual Post-Entrega (Iguala MRR $10,000.00/mes) y Regla del 40
-Al concluir el Hito 3 inicia la póliza recurrente de **$10,000.00 MXN/mes**:
-- **Infraestructura Azure (Tope):** -$2,000.00 MXN/mes (20%)
-- **Claude Team + Claude Code (Equipo en proyecto activo):** -$2,000.00 MXN/mes (20%)
-- **Plan Google AI Ultra:** -$2,000.00 MXN/mes (20%)
-- **Excedente Libre a Caja MASTERIZE:** **+$4,000.00 MXN/mes (40.0% Margen FCF)** → **$48,000.00 MXN/año**.
-- **Tesorería Libre Acumulada Año 1:** $14,000.00 (Caja Libre Hito 1) + $48,000.00 (12 meses de iguala) = **$62,000.00 MXN**.
+### 1.5 Póliza Mensual Post-Entrega (Iguala MRR $10,000.00/mes) — Regla v2 (Contrato #2, sección 5)
+Al concluir el Hito 3 inicia la póliza recurrente de **$10,000.00 MXN/mes**, que se distribuye así:
+- **Infraestructura Azure de ARTEPISA (costo directo del cliente):** -$2,000.00 MXN/mes (20%)
+- **Operador del Servicio (soporte, monitoreo, ajustes y reporte mensual):** -$2,000.00 MXN/mes (20%) → $24,000.00 MXN/año pagados contra CFDI ("No Work, No Pay").
+- **Remanente a Caja MASTERIZE:** +$6,000.00 MXN/mes (60%), del cual la Caja paga las **herramientas compartidas del equipo**: Claude Team + Claude Code (-$2,000.00) y Google AI Ultra (-$2,000.00).
+- **Excedente Libre a Caja MASTERIZE:** **+$2,000.00 MXN/mes (20.0% Margen FCF con un cliente)** → **$24,000.00 MXN/año**.
+- **Tesorería Libre Acumulada Año 1:** $14,000.00 (Caja Libre Hito 1) + $24,000.00 (12 meses de iguala) = **$38,000.00 MXN**.
+- **Por qué el margen sube con cada cliente:** Azure y el Operador crecen con cada iguala, pero las herramientas compartidas no. Supuesto de proyección: $4,000.00/mes hasta 3 clientes y +$1,000.00/mes por cada cliente adicional (más asientos).
+
+| Clientes con iguala | Ingreso / mes | Azure | Operador 20% | Herramientas compartidas | **Caja libre / mes** | Margen FCF |
+| :---: | ---: | ---: | ---: | ---: | ---: | :---: |
+| 1 (ARTEPISA) | $10,000.00 | $2,000.00 | $2,000.00 | $4,000.00 | **$2,000.00** | 20.0% |
+| 3 | $30,000.00 | $6,000.00 | $6,000.00 | $4,000.00 | **$14,000.00** | 46.7% |
+| 5 | $50,000.00 | $10,000.00 | $10,000.00 | $6,000.00 | **$24,000.00** | 48.0% |
 
 ---
 
@@ -93,15 +100,16 @@ Mientras que en el **Taller 1 (ARTEPISA)** el Pool es del **75% ($112,500)** y D
 | **2. Bolsa de Ejecución / Personal Extra** | **20.0% Contrato** | 20.00% | **$30,000.00** | Pago fijo por entregable a devs/implementadores contratados (0% de acciones). Si un socio absorbe esta carga extra, cobra el bono operativo |
 | **3. Omar Moranza (CEO / Dueño + Closer)** | **35% Pool + 5% Closer** | **24.25%** | **$36,375.00** | $28,875.00 (35% del Pool de $82,500) + $7,500.00 (5% Closer). Paridad ejecutiva con el Líder Técnico |
 | **4. Daniel (Socio / Arquitecto Técnico)** | **40% Pool Socios** | **22.00%** | **$33,000.00** | Supervisión de arquitectura, code review y despliegue (su carga operativa baja ~70% gracias al código base y al personal extra) |
-| **5. Pedro (Socio Legal y Planta)** | **15% Pool Socios** | 8.25% | **$12,375.00** | Condicionado a ejecutar contratos, levantamiento en planta y actas UAT de ese taller |
-| **6. Octavio (Socio Implementación)** | **10% Pool Socios** | 5.50% | **$8,250.00** | Condicionado a ejecutar carga de catálogos, pruebas UAT y capacitación (más bono de la Bolsa 2 si ejecuta módulos extra) |
+| **5. Pedro (CLO)** | **15% Pool Socios** | 8.25% | **$12,375.00** | Condicionado a ejecutar contratos, levantamiento en planta y actas UAT de ese taller |
+| **6. Octavio (Socio de Innovación)** | **10% Pool Socios** | 5.50% | **$8,250.00** | Condicionado a entregar los agentes, automatizaciones o IoT de ese taller con sus pruebas UAT y capacitación (más bono de la Bolsa 2 si desarrolla módulos extra) |
 | **TOTAL TALLER 2+** | **100.0% Cuadrado** | **100.00%** | **$150,000.00** | **Equilibrio real entre socios + presupuesto para contratar equipo sin ceder equity** |
 
 ### 2.2 Proyección Acumulada a 5 Talleres (Taller 1 ARTEPISA + Talleres 2 a 5)
-- **Tesorería Libre en Caja MASTERIZE:** $14,000 (T1) + $120,000 (4 × $30,000 en T2–T5) + $240,000 (5 igualas anuales × $48,000 libres) = **$374,000.00 MXN libres en Caja**.
+- **Tesorería Libre en Caja MASTERIZE:** $14,000 (T1) + $120,000 (4 × $30,000 en T2–T5) + $288,000 (12 meses con 5 igualas activas × $24,000 libres/mes, regla v2 de la sección 1.5) = **$422,000.00 MXN libres en Caja**. Con la regla anterior (100% de la iguala a Caja y herramientas cargadas por cliente) eran $374,000.00: la v2 deja **+$48,000.00** más en Caja y además paga a quien opera el servicio.
+- **Pago a Operadores del Servicio (12 meses con 5 igualas):** 20% × $50,000 × 12 = **$120,000.00 MXN** en honorarios contra CFDI, para el socio o contratista que opere cada iguala.
 - **Presupuesto para Personal Extra Contratado (T2–T5):** 4 × $30,000 = **$120,000.00 MXN** pagados por entregable sin diluir acciones.
 - **Ganancia Directa de Daniel (T1–T5):** $56,250 (T1) + $132,000 (4 × $33,000) = **$188,250.00 MXN** (+ $4,172.50 en monitores).
-- **Ganancia Directa de Omar Moranza (T1–T5):** $35,625 (T1) + $145,500 (4 × $36,375) = **$181,125.00 MXN** (+ $10,660 reembolso IA + titularidad y control de MASTERIZE).
+- **Ganancia Directa de Omar Moranza (T1–T5):** $35,625 (T1) + $145,500 (4 × $36,375) = **$181,125.00 MXN** (+ $10,660 reembolso IA + control de MASTERIZE con el 51%). Si Omar o Daniel operan igualas, cobran además su parte de los $120,000.00 de Operador.
 
 ---
 
@@ -115,11 +123,11 @@ Dado que **Omar Moranza** factura ante ARTEPISA S.A. de C.V. bajo el **Régimen 
 
 ## 4. Arquitectura de los 4 Contratos Internos de MASTERIZE (Gobernanza de Socios)
 
-Los machotes completos listos para firma se encuentran en `../03_Legal_y_Gobernanza_Contractual/`:
-1. **[`08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md`](../03_Legal_y_Gobernanza_Contractual/08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md):** Regula exclusivamente el Caso 1 ARTEPISA ($150,000 MXN: 20% Caja, 5% Closer, 75% Pool `50/25/15/10`), los entregables obligatorios por Hito 1, 2 y 3, el comodato de los 2 monitores de Daniel hasta concluir el Hito 3 y la iguala mensual 100% para Caja MASTERIZE.
-2. **[`09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md`](../03_Legal_y_Gobernanza_Contractual/09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md):** Establece la regla para los Talleres 2 en adelante (20% Caja, 5% Closer, 20% Bolsa de Personal Extra y 55% Pool de Socios con paridad ejecutiva `35% Omar + 5% Closer = 24.25%` vs `40% Daniel = 22.00%`) y la cláusula *"No Work, No Pool"*.
-3. **[`10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md`](../03_Legal_y_Gobernanza_Contractual/10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md):** Reconoce a Omar Moranza como fundador, CEO y titular de la marca **MASTERIZE**, y establece el esquema estándar de Silicon Valley de **Reverse Vesting a 4 años (48 meses) con Cliff de 12 meses** (quien abandone antes de 12 meses o 4 talleres completados se retira con **0% de acciones**).
-4. **[`11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md`](../03_Legal_y_Gobernanza_Contractual/11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md):** Convenio de Confidencialidad (NDA), **Cesión Patrimonial del 100% del Código y Arquitectura (*Work-for-Hire*)** a favor de Omar Moranza / MASTERIZE, No Competencia por 24 meses y **Cláusula de No Abandono Intempestivo** (preaviso mínimo de 45 días y pérdida del 100% de hitos pendientes en caso de abandono).
+Los machotes completos listos para firma (**Versión 2.0, 25 de octubre de 2026**) se encuentran en `../03_Legal_y_Gobernanza_Contractual/`. Las versiones anteriores están respaldadas en `_respaldo_v1_2026-10-25/`:
+1. **[`08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md`](../03_Legal_y_Gobernanza_Contractual/08_CONTRATO_1_ACUERDO_ESPECIFICO_CASO_1_ARTEPISA.md):** Regula exclusivamente el Caso 1 ARTEPISA ($150,000 MXN: 20% Caja, 5% Closer, 75% Pool `50/25/15/10`), los entregables obligatorios por Hito 1, 2 y 3, el comodato de los 2 monitores de Daniel hasta concluir el Hito 3. Omar conserva la marca como depositario a favor de la S.A.P.I., y la iguala mensual se distribuye conforme a la sección 5 del Contrato #2.
+2. **[`09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md`](../03_Legal_y_Gobernanza_Contractual/09_CONTRATO_2_ACUERDO_MARCO_SIGUIENTES_TALLERES_Y_PERSONAL_EXTRA.md):** Establece la regla para los Talleres 2 en adelante (20% Caja, 5% Closer, 20% Bolsa de Personal Extra y 55% Pool de Socios con paridad ejecutiva `35% Omar + 5% Closer = 24.25%` vs `40% Daniel = 22.00%`) la cláusula *"No Work, No Pool"* y la **regla de la iguala mensual** (infraestructura a costo real + **20% al Operador del Servicio** + remanente a Caja, que paga una sola vez las herramientas compartidas del equipo).
+3. **[`10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md`](../03_Legal_y_Gobernanza_Contractual/10_CONTRATO_3_CONVENIO_GENERAL_ACCIONES_Y_VESTING_MASTERIZE.md):** Reconoce a Omar Moranza como fundador y CEO de **MASTERIZE**, lo obliga a aportar la marca y la PI a **MASTERIZE TECH SOLUTIONS, S.A.P.I. de C.V.** (a constituir por disparador fiscal: $2.8M de ingresos RESICO en el ejercicio, inversionista, cliente que lo exija o acuerdo de los 4, para no sacar a los socios de RESICO antes de tiempo), fija un **protocolo de cambio de números** (propuesta escrita, 48 h y aprobación de los afectados) y establece el esquema estándar de Silicon Valley de **Reverse Vesting a 4 años (48 meses) con Cliff de 12 meses solo por tiempo** (quien abandone antes de 12 meses se retira con **0% de acciones**; cada taller entregado acelera 3 meses). Omar también vestea (25% al firmar + 75% en 36 meses) sin perder el control del 51%. Las salidas de buena fe se recompran a **Valor Justo**; las de mala fe pierden lo no devengado.
+4. **[`11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md`](../03_Legal_y_Gobernanza_Contractual/11_CONTRATO_4_NDA_CESION_PI_Y_NO_ABANDONO.md):** Convenio de Confidencialidad (NDA), **Cesión Patrimonial del 100% del Código y Arquitectura (*Work-for-Hire*)** a favor de **MASTERIZE TECH SOLUTIONS, S.A.P.I. de C.V.** (con Omar Moranza como depositario hasta su constitución), No Competencia por 24 meses y **Cláusula de No Abandono Intempestivo** (preaviso mínimo de 45 días y pérdida del 100% de hitos pendientes en caso de abandono).
 
 ---
 
@@ -140,6 +148,6 @@ Para que **cualquier socio o persona sin formación financiera entienda en menos
    - **Slide 04 · Caja MASTERIZE ($30,000 → $14,000 Libres):** Desglose de `$30,000` en H1 menos los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$14,000` Libres).
    - **Slide 05 · Pago Individual por Socio:** Tarjetas por socio con desglose `H1 · H2 · H3` y total (`Daniel $56.25k + monitores`, `Omar $35.625k + reembolso`, `Pedro $16.875k + viáticos`, `Octavio $11.25k` con su `10%` íntegro).
    - **Slide 06 · Tabla Bancaria SPEI por Hito:** Tabla cuadrada al 100% con exportación CSV en 1 clic.
-   - **Slide 07 · Iguala Mensual ($10k/mes → $4k Libres):** Stack IA (`$2k` Azure + `$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$62,000`).
+   - **Slide 07 · Iguala Mensual ($10k/mes → $2k Libres, regla v2):** `$2k` Azure de ARTEPISA + `$2k` Operador del Servicio (20%) + `$4k` herramientas compartidas pagadas desde Caja (`$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$38,000`).
    - **Slide 08 · Resumen en 4 Pasos + Simulador en Vivo:** Línea de tiempo cronológica y simulador interactivo reactivo.
 

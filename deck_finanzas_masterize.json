@@ -153,27 +153,27 @@
     {
       "layout": "asymmetric_split",
       "section": "07 // IGUALA MENSUAL POST-ENTREGA ($10,000/MES)",
-      "title": "Iguala de $10,000/mes: $6,000 a IA y $4,000 Libres ($62,000 Año 1).",
+      "title": "Iguala de $10,000/mes: $2,000 al Operador y $2,000 Libres ($38,000 Año 1).",
       "primary": {
-        "title": "Gasto Operativo Mensual tras Hito 3 (-$6,000.00/mes)",
+        "title": "Distribución Mensual tras Hito 3 (Regla v2 · Contrato #2, sección 5)",
         "description": "Al terminar el Hito 3 arranca la póliza mensual de $10,000 MXN:",
         "points": [
-          "**1. Servidor y Base de Datos Azure:** $2,000.00 MXN/mes",
-          "**2. Licencias Claude Team / Claude Code:** $2,000.00 MXN/mes",
-          "**3. Plan Google AI Ultra:** $2,000.00 MXN/mes",
-          "**4. Libre cada mes en Caja MASTERIZE:** +$4,000.00 MXN/mes (+$48,000.00 al año)"
+          "**1. Servidor y Base de Datos Azure (costo directo de ARTEPISA):** $2,000.00 MXN/mes",
+          "**2. Operador del Servicio (20%):** $2,000.00 MXN/mes, contra CFDI y reporte mensual",
+          "**3. Herramientas compartidas pagadas desde Caja (Claude Team/Code + Google AI Ultra):** $4,000.00 MXN/mes",
+          "**4. Libre cada mes en Caja MASTERIZE:** +$2,000.00 MXN/mes (+$24,000.00 al año)"
         ]
       },
       "secondary": {
         "title": "CAJA LIBRE ACUMULADA EN EL AÑO 1",
         "items": [
           { "key": "Libre en Caja del Hito 1", "value": "+$14,000.00" },
-          { "key": "Libre por Mes de Iguala", "value": "+$4,000.00/mes" },
-          { "key": "Libre en 12 Meses de Iguala", "value": "+$48,000.00/año" },
-          { "key": "Total Caja Libre Año 1", "value": "$62,000.00" }
+          { "key": "Libre por Mes de Iguala", "value": "+$2,000.00/mes" },
+          { "key": "Libre en 12 Meses de Iguala", "value": "+$24,000.00/año" },
+          { "key": "Total Caja Libre Año 1", "value": "$38,000.00" }
         ]
       },
-      "notes": "[SEÑALAR: Total Caja Libre Año 1 $62,000.00] Después de entregar el Hito 3, ARTEPISA paga $10,000 al mes de iguala. Con eso se pagan $2,000 de Azure, $2,000 de Claude y $2,000 de Google AI Ultra. Quedan $4,000 libres al mes para la Caja de MASTERIZE, que en un año son $48,000. Sumados a los $14,000 libres del Hito 1, la empresa acumula $62,000 libres en su primer año."
+      "notes": "[SEÑALAR: Total Caja Libre Año 1 $38,000.00] Después de entregar el Hito 3, ARTEPISA paga $10,000 al mes de iguala. $2,000 pagan Azure, $2,000 le pagan a quien opera el servicio y $6,000 entran a la Caja de MASTERIZE. [PAUSA] Desde la Caja se pagan una sola vez las herramientas del equipo, Claude y Google AI, por $4,000. Quedan $2,000 libres al mes, $24,000 en un año. Sumados a los $14,000 libres del Hito 1, la empresa cierra su primer año con $38,000 libres. Con cada cliente nuevo el margen sube, porque las herramientas compartidas no se pagan dos veces."
     },
     {
       "layout": "timeline",
@@ -201,11 +201,11 @@
         {
           "date": "PASO 04 · POST-HITO 3",
           "title": "Iguala de $10,000/mes y Caja Año 1",
-          "metric": "$62,000 Año 1",
-          "description": "Paga $6,000/mes de Stack IA (Azure, Claude, Google AI) y suma +$4,000/mes libres (+$48,000/año) para llegar a $62,000 en Caja."
+          "metric": "$38,000 Año 1",
+          "description": "Paga Azure ($2,000) y al Operador del Servicio ($2,000); la Caja cubre Claude y Google AI ($4,000) y suma +$2,000/mes libres (+$24,000/año) para llegar a $38,000 en Caja."
         }
       ],
-      "notes": "[SEÑALAR: Los 4 pasos] Para cerrar, estos son los 4 pasos en orden cronológico. Paso 1: primeros $30k de H1 pagan gastos y dejan $14k en Caja. Paso 2: siguientes $30k de H1 van a socios y Closer. Paso 3: H2 y H3 ($45k cada uno) van 100% a socios y Closer. Paso 4: la iguala de $10k/mes deja $4k libres al mes y lleva la Caja a $62,000 en el primer año."
+      "notes": "[SEÑALAR: Los 4 pasos] Para cerrar, estos son los 4 pasos en orden cronológico. Paso 1: primeros $30k de H1 pagan gastos y dejan $14k en Caja. Paso 2: siguientes $30k de H1 van a socios y Closer. Paso 3: H2 y H3 ($45k cada uno) van 100% a socios y Closer. Paso 4: la iguala de $10k/mes paga $2k al Operador del Servicio, deja $2k libres al mes y lleva la Caja a $38,000 en el primer año."
     }
   ]
 }

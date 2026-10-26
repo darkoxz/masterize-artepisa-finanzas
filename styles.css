@@ -2217,3 +2217,157 @@ html:not(.dark) .logo-for-light { display: block; }
     display: flex !important;
   }
 }
+
+/* =====================================================================
+   SECCIONES 2–4: FUTURO DE MASTERIZE, SIGUIENTES TALLERES Y ROLES
+   ===================================================================== */
+.step-group {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  padding: 0 6px 0 12px;
+  margin-left: 6px;
+  border-left: 1px solid var(--border-subtle);
+}
+.step-group:first-child { border-left: 0; margin-left: 0; padding-left: 4px; }
+
+.mz-divider-body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 1150px;
+}
+.mz-divider-num {
+  font-family: var(--font-display);
+  font-size: 140px;
+  line-height: 0.9;
+  color: var(--accent);
+}
+.mz-divider-title {
+  font-family: var(--font-title);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0;
+  text-wrap: balance;
+}
+.mz-divider-list {
+  list-style: none;
+  counter-reset: mzdl;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 6px 0 0;
+  padding: 0;
+}
+.mz-divider-list li {
+  counter-increment: mzdl;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--text);
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+}
+.mz-divider-list li::before { content: counter(mzdl, decimal-leading-zero) " · "; color: var(--accent); }
+
+.mz-bento-2 { grid-template-columns: repeat(2, 1fr); }
+.mz-bento-2 .mz-ph-row,
+.mz-partner-card .mz-ph-row { gap: 14px; }
+.mz-bento-2 .mz-ph-row strong,
+.mz-partner-card .mz-ph-row strong { text-align: right; }
+.mz-line-title { font-size: 30px; }
+
+.mz-verdict {
+  display: grid;
+  gap: 8px;
+  padding: 20px 28px;
+  border: 1px solid var(--accent);
+  border-radius: var(--r-card);
+  background: var(--accent-soft);
+}
+.mz-verdict .mz-section-subhead { border-bottom: 0; padding-bottom: 0; color: var(--accent); }
+.mz-verdict p {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.32;
+  color: var(--text);
+  text-wrap: balance;
+}
+.mz-source-note {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-faint);
+}
+.mz-table-card > .mz-section-subhead { padding: 16px 20px 10px; }
+.mz-table-card > .mz-source-note { padding: 10px 20px 14px; }
+
+.mz-flow-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.mz-flow-strip span {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text);
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.mz-flow-strip span.is-accent { border-color: var(--accent); color: var(--accent); }
+.mz-flow-strip i { font-style: normal; color: var(--text-faint); }
+
+.mz-phase-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.mz-phase-grid .mz-bento-card { justify-content: flex-start; }
+.mz-phase-when {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.mz-phase-gate {
+  margin: auto 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.mz-phase-gate strong { color: var(--emerald); }
+
+.mz-prop-seg.is-steel { background: var(--surface-2); color: var(--text); }
+.mz-compact-table td { padding-top: 8px; padding-bottom: 8px; }
+.mz-rules-grid .mz-bento-card { justify-content: flex-start; }
+
+@media (max-width: 900px) {
+  .mz-bento-2,
+  .mz-phase-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+  .mz-divider-num { font-size: 72px; }
+  .mz-divider-title { font-size: clamp(26px, 7vw, 34px); }
+  .mz-divider-list li { font-size: 13px; }
+  .mz-verdict { padding: 16px 18px; }
+  .mz-verdict p { font-size: 17px; }
+  .mz-line-title { font-size: 22px; }
+  .mz-flow-strip span { font-size: 12.5px; }
+}

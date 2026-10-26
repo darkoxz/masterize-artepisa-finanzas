@@ -14,7 +14,8 @@
     igualaGross: 10000,
     azure: 2000,
     claude: 2000,
-    googleAi: 2000
+    googleAi: 2000,
+    operatorPct: 0.2
   };
 
   var state = Object.assign({}, DEFAULTS);
@@ -27,7 +28,22 @@
     "Pago Individual por Socio",
     "Tabla Bancaria SPEI",
     "Iguala Mensual ($10,000/mes)",
-    "Resumen en 4 Pasos"
+    "Resumen en 4 Pasos",
+    "Sección 2 · El futuro de MASTERIZE",
+    "La oportunidad",
+    "Dos líneas de negocio",
+    "Ruta por fases",
+    "Hasta dónde puede llegar",
+    "Sección 3 · Siguientes talleres",
+    "Las 4 bolsas del Taller #2+",
+    "Pago por socio · Taller #2+",
+    "La iguala v2",
+    "Proyección a 5 talleres",
+    "Sección 4 · Roles y porcentajes",
+    "Roles y áreas",
+    "Porcentajes: flujo y acciones",
+    "Reglas del juego",
+    "Acuerdos"
   ];
 
   /* ---------- Formateadores Numéricos ---------- */
@@ -163,11 +179,15 @@
     var omarCashH1 = omarUtilH1 + omarReimb;
     var pedCashH1 = pedH1 + viaticos;
 
-    // Iguala Mensual Post-Hito 3
+    // Iguala Mensual Post-Hito 3 (regla v2: Contrato #2, sección 5)
+    // Azure es costo directo del cliente; el Operador cobra un % de la iguala;
+    // Claude y Google AI son herramientas compartidas que paga la Caja una sola vez.
     var igualaGross = Math.max(0, Number(state.igualaGross) || 0);
-    var stackMonthly = state.azure + state.claude + state.googleAi;
-    var igualaFreeMonthly = igualaGross - stackMonthly;
+    var operatorMonthly = igualaGross * state.operatorPct;
+    var toolsMonthly = state.claude + state.googleAi;
+    var igualaFreeMonthly = igualaGross - state.azure - operatorMonthly - toolsMonthly;
     var igualaFreeAnnual = igualaFreeMonthly * 12;
+    var igualaFreePct = igualaGross > 0 ? (igualaFreeMonthly / igualaGross) * 100 : 0;
     var year1FreeTotal = cajaFreeH1 + igualaFreeAnnual;
 
     return {
@@ -223,7 +243,10 @@
       omarCashH1: omarCashH1,
       pedCashH1: pedCashH1,
       igualaGross: igualaGross,
-      stackMonthly: stackMonthly,
+      azureMonthly: state.azure,
+      operatorMonthly: operatorMonthly,
+      toolsMonthly: toolsMonthly,
+      igualaFreePct: igualaFreePct,
       igualaFreeMonthly: igualaFreeMonthly,
       igualaFreeAnnual: igualaFreeAnnual,
       year1FreeTotal: year1FreeTotal
@@ -425,7 +448,7 @@
           '<td class="num"><strong>' + fmtCurrency(m.omarPool, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
-          '<td><strong>Pedro · Socio Legal y Planta</strong></td>' +
+          '<td><strong>Pedro · CLO</strong></td>' +
           '<td><span class="mz-rule-pill">15% del Pool (11.25% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.pedH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.pedH2, 2) + '</td>' +
@@ -433,7 +456,7 @@
           '<td class="num"><strong>' + fmtCurrency(m.pedPool, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
-          '<td><strong>Octavio · Socio Implementación</strong></td>' +
+          '<td><strong>Octavio · Socio de Innovación</strong></td>' +
           '<td><span class="mz-rule-pill">10% del Pool (7.5% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.octH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.octH2, 2) + '</td>' +
@@ -470,7 +493,8 @@
 
     // SLIDE 07: Iguala Mensual y Caja Año 1
     setText("s7TitleIguala", fmtCurrency(m.igualaGross));
-    setText("s7TitleStack", fmtCurrency(m.stackMonthly));
+    setText("s7TitleOperator", fmtCurrency(m.operatorMonthly));
+    setText("s7Operator", fmtCurrency(m.operatorMonthly, 2) + "/mes");
     setText("s7TitleFree", fmtCurrency(m.igualaFreeMonthly));
     setText("s7EqH1Free", fmtCurrency(m.cajaFreeH1, 2));
     setText("s7EqMoFree", fmtCurrency(m.igualaFreeMonthly));
@@ -480,7 +504,10 @@
     setText("s7AnnualInline", fmtSignedCurrency(m.igualaFreeAnnual, 2) + " al año");
     setText("s7MoFree", fmtSignedCurrency(m.igualaFreeMonthly, 2) + "/mes");
     setText("s7RecIguala", "+" + fmtCurrency(m.igualaGross, 2) + "/mes");
-    setText("s7RecStack", "-" + fmtCurrency(m.stackMonthly, 2) + "/mes");
+    setText("s7RecAzure", "-" + fmtCurrency(m.azureMonthly, 2) + "/mes");
+    setText("s7RecOperator", "-" + fmtCurrency(m.operatorMonthly, 2) + "/mes");
+    setText("s7RecTools", "-" + fmtCurrency(m.toolsMonthly, 2) + "/mes");
+    setText("s7RecFreePct", m.igualaFreePct.toFixed(1) + "%");
     setText("s7RecMoFree", fmtSignedCurrency(m.igualaFreeMonthly, 2) + "/mes");
     setText("s7RecYrFree", fmtSignedCurrency(m.igualaFreeAnnual, 2) + "/año");
     setText("s7RecH1Free", fmtSignedCurrency(m.cajaFreeH1, 2));
@@ -510,7 +537,7 @@
 
     setText("s8Step4Iguala", fmtCurrency(m.igualaGross));
     setText("s8Step4Year1", fmtCurrency(m.year1FreeTotal) + " Año 1");
-    setText("s8Step4Stack", fmtCurrency(m.stackMonthly) + "/mes");
+    setText("s8Step4Operator", fmtCurrency(m.operatorMonthly) + "/mes");
     setText("s8Step4Free", fmtSignedCurrency(m.igualaFreeMonthly) + "/mes libres");
     setText("s8Step4Annual", fmtSignedCurrency(m.igualaFreeAnnual) + "/año");
 
@@ -703,6 +730,12 @@
     var idx = getCurrentSlideIndex();
     var currentSlide = slides[idx];
     var nextSlideEl = slides[idx + 1];
+
+    // Numeración de cada lámina según el total real del deck
+    slides.forEach(function (sec, i) {
+      var label = sec.querySelector(".mz-slide-index");
+      if (label) label.textContent = String(i + 1).padStart(2, "0") + " / " + String(total).padStart(2, "0");
+    });
 
     var numStr = String(idx + 1).padStart(2, "0") + " / " + String(total).padStart(2, "0");
     var shortTitle = SHORT_TITLES[idx] || ("Lámina " + (idx + 1));
