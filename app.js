@@ -14,8 +14,7 @@
     igualaGross: 10000,
     azure: 2000,
     claude: 2000,
-    googleAi: 2000,
-    operatorPct: 0.2
+    googleAi: 2000
   };
 
   var state = Object.assign({}, DEFAULTS);
@@ -23,7 +22,7 @@
   var SHORT_TITLES = [
     "El Contrato ARTEPISA",
     "Las 3 Bolsas del Contrato",
-    "Los 3 Cobros (Hitos 1, 2 y 3)",
+    "Los 2 Pagos de ARTEPISA",
     "Caja MASTERIZE ($30,000)",
     "Pago Individual por Socio",
     "Tabla Bancaria SPEI",
@@ -99,66 +98,54 @@
     var gross = Math.max(0, Number(state.contractGross) || 0);
 
     // Regla definitiva ARTEPISA (Palabra de CEO):
-    // - Comisión Closer (Omar): 5% del Contrato ($7,500; el otro 5% se sumó al Pool del Equipo)
+    // - Comisión de Firma (Omar): 5% del Contrato ($7,500) por firmar, facturar y responder legal y fiscalmente
     // - Pool de los 4 Socios: 75% del Contrato ($112,500) -> 100% repartido:
     //   Daniel 50% ($56,250), Omar 25% ($28,125), Pedro 15% ($16,875), Octavio 10% ($11,250)
-    // - Inversión y Caja MASTERIZE: 20% del Contrato ($30,000 apartados 100% en Hito 1)
+    // - Inversión y Caja MASTERIZE: 20% del Contrato ($30,000 apartados 100% en el Pago 1)
     var poolTotal = gross * 0.75;
     var cajaTotal = gross * 0.20;
-    var closerTotal = gross * 0.05;
+    var closerTotal = gross * 0.05; // Comisión de Firma
 
-    // 3 Hitos de Cobro: 40% H1 / 30% H2 / 30% H3
+    // 2 Pagos de ARTEPISA: 40% anticipo (Pago 1) / 60% finiquito al entregar (Pago 2)
     var h1Gross = gross * 0.40;
-    var h2Gross = gross * 0.30;
-    var h3Gross = gross * 0.30;
+    var h2Gross = gross * 0.60;
 
-    // Hito 1 ($60,000):
+    // Pago 1 ($60,000):
     // - Mitad 1 ($30,000 = 20% contrato) va íntegro a Caja MASTERIZE
-    // - Mitad 2 ($30,000): 5% Closer sobre H1 ($3,000) + Pool Socios H1 ($27,000)
+    // - Mitad 2 ($30,000): 5% Firma sobre el Pago 1 ($3,000) + Pool Socios ($27,000)
     var h1Caja = cajaTotal;
     var h1Closer = h1Gross * 0.05;
     var h1Pool = Math.max(0, (h1Gross - h1Caja) - h1Closer);
     var h1SociosTotal = h1Closer + h1Pool;
 
-    // Hitos 2 y 3 ($45,000 c/u):
-    // $0 a Caja · 5% Closer ($2,250) + Pool Socios ($42,750) = 100% a Socios y Closer
+    // Pago 2 ($90,000): $0 a Caja · 5% Firma ($4,500) + Pool Socios ($85,500)
     var h2Caja = 0;
     var h2Closer = h2Gross * 0.05;
     var h2Pool = h2Gross - h2Closer;
     var h2SociosTotal = h2Closer + h2Pool;
 
-    var h3Caja = 0;
-    var h3Closer = h3Gross * 0.05;
-    var h3Pool = h3Gross - h3Closer;
-    var h3SociosTotal = h3Closer + h3Pool;
-
     // Participación por Socio dentro del Pool (50% Daniel, 25% Omar, 15% Pedro, 10% Octavio = 100%)
     var danH1 = h1Pool * 0.50;
     var danH2 = h2Pool * 0.50;
-    var danH3 = h3Pool * 0.50;
     var danPool = poolTotal * 0.50;
 
     var omarPoolH1 = h1Pool * 0.25;
     var omarPoolH2 = h2Pool * 0.25;
-    var omarPoolH3 = h3Pool * 0.25;
     var omarPool = poolTotal * 0.25;
 
     var omarUtilH1 = omarPoolH1 + h1Closer;
     var omarUtilH2 = omarPoolH2 + h2Closer;
-    var omarUtilH3 = omarPoolH3 + h3Closer;
     var omarUtilTotal = omarPool + closerTotal;
 
     var pedH1 = h1Pool * 0.15;
     var pedH2 = h2Pool * 0.15;
-    var pedH3 = h3Pool * 0.15;
     var pedPool = poolTotal * 0.15;
 
     var octH1 = h1Pool * 0.10;
     var octH2 = h2Pool * 0.10;
-    var octH3 = h3Pool * 0.10;
     var octPool = poolTotal * 0.10;
 
-    // Gastos de Arranque pagados con la Caja del Hito 1
+    // Gastos de Arranque pagados con la Caja del Pago 1
     var omarReimb = Math.max(0, Number(state.omarReimb) || 0);
     var mon30 = Math.max(0, Number(state.mon30) || 0);
     var mon15 = Math.max(0, Number(state.mon15) || 0);
@@ -169,23 +156,23 @@
     var cajaFreeH1 = cajaTotal - startupExpenses; // $14,000 libres en Caja MASTERIZE
     var cajaFreePct = cajaTotal > 0 ? (cajaFreeH1 / cajaTotal) * 100 : 0;
 
-    // Totales con Reembolsos / Equipo en Hito 1
+    // Totales con Reembolsos / Equipo en el Pago 1
     var danGrand = danPool + monTotal;
     var omarGrand = omarUtilTotal + omarReimb;
     var pedGrand = pedPool + viaticos;
     var octGrand = octPool;
 
-    // Efectivo real transferido en Hito 1
+    // Efectivo real transferido en el Pago 1
     var omarCashH1 = omarUtilH1 + omarReimb;
     var pedCashH1 = pedH1 + viaticos;
 
-    // Iguala Mensual Post-Hito 3 (regla v2: Contrato #2, sección 5)
-    // Azure es costo directo del cliente; el Operador cobra un % de la iguala;
-    // Claude y Google AI son herramientas compartidas que paga la Caja una sola vez.
+    // Iguala Mensual post-entrega: 100% para MASTERIZE (Contrato #2, sección 5)
+    // Azure es costo directo del cliente; Claude y Google AI son herramientas compartidas
+    // que la Caja paga una sola vez. Nadie cobra extra por operar el servicio.
     var igualaGross = Math.max(0, Number(state.igualaGross) || 0);
-    var operatorMonthly = igualaGross * state.operatorPct;
     var toolsMonthly = state.claude + state.googleAi;
-    var igualaFreeMonthly = igualaGross - state.azure - operatorMonthly - toolsMonthly;
+    var stackMonthly = state.azure + toolsMonthly;
+    var igualaFreeMonthly = igualaGross - stackMonthly;
     var igualaFreeAnnual = igualaFreeMonthly * 12;
     var igualaFreePct = igualaGross > 0 ? (igualaFreeMonthly / igualaGross) * 100 : 0;
     var year1FreeTotal = cajaFreeH1 + igualaFreeAnnual;
@@ -197,36 +184,27 @@
       closerTotal: closerTotal,
       h1Gross: h1Gross,
       h2Gross: h2Gross,
-      h3Gross: h3Gross,
       h1Pool: h1Pool,
       h1Caja: h1Caja,
       h2Caja: h2Caja,
-      h3Caja: h3Caja,
       h1SociosTotal: h1SociosTotal,
       h2SociosTotal: h2SociosTotal,
-      h3SociosTotal: h3SociosTotal,
       h1Closer: h1Closer,
       h2Closer: h2Closer,
-      h3Closer: h3Closer,
       danH1: danH1,
       danH2: danH2,
-      danH3: danH3,
       danPool: danPool,
       omarPoolH1: omarPoolH1,
       omarPoolH2: omarPoolH2,
-      omarPoolH3: omarPoolH3,
       omarPool: omarPool,
       omarUtilH1: omarUtilH1,
       omarUtilH2: omarUtilH2,
-      omarUtilH3: omarUtilH3,
       omarUtilTotal: omarUtilTotal,
       pedH1: pedH1,
       pedH2: pedH2,
-      pedH3: pedH3,
       pedPool: pedPool,
       octH1: octH1,
       octH2: octH2,
-      octH3: octH3,
       octPool: octPool,
       omarReimb: omarReimb,
       mon30: mon30,
@@ -244,7 +222,7 @@
       pedCashH1: pedCashH1,
       igualaGross: igualaGross,
       azureMonthly: state.azure,
-      operatorMonthly: operatorMonthly,
+      stackMonthly: stackMonthly,
       toolsMonthly: toolsMonthly,
       igualaFreePct: igualaFreePct,
       igualaFreeMonthly: igualaFreeMonthly,
@@ -275,7 +253,7 @@
     }
     setText(
       "coverHitosInline",
-      fmtCurrency(m.h1Gross) + " · " + fmtCurrency(m.h2Gross) + " · " + fmtCurrency(m.h3Gross)
+      fmtCurrency(m.h1Gross) + " · " + fmtCurrency(m.h2Gross)
     );
     setText("coverPoolVal", fmtCurrency(m.poolTotal));
     setText("coverDanVal", fmtCurrency(m.danPool));
@@ -288,7 +266,6 @@
     setText("coverCloserVal", fmtCurrency(m.closerTotal));
     setText("coverCloserH1", fmtCurrency(m.h1Closer));
     setText("coverCloserH2", fmtCurrency(m.h2Closer));
-    setText("coverCloserH3", fmtCurrency(m.h3Closer));
 
     // SLIDE 02: Las 3 Bolsas
     setText("s2TitleGross", fmtCurrency(m.gross));
@@ -306,9 +283,8 @@
     setText("s2RowCloser", fmtCurrency(m.closerTotal));
     setText("s2CloserH1", fmtCurrency(m.h1Closer));
     setText("s2CloserH2", fmtCurrency(m.h2Closer));
-    setText("s2CloserH3", fmtCurrency(m.h3Closer));
 
-    // SLIDE 03: Los 3 Hitos
+    // SLIDE 03: Los 2 Pagos
     setText("s3LeadCaja", fmtCurrency(m.cajaTotal));
     setText("s3H1Gross", fmtCurrency(m.h1Gross));
     setText("s3H1Caja", fmtCurrency(m.h1Caja));
@@ -319,7 +295,7 @@
     setText("s3H1Socios", fmtCurrency(m.h1SociosTotal));
     setText(
       "s3H1SociosSub",
-      fmtCurrency(m.h1Closer) + " Closer + " + fmtCurrency(m.h1Pool) + " Pool Socios"
+      fmtCurrency(m.h1Closer) + " Firma + " + fmtCurrency(m.h1Pool) + " Pool Socios"
     );
     setText("s3H1ListCaja", fmtCurrency(m.h1Caja));
     setText("s3H1ListCloser", fmtCurrency(m.h1Closer));
@@ -332,7 +308,7 @@
     setText("s3H2Socios", fmtCurrency(m.h2SociosTotal));
     setText(
       "s3H2SociosSub",
-      "Caja ya cubierta en Hito 1 · 100% a Socios y Closer"
+      "Caja ya cubierta en el Pago 1 · 100% a Socios y Firma"
     );
     setText("s3H2ListCloser", fmtCurrency(m.h2Closer));
     setText("s3H2ListDan", fmtCurrency(m.danH2));
@@ -340,19 +316,8 @@
     setText("s3H2ListPed", fmtCurrency(m.pedH2));
     setText("s3H2ListOct", fmtCurrency(m.octH2));
 
-    setText("s3H3Gross", fmtCurrency(m.h3Gross));
-    setText("s3H3Socios", fmtCurrency(m.h3SociosTotal));
-    setText(
-      "s3H3SociosSub",
-      "Liquidación final del contrato · 100% a Socios y Closer"
-    );
-    setText("s3H3ListCloser", fmtCurrency(m.h3Closer));
-    setText("s3H3ListDan", fmtCurrency(m.danH3));
-    setText("s3H3ListOmar", fmtCurrency(m.omarPoolH3));
-    setText("s3H3ListPed", fmtCurrency(m.pedH3));
-    setText("s3H3ListOct", fmtCurrency(m.octH3));
 
-    // SLIDE 04: Caja MASTERIZE ($30,000 en Hito 1 -> $14,000 Libres)
+    // SLIDE 04: Caja MASTERIZE ($30,000 en el Pago 1 -> $14,000 Libres)
     setText("s4KickerCaja", fmtCurrency(m.cajaTotal));
     setText("s4TitleCaja", fmtCurrency(m.cajaTotal));
     setText("s4EqCaja", fmtCurrency(m.cajaTotal, 2));
@@ -378,65 +343,56 @@
     setText("s5DanPool", fmtCurrency(m.danPool));
     setText("s5DanH1", fmtCurrency(m.danH1));
     setText("s5DanH2", fmtCurrency(m.danH2));
-    setText("s5DanH3", fmtCurrency(m.danH3));
     setText("s5DanMon", "+" + fmtCurrency(m.monTotal, 2));
     setText("s5DanGrand", fmtCurrency(m.danGrand, 2));
 
     setText("s5OmarUtil", fmtCurrency(m.omarUtilTotal));
     setText("s5OmarPoolOnly", fmtCurrency(m.omarPool));
     setText("s5OmarCloserOnly", fmtCurrency(m.closerTotal));
-    setText("s5OmarH1Break", fmtCurrency(m.omarPoolH1) + " Pool + " + fmtCurrency(m.h1Closer) + " Closer");
-    setText("s5OmarH2Break", fmtCurrency(m.omarPoolH2) + " + " + fmtCurrency(m.h2Closer));
-    setText("s5OmarH3Break", fmtCurrency(m.omarPoolH3) + " + " + fmtCurrency(m.h3Closer));
+    setText("s5OmarH1Break", fmtCurrency(m.omarPoolH1) + " Pool + " + fmtCurrency(m.h1Closer) + " Firma");
+    setText("s5OmarH2Break", fmtCurrency(m.omarPoolH2) + " Pool + " + fmtCurrency(m.h2Closer) + " Firma");
     setText("s5OmarH1", fmtCurrency(m.omarUtilH1));
     setText("s5OmarH2", fmtCurrency(m.omarUtilH2));
-    setText("s5OmarH3", fmtCurrency(m.omarUtilH3));
     setText("s5OmarReimb", "+" + fmtCurrency(m.omarReimb, 2));
     setText("s5OmarGrand", fmtCurrency(m.omarGrand, 2));
 
     setText("s5PedPool", fmtCurrency(m.pedPool));
     setText("s5PedH1", fmtCurrency(m.pedH1));
     setText("s5PedH2", fmtCurrency(m.pedH2));
-    setText("s5PedH3", fmtCurrency(m.pedH3));
     setText("s5PedViat", "+" + fmtCurrency(m.viaticos, 2));
     setText("s5PedGrand", fmtCurrency(m.pedGrand, 2));
 
     setText("s5OctPool", fmtCurrency(m.octPool));
     setText("s5OctH1", fmtCurrency(m.octH1));
     setText("s5OctH2", fmtCurrency(m.octH2));
-    setText("s5OctH3", fmtCurrency(m.octH3));
     setText("s5OctGrand", fmtCurrency(m.octGrand, 2));
 
     // SLIDE 06: Tabla SPEI
-    setText("thSpeiH1", "Hito 1 (" + fmtCurrency(m.h1Gross) + ")");
-    setText("thSpeiH2", "Hito 2 (" + fmtCurrency(m.h2Gross) + ")");
-    setText("thSpeiH3", "Hito 3 (" + fmtCurrency(m.h3Gross) + ")");
+    setText("thSpeiH1", "Pago 1 (" + fmtCurrency(m.h1Gross) + ")");
+    setText("thSpeiH2", "Pago 2 (" + fmtCurrency(m.h2Gross) + ")");
 
     var tbody = document.getElementById("speiTableBody");
     if (tbody) {
       tbody.innerHTML = [
         '<tr>' +
           '<td><strong>Inversión y Caja MASTERIZE</strong> <small class="mz-td-note">(' + fmtCurrency(m.startupExpenses) + ' gastos + ' + fmtCurrency(m.cajaFreeH1) + ' libres)</small></td>' +
-          '<td><span class="mz-rule-pill is-emerald">20% Contrato (100% en H1)</span></td>' +
+          '<td><span class="mz-rule-pill is-emerald">20% Contrato (100% en Pago 1)</span></td>' +
           '<td class="num"><strong>' + fmtCurrency(m.h1Caja, 2) + '</strong></td>' +
-          '<td class="num text-muted">$0.00</td>' +
           '<td class="num text-muted">$0.00</td>' +
           '<td class="num"><strong class="text-emerald">' + fmtCurrency(m.cajaTotal, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
-          '<td><strong>Omar Moranza · Comisión Closer</strong></td>' +
-          '<td><span class="mz-rule-pill is-amber">5% por Hito</span></td>' +
+          '<td><strong>Omar Moranza · Comisión de Firma</strong></td>' +
+          '<td><span class="mz-rule-pill is-amber">5% por Pago</span></td>' +
           '<td class="num">' + fmtCurrency(m.h1Closer, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.h2Closer, 2) + '</td>' +
-          '<td class="num">' + fmtCurrency(m.h3Closer, 2) + '</td>' +
           '<td class="num"><strong class="text-amber">' + fmtCurrency(m.closerTotal, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
-          '<td><strong>Daniel · Socio Líder Técnico</strong></td>' +
+          '<td><strong>Daniel · CTO</strong></td>' +
           '<td><span class="mz-rule-pill">50% del Pool (37.5% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.danH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.danH2, 2) + '</td>' +
-          '<td class="num">' + fmtCurrency(m.danH3, 2) + '</td>' +
           '<td class="num"><strong>' + fmtCurrency(m.danPool, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
@@ -444,7 +400,6 @@
           '<td><span class="mz-rule-pill">25% del Pool (18.75% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.omarPoolH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.omarPoolH2, 2) + '</td>' +
-          '<td class="num">' + fmtCurrency(m.omarPoolH3, 2) + '</td>' +
           '<td class="num"><strong>' + fmtCurrency(m.omarPool, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
@@ -452,15 +407,13 @@
           '<td><span class="mz-rule-pill">15% del Pool (11.25% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.pedH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.pedH2, 2) + '</td>' +
-          '<td class="num">' + fmtCurrency(m.pedH3, 2) + '</td>' +
           '<td class="num"><strong>' + fmtCurrency(m.pedPool, 2) + '</strong></td>' +
         '</tr>',
         '<tr>' +
-          '<td><strong>Octavio · Socio de Innovación</strong></td>' +
+          '<td><strong>Octavio · CINO</strong></td>' +
           '<td><span class="mz-rule-pill">10% del Pool (7.5% Contrato)</span></td>' +
           '<td class="num">' + fmtCurrency(m.octH1, 2) + '</td>' +
           '<td class="num">' + fmtCurrency(m.octH2, 2) + '</td>' +
-          '<td class="num">' + fmtCurrency(m.octH3, 2) + '</td>' +
           '<td class="num"><strong>' + fmtCurrency(m.octPool, 2) + '</strong></td>' +
         '</tr>'
       ].join("");
@@ -474,7 +427,6 @@
           '<td><strong>100.0% Cuadrado</strong></td>' +
           '<td class="num"><strong>' + fmtCurrency(m.h1Gross, 2) + '</strong></td>' +
           '<td class="num"><strong>' + fmtCurrency(m.h2Gross, 2) + '</strong></td>' +
-          '<td class="num"><strong>' + fmtCurrency(m.h3Gross, 2) + '</strong></td>' +
           '<td class="num"><strong class="text-accent">' + fmtCurrency(m.gross, 2) + '</strong></td>' +
         '</tr>';
     }
@@ -482,9 +434,9 @@
     var callout = document.getElementById("speiH1CashCallout");
     if (callout) {
       callout.innerHTML =
-        '<strong>Nota de Transferencias Reales en el Hito 1 (' + fmtCurrency(m.h1Gross) + '):</strong> ' +
-        'Sumando su Pool + Closer + Reembolso/Viáticos de los primeros ' + fmtCurrency(m.h1Caja) + ', en el Hito 1 se transfiere: ' +
-        '<strong>Omar ' + fmtCurrency(m.omarCashH1, 2) + '</strong> (' + fmtCurrency(m.omarPoolH1) + ' Pool + ' + fmtCurrency(m.h1Closer) + ' Closer + ' + fmtCurrency(m.omarReimb) + ' Reembolso IA) · ' +
+        '<strong>Nota de Transferencias Reales en el Pago 1 (' + fmtCurrency(m.h1Gross) + '):</strong> ' +
+        'Sumando su Pool + Firma + Reembolso/Viáticos de los primeros ' + fmtCurrency(m.h1Caja) + ', en el Pago 1 se transfiere: ' +
+        '<strong>Omar ' + fmtCurrency(m.omarCashH1, 2) + '</strong> (' + fmtCurrency(m.omarPoolH1) + ' Pool + ' + fmtCurrency(m.h1Closer) + ' Firma + ' + fmtCurrency(m.omarReimb) + ' Reembolso IA) · ' +
         '<strong>Daniel ' + fmtCurrency(m.danH1, 2) + '</strong> (+ ' + fmtCurrency(m.monTotal, 2) + ' compra de 2 monitores) · ' +
         '<strong>Pedro ' + fmtCurrency(m.pedCashH1, 2) + '</strong> (' + fmtCurrency(m.pedH1) + ' Pool + ' + fmtCurrency(m.viaticos, 2) + ' Viáticos) · ' +
         '<strong>Octavio ' + fmtCurrency(m.octH1, 2) + '</strong> · ' +
@@ -493,8 +445,7 @@
 
     // SLIDE 07: Iguala Mensual y Caja Año 1
     setText("s7TitleIguala", fmtCurrency(m.igualaGross));
-    setText("s7TitleOperator", fmtCurrency(m.operatorMonthly));
-    setText("s7Operator", fmtCurrency(m.operatorMonthly, 2) + "/mes");
+    setText("s7TitleStack", fmtCurrency(m.stackMonthly));
     setText("s7TitleFree", fmtCurrency(m.igualaFreeMonthly));
     setText("s7EqH1Free", fmtCurrency(m.cajaFreeH1, 2));
     setText("s7EqMoFree", fmtCurrency(m.igualaFreeMonthly));
@@ -505,7 +456,6 @@
     setText("s7MoFree", fmtSignedCurrency(m.igualaFreeMonthly, 2) + "/mes");
     setText("s7RecIguala", "+" + fmtCurrency(m.igualaGross, 2) + "/mes");
     setText("s7RecAzure", "-" + fmtCurrency(m.azureMonthly, 2) + "/mes");
-    setText("s7RecOperator", "-" + fmtCurrency(m.operatorMonthly, 2) + "/mes");
     setText("s7RecTools", "-" + fmtCurrency(m.toolsMonthly, 2) + "/mes");
     setText("s7RecFreePct", m.igualaFreePct.toFixed(1) + "%");
     setText("s7RecMoFree", fmtSignedCurrency(m.igualaFreeMonthly, 2) + "/mes");
@@ -523,21 +473,21 @@
     setText("s8Step2Socios", fmtCurrency(m.h1SociosTotal));
     setText("s8Step2Dan", fmtCurrency(m.danH1));
     setText("s8Step2Omar", fmtCurrency(m.omarUtilH1));
-    setText("s8Step2OmarBreak", fmtCurrency(m.omarPoolH1) + " Pool + " + fmtCurrency(m.h1Closer) + " Closer");
+    setText("s8Step2OmarBreak", fmtCurrency(m.omarPoolH1) + " Pool + " + fmtCurrency(m.h1Closer) + " Firma");
     setText("s8Step2Ped", fmtCurrency(m.pedH1));
     setText("s8Step2Oct", fmtCurrency(m.octH1));
 
     setText("s8Step3Each", fmtCurrency(m.h2Gross));
-    setText("s8Step3Total", fmtCurrency(m.h2Gross + m.h3Gross) + " Socios");
+    setText("s8Step3Total", fmtCurrency(m.h2Gross) + " Socios");
     setText("s8Step3Dan", fmtCurrency(m.danH2));
     setText("s8Step3Omar", fmtCurrency(m.omarUtilH2));
-    setText("s8Step3OmarBreak", fmtCurrency(m.omarPoolH2) + " Pool + " + fmtCurrency(m.h2Closer) + " Closer");
+    setText("s8Step3OmarBreak", fmtCurrency(m.omarPoolH2) + " Pool + " + fmtCurrency(m.h2Closer) + " Firma");
     setText("s8Step3Ped", fmtCurrency(m.pedH2));
     setText("s8Step3Oct", fmtCurrency(m.octH2));
 
     setText("s8Step4Iguala", fmtCurrency(m.igualaGross));
     setText("s8Step4Year1", fmtCurrency(m.year1FreeTotal) + " Año 1");
-    setText("s8Step4Operator", fmtCurrency(m.operatorMonthly) + "/mes");
+    setText("s8Step4Stack", fmtCurrency(m.stackMonthly) + "/mes");
     setText("s8Step4Free", fmtSignedCurrency(m.igualaFreeMonthly) + "/mes libres");
     setText("s8Step4Annual", fmtSignedCurrency(m.igualaFreeAnnual) + "/año");
 
@@ -565,29 +515,29 @@
   function exportSpeiCsv() {
     var m = computeFinancials();
     var rows = [
-      ["Concepto / Beneficiario", "Regla Pactada", "Hito 1 (40%)", "Hito 2 (30%)", "Hito 3 (30%)", "Total Liquidado"],
-      ["Inversion y Caja MASTERIZE", "20% Contrato (100% en H1)", m.h1Caja.toFixed(2), "0.00", "0.00", m.cajaTotal.toFixed(2)],
-      ["Omar Moranza - Comision Closer", "5% por Hito", m.h1Closer.toFixed(2), m.h2Closer.toFixed(2), m.h3Closer.toFixed(2), m.closerTotal.toFixed(2)],
-      ["Daniel - 50% Pool Socios", "37.5% Contrato", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danH3.toFixed(2), m.danPool.toFixed(2)],
-      ["Omar Moranza - 25% Pool Socios", "18.75% Contrato", m.omarPoolH1.toFixed(2), m.omarPoolH2.toFixed(2), m.omarPoolH3.toFixed(2), m.omarPool.toFixed(2)],
-      ["Pedro - 15% Pool Socios", "11.25% Contrato", m.pedH1.toFixed(2), m.pedH2.toFixed(2), m.pedH3.toFixed(2), m.pedPool.toFixed(2)],
-      ["Octavio - 10% Pool Socios", "7.5% Contrato", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octH3.toFixed(2), m.octPool.toFixed(2)],
-      ["TOTAL DISPERSADO", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.h3Gross.toFixed(2), m.gross.toFixed(2)],
+      ["Concepto / Beneficiario", "Regla Pactada", "Pago 1 (40%)", "Pago 2 (60%)", "Total Liquidado"],
+      ["Inversion y Caja MASTERIZE", "20% Contrato (100% en Pago 1)", m.h1Caja.toFixed(2), "0.00", m.cajaTotal.toFixed(2)],
+      ["Omar Moranza - Comision de Firma", "5% por Pago", m.h1Closer.toFixed(2), m.h2Closer.toFixed(2), m.closerTotal.toFixed(2)],
+      ["Daniel - 50% Pool Socios", "37.5% Contrato", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danPool.toFixed(2)],
+      ["Omar Moranza - 25% Pool Socios", "18.75% Contrato", m.omarPoolH1.toFixed(2), m.omarPoolH2.toFixed(2), m.omarPool.toFixed(2)],
+      ["Pedro - 15% Pool Socios", "11.25% Contrato", m.pedH1.toFixed(2), m.pedH2.toFixed(2), m.pedPool.toFixed(2)],
+      ["Octavio - 10% Pool Socios", "7.5% Contrato", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octPool.toFixed(2)],
+      ["TOTAL DISPERSADO", "100.0%", m.h1Gross.toFixed(2), m.h2Gross.toFixed(2), m.gross.toFixed(2)],
       [],
-      ["DESGLOSE DE CAJA HITO 1 (" + fmtCurrency(m.cajaTotal, 2) + ")", "Detalle", "Monto Hito 1", "", "", ""],
-      ["Reembolso IA Omar Moranza", "3 meses IA ($10,000) + Plan ($660)", m.omarReimb.toFixed(2), "", "", ""],
-      ["Monitor Curvo 30\" Daniel (MLM52822704)", "Equipo de trabajo Mercado Libre", m.mon30.toFixed(2), "", "", ""],
-      ["Monitor Portatil 15.6\" Daniel (MLM-2215895794)", "Equipo de trabajo Mercado Libre", m.mon15.toFixed(2), "", "", ""],
-      ["Viaticos Operativos Planta Pedro", "Traslados y visitas ARTEPISA", m.viaticos.toFixed(2), "", "", ""],
-      ["Reserva Libre en Caja MASTERIZE", "Remanente neto en tesoreria H1", m.cajaFreeH1.toFixed(2), "", "", ""],
+      ["DESGLOSE DE CAJA PAGO 1 (" + fmtCurrency(m.cajaTotal, 2) + ")", "Detalle", "Monto Pago 1", "", ""],
+      ["Reembolso IA Omar Moranza", "3 meses IA ($10,000) + Plan ($660)", m.omarReimb.toFixed(2), "", ""],
+      ["Monitor Curvo 30\" Daniel (MLM52822704)", "Equipo de trabajo Mercado Libre", m.mon30.toFixed(2), "", ""],
+      ["Monitor Portatil 15.6\" Daniel (MLM-2215895794)", "Equipo de trabajo Mercado Libre", m.mon15.toFixed(2), "", ""],
+      ["Viaticos Operativos Planta Pedro", "Traslados y visitas ARTEPISA", m.viaticos.toFixed(2), "", ""],
+      ["Reserva Libre en Caja MASTERIZE", "Remanente neto en tesoreria Pago 1", m.cajaFreeH1.toFixed(2), "", ""],
       [],
-      ["TRANSFERENCIAS REALES EN EFECTIVO HITO 1", "Composicion", "SPEI Hito 1", "SPEI Hito 2", "SPEI Hito 3", "Total Proyecto"],
-      ["Omar Moranza (Pool + Closer + Reembolso IA)", "25% Pool + 5% Closer + Reembolso", m.omarCashH1.toFixed(2), m.omarUtilH2.toFixed(2), m.omarUtilH3.toFixed(2), m.omarGrand.toFixed(2)],
-      ["Daniel (Efectivo Pool Socios)", "50% Pool Socios", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danH3.toFixed(2), m.danPool.toFixed(2)],
-      ["Compra 2 Monitores Daniel (Mercado Libre)", "MLM52822704 + MLM-2215895794", m.monTotal.toFixed(2), "0.00", "0.00", m.monTotal.toFixed(2)],
-      ["Pedro (Pool + Viaticos Planta)", "15% Pool + Viaticos H1", m.pedCashH1.toFixed(2), m.pedH2.toFixed(2), m.pedH3.toFixed(2), m.pedGrand.toFixed(2)],
-      ["Octavio (Efectivo Pool Socios)", "10% Pool Socios", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octH3.toFixed(2), m.octGrand.toFixed(2)],
-      ["Caja Libre MASTERIZE (Retencion Tesoreria)", "Reserva libre H1", m.cajaFreeH1.toFixed(2), "0.00", "0.00", m.cajaFreeH1.toFixed(2)]
+      ["TRANSFERENCIAS REALES EN EFECTIVO", "Composicion", "SPEI Pago 1", "SPEI Pago 2", "Total Proyecto"],
+      ["Omar Moranza (Pool + Firma + Reembolso IA)", "25% Pool + 5% Firma + Reembolso", m.omarCashH1.toFixed(2), m.omarUtilH2.toFixed(2), m.omarGrand.toFixed(2)],
+      ["Daniel (Efectivo Pool Socios)", "50% Pool Socios", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danPool.toFixed(2)],
+      ["Compra 2 Monitores Daniel (Mercado Libre)", "MLM52822704 + MLM-2215895794", m.monTotal.toFixed(2), "0.00", m.monTotal.toFixed(2)],
+      ["Pedro (Pool + Viaticos Planta)", "15% Pool + Viaticos Pago 1", m.pedCashH1.toFixed(2), m.pedH2.toFixed(2), m.pedGrand.toFixed(2)],
+      ["Octavio (Efectivo Pool Socios)", "10% Pool Socios", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octGrand.toFixed(2)],
+      ["Caja Libre MASTERIZE (Retencion Tesoreria)", "Reserva libre Pago 1", m.cajaFreeH1.toFixed(2), "0.00", m.cajaFreeH1.toFixed(2)]
     ];
 
     var csvContent = "\uFEFF" + rows.map(function (r) {
@@ -600,7 +550,7 @@
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
     a.href = url;
-    a.download = "MASTERIZE_ARTEPISA_SPEI_Hitos.csv";
+    a.download = "MASTERIZE_ARTEPISA_SPEI_Pagos.csv";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

@@ -43,7 +43,7 @@
         <span class="step-pill-num">02</span><span>3 Bolsas</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="2">
-        <span class="step-pill-num">03</span><span>3 Hitos</span>
+        <span class="step-pill-num">03</span><span>2 Pagos</span>
       </button>
       <button type="button" class="step-pill" data-slide-to="3">
         <span class="step-pill-num">04</span><span id="pillCajaLabel">Caja $30k</span>
@@ -141,7 +141,7 @@
         class="present"
         data-layout="S01"
         data-title="El Contrato ARTEPISA: $150,000 MXN en 3 Bolsas"
-        data-notes="[SEÑALAR: $150,000 MXN] Aquí está todo el acuerdo definitivo en una sola pantalla. El contrato de ARTEPISA es de $150,000 pesos MXN. [PAUSA] La comisión comercial queda en 5% ($7,500) y el otro 5% se suma al Pool del equipo para subirlo al 75% ($112,500), respetando íntegra la palabra dada a los 4 socios: Daniel 50% ($56,250), Omar 25% ($28,125), Pedro 15% ($16,875) y Octavio 10% ($11,250). El 20% restante ($30,000) va a la Caja de MASTERIZE en el Hito 1 ($14,000 libres tras gastos). En la siguiente lámina vemos cada bolsa."
+        data-notes="[SEÑALAR: $150,000 MXN] Aquí está todo el acuerdo definitivo en una sola pantalla. El contrato de ARTEPISA es de $150,000 pesos MXN. [PAUSA] ARTEPISA paga en 2 exhibiciones: $60,000 de anticipo y $90,000 al entregar. [PAUSA] La comisión de firma queda en 5% ($7,500), por firmar los contratos y responder legal y fiscalmente, y el otro 5% se suma al Pool del equipo para subirlo al 75% ($112,500), respetando íntegra la palabra dada a los 4 socios: Daniel 50% ($56,250), Omar 25% ($28,125), Pedro 15% ($16,875) y Octavio 10% ($11,250). El 20% restante ($30,000) va a la Caja de MASTERIZE en el Pago 1 ($14,000 libres tras gastos). En la siguiente lámina vemos cada bolsa."
       >
         <div class="mz-slide-frame mz-cover-frame">
           <div class="mz-cover-top">
@@ -159,7 +159,7 @@
             <p class="mz-eyebrow-apple">CONTRATO DE IMPLEMENTACIÓN ARTEPISA</p>
             <h1 class="mz-hero-number" id="coverContractTotal"><span class="mz-currency-sign">$</span><span id="coverContractNum">150,000</span> <small>MXN</small></h1>
             <p class="mz-hero-subtitle">
-              Se cobra en <strong>3 hitos</strong> (<span id="coverHitosInline">$60,000 · $45,000 · $45,000</span>) y se reparte en <strong>3 bolsas claras</strong>:
+              Se cobra en <strong>2 pagos</strong> (<span id="coverHitosInline">$60,000 · $90,000</span>) y se reparte en <strong>3 bolsas claras</strong>:
             </p>
           </div>
 
@@ -185,7 +185,7 @@
               <div class="mz-card-value" id="coverCajaVal">$30,000</div>
               <h2 class="mz-card-title">Inversión y Caja MASTERIZE</h2>
               <p class="mz-card-desc">
-                Se aparta íntegro en el <strong>Hito 1</strong>. Paga <strong id="coverExpensesVal">$16,000</strong> de gastos de arranque y deja <strong class="text-emerald" id="coverCajaFreeVal">$14,000 libres</strong> en Caja.
+                Se aparta íntegro en el <strong>Pago 1</strong>. Paga <strong id="coverExpensesVal">$16,000</strong> de gastos de arranque y deja <strong class="text-emerald" id="coverCajaFreeVal">$14,000 libres</strong> en Caja.
               </p>
             </article>
 
@@ -195,9 +195,9 @@
                 <span class="mz-dot-indicator is-amber"></span>
               </div>
               <div class="mz-card-value" id="coverCloserVal">$7,500</div>
-              <h2 class="mz-card-title">Comisión Closer (Omar)</h2>
+              <h2 class="mz-card-title">Comisión de Firma (Omar)</h2>
               <p class="mz-card-desc">
-                5% en cada cobro por cierre comercial: <strong id="coverCloserH1">$3,000</strong> en Hito 1 · <strong id="coverCloserH2">$2,250</strong> en Hito 2 · <strong id="coverCloserH3">$2,250</strong> en Hito 3.
+                5% de cada pago por firmar los contratos y responder legal y fiscalmente: <strong id="coverCloserH1">$3,000</strong> en el Pago 1 · <strong id="coverCloserH2">$4,500</strong> en el Pago 2.
               </p>
             </article>
           </div>
@@ -225,11 +225,11 @@
 
           <h2 class="mz-slide-title">¿A dónde va cada peso de los <span id="s2TitleGross">$150,000</span>?</h2>
           <p class="mz-slide-lead">
-            Pool del Equipo al <strong>75%</strong> (100% repartido entre los 4 socios), <strong>20% Caja MASTERIZE</strong> y <strong>5% Comisión Closer</strong>:
+            Pool del Equipo al <strong>75%</strong> (100% repartido entre los 4 socios), <strong>20% Caja MASTERIZE</strong> y <strong>5% Comisión de Firma</strong>:
           </p>
 
-          <!-- Barra Proporcional Apple 75% Socios / 20% Caja / 5% Closer -->
-          <div class="mz-proportion-bar" aria-label="Proporción 75% Socios, 20% Caja, 5% Closer">
+          <!-- Barra Proporcional Apple 75% Socios / 20% Caja / 5% Firma -->
+          <div class="mz-proportion-bar" aria-label="Proporción 75% Socios, 20% Caja, 5% Firma">
             <div class="mz-prop-seg is-violet" style="width: 75%">
               <span>75% Pool Socios (<strong id="s2BarPool">$112,500</strong>)</span>
             </div>
@@ -237,7 +237,7 @@
               <span>20% Caja (<strong id="s2BarCaja">$30,000</strong>)</span>
             </div>
             <div class="mz-prop-seg is-amber" style="width: 5%">
-              <span>5% Closer (<strong id="s2BarCloser">$7,500</strong>)</span>
+              <span>5% Firma (<strong id="s2BarCloser">$7,500</strong>)</span>
             </div>
           </div>
 
@@ -257,7 +257,7 @@
             <div class="mz-ledger-row">
               <div class="mz-ledger-amount text-emerald" id="s2RowCaja">$30,000</div>
               <div class="mz-ledger-body">
-                <div class="mz-ledger-title">2. Bolsa de Inversión y Caja MASTERIZE (Se aparta en el Hito 1 — 20%)</div>
+                <div class="mz-ledger-title">2. Bolsa de Inversión y Caja MASTERIZE (Se aparta en el Pago 1 — 20%)</div>
                 <div class="mz-ledger-desc">
                   Cubre los 3 gastos únicos de arranque (<strong id="s2Exp">$16,000</strong>) y deja <strong class="text-emerald" id="s2Free">$14,000 libres</strong> en la tesorería de MASTERIZE desde el primer cobro.
                 </div>
@@ -268,9 +268,9 @@
             <div class="mz-ledger-row">
               <div class="mz-ledger-amount text-amber" id="s2RowCloser">$7,500</div>
               <div class="mz-ledger-body">
-                <div class="mz-ledger-title">3. Comisión Closer por Cierre Comercial (5% del contrato)</div>
+                <div class="mz-ledger-title">3. Comisión de Firma (5% del contrato)</div>
                 <div class="mz-ledger-desc">
-                  Para <strong>Omar Moranza</strong> por el cierre de la cuenta (5% en cada cobro, habiendo sumado el otro 5% al Pool del equipo): <strong id="s2CloserH1">$3,000</strong> en Hito 1 + <strong id="s2CloserH2">$2,250</strong> en Hito 2 + <strong id="s2CloserH3">$2,250</strong> en Hito 3.
+                  Para <strong>Omar Moranza</strong> por firmar los contratos, facturar y responder legal y fiscalmente ante el cliente (el otro 5% se sumó al Pool del equipo): <strong id="s2CloserH1">$3,000</strong> en el Pago 1 + <strong id="s2CloserH2">$4,500</strong> en el Pago 2.
                 </div>
               </div>
               <div class="mz-ledger-tag is-amber">5.0%</div>
@@ -280,29 +280,29 @@
       </section>
 
       <!-- =====================================================================
-           SLIDE 03: CÓMO SE REPARTEN LOS 3 COBROS / HITOS (S06 KPI TOWER)
+           SLIDE 03: CÓMO SE REPARTEN LOS 2 PAGOS DE ARTEPISA (S06 KPI TOWER)
            ===================================================================== -->
       <section
         data-layout="S06"
-        data-title="Cómo se reparten los 3 Cobros (Hitos 1, 2 y 3)"
-        data-notes="[SEÑALAR: Hito 1 $60,000] En el Hito 1 entran $60,000: la primera mitad ($30,000) llena toda la Caja de MASTERIZE y paga los $16,000 de gastos; la segunda mitad ($30,000) se reparte en $3,000 de Closer (5%) y $27,000 para los 4 socios (Daniel $13,500, Omar $6,750, Pedro $4,050, Octavio $2,700). [PAUSA] Como la Caja ya quedó cubierta al 100% en el Hito 1, los Hitos 2 y 3 ($45,000 cada uno) van 100% a los socios y al Closer ($2,250 Closer + $42,750 Pool)."
+        data-title="Cómo se reparten los 2 Pagos de ARTEPISA"
+        data-notes="[SEÑALAR: Pago 1 $60,000] ARTEPISA paga en dos exhibiciones. En el Pago 1 entran $60,000: la primera mitad ($30,000) llena toda la Caja de MASTERIZE y paga los $16,000 de gastos; la segunda mitad ($30,000) se reparte en $3,000 de Comisión de Firma (5%) y $27,000 para los 4 socios (Daniel $13,500, Omar $6,750, Pedro $4,050, Octavio $2,700). [PAUSA] Como la Caja ya quedó cubierta en el Pago 1, el Pago 2 de $90,000, al entregar, va 100% a los socios y a la Firma ($4,500 Firma + $85,500 Pool)."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
-            <span class="mz-kicker"><strong class="text-accent">//</strong> 03 · CALENDARIO DE LOS 3 COBROS AL CLIENTE</span>
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 03 · CALENDARIO DE LOS 2 PAGOS DEL CLIENTE</span>
             <span class="mz-slide-index">03 / 08</span>
           </div>
 
-          <h2 class="mz-slide-title">Hito 1 se parte 50/50. Hitos 2 y 3 van 100% a Socios.</h2>
+          <h2 class="mz-slide-title">El Pago 1 se parte 50/50. El Pago 2 va 100% a Socios.</h2>
           <p class="mz-slide-lead">
-            La Caja de <strong id="s3LeadCaja">$30,000</strong> se aparta completa en el Hito 1. Por eso los Hitos 2 y 3 se reparten íntegros entre el equipo:
+            La Caja de <strong id="s3LeadCaja">$30,000</strong> se aparta completa en el Pago 1. Por eso el Pago 2 se reparte íntegro entre el equipo:
           </p>
 
-          <div class="mz-bento-grid mz-bento-3 mz-hitos-grid">
+          <div class="mz-bento-grid mz-bento-2 mz-hitos-grid">
             <!-- HITO 1 -->
             <article class="mz-bento-card mz-hito-card is-primary-hito">
               <div class="mz-hito-head">
-                <span class="mz-hito-badge is-violet">COBRO 1 · HITO 1 (40% AL FIRMAR)</span>
+                <span class="mz-hito-badge is-violet">PAGO 1 · ANTICIPO (40% AL FIRMAR)</span>
                 <div class="mz-hito-amount" id="s3H1Gross">$60,000</div>
               </div>
 
@@ -315,13 +315,13 @@
                 <div class="mz-split-half is-violet">
                   <span class="mz-half-label">MITAD 2 · SOCIOS (50%)</span>
                   <strong class="mz-half-val" id="s3H1Socios">$30,000</strong>
-                  <small class="mz-half-sub" id="s3H1SociosSub">$3,000 Closer + $27,000 Pool Socios</small>
+                  <small class="mz-half-sub" id="s3H1SociosSub">$3,000 Firma + $27,000 Pool Socios</small>
                 </div>
               </div>
 
               <ul class="mz-mini-breakdown">
-                <li><span>Caja MASTERIZE (100% en H1)</span><strong class="text-emerald" id="s3H1ListCaja">$30,000</strong></li>
-                <li><span>Closer Omar (5% de H1)</span><strong class="text-amber" id="s3H1ListCloser">$3,000</strong></li>
+                <li><span>Caja MASTERIZE (100% en Pago 1)</span><strong class="text-emerald" id="s3H1ListCaja">$30,000</strong></li>
+                <li><span>Firma Omar (5% del Pago 1)</span><strong class="text-amber" id="s3H1ListCloser">$3,000</strong></li>
                 <li><span>Daniel (50% Pool)</span><strong id="s3H1ListDan">$13,500</strong></li>
                 <li><span>Omar (25% Pool)</span><strong id="s3H1ListOmar">$6,750</strong></li>
                 <li><span>Pedro (15% Pool)</span><strong id="s3H1ListPed">$4,050</strong></li>
@@ -329,55 +329,31 @@
               </ul>
             </article>
 
-            <!-- HITO 2 -->
+            <!-- PAGO 2 -->
             <article class="mz-bento-card mz-hito-card">
               <div class="mz-hito-head">
-                <span class="mz-hito-badge">COBRO 2 · HITO 2 (30% AVANCE)</span>
-                <div class="mz-hito-amount" id="s3H2Gross">$45,000</div>
+                <span class="mz-hito-badge">PAGO 2 · FINIQUITO (60% AL ENTREGAR)</span>
+                <div class="mz-hito-amount" id="s3H2Gross">$90,000</div>
               </div>
 
               <div class="mz-hito-split-visual is-single">
                 <div class="mz-split-half is-violet">
-                  <span class="mz-half-label">100% PARA SOCIOS Y CLOSER ($0 A CAJA)</span>
-                  <strong class="mz-half-val" id="s3H2Socios">$45,000</strong>
-                  <small class="mz-half-sub" id="s3H2SociosSub">Caja ya cubierta en Hito 1 · 100% a Socios y Closer</small>
+                  <span class="mz-half-label">100% PARA SOCIOS Y FIRMA ($0 A CAJA)</span>
+                  <strong class="mz-half-val" id="s3H2Socios">$90,000</strong>
+                  <small class="mz-half-sub" id="s3H2SociosSub">Caja ya cubierta en el Pago 1 · 100% a Socios y Firma</small>
                 </div>
               </div>
 
               <ul class="mz-mini-breakdown">
                 <li><span>Caja MASTERIZE</span><strong class="text-muted">$0</strong></li>
-                <li><span>Closer Omar (5% de H2)</span><strong class="text-amber" id="s3H2ListCloser">$2,250</strong></li>
-                <li><span>Daniel (50% Pool)</span><strong id="s3H2ListDan">$21,375</strong></li>
-                <li><span>Omar (25% Pool)</span><strong id="s3H2ListOmar">$10,687.50</strong></li>
-                <li><span>Pedro (15% Pool)</span><strong id="s3H2ListPed">$6,412.50</strong></li>
-                <li><span>Octavio (10% Pool)</span><strong id="s3H2ListOct">$4,275</strong></li>
+                <li><span>Firma Omar (5% del Pago 2)</span><strong class="text-amber" id="s3H2ListCloser">$4,500</strong></li>
+                <li><span>Daniel (50% Pool)</span><strong id="s3H2ListDan">$42,750</strong></li>
+                <li><span>Omar (25% Pool)</span><strong id="s3H2ListOmar">$21,375</strong></li>
+                <li><span>Pedro (15% Pool)</span><strong id="s3H2ListPed">$12,825</strong></li>
+                <li><span>Octavio (10% Pool)</span><strong id="s3H2ListOct">$8,550</strong></li>
               </ul>
             </article>
 
-            <!-- HITO 3 -->
-            <article class="mz-bento-card mz-hito-card">
-              <div class="mz-hito-head">
-                <span class="mz-hito-badge">COBRO 3 · HITO 3 (30% ENTREGA FINAL)</span>
-                <div class="mz-hito-amount" id="s3H3Gross">$45,000</div>
-              </div>
-
-              <div class="mz-hito-split-visual is-single">
-                <div class="mz-split-half is-violet">
-                  <span class="mz-half-label">100% PARA SOCIOS Y CLOSER ($0 A CAJA)</span>
-                  <strong class="mz-half-val" id="s3H3Socios">$45,000</strong>
-                  <small class="mz-half-sub" id="s3H3SociosSub">Liquidación final del contrato · 100% a Socios y Closer</small>
-                </div>
-              </div>
-
-              <ul class="mz-mini-breakdown">
-                <li><span>Caja MASTERIZE</span><strong class="text-muted">$0</strong></li>
-                <li><span>Closer Omar (5% de H3)</span><strong class="text-amber" id="s3H3ListCloser">$2,250</strong></li>
-                <li><span>Daniel (50% Pool)</span><strong id="s3H3ListDan">$21,375</strong></li>
-                <li><span>Omar (25% Pool)</span><strong id="s3H3ListOmar">$10,687.50</strong></li>
-                <li><span>Pedro (15% Pool)</span><strong id="s3H3ListPed">$6,412.50</strong></li>
-                <li><span>Octavio (10% Pool)</span><strong id="s3H3ListOct">$4,275</strong></li>
-              </ul>
-            </article>
           </div>
         </div>
       </section>
@@ -388,7 +364,7 @@
       <section
         data-layout="S08"
         data-title="Caja MASTERIZE ($30,000): $16,000 Gastos y $14,000 Libres"
-        data-notes="[SEÑALAR: Ecuación $30,000 - $16,000 = $14,000] Veamos en qué se usan los primeros $30,000 del Hito 1 que van a la Caja de MASTERIZE. [PAUSA] De ahí se hacen tres pagos únicos por $16,000: primero, $10,660 a Omar por reembolso de 3 meses de inversión en IA ($10,000) más un plan ($660); segundo, $4,172.50 por los dos monitores de trabajo para Daniel; y tercero, $1,167.50 de viáticos de planta para Pedro. Los $14,000 restantes quedan libres en la cuenta de MASTERIZE."
+        data-notes="[SEÑALAR: Ecuación $30,000 - $16,000 = $14,000] Veamos en qué se usan los primeros $30,000 del Pago 1 que van a la Caja de MASTERIZE. [PAUSA] De ahí se hacen tres pagos únicos por $16,000: primero, $10,660 a Omar por reembolso de 3 meses de inversión en IA ($10,000) más un plan ($660); segundo, $4,172.50 por los dos monitores de trabajo para Daniel; y tercero, $1,167.50 de viáticos de planta para Pedro. Los $14,000 restantes quedan libres en la cuenta de MASTERIZE."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -396,12 +372,12 @@
             <span class="mz-slide-index">04 / 08</span>
           </div>
 
-          <h2 class="mz-slide-title">¿Cómo se usan los primeros <span id="s4TitleCaja">$30,000</span> de Caja en el Hito 1?</h2>
+          <h2 class="mz-slide-title">¿Cómo se usan los primeros <span id="s4TitleCaja">$30,000</span> de Caja en el Pago 1?</h2>
 
           <!-- Ecuación Visual Estilo Apple -->
           <div class="mz-equation-banner">
             <div class="mz-eq-item">
-              <span class="mz-eq-label">Apartado Caja en Hito 1</span>
+              <span class="mz-eq-label">Apartado Caja en el Pago 1</span>
               <strong class="mz-eq-val" id="s4EqCaja">$30,000.00</strong>
             </div>
             <span class="mz-eq-sign">−</span>
@@ -464,7 +440,7 @@
               <div class="mz-section-subhead">ESTADO DE CAJA EN EL HITO 1</div>
               <div class="mz-receipt-rows">
                 <div class="mz-receipt-row">
-                  <span>Mitad 1 del Hito 1 (20% Contrato)</span>
+                  <span>Mitad 1 del Pago 1 (20% Contrato)</span>
                   <strong id="s4RecGross">+$30,000.00</strong>
                 </div>
                 <div class="mz-receipt-row">
@@ -497,8 +473,8 @@
            ===================================================================== -->
       <section
         data-layout="S19"
-        data-title="¿Cuánto recibe cada Socio en Hito 1, Hito 2, Hito 3 y Total?"
-        data-notes="[SEÑALAR: Las 4 tarjetas de socios] Esta es la lámina que cada socio consulta para ver lo suyo con el Pool al 75% ($112,500) y la comisión Closer al 5% ($7,500). Daniel recibe $56,250 del Pool más sus 2 monitores ($60,422.50 total). Omar recibe $28,125 del Pool más $7,500 de Closer ($35,625 de utilidad) más su reembolso de $10,660 ($46,285 total). Pedro recibe $16,875 del Pool más viáticos ($18,042.50 total). Y Octavio recibe íntegro su 10% del Pool por $11,250 ($2,700 en H1, $4,275 en H2 y $4,275 en H3)."
+        data-title="¿Cuánto recibe cada Socio en el Pago 1, el Pago 2 y en Total?"
+        data-notes="[SEÑALAR: Las 4 tarjetas de socios] Esta es la lámina que cada socio consulta para ver lo suyo con el Pool al 75% ($112,500) y la Comisión de Firma al 5% ($7,500). Daniel recibe $56,250 del Pool más sus 2 monitores ($60,422.50 total). Omar recibe $28,125 del Pool más $7,500 de Firma ($35,625) más su reembolso de $10,660 ($46,285 total). Pedro recibe $16,875 del Pool más viáticos ($18,042.50 total). Y Octavio recibe íntegro su 10% del Pool por $11,250 ($2,700 en el Pago 1 y $8,550 en el Pago 2)."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -506,9 +482,9 @@
             <span class="mz-slide-index">05 / 08</span>
           </div>
 
-          <h2 class="mz-slide-title">¿Cuánto cobra cada Socio en cada Hito y en Total?</h2>
+          <h2 class="mz-slide-title">¿Cuánto cobra cada Socio en cada Pago y en Total?</h2>
           <p class="mz-slide-lead">
-            Pool de los 4 Socios (<strong id="s5PoolTotal">$112,500</strong> — 75% del Contrato) + Comisión Closer (<strong id="s5CloserTotal">$7,500</strong> — 5%):
+            Pool de los 4 Socios (<strong id="s5PoolTotal">$112,500</strong> — 75% del Contrato) + Comisión de Firma (<strong id="s5CloserTotal">$7,500</strong> — 5%):
           </p>
 
           <div class="mz-bento-grid mz-bento-4">
@@ -526,13 +502,12 @@
               <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
 
               <div class="mz-partner-hitos">
-                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5DanH1">$13,500</strong></div>
-                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5DanH2">$21,375</strong></div>
-                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5DanH3">$21,375</strong></div>
+                <div class="mz-ph-row"><span>Pago 1 (anticipo)</span><strong id="s5DanH1">$13,500</strong></div>
+                <div class="mz-ph-row"><span>Pago 2 (finiquito)</span><strong id="s5DanH2">$42,750</strong></div>
               </div>
 
               <div class="mz-partner-extra">
-                <span>+ 2 Monitores en Hito 1: <strong id="s5DanMon">+$4,172.50</strong></span>
+                <span>+ 2 Monitores en el Pago 1: <strong id="s5DanMon">+$4,172.50</strong></span>
                 <div class="mz-partner-grand">Beneficio Total: <strong id="s5DanGrand">$60,422.50</strong></div>
               </div>
             </article>
@@ -541,32 +516,28 @@
             <article class="mz-bento-card mz-partner-card is-highlight-subtle">
               <div class="mz-partner-top">
                 <div>
-                  <span class="mz-partner-role">25% POOL + 5% CLOSER</span>
+                  <span class="mz-partner-role">25% POOL + 5% FIRMA</span>
                   <h3 class="mz-partner-name">Omar Moranza</h3>
                 </div>
                 <span class="mz-badge-pct">25% + 5%</span>
               </div>
 
               <div class="mz-partner-hero-val" id="s5OmarUtil">$35,625</div>
-              <span class="mz-partner-hero-sub">Pool <strong id="s5OmarPoolOnly">$28,125</strong> + Closer <strong id="s5OmarCloserOnly">$7,500</strong></span>
+              <span class="mz-partner-hero-sub">Pool <strong id="s5OmarPoolOnly">$28,125</strong> + Firma <strong id="s5OmarCloserOnly">$7,500</strong></span>
 
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row">
-                  <span>Hito 1 (<small id="s5OmarH1Break">$6,750 Pool + $3,000 Closer</small>)</span>
+                  <span>Pago 1 (<small id="s5OmarH1Break">$6,750 Pool + $3,000 Firma</small>)</span>
                   <strong id="s5OmarH1">$9,750</strong>
                 </div>
                 <div class="mz-ph-row">
-                  <span>Hito 2 (<small id="s5OmarH2Break">$10,687.50 + $2,250</small>)</span>
-                  <strong id="s5OmarH2">$12,937.50</strong>
-                </div>
-                <div class="mz-ph-row">
-                  <span>Hito 3 (<small id="s5OmarH3Break">$10,687.50 + $2,250</small>)</span>
-                  <strong id="s5OmarH3">$12,937.50</strong>
+                  <span>Pago 2 (<small id="s5OmarH2Break">$21,375 Pool + $4,500 Firma</small>)</span>
+                  <strong id="s5OmarH2">$25,875</strong>
                 </div>
               </div>
 
               <div class="mz-partner-extra">
-                <span>+ Reembolso IA en Hito 1: <strong id="s5OmarReimb">+$10,660.00</strong></span>
+                <span>+ Reembolso IA en el Pago 1: <strong id="s5OmarReimb">+$10,660.00</strong></span>
                 <div class="mz-partner-grand">Efectivo Total: <strong id="s5OmarGrand">$46,285.00</strong></div>
               </div>
             </article>
@@ -585,13 +556,12 @@
               <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
 
               <div class="mz-partner-hitos">
-                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5PedH1">$4,050</strong></div>
-                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5PedH2">$6,412.50</strong></div>
-                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5PedH3">$6,412.50</strong></div>
+                <div class="mz-ph-row"><span>Pago 1 (anticipo)</span><strong id="s5PedH1">$4,050</strong></div>
+                <div class="mz-ph-row"><span>Pago 2 (finiquito)</span><strong id="s5PedH2">$12,825</strong></div>
               </div>
 
               <div class="mz-partner-extra">
-                <span>+ Viáticos Planta en Hito 1: <strong id="s5PedViat">+$1,167.50</strong></span>
+                <span>+ Viáticos Planta en el Pago 1: <strong id="s5PedViat">+$1,167.50</strong></span>
                 <div class="mz-partner-grand">Efectivo Total: <strong id="s5PedGrand">$18,042.50</strong></div>
               </div>
             </article>
@@ -610,9 +580,8 @@
               <span class="mz-partner-hero-sub">Total Efectivo del Pool</span>
 
               <div class="mz-partner-hitos">
-                <div class="mz-ph-row"><span>Hito 1 (al firmar)</span><strong id="s5OctH1">$2,700</strong></div>
-                <div class="mz-ph-row"><span>Hito 2 (avance)</span><strong id="s5OctH2">$4,275</strong></div>
-                <div class="mz-ph-row"><span>Hito 3 (entrega)</span><strong id="s5OctH3">$4,275</strong></div>
+                <div class="mz-ph-row"><span>Pago 1 (anticipo)</span><strong id="s5OctH1">$2,700</strong></div>
+                <div class="mz-ph-row"><span>Pago 2 (finiquito)</span><strong id="s5OctH2">$8,550</strong></div>
               </div>
 
               <div class="mz-partner-extra">
@@ -629,8 +598,8 @@
            ===================================================================== -->
       <section
         data-layout="S21"
-        data-title="Tabla Oficial de Transferencias SPEI por Hito"
-        data-notes="[SEÑALAR: Tabla SPEI] Esta tabla concentra todas las transferencias por hito en un solo lugar. Cuando entra el Hito 1 de $60,000, el Hito 2 de $45,000 o el Hito 3 de $45,000, aquí están los montos exactos a dispersar con el 20% de Caja en Hito 1 ($30,000), el 5% de Closer ($7,500) y el 75% de Pool ($112,500: Daniel 50%, Omar 25%, Pedro 15% y Octavio 10%)."
+        data-title="Tabla Oficial de Transferencias SPEI por Pago"
+        data-notes="[SEÑALAR: Tabla SPEI] Esta tabla concentra todas las transferencias por pago en un solo lugar. Cuando entra el Pago 1 de $60,000 o el Pago 2 de $90,000, aquí están los montos exactos a dispersar con el 20% de Caja en el Pago 1 ($30,000), el 5% de Comisión de Firma ($7,500) y el 75% de Pool ($112,500: Daniel 50%, Omar 25%, Pedro 15% y Octavio 10%)."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -641,7 +610,7 @@
             </div>
           </div>
 
-          <h2 class="mz-slide-title">Calendario Exacto de Pagos SPEI por Hito</h2>
+          <h2 class="mz-slide-title">Calendario Exacto de Pagos SPEI por Pago</h2>
 
           <div class="mz-table-card">
             <div class="mz-table-scroll" data-prevent-swipe="true">
@@ -650,79 +619,24 @@
                   <tr>
                     <th>Concepto / Beneficiario</th>
                     <th>Regla Pactada</th>
-                    <th class="num" id="thSpeiH1">Hito 1 ($60,000)</th>
-                    <th class="num" id="thSpeiH2">Hito 2 ($45,000)</th>
-                    <th class="num" id="thSpeiH3">Hito 3 ($45,000)</th>
+                    <th class="num" id="thSpeiH1">Pago 1 ($60,000)</th>
+                    <th class="num" id="thSpeiH2">Pago 2 ($90,000)</th>
                     <th class="num">Total Liquidado</th>
                   </tr>
                 </thead>
                 <tbody id="speiTableBody">
-                  <tr>
-                    <td><strong>Inversión y Caja MASTERIZE</strong> <small class="mz-td-note">($16,000 gastos + $14,000 libres)</small></td>
-                    <td><span class="mz-rule-pill is-emerald">20% Contrato (100% en H1)</span></td>
-                    <td class="num"><strong>$30,000.00</strong></td>
-                    <td class="num text-muted">$0.00</td>
-                    <td class="num text-muted">$0.00</td>
-                    <td class="num"><strong class="text-emerald">$30,000.00</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Omar Moranza · Comisión Closer</strong></td>
-                    <td><span class="mz-rule-pill is-amber">5% por Hito</span></td>
-                    <td class="num">$3,000.00</td>
-                    <td class="num">$2,250.00</td>
-                    <td class="num">$2,250.00</td>
-                    <td class="num"><strong class="text-amber">$7,500.00</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Daniel · Socio Líder Técnico</strong></td>
-                    <td><span class="mz-rule-pill">50% del Pool (37.5% Contrato)</span></td>
-                    <td class="num">$13,500.00</td>
-                    <td class="num">$21,375.00</td>
-                    <td class="num">$21,375.00</td>
-                    <td class="num"><strong>$56,250.00</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Omar Moranza · Socio</strong></td>
-                    <td><span class="mz-rule-pill">25% del Pool (18.75% Contrato)</span></td>
-                    <td class="num">$6,750.00</td>
-                    <td class="num">$10,687.50</td>
-                    <td class="num">$10,687.50</td>
-                    <td class="num"><strong>$28,125.00</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Pedro · CLO</strong></td>
-                    <td><span class="mz-rule-pill">15% del Pool (11.25% Contrato)</span></td>
-                    <td class="num">$4,050.00</td>
-                    <td class="num">$6,412.50</td>
-                    <td class="num">$6,412.50</td>
-                    <td class="num"><strong>$16,875.00</strong></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Octavio · Socio de Innovación</strong></td>
-                    <td><span class="mz-rule-pill">10% del Pool (7.5% Contrato)</span></td>
-                    <td class="num">$2,700.00</td>
-                    <td class="num">$4,275.00</td>
-                    <td class="num">$4,275.00</td>
-                    <td class="num"><strong>$11,250.00</strong></td>
-                  </tr>
+                  <!-- Se llena desde app.js con los 2 pagos -->
                 </tbody>
                 <tfoot id="speiTableFoot">
-                  <tr>
-                    <td><strong>TOTAL DISPERSADO</strong></td>
-                    <td><strong>100.0% Cuadrado</strong></td>
-                    <td class="num"><strong>$60,000.00</strong></td>
-                    <td class="num"><strong>$45,000.00</strong></td>
-                    <td class="num"><strong>$45,000.00</strong></td>
-                    <td class="num"><strong class="text-accent">$150,000.00</strong></td>
-                  </tr>
+                  <!-- Se llena desde app.js con los 2 pagos -->
                 </tfoot>
               </table>
             </div>
 
             <div class="mz-spei-callout" id="speiH1CashCallout">
-              <strong>Nota de Transferencias Reales en el Hito 1 ($60,000):</strong>
-              Sumando su Pool + Closer + Reembolso/Viáticos de los primeros $30,000, en el Hito 1 se transfiere:
-              <strong>Omar $20,410.00</strong> ($6,750 Pool + $3,000 Closer + $10,660 Reembolso IA) ·
+              <strong>Nota de Transferencias Reales en el Pago 1 ($60,000):</strong>
+              Sumando su Pool + Firma + Reembolso/Viáticos de los primeros $30,000, en el Pago 1 se transfiere:
+              <strong>Omar $20,410.00</strong> ($6,750 Pool + $3,000 Firma + $10,660 Reembolso IA) ·
               <strong>Daniel $13,500.00</strong> (+ $4,172.50 compra de 2 monitores) ·
               <strong>Pedro $5,217.50</strong> ($4,050 Pool + $1,167.50 Viáticos) ·
               <strong>Octavio $2,700.00</strong> ·
@@ -733,12 +647,12 @@
       </section>
 
       <!-- =====================================================================
-           SLIDE 07: IGUALA MENSUAL ($10,000/MES) Y CAJA AÑO 1 ($38,000) — REGLA V2
+           SLIDE 07: IGUALA MENSUAL ($10,000/MES) Y CAJA AÑO 1 ($62,000)
            ===================================================================== -->
       <section
         data-layout="S08"
-        data-title="Iguala Mensual ($10,000/mes) y Caja Libre Año 1 ($38,000)"
-        data-notes="[SEÑALAR: $10,000/mes -> $2,000/mes libres] Una vez entregado el Hito 3, inicia la iguala mensual de $10,000 pesos. $2,000 pagan Azure, que es el servidor de ARTEPISA, y $2,000 le pagan a quien opera el servicio: soporte, monitoreo y reporte mensual. [PAUSA] La Caja de MASTERIZE recibe $6,000 y con eso paga una sola vez las herramientas de todo el equipo, Claude y Google AI. Quedan $2,000 libres al mes, $24,000 al año. Sumando los $14,000 libres del Hito 1, MASTERIZE cierra el Año 1 con $38,000 libres en Caja. Con cada cliente nuevo el margen sube, porque las herramientas compartidas no se vuelven a pagar."
+        data-title="Iguala Mensual ($10,000/mes) y Caja Libre Año 1 ($62,000)"
+        data-notes="[SEÑALAR: $10,000/mes -> $4,000/mes libres] Una vez entregado el sistema, inicia la iguala mensual de $10,000 pesos, que es 100% de MASTERIZE: nadie cobra extra por operarla. $2,000 pagan Azure, que es el servidor de ARTEPISA, y $4,000 las herramientas del equipo, Claude y Google AI. [PAUSA] Quedan $4,000 libres al mes, $48,000 al año. Sumando los $14,000 libres del Pago 1, MASTERIZE cierra el Año 1 con $62,000 libres en Caja. Con cada cliente nuevo el margen sube, porque las herramientas compartidas no se vuelven a pagar."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -746,23 +660,23 @@
             <span class="mz-slide-index">07 / 08</span>
           </div>
 
-          <h2 class="mz-slide-title">Iguala de <span id="s7TitleIguala">$10,000</span>/mes: <span id="s7TitleOperator">$2,000</span> al Operador y <span class="text-emerald" id="s7TitleFree">$2,000</span> Libres/mes</h2>
+          <h2 class="mz-slide-title">Iguala de <span id="s7TitleIguala">$10,000</span>/mes: <span id="s7TitleStack">$6,000</span> de costos y <span class="text-emerald" id="s7TitleFree">$4,000</span> Libres/mes</h2>
 
           <!-- Ecuación Visual Iguala + Año 1 -->
           <div class="mz-equation-banner">
             <div class="mz-eq-item">
-              <span class="mz-eq-label">Caja Libre Hito 1</span>
+              <span class="mz-eq-label">Caja Libre Pago 1</span>
               <strong class="mz-eq-val" id="s7EqH1Free">$14,000.00</strong>
             </div>
             <span class="mz-eq-sign">+</span>
             <div class="mz-eq-item">
-              <span class="mz-eq-label">12 Meses de Iguala Libre (<span id="s7EqMoFree">$2,000</span> × 12)</span>
-              <strong class="mz-eq-val text-accent" id="s7EqYrFree">$24,000.00</strong>
+              <span class="mz-eq-label">12 Meses de Iguala Libre (<span id="s7EqMoFree">$4,000</span> × 12)</span>
+              <strong class="mz-eq-val text-accent" id="s7EqYrFree">$48,000.00</strong>
             </div>
             <span class="mz-eq-sign">=</span>
             <div class="mz-eq-item is-result">
               <span class="mz-eq-label">Caja Libre MASTERIZE Año 1</span>
-              <strong class="mz-eq-val text-emerald" id="s7EqTotalYear1">$38,000.00</strong>
+              <strong class="mz-eq-val text-emerald" id="s7EqTotalYear1">$62,000.00</strong>
             </div>
           </div>
 
@@ -784,15 +698,6 @@
                 <div class="mz-expense-item">
                   <div class="mz-expense-num">B</div>
                   <div class="mz-expense-info">
-                    <div class="mz-expense-title">Operador del Servicio (20%)</div>
-                    <div class="mz-expense-desc">Soporte, monitoreo y reporte mensual. Se paga contra CFDI: sin trabajo no hay pago.</div>
-                  </div>
-                  <div class="mz-expense-amt" id="s7Operator">$2,000.00/mes</div>
-                </div>
-
-                <div class="mz-expense-item">
-                  <div class="mz-expense-num">C</div>
-                  <div class="mz-expense-info">
                     <div class="mz-expense-title">Licencias Claude (Anthropic) · desde Caja</div>
                     <div class="mz-expense-desc">Claude Team / Code, compartido por todo el equipo y todos los clientes.</div>
                   </div>
@@ -800,7 +705,7 @@
                 </div>
 
                 <div class="mz-expense-item">
-                  <div class="mz-expense-num">D</div>
+                  <div class="mz-expense-num">C</div>
                   <div class="mz-expense-info">
                     <div class="mz-expense-title">Plan Google AI Ultra (Gemini) · desde Caja</div>
                     <div class="mz-expense-desc">Compartido por todo el equipo; no se paga de nuevo por cada cliente.</div>
@@ -812,9 +717,9 @@
                   <div class="mz-expense-num is-emerald">✔</div>
                   <div class="mz-expense-info">
                     <div class="mz-expense-title text-emerald">Excedente Libre cada Mes para Caja MASTERIZE</div>
-                    <div class="mz-expense-desc">Se acumula íntegro en la tesorería de la empresa (<strong id="s7AnnualInline">+$24,000.00 al año</strong>).</div>
+                    <div class="mz-expense-desc">Se acumula íntegro en la tesorería de la empresa (<strong id="s7AnnualInline">+$48,000.00 al año</strong>).</div>
                   </div>
-                  <div class="mz-expense-amt text-emerald" id="s7MoFree">+$2,000.00/mes</div>
+                  <div class="mz-expense-amt text-emerald" id="s7MoFree">+$4,000.00/mes</div>
                 </div>
               </div>
             </div>
@@ -832,28 +737,24 @@
                   <strong class="text-muted" id="s7RecAzure">-$2,000.00/mes</strong>
                 </div>
                 <div class="mz-receipt-row">
-                  <span>Menos Operador del Servicio (20%)</span>
-                  <strong class="text-muted" id="s7RecOperator">-$2,000.00/mes</strong>
-                </div>
-                <div class="mz-receipt-row">
                   <span>Menos Herramientas Compartidas (Claude + Google)</span>
                   <strong class="text-muted" id="s7RecTools">-$4,000.00/mes</strong>
                 </div>
                 <div class="mz-receipt-row">
-                  <span>Utilidad Libre Mensual (<span id="s7RecFreePct">20.0%</span>)</span>
-                  <strong class="text-emerald" id="s7RecMoFree">+$2,000.00/mes</strong>
+                  <span>Utilidad Libre Mensual (<span id="s7RecFreePct">40.0%</span>)</span>
+                  <strong class="text-emerald" id="s7RecMoFree">+$4,000.00/mes</strong>
                 </div>
                 <div class="mz-receipt-row">
                   <span>Utilidad Libre en 12 Meses</span>
-                  <strong id="s7RecYrFree">+$24,000.00/año</strong>
+                  <strong id="s7RecYrFree">+$48,000.00/año</strong>
                 </div>
                 <div class="mz-receipt-row">
-                  <span>Más Reserva Libre del Hito 1</span>
+                  <span>Más Reserva Libre del Pago 1</span>
                   <strong id="s7RecH1Free">+$14,000.00</strong>
                 </div>
                 <div class="mz-receipt-row is-total">
                   <span>Total Caja Libre Fin del Año 1</span>
-                  <strong class="text-emerald" id="s7RecTotalYear1">$38,000.00</strong>
+                  <strong class="text-emerald" id="s7RecTotalYear1">$62,000.00</strong>
                 </div>
               </div>
             </div>
@@ -887,7 +788,7 @@
 
               <div class="mz-steps-timeline">
                 <div class="mz-tl-step">
-                  <div class="mz-tl-badge is-emerald">PASO 1 · HITO 1 (MITAD 1)</div>
+                  <div class="mz-tl-badge is-emerald">PASO 1 · PAGO 1 (MITAD 1)</div>
                   <div class="mz-tl-content">
                     <div class="mz-tl-head">
                       <strong>Primeros <span id="s8Step1Caja">$30,000</span> a Gastos y Caja MASTERIZE</strong>
@@ -900,40 +801,40 @@
                 </div>
 
                 <div class="mz-tl-step">
-                  <div class="mz-tl-badge is-violet">PASO 2 · HITO 1 (MITAD 2)</div>
+                  <div class="mz-tl-badge is-violet">PASO 2 · PAGO 1 (MITAD 2)</div>
                   <div class="mz-tl-content">
                     <div class="mz-tl-head">
-                      <strong>Siguientes <span id="s8Step2Socios">$30,000</span> de Hito 1 (5% Closer + Pool 75%)</strong>
+                      <strong>Siguientes <span id="s8Step2Socios">$30,000</span> del Pago 1 (5% Firma + Pool 75%)</strong>
                       <span class="text-accent">1er Pago Socios</span>
                     </div>
                     <p>
-                      Daniel <strong id="s8Step2Dan">$13,500</strong> · Omar <strong id="s8Step2Omar">$9,750</strong> (<span id="s8Step2OmarBreak">$6,750 Pool + $3,000 Closer</span>) · Pedro <strong id="s8Step2Ped">$4,050</strong> · Octavio <strong id="s8Step2Oct">$2,700</strong>.
+                      Daniel <strong id="s8Step2Dan">$13,500</strong> · Omar <strong id="s8Step2Omar">$9,750</strong> (<span id="s8Step2OmarBreak">$6,750 Pool + $3,000 Firma</span>) · Pedro <strong id="s8Step2Ped">$4,050</strong> · Octavio <strong id="s8Step2Oct">$2,700</strong>.
                     </p>
                   </div>
                 </div>
 
                 <div class="mz-tl-step">
-                  <div class="mz-tl-badge is-violet">PASO 3 · HITOS 2 Y 3</div>
+                  <div class="mz-tl-badge is-violet">PASO 3 · PAGO 2 (FINIQUITO)</div>
                   <div class="mz-tl-content">
                     <div class="mz-tl-head">
-                      <strong>Dos cobros de <span id="s8Step3Each">$45,000</span> van 100% a Socios ($0 a Caja)</strong>
+                      <strong>El Pago 2 de <span id="s8Step3Each">$90,000</span> va 100% a Socios ($0 a Caja)</strong>
                       <span class="text-accent" id="s8Step3Total">$90,000 Socios</span>
                     </div>
                     <p>
-                      En cada cobro: Daniel <strong id="s8Step3Dan">$21,375</strong> · Omar <strong id="s8Step3Omar">$12,937.50</strong> (<span id="s8Step3OmarBreak">$10,687.50 Pool + $2,250 Closer</span>) · Pedro <strong id="s8Step3Ped">$6,412.50</strong> · Octavio <strong id="s8Step3Oct">$4,275</strong>.
+                      Daniel <strong id="s8Step3Dan">$42,750</strong> · Omar <strong id="s8Step3Omar">$25,875</strong> (<span id="s8Step3OmarBreak">$21,375 Pool + $4,500 Firma</span>) · Pedro <strong id="s8Step3Ped">$12,825</strong> · Octavio <strong id="s8Step3Oct">$8,550</strong>.
                     </p>
                   </div>
                 </div>
 
                 <div class="mz-tl-step">
-                  <div class="mz-tl-badge is-amber">PASO 4 · POST-HITO 3</div>
+                  <div class="mz-tl-badge is-amber">PASO 4 · DESPUÉS DE LA ENTREGA</div>
                   <div class="mz-tl-content">
                     <div class="mz-tl-head">
                       <strong>Iguala de <span id="s8Step4Iguala">$10,000</span>/mes y Caja Año 1</strong>
-                      <span class="text-emerald" id="s8Step4Year1">$38,000 Año 1</span>
+                      <span class="text-emerald" id="s8Step4Year1">$62,000 Año 1</span>
                     </div>
                     <p>
-                      Paga Azure y <strong id="s8Step4Operator">$2,000/mes</strong> al Operador del Servicio; la Caja cubre Claude y Google AI y deja <strong class="text-emerald" id="s8Step4Free">+$2,000/mes libres</strong> (<span id="s8Step4Annual">+$24,000/año</span>).
+                      Es 100% de MASTERIZE: paga Azure y las herramientas del equipo (<strong id="s8Step4Stack">$6,000/mes</strong>) y deja <strong class="text-emerald" id="s8Step4Free">+$4,000/mes libres</strong> (<span id="s8Step4Annual">+$48,000/año</span>).
                     </p>
                   </div>
                 </div>
@@ -980,12 +881,12 @@
               <!-- Resumen Rápido de Totales en el Simulador -->
               <div class="mz-sim-summary">
                 <div class="mz-sim-sum-item">
-                  <span>Caja Libre H1</span>
+                  <span>Caja Libre Pago 1</span>
                   <strong class="text-emerald" id="simCajaFree">$14,000.00</strong>
                 </div>
                 <div class="mz-sim-sum-item">
                   <span>Caja Libre Año 1</span>
-                  <strong class="text-emerald" id="simYear1Free">$38,000.00</strong>
+                  <strong class="text-emerald" id="simYear1Free">$62,000.00</strong>
                 </div>
               </div>
             </div>
@@ -1245,7 +1146,7 @@
       <section
         data-layout="S34"
         data-title="Las 4 bolsas del Taller #2 en adelante"
-        data-notes="[SEÑALAR: Barra 55 / 20 / 20 / 5] En un taller de $150,000: 55% es el Pool de socios, 20% la Bolsa de Ejecución para pagar a quien haga el trabajo extra, 20% la Caja de MASTERIZE y 5% el Closer. [PAUSA] Si ningún externo hace el trabajo extra y lo hace un socio, ese socio se lleva la Bolsa de Ejecución."
+        data-notes="[SEÑALAR: Barra 55 / 20 / 20 / 5] En un taller de $150,000: 55% es el Pool de socios, 20% la Bolsa de Ejecución para pagar a quien haga el trabajo extra, 20% la Caja de MASTERIZE y 5% la Comisión de Firma. [PAUSA] Si ningún externo hace el trabajo extra y lo hace un socio, ese socio se lleva la Bolsa de Ejecución."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -1255,7 +1156,7 @@
 
           <h2 class="mz-slide-title">¿A dónde va cada peso de un taller de $150,000?</h2>
 
-          <div class="mz-proportion-bar" aria-label="Proporción 55% Pool, 20% Ejecución, 20% Caja, 5% Closer">
+          <div class="mz-proportion-bar" aria-label="Proporción 55% Pool, 20% Ejecución, 20% Caja, 5% Firma">
             <div class="mz-prop-seg is-violet" style="width: 55%"><span>55% Pool Socios (<strong>$82,500</strong>)</span></div>
             <div class="mz-prop-seg is-steel" style="width: 20%"><span>20% Ejecución (<strong>$30,000</strong>)</span></div>
             <div class="mz-prop-seg is-emerald" style="width: 20%"><span>20% Caja (<strong>$30,000</strong>)</span></div>
@@ -1290,8 +1191,8 @@
             <div class="mz-ledger-row">
               <div class="mz-ledger-amount text-amber">$7,500</div>
               <div class="mz-ledger-body">
-                <div class="mz-ledger-title">4. Comisión Closer (5%)</div>
-                <div class="mz-ledger-desc">Para quien cierre la venta. Un vendedor externo puede llegar a 10%, ajustando la Bolsa de Ejecución.</div>
+                <div class="mz-ledger-title">4. Comisión de Firma (5%)</div>
+                <div class="mz-ledger-desc">Para quien firma el contrato, factura y responde legal y fiscalmente ante el cliente (hoy, Omar). Si un vendedor externo trae al cliente, su comisión sale de la Bolsa de Ejecución.</div>
               </div>
               <div class="mz-ledger-tag is-amber">5.0%</div>
             </div>
@@ -1302,7 +1203,7 @@
       <section
         data-layout="S35"
         data-title="¿Cuánto cobra cada socio del Taller #2 en adelante?"
-        data-notes="[SEÑALAR: Las 4 tarjetas] En un taller de $150,000, Omar cobra $36,375 entre Pool y Closer, Daniel $33,000, Pedro $12,375 y Octavio $8,250 más el bono de Ejecución si desarrolla módulos. [PAUSA] Daniel baja respecto a ARTEPISA porque el código base ya existe y hay $30,000 para contratar apoyo; trabaja muchas menos horas por taller."
+        data-notes="[SEÑALAR: Las 4 tarjetas] En un taller de $150,000, Omar cobra $36,375 entre Pool y Firma, Daniel $33,000, Pedro $12,375 y Octavio $8,250. [PAUSA] Esto no es un recorte: el 20% de la Bolsa de Ejecución paga a quien haga el trabajo extra. Si lo hacemos nosotros, ese 20% es nuestro y el equipo vuelve a cobrar 75%, como en ARTEPISA. Por ejemplo, si Daniel programa él mismo los módulos nuevos, llega hasta $63,000. Solo baja cuando contratamos a alguien para no cargar todo."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -1311,18 +1212,18 @@
           </div>
 
           <h2 class="mz-slide-title">¿Cuánto cobra cada socio en un taller de $150,000?</h2>
-          <p class="mz-slide-lead">El Pool baja de 75% a 55% porque 20% paga a quien ejecuta el trabajo extra. Todos cobran por taller, sin quemarse.</p>
+          <p class="mz-slide-lead">El Pool queda en 55% porque 20% paga a quien ejecuta el trabajo extra. <strong>Si ese trabajo lo hacemos nosotros, ese 20% también es nuestro:</strong> el equipo vuelve a cobrar 75%, como en ARTEPISA.</p>
 
           <div class="mz-bento-grid mz-bento-4">
             <article class="mz-bento-card mz-partner-card is-highlight-subtle">
               <div class="mz-partner-top">
-                <div><span class="mz-partner-role">35% POOL + 5% CLOSER · 24.25%</span><h3 class="mz-partner-name">Omar · CEO</h3></div>
+                <div><span class="mz-partner-role">35% POOL + 5% FIRMA · 24.25%</span><h3 class="mz-partner-name">Omar · CEO</h3></div>
               </div>
               <div class="mz-partner-hero-val">$36,375</div>
-              <span class="mz-partner-hero-sub">Pool $28,875 + Closer $7,500</span>
+              <span class="mz-partner-hero-sub">Pool $28,875 + Firma $7,500</span>
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row"><span>En ARTEPISA</span><strong>$35,625</strong></div>
-                <div class="mz-ph-row"><span>Rol</span><strong>Venta, marca, firma y Caja</strong></div>
+                <div class="mz-ph-row"><span>Rol</span><strong>Firma y venta</strong></div>
               </div>
             </article>
             <article class="mz-bento-card mz-partner-card">
@@ -1333,7 +1234,7 @@
               <span class="mz-partner-hero-sub">Pool de socios</span>
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row"><span>En ARTEPISA</span><strong>$56,250</strong></div>
-                <div class="mz-ph-row"><span>Por qué</span><strong>Código base ya existe + $30k de apoyo</strong></div>
+                                <div class="mz-ph-row"><span>Si programa él</span><strong>hasta $63,000</strong></div>
               </div>
             </article>
             <article class="mz-bento-card mz-partner-card">
@@ -1344,18 +1245,18 @@
               <span class="mz-partner-hero-sub">Pool de socios</span>
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row"><span>En ARTEPISA</span><strong>$16,875</strong></div>
-                <div class="mz-ph-row"><span>Si cierra la venta</span><strong>+ $7,500 de Closer</strong></div>
+                <div class="mz-ph-row"><span>Trabajo extra</span><strong>+ Bolsa Ejecución</strong></div>
               </div>
             </article>
             <article class="mz-bento-card mz-partner-card">
               <div class="mz-partner-top">
-                <div><span class="mz-partner-role">10% POOL · 5.50%</span><h3 class="mz-partner-name">Octavio · Innovación</h3></div>
+                <div><span class="mz-partner-role">10% POOL · 5.50%</span><h3 class="mz-partner-name">Octavio · CINO</h3></div>
               </div>
               <div class="mz-partner-hero-val">$8,250</div>
               <span class="mz-partner-hero-sub">Pool + bono de Ejecución</span>
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row"><span>En ARTEPISA</span><strong>$11,250</strong></div>
-                <div class="mz-ph-row"><span>Si desarrolla módulos</span><strong>+ Bolsa de Ejecución</strong></div>
+                <div class="mz-ph-row"><span>Módulos extra</span><strong>+ Bolsa Ejecución</strong></div>
               </div>
             </article>
           </div>
@@ -1364,50 +1265,48 @@
 
       <section
         data-layout="S36"
-        data-title="La iguala v2: el motor que crece con cada cliente"
-        data-notes="[SEÑALAR: $10,000 a $2,000 libres] Cada iguala paga primero la infraestructura del cliente y 20% a quien opera el servicio. La Caja recibe el resto y paga una sola vez las herramientas del equipo. [PAUSA] Con un cliente quedan $2,000 libres; con cinco, $24,000 al mes, porque las herramientas no se vuelven a pagar."
+        data-title="La iguala: 100% de MASTERIZE y crece con cada cliente"
+        data-notes="[SEÑALAR: $10,000 a $4,000 libres] La iguala entra completa a MASTERIZE; nadie cobra extra por operarla, es parte del trabajo de cada área. Paga la infraestructura del cliente y, una sola vez, las herramientas del equipo. [PAUSA] Con un cliente quedan $4,000 libres; con cinco, $34,000 al mes, porque las herramientas no se vuelven a pagar."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
-            <span class="mz-kicker"><strong class="text-accent">//</strong> 3.3 · LA IGUALA MENSUAL (REGLA V2)</span>
+            <span class="mz-kicker"><strong class="text-accent">//</strong> 3.3 · LA IGUALA MENSUAL</span>
             <span class="mz-slide-index">17 / 23</span>
           </div>
 
-          <h2 class="mz-slide-title">La iguala es el servicio que vendemos: quien la opera, cobra</h2>
+          <h2 class="mz-slide-title">La iguala es 100% de MASTERIZE y crece con cada cliente</h2>
 
           <div class="mz-equation-banner">
             <div class="mz-eq-item"><span class="mz-eq-label">Iguala</span><strong class="mz-eq-val">$10,000</strong></div>
             <span class="mz-eq-sign">−</span>
             <div class="mz-eq-item"><span class="mz-eq-label">Azure del cliente</span><strong class="mz-eq-val">$2,000</strong></div>
             <span class="mz-eq-sign">−</span>
-            <div class="mz-eq-item"><span class="mz-eq-label">Operador (20%)</span><strong class="mz-eq-val text-accent">$2,000</strong></div>
-            <span class="mz-eq-sign">−</span>
             <div class="mz-eq-item"><span class="mz-eq-label">Herramientas del equipo</span><strong class="mz-eq-val">$4,000</strong></div>
             <span class="mz-eq-sign">=</span>
-            <div class="mz-eq-item is-result"><span class="mz-eq-label">Caja libre / mes</span><strong class="mz-eq-val text-emerald">$2,000</strong></div>
+            <div class="mz-eq-item is-result"><span class="mz-eq-label">Caja libre / mes</span><strong class="mz-eq-val text-emerald">$4,000</strong></div>
           </div>
 
           <div class="mz-table-card">
             <div class="mz-table-scroll" data-prevent-swipe="true">
-              <table class="mz-spei-table" aria-label="Iguala v2 por número de clientes">
-                <thead><tr><th>Clientes con iguala de $10k</th><th class="num">Ingreso / mes</th><th class="num">Azure</th><th class="num">Operador 20%</th><th class="num">Herramientas</th><th class="num">Caja libre / mes</th><th class="num">Margen</th></tr></thead>
+              <table class="mz-spei-table" aria-label="Iguala por número de clientes">
+                <thead><tr><th>Clientes con iguala de $10k</th><th class="num">Ingreso / mes</th><th class="num">Azure</th><th class="num">Herramientas</th><th class="num">Caja libre / mes</th><th class="num">Margen</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>1 · ARTEPISA</strong></td><td class="num">$10,000</td><td class="num">$2,000</td><td class="num">$2,000</td><td class="num">$4,000</td><td class="num"><strong>$2,000</strong></td><td class="num">20.0%</td></tr>
-                  <tr><td><strong>3</strong></td><td class="num">$30,000</td><td class="num">$6,000</td><td class="num">$6,000</td><td class="num">$4,000</td><td class="num"><strong>$14,000</strong></td><td class="num">46.7%</td></tr>
-                  <tr><td><strong>5</strong></td><td class="num">$50,000</td><td class="num">$10,000</td><td class="num">$10,000</td><td class="num">$6,000</td><td class="num"><strong class="text-emerald">$24,000</strong></td><td class="num">48.0%</td></tr>
-                  <tr><td><strong>10</strong></td><td class="num">$100,000</td><td class="num">$20,000</td><td class="num">$20,000</td><td class="num">$11,000</td><td class="num"><strong class="text-emerald">$49,000</strong></td><td class="num">49.0%</td></tr>
+                  <tr><td><strong>1 · ARTEPISA</strong></td><td class="num">$10,000</td><td class="num">$2,000</td><td class="num">$4,000</td><td class="num"><strong>$4,000</strong></td><td class="num">40.0%</td></tr>
+                  <tr><td><strong>3</strong></td><td class="num">$30,000</td><td class="num">$6,000</td><td class="num">$4,000</td><td class="num"><strong>$20,000</strong></td><td class="num">66.7%</td></tr>
+                  <tr><td><strong>5</strong></td><td class="num">$50,000</td><td class="num">$10,000</td><td class="num">$6,000</td><td class="num"><strong class="text-emerald">$34,000</strong></td><td class="num">68.0%</td></tr>
+                  <tr><td><strong>10</strong></td><td class="num">$100,000</td><td class="num">$20,000</td><td class="num">$11,000</td><td class="num"><strong class="text-emerald">$69,000</strong></td><td class="num">69.0%</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <p class="mz-source-note">Supuesto: herramientas compartidas de $4,000 hasta 3 clientes y +$1,000 por cada cliente adicional. Toda iguala de la Línea A dura al menos 12 meses.</p>
+          <p class="mz-source-note">Nadie cobra extra por operar la iguala: el servicio es parte del trabajo de cada área. Supuesto: herramientas compartidas de $4,000 hasta 3 clientes y +$1,000 por cada cliente adicional.</p>
         </div>
       </section>
 
       <section
         data-layout="S37"
         data-title="Proyección a 5 talleres (Taller 1 + Talleres 2 a 5)"
-        data-notes="[SEÑALAR: $422,000] Con ARTEPISA más 4 talleres y 5 igualas activas durante 12 meses, la Caja de MASTERIZE junta $422,000 libres, $48,000 más que con la regla anterior, y además se pagan $120,000 a quienes operan las igualas y $120,000 a personal de apoyo sin dar una sola acción."
+        data-notes="[SEÑALAR: $542,000] Con ARTEPISA más 4 talleres y 5 igualas activas durante 12 meses, la Caja de MASTERIZE junta $542,000 libres, y además se pagan $120,000 a personal de apoyo sin dar una sola acción."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -1422,9 +1321,9 @@
             <span class="mz-eq-sign">+</span>
             <div class="mz-eq-item"><span class="mz-eq-label">Caja Talleres 2–5 (4 × $30,000)</span><strong class="mz-eq-val">$120,000</strong></div>
             <span class="mz-eq-sign">+</span>
-            <div class="mz-eq-item"><span class="mz-eq-label">5 igualas × 12 meses</span><strong class="mz-eq-val text-accent">$288,000</strong></div>
+            <div class="mz-eq-item"><span class="mz-eq-label">5 igualas × 12 meses</span><strong class="mz-eq-val text-accent">$408,000</strong></div>
             <span class="mz-eq-sign">=</span>
-            <div class="mz-eq-item is-result"><span class="mz-eq-label">Caja libre MASTERIZE</span><strong class="mz-eq-val text-emerald">$422,000</strong></div>
+            <div class="mz-eq-item is-result"><span class="mz-eq-label">Caja libre MASTERIZE</span><strong class="mz-eq-val text-emerald">$542,000</strong></div>
           </div>
 
           <div class="mz-table-card">
@@ -1432,17 +1331,16 @@
               <table class="mz-spei-table" aria-label="Ganancia por socio en 5 talleres">
                 <thead><tr><th>Concepto</th><th class="num">Taller 1 (ARTEPISA)</th><th class="num">Talleres 2–5</th><th class="num">Total 5 talleres</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Omar · CEO</strong> <small class="mz-td-note">(Pool + Closer)</small></td><td class="num">$35,625</td><td class="num">$145,500</td><td class="num"><strong>$181,125</strong></td></tr>
+                  <tr><td><strong>Omar · CEO</strong> <small class="mz-td-note">(Pool + Firma)</small></td><td class="num">$35,625</td><td class="num">$145,500</td><td class="num"><strong>$181,125</strong></td></tr>
                   <tr><td><strong>Daniel · CTO</strong></td><td class="num">$56,250</td><td class="num">$132,000</td><td class="num"><strong>$188,250</strong></td></tr>
                   <tr><td><strong>Pedro · CLO</strong></td><td class="num">$16,875</td><td class="num">$49,500</td><td class="num"><strong>$66,375</strong></td></tr>
-                  <tr><td><strong>Octavio · Innovación</strong> <small class="mz-td-note">(+ bonos de Ejecución)</small></td><td class="num">$11,250</td><td class="num">$33,000</td><td class="num"><strong>$44,250</strong></td></tr>
+                  <tr><td><strong>Octavio · CINO</strong> <small class="mz-td-note">(+ bonos de Ejecución)</small></td><td class="num">$11,250</td><td class="num">$33,000</td><td class="num"><strong>$44,250</strong></td></tr>
                   <tr><td>Personal extra contratado <small class="mz-td-note">(0% acciones)</small></td><td class="num text-muted">—</td><td class="num">$120,000</td><td class="num"><strong>$120,000</strong></td></tr>
-                  <tr><td>Operadores de iguala <small class="mz-td-note">(12 meses, 5 clientes)</small></td><td class="num text-muted">—</td><td class="num text-muted">—</td><td class="num"><strong>$120,000</strong></td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <p class="mz-source-note">Con la regla anterior la Caja libre era de $374,000 y nadie cobraba por operar las igualas.</p>
+          <p class="mz-source-note">Cada iguala entra completa a MASTERIZE y las herramientas se pagan una sola vez: con 5 clientes quedan $34,000 libres al mes.</p>
         </div>
       </section>
 
@@ -1477,7 +1375,7 @@
       <section
         data-layout="S38"
         data-title="Roles y áreas: un dueño por área"
-        data-notes="[SEÑALAR: Las 4 áreas] Omar dirige, vende y cuida la Caja. Daniel es el CTO y responde por la plataforma. Pedro es el CLO y responde porque todo sea firmable y cumpla. Octavio lleva Innovación: agentes, automatización e IoT, y la Línea B. [PAUSA] Cada área reporta 3 números al mes y tiene un primer entregable a 30 días."
+        data-notes="[SEÑALAR: Las 4 áreas] Omar dirige, vende y cuida la Caja. Daniel es el CTO y responde por la plataforma. Pedro es el CLO y responde porque todo sea firmable y cumpla. Octavio es el CINO, Chief Innovation Officer: agentes, automatización e IoT, y la Línea B. [PAUSA] Cada área reporta 3 números al mes y tiene un primer entregable a 30 días."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -1513,8 +1411,8 @@
               </div>
             </article>
             <article class="mz-bento-card mz-partner-card">
-              <div class="mz-partner-top"><div><span class="mz-partner-role">INNOVACIÓN</span><h3 class="mz-partner-name">Octavio</h3></div></div>
-              <p class="mz-card-desc"><strong>IA, automatización e IoT · Línea B.</strong> Convierte lo que se repite en agentes y dirige el Fondo Autopiloto.</p>
+              <div class="mz-partner-top"><div><span class="mz-partner-role">CINO · CHIEF INNOVATION OFFICER</span><h3 class="mz-partner-name">Octavio</h3></div></div>
+              <p class="mz-card-desc"><strong>Innovación: IA, automatización e IoT · Línea B.</strong> Convierte lo que se repite en agentes y dirige el Fondo Autopiloto.</p>
               <div class="mz-partner-hitos">
                 <div class="mz-ph-row"><span>Números</span><strong>Agentes · horas ahorradas · pilotos B</strong></div>
                 <div class="mz-ph-row"><span>30 días</span><strong>Primer agente de CFDI</strong></div>
@@ -1543,10 +1441,10 @@
               <table class="mz-spei-table" aria-label="Porcentajes por socio">
                 <thead><tr><th>Socio</th><th>Rol</th><th class="num">ARTEPISA</th><th class="num">Taller #2+</th><th class="num">Acciones</th><th>Vesting</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Omar</strong></td><td>CEO</td><td class="num">25% Pool + 5% Closer</td><td class="num">35% Pool + 5% · 24.25%</td><td class="num"><strong class="text-accent">51%</strong></td><td>25% al firmar + 75% en 36 meses</td></tr>
+                  <tr><td><strong>Omar</strong></td><td>CEO</td><td class="num">25% Pool + 5% Firma</td><td class="num">35% Pool + 5% · 24.25%</td><td class="num"><strong class="text-accent">51%</strong></td><td>25% al firmar + 75% en 36 meses</td></tr>
                   <tr><td><strong>Daniel</strong></td><td>CTO</td><td class="num">50% Pool</td><td class="num">40% Pool · 22.00%</td><td class="num"><strong>25%</strong></td><td>48 meses, cliff de 12</td></tr>
                   <tr><td><strong>Pedro</strong></td><td>CLO</td><td class="num">15% Pool</td><td class="num">15% Pool · 8.25%</td><td class="num"><strong>8%</strong></td><td>48 meses, cliff de 12</td></tr>
-                  <tr><td><strong>Octavio</strong></td><td>Innovación</td><td class="num">10% Pool</td><td class="num">10% Pool · 5.50% + bono</td><td class="num"><strong>6%</strong></td><td>48 meses, cliff de 12</td></tr>
+                  <tr><td><strong>Octavio</strong></td><td>CINO</td><td class="num">10% Pool</td><td class="num">10% Pool · 5.50% + bono</td><td class="num"><strong>6%</strong></td><td>48 meses, cliff de 12</td></tr>
                   <tr><td><strong>Reserva de talento</strong></td><td>Futuras contrataciones</td><td class="num text-muted">—</td><td class="num text-muted">—</td><td class="num"><strong>10%</strong></td><td>Se asigna con su propio vesting</td></tr>
                 </tbody>
               </table>
@@ -1559,7 +1457,7 @@
       <section
         data-layout="S40"
         data-title="Reglas del juego para los 4 socios"
-        data-notes="[SEÑALAR: Las 6 reglas] Estas son las reglas que aplican a los cuatro por igual, empezando por mí. Nadie cobra sin trabajar, quien opera la iguala cobra, nadie pierde acciones porque las ventas tarden, quien sale bien se lleva lo que construyó, ningún número cambia sin aviso, y la empresa es dueña del código y la marca."
+        data-notes="[SEÑALAR: Las 6 reglas] Estas son las reglas que aplican a los cuatro por igual, empezando por mí. Nadie cobra sin trabajar, la iguala es de MASTERIZE, nadie pierde acciones porque las ventas tarden, quien sale bien se lleva lo que construyó, ningún número cambia sin aviso, y la empresa es dueña del código y la marca."
       >
         <div class="mz-slide-frame">
           <div class="mz-slide-header">
@@ -1575,8 +1473,8 @@
               <p class="mz-card-desc">Quien no ejecuta su parte en un taller no cobra ese porcentaje; pasa a quien sí hace el trabajo.</p>
             </article>
             <article class="mz-bento-card">
-              <h3 class="mz-card-title">Quien opera la iguala, cobra</h3>
-              <p class="mz-card-desc">20% de cada iguala para el operador, cada mes, contra CFDI y reporte de servicio.</p>
+              <h3 class="mz-card-title">La iguala es de MASTERIZE</h3>
+              <p class="mz-card-desc">Cada iguala entra completa a la Caja. Operar el servicio es parte del trabajo de cada área, sin pago extra.</p>
             </article>
             <article class="mz-bento-card">
               <h3 class="mz-card-title">Todos vestean</h3>
@@ -1620,7 +1518,7 @@
                   <tr><td class="num">2</td><td>Revisión legal de contratos v2</td><td>Pedro</td><td>9 nov</td></tr>
                   <tr><td class="num">3</td><td>Validar con el contador IVA, retenciones y régimen de la sociedad</td><td>Omar</td><td>2 nov</td></tr>
                   <tr><td class="num">4</td><td>Aprobar el disparador para constituir la S.A.P.I.</td><td>Pedro · Omar</td><td>Hoy</td></tr>
-                  <tr><td class="num">5</td><td>Designar operador de la iguala de ARTEPISA</td><td>Octavio (propuesto)</td><td>Hoy</td></tr>
+                  <tr><td class="num">5</td><td>Designar responsable del servicio mensual de ARTEPISA (sin pago extra)</td><td>Octavio (propuesto)</td><td>Hoy</td></tr>
                   <tr><td class="num">6</td><td>Cada socio declara horas por semana y disponibilidad en planta</td><td>Todos</td><td>Hoy</td></tr>
                   <tr><td class="num">7</td><td>Aceptar áreas, 3 números por área y entregable a 30 días</td><td>Todos</td><td>Hoy</td></tr>
                   <tr><td class="num">8</td><td>Precio piso para Taller #2+ (implementación e iguala)</td><td>Omar</td><td>9 nov</td></tr>
