@@ -28,21 +28,7 @@
     "Tabla Bancaria SPEI",
     "Iguala Mensual ($10,000/mes)",
     "Resumen en 4 Pasos",
-    "Sección 2 · El futuro de MASTERIZE",
-    "La oportunidad",
-    "Dos líneas de negocio",
-    "Ruta por fases",
-    "Hasta dónde puede llegar",
-    "Sección 3 · Siguientes talleres",
-    "Las 4 bolsas del Taller #2+",
-    "Pago por socio · Taller #2+",
-    "La iguala v2",
-    "Proyección a 5 talleres",
-    "Sección 4 · Roles y porcentajes",
-    "Roles y áreas",
-    "Porcentajes: flujo y acciones",
-    "Reglas del juego",
-    "Acuerdos"
+    "Roles y áreas"
   ];
 
   /* ---------- Formateadores Numéricos ---------- */
