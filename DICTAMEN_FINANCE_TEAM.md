@@ -12,12 +12,12 @@
 Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$), el contrato de implementación por **$150,000.00 MXN** se divide con las siguientes reglas definitivas (respetando la palabra dada a los 4 socios para ARTEPISA):
 - **Comisión de Firma (Omar):** **5.0% del Contrato ($7,500.00 MXN)** por firmar el contrato con su RFC, facturar y responder legal y fiscalmente ante ARTEPISA. El otro **5.0%** se suma al **Pool del Equipo**, llevándolo de 70% a **75.0% del Contrato ($112,500.00 MXN)**.
 - **Participación en el Pool (75% = $112,500.00 MXN):** Se reparte al **100%** entre los 4 socios respetando sus porcentajes acordados: Daniel **50%** ($56,250.00) · Omar **25%** ($28,125.00) · Pedro **15%** ($16,875.00) · Octavio **10%** ($11,250.00).
-- **Inversión y Caja MASTERIZE (20% = $30,000.00 MXN):** Se aparta íntegra en el Pago 1, cubre los **$16,000.00 MXN** de gastos de arranque y deja **$14,000.00 MXN libres** en tesorería.
+- **Inversión y Caja MASTERIZE (20% = $30,000.00 MXN):** Se aparta íntegra en el Pago 1, cubre los **$17,978.64 MXN** de gastos de arranque y deja **$12,021.36 MXN libres** en tesorería.
 
 | Bolsa Maestra | % sobre Bruto | Monto Total (MXN) | Propósito Financiero |
 | :--- | :---: | ---: | :--- |
 | **1. Pool de los 4 Socios (100% del Pool 75%)** | **75.0%** | **$112,500.00** | Pago directo a los 4 socios operativos (Daniel 50%, Omar 25%, Pedro 15%, Octavio 10% sobre el Pool de $112,500) |
-| **2. Inversión y Caja MASTERIZE (Apartada en el Pago 1)** | **20.0%** | **$30,000.00** | $30,000.00 en el Pago 1 → Paga $16,000.00 gastos de arranque + deja **$14,000.00 libres** en Caja |
+| **2. Inversión y Caja MASTERIZE (Apartada en el Pago 1)** | **20.0%** | **$30,000.00** | $30,000.00 en el Pago 1 → Paga $17,978.64 gastos de arranque + deja **$12,021.36 libres** en Caja |
 | **3. Comisión de Firma (Omar)** | **5.0%** | **$7,500.00** | Por firmar el contrato, facturar y responder legal y fiscalmente ante el cliente |
 | **TOTAL CONTRATO** | **100.0%** | **$150,000.00** | **Desbalance contable: $0.00 MXN (100% Cuadrado)** |
 
@@ -25,7 +25,7 @@ Bajo la regla de partida doble ($\sum \text{Entradas} - \sum \text{Salidas} = 0$
 
 ### 1.2 Dictamen FP&A de Capital de Trabajo: ¿Cómo se dividen los 2 pagos de ARTEPISA?
 ARTEPISA paga en 2 exhibiciones (**Pago 1 · anticipo: 40% = $60,000** · **Pago 2 · finiquito al firmar el Acta de Entrega-Recepción Final: 60% = $90,000**). Los Hitos 1, 2 y 3 del Contrato #1 siguen siendo las etapas de trabajo: el Pago 1 corresponde al Hito 1 y el Pago 2 cubre los Hitos 2 y 3.
-- **1. Primeros $30,000.00 MXN del Pago 1 (20% de Inversión y Caja MASTERIZE):** Se apartan íntegros para cubrir de inmediato los **$16,000.00 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), compra de 2 monitores de trabajo para Daniel ($4,172.50) y viáticos de Pedro ($1,167.50)— dejando **+$14,000.00 MXN libres** en la Caja de MASTERIZE.
+- **1. Primeros $30,000.00 MXN del Pago 1 (20% de Inversión y Caja MASTERIZE):** Se apartan íntegros para cubrir de inmediato los **$17,978.64 MXN** de inversión previa y arranque —reembolso de inversión IA de Omar ($10,660.00), reembolso a Omar del monitor de trabajo para Daniel ($4,679.00) y viáticos de Pedro ($2,639.64)— dejando **+$12,021.36 MXN libres** en la Caja de MASTERIZE.
 - **2. Siguientes $30,000.00 MXN del Pago 1 (5% Firma + Pool):** Se reparten en **$3,000.00 MXN** de Comisión de Firma y **$27,000.00 MXN** al Pool: Daniel 50% = **$13,500.00** · Omar 25% = **$6,750.00** · Pedro 15% = **$4,050.00** · Octavio 10% = **$2,700.00**.
 - **3. Pago 2 ($90,000.00 — $0 a Caja):** Como la Caja ya quedó cubierta en el Pago 1, se dispersan **$4,500.00 MXN** de Comisión de Firma y **$85,500.00 MXN** del Pool: Daniel 50% = **$42,750.00** · Omar 25% = **$21,375.00** · Pedro 15% = **$12,825.00** · Octavio 10% = **$8,550.00** hasta liquidar el 100%.
 
@@ -47,13 +47,12 @@ De los **$30,000.00 MXN** que integran la bolsa de Inversión y Caja MASTERIZE (
 
 1. **Reembolso a Omar Moranza ($10,660.00 MXN):**
    - $10,000.00 MXN por 3 meses de inversión previa en plataformas de IA + $660.00 MXN de plan complementario.
-2. **Equipamiento CapEx — 2 Monitores Mercado Libre para Daniel ($4,172.50 MXN):**
-   - Monitor Gamer Curvo 30" WFHD 200Hz (`MLM52822704`): **$3,199.00 MXN**.
-   - Monitor Portátil 15.6" FHD HDR (`MLM-2215895794`): **$973.50 MXN**.
-3. **Viáticos Legales y Operativos de Pedro ($1,167.50 MXN — ajustable):**
+2. **Reembolso a Omar Moranza del monitor de trabajo para Daniel ($4,679.00 MXN):**
+   - Omar pagó el monitor; Daniel lo usa en comodato hasta el cobro del Pago 2.
+3. **Viáticos Legales y Operativos de Pedro ($2,639.64 MXN):**
    - Traslados y representación en planta ARTEPISA.
-4. **Utilidad Libre en Caja MASTERIZE ($14,000.00 MXN):**
-   - Equivalente al **46.67% de margen libre** sobre la bolsa de Caja ($30,000.00 - $16,000.00 = **$14,000.00 MXN**).
+4. **Utilidad Libre en Caja MASTERIZE ($12,021.36 MXN):**
+   - Equivalente al **40.07% de margen libre** sobre la bolsa de Caja ($30,000.00 - $17,978.64 = **$12,021.36 MXN**).
 
 ---
 
@@ -62,12 +61,12 @@ Para transparencia absoluta entre socios, el flujo total que recibe cada integra
 
 | Socio / Entidad | Pool Socios (75%) | Firma (5%) | Reembolso / Viáticos / Hardware | Efectivo / Beneficio Total |
 | :--- | ---: | ---: | ---: | ---: |
-| **Daniel** | $56,250.00 | $0.00 | +$4,172.50 (2 Monitores ML) | **$60,422.50** ($56,250 Cash) |
-| **Omar Moranza** | $28,125.00 | $7,500.00 | +$10,660.00 (Reembolso IA) | **$46,285.00** ($35,625 Utilidad) |
-| **Pedro** | $16,875.00 | $0.00 | +$1,167.50 (Viáticos Planta) | **$18,042.50** Cash Total |
+| **Daniel** | $56,250.00 | $0.00 | Monitor en comodato ($4,679 pagado por Omar) | **$56,250.00** Cash Total |
+| **Omar Moranza** | $28,125.00 | $7,500.00 | +$15,339.00 (Reembolso IA $10,660 + monitor $4,679) | **$50,964.00** ($35,625 Ganancia) |
+| **Pedro** | $16,875.00 | $0.00 | +$2,639.64 (Viáticos Planta) | **$19,514.64** Cash Total |
 | **Octavio** | $11,250.00 | $0.00 | $0.00 | **$11,250.00** Cash Total |
-| **Caja MASTERIZE (Libre)** | — | — | Reserva neta del Pago 1 | **$14,000.00** Utilidad Libre |
-| **SUMA DE CONTROL** | **$112,500.00** | **$7,500.00** | **$16,000.00 + $14,000.00 = $30,000.00** | **$150,000.00 MXN (100%)** |
+| **Caja MASTERIZE (Libre)** | — | — | Reserva neta del Pago 1 | **$12,021.36** Utilidad Libre |
+| **SUMA DE CONTROL** | **$112,500.00** | **$7,500.00** | **$17,978.64 + $12,021.36 = $30,000.00** | **$150,000.00 MXN (100%)** |
 
 ---
 
@@ -76,7 +75,7 @@ Al entregar el sistema inicia la póliza recurrente de **$10,000.00 MXN/mes**, q
 - **Infraestructura Azure de ARTEPISA (costo directo del cliente):** -$2,000.00 MXN/mes (20%)
 - **Herramientas compartidas del equipo, pagadas una sola vez desde la Caja:** Claude Team + Claude Code (-$2,000.00) y Google AI Ultra (-$2,000.00).
 - **Excedente Libre a Caja MASTERIZE:** **+$4,000.00 MXN/mes (40.0% Margen FCF con un cliente)** → **$48,000.00 MXN/año**.
-- **Tesorería Libre Acumulada Año 1:** $14,000.00 (Caja Libre del Pago 1) + $48,000.00 (12 meses de iguala) = **$62,000.00 MXN**.
+- **Tesorería Libre Acumulada Año 1:** $12,021.36 (Caja Libre del Pago 1) + $48,000.00 (12 meses de iguala) = **$60,021.36 MXN**.
 - **Por qué el margen sube con cada cliente:** Azure crece con cada iguala, pero las herramientas compartidas no. Supuesto de proyección: $4,000.00/mes hasta 3 clientes y +$1,000.00/mes por cada cliente adicional (más asientos).
 
 | Clientes con iguala | Ingreso / mes | Azure | Herramientas compartidas | **Caja libre / mes** | Margen FCF |
@@ -104,9 +103,9 @@ Mientras que en el **Taller 1 (ARTEPISA)** el Pool es del **75% ($112,500)** y D
 | **TOTAL TALLER 2+** | **100.0% Cuadrado** | **100.00%** | **$150,000.00** | **Equilibrio real entre socios + presupuesto para contratar equipo sin ceder equity** |
 
 ### 2.2 Proyección Acumulada a 5 Talleres (Taller 1 ARTEPISA + Talleres 2 a 5)
-- **Tesorería Libre en Caja MASTERIZE:** $14,000 (T1) + $120,000 (4 × $30,000 en T2–T5) + $408,000 (12 meses con 5 igualas activas × $34,000 libres/mes, sección 1.5) = **$542,000.00 MXN libres en Caja**.
+- **Tesorería Libre en Caja MASTERIZE:** $12,021.36 (T1) + $120,000 (4 × $30,000 en T2–T5) + $408,000 (12 meses con 5 igualas activas × $34,000 libres/mes, sección 1.5) = **$540,021.36 MXN libres en Caja**.
 - **Presupuesto para Personal Extra Contratado (T2–T5):** 4 × $30,000 = **$120,000.00 MXN** pagados por entregable sin diluir acciones.
-- **Ganancia Directa de Daniel (T1–T5):** $56,250 (T1) + $105,600 (4 × $26,400) = **$161,850.00 MXN** (+ $4,172.50 en monitores y la Bolsa de Ejecución de los talleres en que programe él).
+- **Ganancia Directa de Daniel (T1–T5):** $56,250 (T1) + $105,600 (4 × $26,400) = **$161,850.00 MXN** (+ el monitor en comodato y la Bolsa de Ejecución de los talleres en que programe él).
 - **Ganancia Directa de Omar Moranza (T1–T5):** $35,625 (T1) + $122,400 (4 × $30,600) = **$158,025.00 MXN** (+ $10,660 reembolso IA + control de MASTERIZE con el 51%).
 - **Ganancia Directa de Pedro (T1–T5):** $16,875 (T1) + $66,000 (4 × $16,500) = **$82,875.00 MXN**.
 - **Ganancia Directa de Octavio (T1–T5):** $11,250 (T1) + $66,000 (4 × $16,500) = **$77,250.00 MXN** (+ bonos de Ejecución si desarrolla módulos).
@@ -135,19 +134,19 @@ Los machotes completos listos para firma (**Versión 2.1, 26 de octubre de 2026*
 
 Para que **cualquier socio o persona sin formación financiera entienda en menos de 3 segundos por pantalla cómo se dividió el dinero**, la interfaz opera bajo estas reglas estrictas:
 
-1. **Formato Presentación Paso a Paso (8 Diapositivas Secuenciales):**
+1. **Formato Presentación Paso a Paso (8 Diapositivas Secuenciales, versión del 27 de octubre de 2026):**
    - Presentar **una sola pregunta financiera por diapositiva** con navegación por teclado (`←` `→` `Espacio`), selector superior de pasos (`01` a `08`) y vista de cuadrícula (`ESC`).
 2. **Depuración Radical de Texto:**
    - Mostrar únicamente: **Número de Paso + Titular claro + Cifras Grandes (`tabular-nums`) + Etiquetas concisas**.
 3. **Sistema Visual Apple Keynote × MASTERIZE (`/web-presentation-pro`):**
    - Modo Taller Oscuro (`#0A0A0B`) y Modo Papel Claro (`#F5F5F7`), tipografía `Masterize Forja` / `Inter Tight` / `JetBrains Mono`, teleprompter `[N]` y Presenter Studio de 4 tarjetas `[P]`.
 4. **Estructura Exacta de las 8 Diapositivas:**
-   - **Slide 01 · Portada ($150,000 MXN):** Las 3 bolsas claras: `Pool 75% ($112,500)` · `Caja MASTERIZE 20% ($30,000 en el Pago 1 -> $14,000 Libres)` · `Comisión de Firma 5% ($7,500)`.
-   - **Slide 02 · Las 3 Bolsas del Contrato ($150,000):** Barra proporcional (`75% Pool Socios $112,500` · `20% Caja $30,000` · `5% Firma $7,500`) y Libro Mayor S20.
-   - **Slide 03 · Los 2 Pagos de ARTEPISA:** División 50/50 en el Pago 1 (`$30,000` Caja + `$30,000` Pool/Firma) y liquidación 100% a Socios/Firma en el `Pago 2 ($90k)`.
-   - **Slide 04 · Caja MASTERIZE ($30,000 → $14,000 Libres):** Desglose de `$30,000` en el Pago 1 menos los 3 pagos de arranque (`$10,660` Omar + `$4,172.50` Monitores + `$1,167.50` Viáticos = `$14,000` Libres).
-   - **Slide 05 · Pago Individual por Socio:** Tarjetas por socio con desglose `Pago 1 · Pago 2` y total (`Daniel $56.25k + monitores`, `Omar $35.625k + reembolso`, `Pedro $16.875k + viáticos`, `Octavio $11.25k` con su `10%` íntegro).
-   - **Slide 06 · Tabla Bancaria SPEI por Pago:** Tabla cuadrada al 100% con exportación CSV en 1 clic.
-   - **Slide 07 · Iguala Mensual ($10k/mes → $4k Libres, 100% MASTERIZE):** `$2k` Azure de ARTEPISA + `$4k` herramientas compartidas pagadas desde Caja (`$2k` Claude + `$2k` Google AI) y Tesorería Libre Año 1 (`$62,000`).
-   - **Slide 08 · Resumen en 4 Pasos + Simulador en Vivo:** Línea de tiempo cronológica y simulador interactivo reactivo.
+   - **Slide 01 · Qué fue ARTEPISA ($150,000 MXN):** Las 3 bolsas claras: `Pool 75% ($112,500)` · `Caja MASTERIZE 20% ($30,000 en el Pago 1 -> $12,021.36 Libres)` · `Comisión de Firma 5% ($7,500)`.
+   - **Slide 02 · El Pago 1 peso por peso ($60,000):** Mitad 1 Caja (`$10,660` IA y `$4,679` monitor reembolsados a Omar + `$2,639.64` viáticos de Pedro = `$12,021.36` libres) y Mitad 2 Socios (`$3,000` Firma + `$27,000` Pool), con el SPEI de cada quien.
+   - **Slide 03 · Cuánto recibe cada quien en cada pago:** Tabla SPEI cuadrada al 100% con exportación CSV en 1 clic.
+   - **Slide 04 · Cuánto gana y cuánto se lleva cada quien:** Ganancia (Pool + Firma) separada de reembolsos, total por persona y por pago.
+   - **Slide 05 · La bolsa que queda y las mensualidades:** `$12,021.36` libres + `$4,000/mes` de iguala = `$60,021.36` al primer año.
+   - **Slide 06 · Lo que aprendimos:** Errores de cada quien, cada uno con su regla.
+   - **Slide 07 · Roles y áreas:** CEO, CTO, CLO y CINO.
+   - **Slide 08 · Lo que sigue:** Preguntas abiertas para decidir entre los cuatro.
 

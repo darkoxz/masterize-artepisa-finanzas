@@ -2392,3 +2392,10 @@ html:not(.dark) .logo-for-light { display: block; }
   color: var(--text);
 }
 .mz-lesson-rule strong { color: var(--emerald); }
+
+/* Banner de ecuación con muchas partes (SPEI del Pago 1) */
+.mz-equation-banner.mz-eq-compact { gap: 8px; padding: 16px 20px; }
+.mz-eq-compact .mz-eq-val { font-size: 24px; white-space: nowrap; }
+.mz-eq-compact .mz-eq-item.is-result { flex: 0 0 auto; padding-left: 14px; padding-right: 14px; }
+.mz-eq-compact .mz-eq-sign { font-size: 22px; padding: 0 2px; }
+.mz-eq-compact .mz-eq-item { min-width: 0; }

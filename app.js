@@ -7,10 +7,10 @@
 
   var DEFAULTS = {
     contractGross: 150000,
-    omarReimb: 10660,
-    mon30: 3199,
-    mon15: 973.5,
-    viaticos: 1167.5,
+    omarReimb: 10660,   // Inversión de Omar en IA
+    mon30: 4679,        // Monitor de trabajo para Daniel, pagado por Omar
+    mon15: 0,
+    viaticos: 2639.64,  // Viáticos de Pedro
     igualaGross: 10000,
     azure: 2000,
     claude: 2000,
@@ -21,7 +21,10 @@
 
   var SHORT_TITLES = [
     "Qué fue ARTEPISA",
+    "El Pago 1 peso por peso",
     "Cuánto recibe cada quien",
+    "Cuánto gana y se lleva cada quien",
+    "La bolsa y las mensualidades",
     "Lo que aprendimos",
     "Roles y áreas",
     "Lo que sigue"
@@ -140,12 +143,12 @@
 
     // Totales con Reembolsos / Equipo en el Pago 1
     var danGrand = danPool + monTotal;
-    var omarGrand = omarUtilTotal + omarReimb;
+    var omarGrand = omarUtilTotal + omarReimb + monTotal; // el monitor lo pagó Omar
     var pedGrand = pedPool + viaticos;
     var octGrand = octPool;
 
     // Efectivo real transferido en el Pago 1
-    var omarCashH1 = omarUtilH1 + omarReimb;
+    var omarCashH1 = omarUtilH1 + omarReimb + monTotal;
     var pedCashH1 = pedH1 + viaticos;
 
     // Iguala Mensual post-entrega: 100% para MASTERIZE (Contrato #2, sección 5)
@@ -416,8 +419,8 @@
       callout.innerHTML =
         '<strong>Nota de Transferencias Reales en el Pago 1 (' + fmtCurrency(m.h1Gross) + '):</strong> ' +
         'Sumando su Pool + Firma + Reembolso/Viáticos de los primeros ' + fmtCurrency(m.h1Caja) + ', en el Pago 1 se transfiere: ' +
-        '<strong>Omar ' + fmtCurrency(m.omarCashH1, 2) + '</strong> (' + fmtCurrency(m.omarPoolH1) + ' Pool + ' + fmtCurrency(m.h1Closer) + ' Firma + ' + fmtCurrency(m.omarReimb) + ' Reembolso IA) · ' +
-        '<strong>Daniel ' + fmtCurrency(m.danH1, 2) + '</strong> (+ ' + fmtCurrency(m.monTotal, 2) + ' compra de 2 monitores) · ' +
+        '<strong>Omar ' + fmtCurrency(m.omarCashH1, 2) + '</strong> (' + fmtCurrency(m.omarPoolH1) + ' Pool + ' + fmtCurrency(m.h1Closer) + ' Firma + ' + fmtCurrency(m.omarReimb) + ' IA + ' + fmtCurrency(m.monTotal, 2) + ' monitor) · ' +
+        '<strong>Daniel ' + fmtCurrency(m.danH1, 2) + '</strong> (+ monitor en comodato) · ' +
         '<strong>Pedro ' + fmtCurrency(m.pedCashH1, 2) + '</strong> (' + fmtCurrency(m.pedH1) + ' Pool + ' + fmtCurrency(m.viaticos, 2) + ' Viáticos) · ' +
         '<strong>Octavio ' + fmtCurrency(m.octH1, 2) + '</strong> · ' +
         '<strong>Caja Libre MASTERIZE ' + fmtCurrency(m.cajaFreeH1, 2) + '</strong>.';
@@ -506,15 +509,13 @@
       [],
       ["DESGLOSE DE CAJA PAGO 1 (" + fmtCurrency(m.cajaTotal, 2) + ")", "Detalle", "Monto Pago 1", "", ""],
       ["Reembolso IA Omar Moranza", "3 meses IA ($10,000) + Plan ($660)", m.omarReimb.toFixed(2), "", ""],
-      ["Monitor Curvo 30\" Daniel (MLM52822704)", "Equipo de trabajo Mercado Libre", m.mon30.toFixed(2), "", ""],
-      ["Monitor Portatil 15.6\" Daniel (MLM-2215895794)", "Equipo de trabajo Mercado Libre", m.mon15.toFixed(2), "", ""],
+      ["Reembolso monitor a Omar Moranza", "Monitor de trabajo para Daniel (comodato)", m.monTotal.toFixed(2), "", ""],
       ["Viaticos Operativos Planta Pedro", "Traslados y visitas ARTEPISA", m.viaticos.toFixed(2), "", ""],
       ["Reserva Libre en Caja MASTERIZE", "Remanente neto en tesoreria Pago 1", m.cajaFreeH1.toFixed(2), "", ""],
       [],
       ["TRANSFERENCIAS REALES EN EFECTIVO", "Composicion", "SPEI Pago 1", "SPEI Pago 2", "Total Proyecto"],
-      ["Omar Moranza (Pool + Firma + Reembolso IA)", "25% Pool + 5% Firma + Reembolso", m.omarCashH1.toFixed(2), m.omarUtilH2.toFixed(2), m.omarGrand.toFixed(2)],
+      ["Omar Moranza (Pool + Firma + Reembolsos IA y monitor)", "25% Pool + 5% Firma + Reembolsos", m.omarCashH1.toFixed(2), m.omarUtilH2.toFixed(2), m.omarGrand.toFixed(2)],
       ["Daniel (Efectivo Pool Socios)", "50% Pool Socios", m.danH1.toFixed(2), m.danH2.toFixed(2), m.danPool.toFixed(2)],
-      ["Compra 2 Monitores Daniel (Mercado Libre)", "MLM52822704 + MLM-2215895794", m.monTotal.toFixed(2), "0.00", m.monTotal.toFixed(2)],
       ["Pedro (Pool + Viaticos Planta)", "15% Pool + Viaticos Pago 1", m.pedCashH1.toFixed(2), m.pedH2.toFixed(2), m.pedGrand.toFixed(2)],
       ["Octavio (Efectivo Pool Socios)", "10% Pool Socios", m.octH1.toFixed(2), m.octH2.toFixed(2), m.octGrand.toFixed(2)],
       ["Caja Libre MASTERIZE (Retencion Tesoreria)", "Reserva libre Pago 1", m.cajaFreeH1.toFixed(2), "0.00", m.cajaFreeH1.toFixed(2)]
