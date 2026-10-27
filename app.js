@@ -10,7 +10,7 @@
     omarReimb: 10660,   // Inversión de Omar en IA
     mon30: 4679,        // Monitor de trabajo para Daniel, pagado por Omar
     mon15: 0,
-    viaticos: 2639.64,  // Viáticos de Pedro
+    viaticos: 2687.92,  // Viáticos de Pedro
     igualaGross: 10000,
     azure: 2000,
     claude: 2000,
